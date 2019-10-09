@@ -1,0 +1,1330 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta content="Materials to prepare for the Red Hat Certified Specialist in Identity Management exam." name="description" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests; default-src 'self'; style-src 'self' https://github.githubassets.com/ stackpath.bootstrapcdn.com; script-src 'self' https://gist.github.com/remyabel/2cac59a778fa34d0c61e246554fe3e3c.js https://gist.github.com/remyabel/bbebf3043860abe24a19bf0b1d67bd33.js https://gist.github.com/remyabel/e9c33b830da73768fe6ea2363fc27e1a.js; img-src 'self'; media-src 'self'; font-src 'self' fonts.gstatic.com stackpath.bootstrapcdn.com;">
+  
+  
+  <title>EX362 Exam Prep &mdash; Linux Guide and Hints</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="../_static/css/prism-okaidia.min.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="The System Administrator Experience" href="../centos/sysadmin.html" /> 
+
+  <noscript>
+      <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
+  </noscript>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+<a class="sr-only sr-only-focusable" href="#main">Skip to main content</a>
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Linux Guide and Hints
+          
+
+          
+            
+            <img src="../_static/img/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.6
+              </div>
+            
+          
+
+          
+<form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <div role="search">
+        <input type="text" aria-label="Search docs" name="q" placeholder="Search docs" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+    </div>
+</form>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/euphemism.html">The Euphemism Review</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../misc/euphemism.html#please-don-t-say-timeframe">Please don’t say “timeframe”</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/mingw.html">MinGW</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../misc/mingw.html#why-not-use-wsl">Why not use WSL?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/port465.html">Is port 465 deprecated?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/security.html">Security and anti-patterns</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../misc/security.html#https">HTTPS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../misc/security.html#insecure-requests">Insecure requests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../misc/security.html#using-insecure-ciphers">Using insecure ciphers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../misc/security.html#password-security">Password security</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../misc/security.html#using-deprecated-hashing-functions">Using deprecated hashing functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../misc/security.html#arbitrary-password-lengths">Arbitrary password lengths</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../misc/security.html#client-side-hashing">Client-side hashing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../misc/security.html#disabling-mitigations">Disabling mitigations</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Gentoo</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gentoo/gdm.html">GDM</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gentoo/gdm.html#gdm-doesn-t-start-up">GDM doesn’t start up</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Fedora</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gettingstarted.html#other-things">Other things</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/backups.html">Backups</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/backups.html#id1">Duplicity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/backups.html#gpg">GPG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/backups.html#keychain">Keychain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/backups.html#unattended-backups">Unattended backups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/backups.html#id3">git-annex</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/blockify.html">Blockify</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/cipc.html">Cisco IP Communicator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/cipc.html#installing-via-playonlinux">Installing via PlayOnLinux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/cipc.html#installing-via-regular-wine">Installing via Regular Wine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/cipc.html#pulse-audio">Pulse Audio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/clang.html">Clang</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/clang.html#msan-line-numbers">MSan line numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/clang.html#clang-format">clang-format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/copr.html">COPR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/docker.html">Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/docker.html#changing-the-data-directory">Changing the data directory</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/emulators.html">Emulators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/emulators.html#dolphin">Dolphin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#wii-controls">Wii controls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#game-idiosyncrasies">Game idiosyncrasies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../fedora/emulators.html#paper-mario-the-thousand-year-door">Paper Mario: The Thousand-Year Door</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/emulators.html#compiling-pcsx2">Compiling PCSX2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#cmake-flags">CMake flags</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/emulators.html#retroarch">RetroArch</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#building-beetle-psx-libretro-mednafen">Building beetle-psx-libretro (mednafen)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#enabling-the-vulkan-renderer-and-32-bit-color">Enabling the Vulkan renderer and 32-bit color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#shaders">Shaders</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/emulators.html#mednafen-randomly-speeds-up">mednafen randomly speeds up</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/emulators.html#mupen64plus-unofficial-faq">Mupen64Plus unofficial FAQ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#where-does-mupen64plus-like-to-put-files">Where does Mupen64Plus like to put files?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#i-m-getting-a-dlopen-error">I’m getting a <code class="docutils literal notranslate"><span class="pre">dlopen</span></code> error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#keycode-values">Keycode values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#i-changed-one-of-the-hi-res-textures-and-no-change-is-visible">I changed one of the hi-res textures and no change is visible</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#recommended-plugins">Recommended plugins?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#how-do-i-compile-it">How do I compile it?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/emulators.html#gba">GBA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/emulators.html#id1">MAME</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#configuration">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../fedora/emulators.html#example-mame-ini">Example <code class="docutils literal notranslate"><span class="pre">mame.ini</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../fedora/emulators.html#example-command-line-options">Example command line options</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#speed">Speed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#ui-script">UI script</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/emulators.html#id2">mGBA</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#controller-joystick-issue">Controller/joystick issue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#building">Building</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../fedora/emulators.html#cmake-variables">CMake variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../fedora/emulators.html#id3">Dependencies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/emulators.html#link-cable-support">Link cable support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#id4">BGB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#id5">mGBA</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/emulators.html#kega-fusion">Kega Fusion</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#id6">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#id7">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#no-sound">No Sound?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/firefox.html">Firefox</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/firefox.html#disable-automatic-redirect-to-a-website-if-typing-an-invalid-url">Disable automatic redirect to a website if typing an invalid URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/firefox.html#glitchy-ui-when-using-custom-gtk-theme">Glitchy UI when using custom GTK theme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/firefox.html#enabling-secure-dns-and-encrypted-sni">Enabling Secure DNS and Encrypted SNI</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/gcc.html">GCC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/gcc.html#installing-prerequisites-gmp-mpfr-mpc">Installing prerequisites: GMP, MPFR, MPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/gcc.html#building">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/gcc.html#docker">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/gcc.html#invalid-instruction-suffix-for">“invalid instruction suffix for”</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/git.html">Git</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/git.html#setting-up-cloudflare-and-github-pages">Setting up Cloudflare and Github pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/git.html#gpg">GPG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/git.html#workflow">Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/git.html#keeping-forks-synchronized">Keeping forks synchronized</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/git.html#versioning">Versioning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/git.html#git-commit-am-didnt-add-my-latest-files"><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-am</span></code> didn’t add my latest files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/git.html#what-creates-duplicate-commits-different-shas">What creates duplicate commits (different SHA’s)?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/git.html#merge">Merge</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../fedora/git.html#temporary-hotfix-branch">Temporary (hotfix) branch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../fedora/git.html#feature-long-lived-branch">Feature (long-lived) branch</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/git.html#rebase">Rebase</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../fedora/git.html#local-branch-diverges-from-origin-remote">Local branch diverges from origin (remote)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../fedora/git.html#example">Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../fedora/git.html#clean-up-your-work">Clean up your work</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/gitlab.html">Gitlab</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/gitlab.html#ssh-and-git-access">SSH and Git access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/gitlab.html#enabling-https-with-let-s-encrypt">Enabling HTTPS with Let’s Encrypt</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/gnometips.html">GNOME Tips</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/gnometips.html#system-tray">System Tray</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/gnometips.html#add-minimize-maximize">Add minimize/maximize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/gnometips.html#pidgin">Pidgin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/iphone.html">iPhone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/kubernetes.html">Kubernetes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/kubernetes.html#installation">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/mcafee.html">McAfee</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/misc.html">Misc</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/misc.html#using-ld-library-path-in-fish">Using <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> in Fish</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/misc.html#unable-to-find-liblzma">Unable to find <code class="docutils literal notranslate"><span class="pre">LibLZMA</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/misc.html#unable-to-find-wxwidgets">Unable to find <code class="docutils literal notranslate"><span class="pre">wxWidgets</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/misc.html#update-all-repositories-in-the-current-directory">Update all repositories in the current directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/misc.html#youcompleteme-crashes-due-to-libtinfo-so-version-mismatch">YouCompleteMe crashes due to <code class="docutils literal notranslate"><span class="pre">libtinfo.so</span></code> version mismatch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/misc.html#keepasshttp-no-longer-works">KeePassHttp no longer works</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/misc.html#disable-tcp-ip-and-use-sockets-for-mysql">Disable TCP/IP and use sockets for MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/misc.html#selinux-is-preventing-abrt-action-sav-from-write-access-on-the-directory-var-lib-rpm">SELinux is preventing <code class="docutils literal notranslate"><span class="pre">abrt-action-sav</span></code> from write access on the directory /var/lib/rpm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/misc.html#swapping-desktop-environments">Swapping Desktop Environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/misc.html#upon-logging-into-xfce-desktop-freezes-until-you-switch-to-another-tty">Upon logging into XFCE, desktop freezes until you switch to another TTY</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/mpv.html">mpv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/negativo.html">negativo17 repositories and Nvidia drivers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/negativo.html#multimedia">Multimedia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/negativo.html#nvidia">Nvidia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/negativo.html#dkms">DKMS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/packaging.html">Packaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/pip.html">pip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/powerline.html">Powerline</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/powerline.html#installing-via-dnf">Installing via <code class="docutils literal notranslate"><span class="pre">dnf</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/powerline.html#enabling-powerline-installed-via-dnf">Enabling powerline (installed via <code class="docutils literal notranslate"><span class="pre">dnf</span></code>)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/powerline.html#fish">Fish</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../fedora/powerline.html#oh-my-fish">oh-my-fish</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/powerline.html#vim">vim</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/powerline.html#tmux">tmux</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/pulseaudio.html">Pulseaudio</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/pulseaudio.html#flat-volume">Flat Volume</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/pulseaudio.html#sound-crackling">Sound Crackling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/tmux.html">tmux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/vim.html">vim</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/vim.html#plugins">Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/virtualbox.html">VirtualBox</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/virtualbox.html#failed-to-start-load-kernel-modules-after-uninstalling">“Failed to start Load Kernel Modules” after uninstalling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/virtualbox.html#kernel-modules-do-not-build-upon-kernel-update">Kernel modules do not build upon kernel update</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/vmware.html">VMware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/winetips.html">Wine Tips</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/winetips.html#out-of-memory-errors">Out of memory errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/winetips.html#new-vegas">New Vegas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/winetips.html#installing-via-wine">Installing via Wine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/winetips.html#modding">Modding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/winetips.html#id2">Mod Organizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/winetips.html#loot">LOOT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/winetips.html#lutana-nvse">Lutana NVSE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/winetips.html#ini-modifications">.ini modifications</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/winetips.html#gmdx">GMDX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/winetips.html#directx11-games">DirectX11 games</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/winetips.html#proton">Proton</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/xscreensaver.html">XScreenSaver</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/xscreensaver.html#gamma-or-brightness-is-too-high-when-unlocking">Gamma or brightness is too high when unlocking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/xscreensaver.html#disable-fade-to-black-effect">Disable fade to black effect</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">CentOS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../centos/builds.html">Auto-Provisioning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../centos/freeipa.html">FreeIPA</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../centos/freeipa.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/freeipa.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/freeipa.html#tutorial-preface-notes-and-recommendations">Tutorial Preface, Notes, and Recommendations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/freeipa.html#dns">DNS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#delegation">Delegation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/freeipa.html#server-setup">Server Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#required-packages">Required Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#replica">Replica</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#replica-automation">Replica Automation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/freeipa.html#active-directory-trust">Active Directory Trust</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/freeipa.html#disable-anonymous-bind">Disable Anonymous Bind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/freeipa.html#client-setup">Client Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#rhel-7-8">RHEL 7 &amp; 8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#mac-clients">Mac Clients</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#suse">SUSE</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/freeipa.html#hbac">HBAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/freeipa.html#sudo">SUDO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/freeipa.html#legacy-client-setup">Legacy Client Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#solaris-10">Solaris 10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#solaris-11-and-omnios-illumos">Solaris 11 and Omnios/Illumos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#automated-scripts">Automated Scripts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#legacy-hbac">Legacy HBAC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../centos/freeipa.html#id3">Solaris 10</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../centos/freeipa.html#solaris-11">Solaris 11</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../centos/freeipa.html#omnios">Omnios</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../centos/freeipa.html#pam-hbac-conf">pam_hbac.conf</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../centos/freeipa.html#pam-configuration">PAM Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#login-with-ad-users-to-legacy-clients">Login with AD Users to Legacy Clients</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#legacy-active-directory-trust-notes">Legacy Active Directory Trust Notes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../centos/freeipa.html#domain-resolution-order-oddness">Domain Resolution Order Oddness</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../centos/freeipa.html#solaris-weirdness">Solaris Weirdness</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/freeipa.html#situational-options">Situational Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#remove-realm-for-ad-users">Remove &#64;realm for AD users</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#rhel-6-sudo-and-default-domain-suffix">RHEL 6 SUDO and Default Domain Suffix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/freeipa.html#automated-kerberos-principals">Automated Kerberos Principals</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#hadoop-cloudera">Hadoop/Cloudera</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../centos/freeipa.html#cloudera-manager-woes">Cloudera Manager Woes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../centos/freeipa.html#the-solution">The Solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../centos/nat.html">NAT/Router</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../centos/nat.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/nat.html#tutorial">Tutorial</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../centos/nat.html#interface-setup">Interface Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/nat.html#firewalld">FirewallD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/nat.html#iptables">iptables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/nat.html#nftables">nftables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/nat.html#ipv6-forwarding">IPv6 Forwarding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/nat.html#dhcp">DHCP</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../centos/openldap.html">OpenLDAP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../centos/openldap.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/openldap.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/openldap.html#tutorial-preface-notes-and-recommendations">Tutorial Preface, Notes, and Recommendations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/openldap.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#packages">Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#certificates">Certificates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#ldap-server-configuration">LDAP Server Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#ldap-structure">LDAP Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#add-users-via-migration">Add Users via Migration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#add-users-via-ldif">Add Users via LDIF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#nfs-export-home-directories">NFS Export Home Directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#firewall">Firewall</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/openldap.html#client">Client</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#rhel-6-rhel-7-fedora-20">RHEL 6/RHEL 7/Fedora 20+</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#automounting-home-directories">Automounting Home Directories</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/openldap.html#ldap-structure-add-ons">LDAP Structure Add-ons</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#sudo">SUDO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#member-groups">Member Groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#referential-integrity">Referential Integrity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#acl">ACL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#disable-anonymous-binding">Disable Anonymous Binding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#ldap-logging">LDAP Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#password-policy">Password Policy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../centos/sysadmin.html">The System Administrator Experience</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../centos/sysadmin.html#recommendations">Recommendations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/sysadmin.html#certification-completions">Certification Completions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/sysadmin.html#notes-and-changelog">Notes and Changelog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/sysadmin.html#begin">Begin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#setup-a-kvm-hypervisor">Setup a KVM Hypervisor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#dhcp-and-dns">DHCP and DNS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#server-and-content-management">Server and Content Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#connect-content-management-to-hypervisor">Connect Content Management to Hypervisor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#spin-up-vm-s-using-katello-spacewalk">Spin Up VM’s Using Katello/Spacewalk</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#setup-freeipa">Setup FreeIPA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#spin-up-two-vm-s-for-databases">Spin Up Two VM’s for Databases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#spin-up-configuration-management">Spin Up Configuration Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#spin-up-vm-for-nfs-iscsi">Spin Up VM for NFS/iSCSI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#deploy-bacula-server">Deploy Bacula Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#deploy-four-vm-s">Deploy Four VM’s</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#deploy-load-balancer-vm">Deploy Load Balancer VM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#deploy-postfix-vm">Deploy Postfix VM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#setup-nagios-vm">Setup Nagios VM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#setup-syslog-vm">Setup Syslog VM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#document-your-work">Document Your Work</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#rpm-build-server">RPM Build Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#git-server">Git Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#ansible">Ansible</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Training Resources</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">EX362 Exam Prep</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exam-information">Exam Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hardware-recommendations">Hardware Recommendations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-freeipa-red-hat-idm-with-replicas-for-growth-and-scale">Installing FreeIPA/Red Hat IdM with replicas for growth and scale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-users-groups-and-policies">Creating Users, Groups, and Policies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#new-passwords-expired">New Passwords Expired</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#install-and-configure-idm-clients">Install and configure IdM Clients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configure-roaming-automounted-home-directories">Configure roaming/automounted home directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#use-the-rest-api-to-query-idm">Use the REST api to query IdM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configure-kerberized-services">Configure Kerberized services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-a-trust-with-active-directory">Create a trust with Active Directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configure-control-policies-and-user-access">Configure/control policies and user access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configure-and-manage-a-certificate-authority">Configure and manage a certificate authority</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#back-up-an-idm-infrastructure">Back up an IdM infrastructure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configure-idm-as-an-ldap-backend-for-external-services">Configure IdM as an LDAP backend for external services</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#kerberos">Kerberos</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#implement-a-sso">Implement a SSO</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Linux Guide and Hints</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>EX362 Exam Prep</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/nazunalika/linux-guide-and-hints/blob/master/source/training/ex362.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ex362-exam-prep">
+<h1><a class="toc-backref" href="#id1">EX362 Exam Prep</a><a class="headerlink" href="#ex362-exam-prep" title="Permalink to this headline">¶</a></h1>
+<p>This page contains the necessary resources to help you prepare for the Red Hat Certified Specialist in Identity Management exam, EX362. This follows loosely the youtube playlist as much as possible with various examples and ideas. At the bottom, you will also find our own example practice exam for you to try your hand at to test your knowledge.</p>
+<p>The list of objectives can be found <a class="reference external" href="https://www.redhat.com/en/services/training/ex362-red-hat-certified-specialist-identity-management-exam">here</a>. Note that the exam objectives can change at any time. It is the responsibility of the reader to always review the objectives prior to studying and taking the exam to ensure success.</p>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+<h5 class="card-title">
+Please note that we are not affiliated with Red Hat. The materials and examples used are our own and do not reflect the training programs provided by Red Hat and are educational only. We do not disclose any of the tasks, questions, or material on the exam as it would violate the NDA. Any questions sent to us about anything directly related to the exam will not be answered. We also do not provide any one-on-one tutoring or online teaching courses.</h5>If exam objectives have changed to where the videos and this material are missing information, we can add on at any time upon request. If there are things about FreeIPA that you’d like to see in the videos that may fit into objective, we can add it also upon request. However, it is likely those extra things would be better suited in the separate FreeIPA section on this site.</div></div>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#ex362-exam-prep" id="id1">EX362 Exam Prep</a><ul>
+<li><a class="reference internal" href="#overview" id="id2">Overview</a></li>
+<li><a class="reference internal" href="#exam-information" id="id3">Exam Information</a></li>
+<li><a class="reference internal" href="#resources" id="id4">Resources</a></li>
+<li><a class="reference internal" href="#hardware-recommendations" id="id5">Hardware Recommendations</a></li>
+<li><a class="reference internal" href="#installing-freeipa-red-hat-idm-with-replicas-for-growth-and-scale" id="id6">Installing FreeIPA/Red Hat IdM with replicas for growth and scale</a></li>
+<li><a class="reference internal" href="#creating-users-groups-and-policies" id="id7">Creating Users, Groups, and Policies</a><ul>
+<li><a class="reference internal" href="#new-passwords-expired" id="id8">New Passwords Expired</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#install-and-configure-idm-clients" id="id9">Install and configure IdM Clients</a></li>
+<li><a class="reference internal" href="#configure-roaming-automounted-home-directories" id="id10">Configure roaming/automounted home directories</a></li>
+<li><a class="reference internal" href="#use-the-rest-api-to-query-idm" id="id11">Use the REST api to query IdM</a></li>
+<li><a class="reference internal" href="#configure-kerberized-services" id="id12">Configure Kerberized services</a></li>
+<li><a class="reference internal" href="#create-a-trust-with-active-directory" id="id13">Create a trust with Active Directory</a></li>
+<li><a class="reference internal" href="#configure-control-policies-and-user-access" id="id14">Configure/control policies and user access</a></li>
+<li><a class="reference internal" href="#configure-and-manage-a-certificate-authority" id="id15">Configure and manage a certificate authority</a></li>
+<li><a class="reference internal" href="#back-up-an-idm-infrastructure" id="id16">Back up an IdM infrastructure</a></li>
+<li><a class="reference internal" href="#configure-idm-as-an-ldap-backend-for-external-services" id="id17">Configure IdM as an LDAP backend for external services</a><ul>
+<li><a class="reference internal" href="#kerberos" id="id18">Kerberos</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#implement-a-sso" id="id19">Implement a SSO</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h2><a class="toc-backref" href="#id2">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The video series goes over setting up FreeIPA in a lab/VM environment by following the objectives as outlined by Red Hat. The list of objectives can be found <a class="reference external" href="https://www.redhat.com/en/services/training/ex362-red-hat-certified-specialist-identity-management-exam">here</a>.</p>
+</div>
+<div class="section" id="exam-information">
+<h2><a class="toc-backref" href="#id3">Exam Information</a><a class="headerlink" href="#exam-information" title="Permalink to this headline">¶</a></h2>
+<p>The EX362 exam tests your knowledge in a real world format style test - Meaning just like any Red Hat exam, it is performance-based and you perform tasks as if you were on the job. You are evaluated on the tasks you perform and if they meet the objective criteria. The EX362 is related to FreeIPA or Red Hat Identity Management and counts toward the RHCA (Red Hat Certified Architect).</p>
+<p><strong>To take the exam, you must have at least an RHCSA. If you are attempting to become a Red Hat Certified Architect, you must have an RHCE.</strong></p>
+</div>
+<div class="section" id="resources">
+<h2><a class="toc-backref" href="#id4">Resources</a><a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="https://www.freeipa.org">FreeIPA</a></li>
+<li><a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/">Red Hat Documentation</a></li>
+<li><a class="reference external" href="https://jhrozek.wordpress.com/2015/08/19/performance-tuning-sssd-for-large-ipa-ad-trust-deployments/">Trust Anatomy/SSSD Troubleshooting</a></li>
+<li><a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_directory_server/10/html/performance_tuning_guide/">Directory Server Tuning</a></li>
+</ul>
+</div>
+<div class="section" id="hardware-recommendations">
+<h2><a class="toc-backref" href="#id5">Hardware Recommendations</a><a class="headerlink" href="#hardware-recommendations" title="Permalink to this headline">¶</a></h2>
+<p>The minimum requirements for IdM are fairly low. 2GB of RAM, 1 core, and a 10GB disk. However, we believe that’s too low, especially if we plan on scaling out. And during upgrades, you would need at least 4GB of RAM for the operations to be successful. Below are our minimum recommendations:</p>
+<ul class="simple">
+<li>2 (virtual) CPU Core</li>
+<li>4 GB of RAM</li>
+<li>10GB+ disk or partition for /var/lib/dirsrv</li>
+</ul>
+<p>Per the Red Hat documentation, consider that with at least 10k users and 100 groups, you would need at least 3GB of RAM and 1GB swap. If you end up having 100k users and 50k groups, then 16GB of RAM and 4GB of swap is recommended. In fact, in larger deployments, it’s more effective to increase RAM than disk, as most data is stored in cache.</p>
+<p>View the resources above in the previous section for directory server tuning information.</p>
+</div>
+<div class="section" id="installing-freeipa-red-hat-idm-with-replicas-for-growth-and-scale">
+<h2><a class="toc-backref" href="#id6">Installing FreeIPA/Red Hat IdM with replicas for growth and scale</a><a class="headerlink" href="#installing-freeipa-red-hat-idm-with-replicas-for-growth-and-scale" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="63%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Server Name</th>
+<th class="head">IP Address</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>idm1.example.com</td>
+<td>192.168.15.2</td>
+</tr>
+<tr class="row-odd"><td>idm2.example.com</td>
+<td>192.168.15.3</td>
+</tr>
+</tbody>
+</table>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+<h5 class="card-title">
+IPA Servers should either have a DHCP reservation or a static address. In the event that you have either, DNS should always be pointing at 127.0.0.1, especially if your replica serves DNS. Both of our replicas serve DNS, so loopback is sufficient and recommended for our name server.</h5>In later versions of FreeIPA, there is support to force network manager to ensure resolv.conf is loopback without the need to set it by hand with nmcli.</div></div>
+<pre><code class="language-shell"># Set a static address - It's important for your IdM servers
+# to have static addresses or a DHCP reservation.
+% nmcli con mod eth0 ipv4.address 192.168.15.2/24
+% nmcli con mod eth0 ipv4.gateway 192.168.15.1
+% nmcli con mod eth0 ipv4.method manual
+% nmcli con mod eth0 ipv4.dns-search example.com
+
+# You should set this if your replica serves DNS! If not, set it to
+# one or more of your IdM replicas that do.
+% nmcli con mod eth0 ipv4.dns 127.0.0.1
+% nmcli con up eth0</code></pre><pre><code class="language-shell"># Examples of using ipa-server-install
+# RHEL 7
+% yum install ipa-server ipa-server-dns ipa-server-trust-ad
+# RHEL 8
+% yum module enable idm:DL1/{server,dns,adtrust,client,common}
+% yum install ipa-server ipa-server-dns ipa-server-trust-ad
+# Installation, interactive, does not setup specific components
+% ipa-server-install
+
+# Installation, mostly automatic (recommended)
+# This will setup DNS and the necessary pieces for an AD trust
+# Optionally, you can use the --netbios-name switch to set your forest netbios name
+% ipa-server-install --domain example.com --realm EXAMPLE.COM \
+    --reverse-zone=15.168.192.in-addr.arpa. \
+    --no-forwarders \
+    --no-ntp \
+    --setup-dns \
+    --setup-adtrust \
+    -p Passw0rd! \
+    -a Passw0rd!</code></pre><pre><code class="language-shell">% kinit admin
+# We need to make sure that any A records get a corresponding PTR record, otherwise you're making them manually.
+% ipa dnsconfig-mod --allow-sync-ptr=True</code></pre><pre><code class="language-shell"># Adding a replica
+% ipa-replica-install --setup-dns \
+    --setup-ca \
+    --no-forwarders
+
+# Adding a replica unattended without forwarders
+% ipa-client-install --realm EXAMPLE.COM
+% kinit admin
+% ipa hostgroup-add-member --hosts=ipa02.example.com ipaservers
+% ipa-replica-install --setup-dns \
+    --setup-ca \
+    --no-forwarders \
+    --unattended</code></pre></div>
+<div class="section" id="creating-users-groups-and-policies">
+<h2><a class="toc-backref" href="#id7">Creating Users, Groups, and Policies</a><a class="headerlink" href="#creating-users-groups-and-policies" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="29%" />
+<col width="17%" />
+<col width="13%" />
+<col width="12%" />
+<col width="16%" />
+<col width="13%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Users</th>
+<th class="head">Login Name</th>
+<th class="head">Type</th>
+<th class="head">Group</th>
+<th class="head">Role</th>
+<th class="head">UID/GID</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>John Smith</td>
+<td>jsmith</td>
+<td>Normal</td>
+<td>admins</td>
+<td>&#160;</td>
+<td>Auto</td>
+</tr>
+<tr class="row-odd"><td>Bob Rufus</td>
+<td>brufus</td>
+<td>Normal</td>
+<td>corp</td>
+<td>&#160;</td>
+<td>Auto</td>
+</tr>
+<tr class="row-even"><td>Larry Dufus</td>
+<td>ldufus</td>
+<td>Normal</td>
+<td>helpdesk</td>
+<td>&#160;</td>
+<td>Auto</td>
+</tr>
+<tr class="row-odd"><td>Robert Cole</td>
+<td>rcole</td>
+<td>Staged</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>Auto</td>
+</tr>
+<tr class="row-even"><td>Thomas Snyder</td>
+<td>tsnyder</td>
+<td>Preserved</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>Auto</td>
+</tr>
+<tr class="row-odd"><td>SysHost Management</td>
+<td>syshostmgt</td>
+<td>Normal</td>
+<td>&#160;</td>
+<td>Host Manager</td>
+<td>10000</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="49%" />
+<col width="51%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Groups</th>
+<th class="head">Policy</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>HelpDesk</td>
+<td>helpdesk</td>
+</tr>
+<tr class="row-odd"><td>corp</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>enrollers</td>
+<td>Enrollment Administrator</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Roles</th>
+<th class="head">Privilege</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Host Manager</td>
+<td>Host administrators</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>Host group administrators</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>Netgroups administrators</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>Host enrollment</td>
+</tr>
+</tbody>
+</table>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+<h5 class="card-title">
+Custom UID/GID</h5><p>It is possible to create the users with a custom uid/gid with the switches –uid and –gidnumber which you will see below. It is also possible to set random passwords with –random.</p>
+<p>See ipa user-add –help for more switches.</p>
+</div></div>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+<h5 class="card-title">
+Password Expiration</h5>When you make a user with the –password switch or use ipa passwd to set a password, it is automatically expired and must be changed on next login. If you want to avoid this from happening, you will need to set a random password via –password or –random, and then use kpasswd username to change it to the desired password. This does not make the account non-expiring.</div></div>
+<pre><code class="language-shell"># Creating users with a password, create all the accounts from the table (except from syshost)
+% ipa user-add --first="John" --last="Smith" --password jsmith
+
+# Create the system account with a password of Sup3R$ecre7! and a UID of 10000
+% ipa user-add --first="SysHost" --last="Management" --uid=10000 --gidnumber=10000 --password syshostmgt
+
+# Stage a user
+% ipa stageuser-add --first="Robert" --last="Cole" rcole
+
+# Preserve a user
+% ipa user-del tsynder --preserve
+
+# Create a regular (POSIX) group
+% ipa group-add corp
+
+# Create a member only group
+% ipa group-add --nonposix HelpDesk
+% ipa group-add --nonposix enrollers
+
+# Add the HelpDesk group to the helpdesk policy
+# Add the enrollers group to the Enrollment Administrator role
+% ipa role-add-member "helpdesk" --groups=HelpDesk
+% ipa role-add-member "Enrollment Administrator" --groups=enrollers
+
+# Create a role with privileges
+% ipa role-add "Host Manager"
+% ipa role-add-privilege "Host Manager" \
+    --privileges="Host administrators" \
+    --privileges="Host group administrators" \
+    --privileges="Netgroups administrators" \
+    --privileges="Host enrollment"
+
+# Add the syshostmgt user as a member of the role
+% ipa role-add-member "Host Manager" --users="syshostmgt"
+
+# Set our user passwords to CentOS123!$ so that way we don't have to change them later
+% kpasswd jsmith
+
+# If we already set the password we want but we don't want it to expire without making a policy or prompt for a password change (NOT RECOMMENDED)
+% ldapmodify -x -w 'Passw0rd!' -D 'cn=Directory Manager'
+dn: uid=syshostmgt,cn=users,cn=accounts,dc=ipa,dc=chotel,dc=com
+changetype: modify
+delete: krbLastPwdChange
+
+(Press CTRL+D)</code></pre><div class="section" id="new-passwords-expired">
+<h3><a class="toc-backref" href="#id8">New Passwords Expired</a><a class="headerlink" href="#new-passwords-expired" title="Permalink to this headline">¶</a></h3>
+<p>The common question we receive (and even the #freeipa IRC receive) is “Why can’t we just set the password to not be expired right away?” See <a class="reference external" href="https://www.freeipa.org/page/New_Passwords_Expired">this page</a> for information on why this is. You may also look at the <a class="reference external" href="https://pagure.io/freeipa/issue/5763">pagure</a> page and the <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1317060">Red Hat bugzilla related bug</a>.</p>
+</div>
+</div>
+<div class="section" id="install-and-configure-idm-clients">
+<h2><a class="toc-backref" href="#id9">Install and configure IdM Clients</a><a class="headerlink" href="#install-and-configure-idm-clients" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="63%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Client Name</th>
+<th class="head">IP Address</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>client.example.com</td>
+<td>192.168.15.10</td>
+</tr>
+<tr class="row-odd"><td>nfs.example.com</td>
+<td>192.168.15.11</td>
+</tr>
+<tr class="row-even"><td>utility.example.com</td>
+<td>192.168.15.12</td>
+</tr>
+</tbody>
+</table>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+<h5 class="card-title">
+Depending on your architecture and setup, IdM clients should either be pointing directly at the IdM servers for DNS (at least two of them) or pointing at the DNS server in the environment that is delegating that domain to the IdM domain controllers.</h5>In our lab, our IdM servers are our only DNS servers, thus it makes sense that our clients should point to them. In that scenario, you would configure your DHCP server to use the IdM servers as the name servers and/or configure them in a static manner depending on your environment.</div></div>
+<pre><code class="language-shell"># If your client is not pointing at the IdM DNS and you
+# don't have another DNS server that's performing delegation,
+# change your name servers.
+% nmcli con mod eth0 ipv4.dns 192.168.15.2
+% nmcli con mod eth0 +ipv4.dns 192.168.15.3
+% nmcli con mod eth0 ipv4.dns-search example.com
+
+# Optionally, if your clients don't have DHCP
+# reservations, set a static address.
+% nmcli con mod eth0 ipv4.address 192.168.15.10/24
+% nmcli con mod eth0 ipv4.gateway 192.168.15.1
+% nmcli con mod eth0 ipv4.method manual
+
+# It might be a good idea to set your hostname if you haven't already
+% hostnamectl set-hostname client.example.com
+% hostname client.example.com
+
+# Install the ipa-client packages
+% yum install ipa-client -y
+% ipa-client-install --realm EXAMPLE.COM --domain example.com
+. . .
+% id admin
+uid=686600000(admin) gid=686600000(admins) groups=686600000(admins)</code></pre></div>
+<div class="section" id="configure-roaming-automounted-home-directories">
+<h2><a class="toc-backref" href="#id10">Configure roaming/automounted home directories</a><a class="headerlink" href="#configure-roaming-automounted-home-directories" title="Permalink to this headline">¶</a></h2>
+<p>You will need to configure your NFS server to serve up roaming home directories for users and then your client should have automouting enabled.</p>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+<h5 class="card-title">
+Client Kerberos Service</h5>It may not be required to create an nfs kerberos service for the client. The ipa-client-automount command may already handle this but it does not hurt to create one. In fact, the host keytab is used on the client side anyway. Creating an NFS client keytab may have been required back in the EL6 days.</div></div>
+<pre><code class="language-shell"># IDM Steps
+% kinit admin
+% ipa service-add nfs/nfs.example.com
+% ipa service-add nfs/client.example.com
+
+# Setup the automounting locations
+% ipa automountmap-add default auto.home
+% ipa automountkey-add default --key "/home" --info auto.home auto.master
+% ipa automountkey-add default --key "*" --info "-fstype=nfs4,rw,sec=krb5,soft nfs.example.com:/exports/home/&" auto.home
+
+# NFS Server Steps
+% yum install nfs-utils -y
+% mkdir /exports/home
+% vi /etc/exports
+/exports/home *(rw,sec=sys:krb5:krb5i:krb5p)
+
+% vi /etc/sysconfig/nfs
+SECURE_NFS="yes"
+
+# Make the home directories for all users and move them to /export/home
+% mkhomedir_helper jsmith
+% mv /home/jsmith /export/home/
+
+# Create the necessary keytabs
+% kinit admin
+% ipa-getkeytab -s idm1.example.com -p nfs/nfs.example.com -k /etc/krb5.keytab
+
+# Verify keytab
+% klist -ket /etc/krb5.keytab
+
+# Enable and start nfs
+% systemctl enable nfs-server --now
+
+# Open the necessary firewall ports
+% firewall-cmd --add-service=nfs --permanent
+% firewall-cmd --complete-reload
+
+# Client steps
+% kinit admin
+% ipa-getkeytab -s idm1.example.com -p nfs/client.example.com -k /etc/krb5.keytab
+% ipa-client-automount --location=default
+
+# Verify keytab
+% klist -ket /etc/krb5.keytab</code></pre><p>To test, login to the system via ssh or console and verify the home directory has mounted. /var/log/messages and secure will display errors in case of failure.</p>
+</div>
+<div class="section" id="use-the-rest-api-to-query-idm">
+<h2><a class="toc-backref" href="#id11">Use the REST api to query IdM</a><a class="headerlink" href="#use-the-rest-api-to-query-idm" title="Permalink to this headline">¶</a></h2>
+<p>When you invoke the <cite>ipa</cite> command, you are actually communicating with the API that runs on the IdM replicas. Operations done are sent via a POST with JSON data. The return data is also in JSON and translated to be readable in the terminal. Because it’s JSON, custom scripts can be made with say perl or python that communicates with the API to send the calls, perhaps for specific tasks, jobs, or other operations that could be automated. You can also use <cite>curl</cite> to do this also if you so choose.</p>
+<p>The question becomes, “well, how do I know the right data to send?” You can issue the -vv switch to see the request being sent.</p>
+<pre><code class="language-shell">% ipa -vv ping
+ipa: INFO: trying https://idm1.example.com/ipa/json
+ipa: INFO: [try 1]: Forwarding 'schema' to json server 'https://idm1.example.com/ipa/json'
+ipa: INFO: trying https://idm1.example.com/ipa/session/json
+ipa: INFO: [try 1]: Forwarding 'ping/1' to json server 'https://idm1.example.com/ipa/session/json'
+ipa: INFO: Request: {
+    "id": 0,
+    "method": "ping/1",
+    "params": [
+        [],
+        {
+            "version": "2.230"
+        }
+    ]
+}
+ipa: INFO: Response: {
+    "error": null,
+    "id": 0,
+    "principal": "admin@EXAMPLE.COM",
+    "result": {
+        "summary": "IPA server version 4.6.4. API version 2.230"
+    },
+    "version": "4.6.4"
+}
+-------------------------------------------
+IPA server version 4.6.4. API version 2.230
+-------------------------------------------</code></pre><p>If you look at the ‘request’ section, you can see the data that is sent. Each request has a <cite>method</cite> and <cite>params</cite>, where method is a command to be excuted and params is simply an array that contains positional arguments and a dictionary of options. If you take a look at say, group-show, you would see a different request.</p>
+<pre><code class="language-shell">% ipa -vv group-show admins
+ipa: INFO: trying https://idm1.example.com/ipa/session/json
+ipa: INFO: [try 1]: Forwarding 'group_show/1' to json server 'https://idm1.example.com/ipa/session/json'
+ipa: INFO: Request: {
+    "id": 0,
+    "method": "group_show/1",
+    "params": [
+        [
+            "admins"
+        ],
+        {
+            "version": "2.230"
+        }
+    ]
+}
+### Lots of output ###</code></pre><p>Let’s say I wanted to perform that in a simple bash script that uses curl. I would perform a <cite>kinit</cite> and then run the script below to have it login for me via kerberos and do the work.</p>
+<pre><code class="language-shell">#!/bin/bash
+ipaReplica=idm1.example.com
+cookieJar=my.cookie.jar
+
+# Login with Kerberos
+curl -v \
+  -H referer:https://$ipaReplica/ipa \
+  -c $cookieJar -b $cookieJar \
+  --cacert /etc/ipa/ca.crt \
+  --negotiate -u : \
+  -X POST \
+  https://$ipaReplica/ipa/session/login_kerberos
+
+# Send user_find method request
+curl -v \
+  -H referer:https://$ipaReplica/ipa \
+  -H "Content-Type:application/json" \
+  -H "Accept:applicaton/json"\
+  -c $cookieJar -b $cookieJar \
+  --cacert /etc/ipa/ca.crt \
+  -d  '{"method":"group_show/1","params":[["admins"],{}],"id":0}' \
+  -X POST \
+  https://$ipaReplica/ipa/session/json</code></pre><p>Any of the commands ran via <cite>ipa</cite> can be reviewed with the -vv switch so you can see what kind of call it’s making and how it’s making it. Thus, making it easier to tie into your own scripts. On the Web UI, you can go to IPA Server -&gt; API Browser to find more information on the specific API calls.</p>
+</div>
+<div class="section" id="configure-kerberized-services">
+<h2><a class="toc-backref" href="#id12">Configure Kerberized services</a><a class="headerlink" href="#configure-kerberized-services" title="Permalink to this headline">¶</a></h2>
+<p>One of the things that you may end up doing, whether by hand or in an automated fashion, is creating kerberized services. In a previous section, we addressed creating an NFS service for both a server and a client for the purpose of automating home directory mounts on a client when a user logs in. So you already have the idea of what this entails.</p>
+<pre><code class="language-shell"># Create kerberos service
+% ipa service-add HTTP/http.example.com</code></pre><p>Not only that, it’s probably a good idea to actually <em>get</em> the keytab.</p>
+<pre><code class="language-shell">% kinit admin
+% ipa-getkeytab -s idm1.example.com -p HTTP/http.example.com -k /etc/krb5.keytab</code></pre><p>For an example of automating keytab creation and retrieval, see the CentOS/FreeIPA page on this site.</p>
+</div>
+<div class="section" id="create-a-trust-with-active-directory">
+<h2><a class="toc-backref" href="#id13">Create a trust with Active Directory</a><a class="headerlink" href="#create-a-trust-with-active-directory" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="63%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Server Name</th>
+<th class="head">IP Address</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>ad.example.net</td>
+<td>192.168.15.12</td>
+</tr>
+</tbody>
+</table>
+<p>For our trust, the AD server will need to be configured to be the example.net domain with the hostname of ad.example.net. This way, we are not colliding in DNS and both AD and IdM should be able to communicate with each other as two separate forests. It is recommended to use Windows Server 2016 (with the same domain functional level) for this setup, as experience with that product is a recommended prerequisite for the exam.</p>
+</div>
+<div class="section" id="configure-control-policies-and-user-access">
+<h2><a class="toc-backref" href="#id14">Configure/control policies and user access</a><a class="headerlink" href="#configure-control-policies-and-user-access" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="configure-and-manage-a-certificate-authority">
+<h2><a class="toc-backref" href="#id15">Configure and manage a certificate authority</a><a class="headerlink" href="#configure-and-manage-a-certificate-authority" title="Permalink to this headline">¶</a></h2>
+<p>By default FreeIPA stands up its own CA. And because of this, this allows you or your workplace to be able to issue certificates, that can be used in a wide variety of services, the most common or obvious one would be for Apache httpd.</p>
+<p>There’s a couple of ways you can get a certificate signed by FreeIPA. One method is to generate your own CSR and request it to be signed by FreeIPA. Another way is you can do it all from one command, <cite>ipa-getcert</cite>, and optionally, either have the certificate in PEM format or an NSS database. We’ll address these examples.</p>
+<pre><code class="language-shell"># Creating an SSL certificate in the PEM format
+% ipa service-add HTTP/http.example.com
+% ipa-getcert request -f /etc/pki/tls/certs/http.pem -k /etc/pki/tls/private/http.key -K HTTP/http.example.com -D http.example.com
+New signing request "20190902000318" added.
+# Verify
+% ipa-getcert list
+Number of certificates and requests being tracked: 1.
+Request ID '20190902000318':
+        status: MONITORING
+        stuck: no
+        key pair storage: type=FILE,location='/etc/pki/tls/private/http.key'
+        certificate: type=FILE,location='/etc/pki/tls/certs/http.pem'
+        CA: IPA
+        issuer: CN=Certificate Authority,O=EXAMPLE.COM
+        subject: CN=http.example.com,O=EXAMPLE.COM
+        expires: 2021-09-02 00:03:19 UTC
+        dns: http.example.com
+        principal name: HTTP/http.example.com@EXAMPLE.COM
+        key usage: digitalSignature,nonRepudiation,keyEncipherment,dataEncipherment
+        eku: id-kp-serverAuth,id-kp-clientAuth
+        pre-save command:
+        post-save command:
+        track: yes
+        auto-renew: yes
+
+# Create an SSL certificate in the NSS format
+% ipa-getcert request -d /etc/pki/tls/certs/nss -n 'Test' -K HTTP/http.example.com -D http.example.com
+New signing request "20190902000756" added.
+# Verify
+% ipa-getcert list
+. . .
+Request ID '20190902000756':
+        status: MONITORING
+        stuck: no
+        key pair storage: type=NSSDB,location='/etc/pki/tls/certs/nss',nickname='Test',token='NSS Certificate DB'
+        certificate: type=NSSDB,location='/etc/pki/tls/certs/nss',nickname='Test',token='NSS Certificate DB'
+        CA: IPA
+        issuer: CN=Certificate Authority,O=EXAMPLE.COM
+        subject: CN=http.example.com,O=EXAMPLE.COM
+        expires: 2021-09-02 00:07:57 UTC
+        dns: http.example.com
+        principal name: HTTP/http.example.com@EXAMPLE.COM
+        key usage: digitalSignature,nonRepudiation,keyEncipherment,dataEncipherment
+        eku: id-kp-serverAuth,id-kp-clientAuth
+        pre-save command:
+        post-save command:
+        track: yes
+        auto-renew: yes</code></pre><p>By default, when a certificate request is performed (and succeeds to be signed by the IPA CA), it is typically tracked and auto-renewed by default. This is done by the certmonger service, which eliminates the need to have to renew anything by hand.</p>
+</div>
+<div class="section" id="back-up-an-idm-infrastructure">
+<h2><a class="toc-backref" href="#id16">Back up an IdM infrastructure</a><a class="headerlink" href="#back-up-an-idm-infrastructure" title="Permalink to this headline">¶</a></h2>
+<p>There are multiple ways you can backup IPA.</p>
+<ul class="simple">
+<li>Full backup: Default, shuts down IPA before performing a backup. This backs up with raw files. As such, it must be done offline.</li>
+<li>Data backup: Backs up a copy of the ldap data and the changelog (the IPA-REALM instance, DogTag, IPA backend). This can be done online.</li>
+</ul>
+<pre><code class="language-shell"># Turns off IPA completely and perform a backup
+% ipa-backup
+# Backs up data only and doesn't take down IPA
+% ipa-backup --data --online
+# Backs up data only and gpg encrypts
+% ipa-backup --gpg --gpg-keyring=/root/keys --data --online</code></pre><p>To restore a backup, the ipa-restore command is available.</p>
+<pre><code class="language-shell">% ipa-restore /var/lib/ipa/backup/</code></pre></div>
+<div class="section" id="configure-idm-as-an-ldap-backend-for-external-services">
+<h2><a class="toc-backref" href="#id17">Configure IdM as an LDAP backend for external services</a><a class="headerlink" href="#configure-idm-as-an-ldap-backend-for-external-services" title="Permalink to this headline">¶</a></h2>
+<p>Most services and applications that authenticate users do typically have LDAP support. IdM can be used as an LDAP backend. You typically need only a few things to authenticate users from IdM to an application.</p>
+<ul class="simple">
+<li>Base DN, this always ends up being the top level of your domain: dc=example,dc=com - All accounts share this common base.</li>
+<li>Bind DN, this is a system account that binds to the directory to assist with searches and authentication</li>
+<li>Attribute mappings</li>
+<li>Groups, depending on the application</li>
+</ul>
+<p>Below is a table of common DN’s you may specify in an application:</p>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="11%" />
+<col width="58%" />
+<col width="31%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">DN’s</th>
+<th class="head">Path</th>
+<th class="head">Filter (if applicable)</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Base DN</td>
+<td>dc=example,dc=com</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>User DN</td>
+<td>cn=users,cn=accounts,dc=example,dc=com</td>
+<td>uid=…</td>
+</tr>
+<tr class="row-even"><td>Group DN</td>
+<td>cn=groups,cn=accounts,dc=example,dc=com</td>
+<td>(objectClass=groupOfNames)</td>
+</tr>
+<tr class="row-odd"><td>Bind DN</td>
+<td>uid=account,cn=sysaccounts,cn=etc,dc=example,dc=com</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-shell">% ipa user-show admin --all | grep '^dn'
+  dn: uid=admin,cn=users,cn=accounts,dc=example,dc=com</code></pre><p>Below is a table of common attributes that may be used to map user information in the application.</p>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="52%" />
+<col width="48%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type</th>
+<th class="head">Attribute</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Login Name</td>
+<td>uid</td>
+</tr>
+<tr class="row-odd"><td>First Name</td>
+<td>givenName</td>
+</tr>
+<tr class="row-even"><td>Surname</td>
+<td>sn</td>
+</tr>
+<tr class="row-odd"><td>Email</td>
+<td>mail</td>
+</tr>
+<tr class="row-even"><td>Groups</td>
+<td>memberOf</td>
+</tr>
+<tr class="row-odd"><td>Full Name</td>
+<td>cn</td>
+</tr>
+</tbody>
+</table>
+<p>Below are two ways to create a bind account (bind DN). The first way is the LDAP way. The second way is the ipa-ldap-updater.</p>
+<pre><code class="language-shell">% kinit admin
+% ldapadd -Y GSSAPI
+. . .
+dn: uid=binder,cn=sysaccounts,cn=etc,dc=example,dc=com
+objectclass: account
+objectclass: simplesecurityobject
+uid: binder
+userPassword: password123
+passwordExpirationTime: 20380119031407Z
+nsIdleTimeout: 0
+# Press CTRL+d
+adding new entry "uid=binder,cn=sysaccounts,cn=etc,dc=example,dc=com"</code></pre><pre><code class="language-shell">% kinit admin
+% cat << EOF > binder.update
+dn: uid=binder,cn=sysaccounts,cn=etc,dc=example,dc=com
+add:objectclass:account
+add:objectclass:simplesecurityobject
+add:uid:binder
+add:userPassword:password123
+add:passwordExpirationTime:20380119031407Z
+add:nsIdleTimeout:0
+EOF
+% ipa-ldap-updater binder.update</code></pre><p>When this account is created, you can then specify the full DN for that object into a bind DN field, along with it’s password into an accompanying bind password field.</p>
+<p>If you’d like an example of setting up Ansible Tower (or AWX, the open source version of tower) against IdM, you can click <a class="reference external" href="https://github.com/ansible/awx/blob/devel/docs/auth/ldap.md">here</a>.</p>
+<div class="section" id="kerberos">
+<h3><a class="toc-backref" href="#id18">Kerberos</a><a class="headerlink" href="#kerberos" title="Permalink to this headline">¶</a></h3>
+<p>On some applications, it is possible to use kerberos authentication rather than a straight bind account. The general idea is the same when picking out the base dn, attributes, and the like. However, instead you would create an account with an accompanying LDAP/… service principal to do the authentication.</p>
+</div>
+</div>
+<div class="section" id="implement-a-sso">
+<h2><a class="toc-backref" href="#id19">Implement a SSO</a><a class="headerlink" href="#implement-a-sso" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </main>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../centos/sysadmin.html" class="btn btn-neutral" title="The System Administrator Experience" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, remyabel, nazunalika
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+  <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/js/documentation_options.js" defer></script>
+      <script type="text/javascript" src="../_static/jquery.js" defer></script>
+      <script type="text/javascript" src="../_static/underscore.js" defer></script>
+      <script type="text/javascript" src="../_static/doctools.js" defer></script>
+      <script type="text/javascript" src="../_static/language_data.js" defer></script>
+      <script type="text/javascript" src="../_static/js/prism.min.js" defer></script>
+      <script type="text/javascript" src="../_static/js/components/prism-bash.min.js" defer></script>
+      <script type="text/javascript" src="../_static/js/components/prism-docker.min.js" defer></script>
+      <script type="text/javascript" src="../_static/js/prism-freeipa.min.js" defer></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js" defer></script>
+  
+
+  <script type="text/javascript" src="../_static/js/stickynav.js" defer></script> 
+
+</body>
+</html>

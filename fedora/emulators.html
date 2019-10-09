@@ -1,0 +1,1123 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests; default-src 'self'; style-src 'self' https://github.githubassets.com/ stackpath.bootstrapcdn.com; script-src 'self' https://gist.github.com/remyabel/2cac59a778fa34d0c61e246554fe3e3c.js https://gist.github.com/remyabel/bbebf3043860abe24a19bf0b1d67bd33.js https://gist.github.com/remyabel/e9c33b830da73768fe6ea2363fc27e1a.js; img-src 'self'; media-src 'self'; font-src 'self' fonts.gstatic.com stackpath.bootstrapcdn.com;">
+  
+  
+  <title>Emulators &mdash; Linux Guide and Hints</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="../_static/css/prism-okaidia.min.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Firefox" href="firefox.html" />
+    <link rel="prev" title="Docker" href="docker.html" /> 
+
+  <noscript>
+      <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
+  </noscript>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+<a class="sr-only sr-only-focusable" href="#main">Skip to main content</a>
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Linux Guide and Hints
+          
+
+          
+            
+            <img src="../_static/img/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.6
+              </div>
+            
+          
+
+          
+<form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <div role="search">
+        <input type="text" aria-label="Search docs" name="q" placeholder="Search docs" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+    </div>
+</form>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/euphemism.html">The Euphemism Review</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../misc/euphemism.html#please-don-t-say-timeframe">Please don’t say “timeframe”</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/mingw.html">MinGW</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../misc/mingw.html#why-not-use-wsl">Why not use WSL?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/port465.html">Is port 465 deprecated?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/security.html">Security and anti-patterns</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../misc/security.html#https">HTTPS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../misc/security.html#insecure-requests">Insecure requests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../misc/security.html#using-insecure-ciphers">Using insecure ciphers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../misc/security.html#password-security">Password security</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../misc/security.html#using-deprecated-hashing-functions">Using deprecated hashing functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../misc/security.html#arbitrary-password-lengths">Arbitrary password lengths</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../misc/security.html#client-side-hashing">Client-side hashing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../misc/security.html#disabling-mitigations">Disabling mitigations</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Gentoo</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gentoo/gdm.html">GDM</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gentoo/gdm.html#gdm-doesn-t-start-up">GDM doesn’t start up</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Fedora</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gettingstarted.html#other-things">Other things</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="backups.html">Backups</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="backups.html#id1">Duplicity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backups.html#gpg">GPG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backups.html#keychain">Keychain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backups.html#unattended-backups">Unattended backups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backups.html#id3">git-annex</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="blockify.html">Blockify</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cipc.html">Cisco IP Communicator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cipc.html#installing-via-playonlinux">Installing via PlayOnLinux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cipc.html#installing-via-regular-wine">Installing via Regular Wine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cipc.html#pulse-audio">Pulse Audio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clang.html">Clang</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clang.html#msan-line-numbers">MSan line numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clang.html#clang-format">clang-format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="copr.html">COPR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#changing-the-data-directory">Changing the data directory</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Emulators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dolphin">Dolphin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#wii-controls">Wii controls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#game-idiosyncrasies">Game idiosyncrasies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#paper-mario-the-thousand-year-door">Paper Mario: The Thousand-Year Door</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#compiling-pcsx2">Compiling PCSX2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cmake-flags">CMake flags</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#retroarch">RetroArch</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#building-beetle-psx-libretro-mednafen">Building beetle-psx-libretro (mednafen)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enabling-the-vulkan-renderer-and-32-bit-color">Enabling the Vulkan renderer and 32-bit color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#shaders">Shaders</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#mednafen-randomly-speeds-up">mednafen randomly speeds up</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mupen64plus-unofficial-faq">Mupen64Plus unofficial FAQ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#where-does-mupen64plus-like-to-put-files">Where does Mupen64Plus like to put files?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#i-m-getting-a-dlopen-error">I’m getting a <code class="docutils literal notranslate"><span class="pre">dlopen</span></code> error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#keycode-values">Keycode values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#i-changed-one-of-the-hi-res-textures-and-no-change-is-visible">I changed one of the hi-res textures and no change is visible</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#recommended-plugins">Recommended plugins?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-do-i-compile-it">How do I compile it?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gba">GBA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">MAME</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#example-mame-ini">Example <code class="docutils literal notranslate"><span class="pre">mame.ini</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example-command-line-options">Example command line options</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#speed">Speed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ui-script">UI script</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">mGBA</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#controller-joystick-issue">Controller/joystick issue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building">Building</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cmake-variables">CMake variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Dependencies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#link-cable-support">Link cable support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">BGB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">mGBA</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#kega-fusion">Kega Fusion</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#no-sound">No Sound?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="firefox.html">Firefox</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="firefox.html#disable-automatic-redirect-to-a-website-if-typing-an-invalid-url">Disable automatic redirect to a website if typing an invalid URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="firefox.html#glitchy-ui-when-using-custom-gtk-theme">Glitchy UI when using custom GTK theme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="firefox.html#enabling-secure-dns-and-encrypted-sni">Enabling Secure DNS and Encrypted SNI</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gcc.html">GCC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gcc.html#installing-prerequisites-gmp-mpfr-mpc">Installing prerequisites: GMP, MPFR, MPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gcc.html#building">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gcc.html#docker">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gcc.html#invalid-instruction-suffix-for">“invalid instruction suffix for”</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="git.html">Git</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="git.html#setting-up-cloudflare-and-github-pages">Setting up Cloudflare and Github pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git.html#gpg">GPG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git.html#workflow">Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="git.html#keeping-forks-synchronized">Keeping forks synchronized</a></li>
+<li class="toctree-l3"><a class="reference internal" href="git.html#versioning">Versioning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="git.html#git-commit-am-didnt-add-my-latest-files"><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-am</span></code> didn’t add my latest files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="git.html#what-creates-duplicate-commits-different-shas">What creates duplicate commits (different SHA’s)?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="git.html#merge">Merge</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="git.html#temporary-hotfix-branch">Temporary (hotfix) branch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="git.html#feature-long-lived-branch">Feature (long-lived) branch</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="git.html#rebase">Rebase</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="git.html#local-branch-diverges-from-origin-remote">Local branch diverges from origin (remote)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="git.html#example">Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="git.html#clean-up-your-work">Clean up your work</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gitlab.html">Gitlab</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gitlab.html#ssh-and-git-access">SSH and Git access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gitlab.html#enabling-https-with-let-s-encrypt">Enabling HTTPS with Let’s Encrypt</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gnometips.html">GNOME Tips</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gnometips.html#system-tray">System Tray</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gnometips.html#add-minimize-maximize">Add minimize/maximize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gnometips.html#pidgin">Pidgin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="iphone.html">iPhone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kubernetes.html">Kubernetes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="kubernetes.html#installation">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mcafee.html">McAfee</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc.html">Misc</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="misc.html#using-ld-library-path-in-fish">Using <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> in Fish</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc.html#unable-to-find-liblzma">Unable to find <code class="docutils literal notranslate"><span class="pre">LibLZMA</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc.html#unable-to-find-wxwidgets">Unable to find <code class="docutils literal notranslate"><span class="pre">wxWidgets</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc.html#update-all-repositories-in-the-current-directory">Update all repositories in the current directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc.html#youcompleteme-crashes-due-to-libtinfo-so-version-mismatch">YouCompleteMe crashes due to <code class="docutils literal notranslate"><span class="pre">libtinfo.so</span></code> version mismatch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc.html#keepasshttp-no-longer-works">KeePassHttp no longer works</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc.html#disable-tcp-ip-and-use-sockets-for-mysql">Disable TCP/IP and use sockets for MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc.html#selinux-is-preventing-abrt-action-sav-from-write-access-on-the-directory-var-lib-rpm">SELinux is preventing <code class="docutils literal notranslate"><span class="pre">abrt-action-sav</span></code> from write access on the directory /var/lib/rpm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc.html#swapping-desktop-environments">Swapping Desktop Environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc.html#upon-logging-into-xfce-desktop-freezes-until-you-switch-to-another-tty">Upon logging into XFCE, desktop freezes until you switch to another TTY</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mpv.html">mpv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="negativo.html">negativo17 repositories and Nvidia drivers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="negativo.html#multimedia">Multimedia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="negativo.html#nvidia">Nvidia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="negativo.html#dkms">DKMS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="packaging.html">Packaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pip.html">pip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="powerline.html">Powerline</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="powerline.html#installing-via-dnf">Installing via <code class="docutils literal notranslate"><span class="pre">dnf</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="powerline.html#enabling-powerline-installed-via-dnf">Enabling powerline (installed via <code class="docutils literal notranslate"><span class="pre">dnf</span></code>)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="powerline.html#fish">Fish</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="powerline.html#oh-my-fish">oh-my-fish</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="powerline.html#vim">vim</a></li>
+<li class="toctree-l3"><a class="reference internal" href="powerline.html#tmux">tmux</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pulseaudio.html">Pulseaudio</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pulseaudio.html#flat-volume">Flat Volume</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pulseaudio.html#sound-crackling">Sound Crackling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tmux.html">tmux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vim.html">vim</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vim.html#plugins">Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="virtualbox.html">VirtualBox</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="virtualbox.html#failed-to-start-load-kernel-modules-after-uninstalling">“Failed to start Load Kernel Modules” after uninstalling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="virtualbox.html#kernel-modules-do-not-build-upon-kernel-update">Kernel modules do not build upon kernel update</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vmware.html">VMware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="winetips.html">Wine Tips</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="winetips.html#out-of-memory-errors">Out of memory errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="winetips.html#new-vegas">New Vegas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="winetips.html#installing-via-wine">Installing via Wine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="winetips.html#modding">Modding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="winetips.html#id2">Mod Organizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="winetips.html#loot">LOOT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="winetips.html#lutana-nvse">Lutana NVSE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="winetips.html#ini-modifications">.ini modifications</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="winetips.html#gmdx">GMDX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="winetips.html#directx11-games">DirectX11 games</a></li>
+<li class="toctree-l2"><a class="reference internal" href="winetips.html#proton">Proton</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="xscreensaver.html">XScreenSaver</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="xscreensaver.html#gamma-or-brightness-is-too-high-when-unlocking">Gamma or brightness is too high when unlocking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xscreensaver.html#disable-fade-to-black-effect">Disable fade to black effect</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">CentOS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../centos/builds.html">Auto-Provisioning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../centos/freeipa.html">FreeIPA</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../centos/freeipa.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/freeipa.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/freeipa.html#tutorial-preface-notes-and-recommendations">Tutorial Preface, Notes, and Recommendations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/freeipa.html#dns">DNS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#delegation">Delegation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/freeipa.html#server-setup">Server Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#required-packages">Required Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#replica">Replica</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#replica-automation">Replica Automation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/freeipa.html#active-directory-trust">Active Directory Trust</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/freeipa.html#disable-anonymous-bind">Disable Anonymous Bind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/freeipa.html#client-setup">Client Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#rhel-7-8">RHEL 7 &amp; 8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#mac-clients">Mac Clients</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#suse">SUSE</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/freeipa.html#hbac">HBAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/freeipa.html#sudo">SUDO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/freeipa.html#legacy-client-setup">Legacy Client Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#solaris-10">Solaris 10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#solaris-11-and-omnios-illumos">Solaris 11 and Omnios/Illumos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#automated-scripts">Automated Scripts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#legacy-hbac">Legacy HBAC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../centos/freeipa.html#id3">Solaris 10</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../centos/freeipa.html#solaris-11">Solaris 11</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../centos/freeipa.html#omnios">Omnios</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../centos/freeipa.html#pam-hbac-conf">pam_hbac.conf</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../centos/freeipa.html#pam-configuration">PAM Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#login-with-ad-users-to-legacy-clients">Login with AD Users to Legacy Clients</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#legacy-active-directory-trust-notes">Legacy Active Directory Trust Notes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../centos/freeipa.html#domain-resolution-order-oddness">Domain Resolution Order Oddness</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../centos/freeipa.html#solaris-weirdness">Solaris Weirdness</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/freeipa.html#situational-options">Situational Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#remove-realm-for-ad-users">Remove &#64;realm for AD users</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#rhel-6-sudo-and-default-domain-suffix">RHEL 6 SUDO and Default Domain Suffix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/freeipa.html#automated-kerberos-principals">Automated Kerberos Principals</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../centos/freeipa.html#hadoop-cloudera">Hadoop/Cloudera</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../centos/freeipa.html#cloudera-manager-woes">Cloudera Manager Woes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../centos/freeipa.html#the-solution">The Solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../centos/nat.html">NAT/Router</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../centos/nat.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/nat.html#tutorial">Tutorial</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../centos/nat.html#interface-setup">Interface Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/nat.html#firewalld">FirewallD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/nat.html#iptables">iptables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/nat.html#nftables">nftables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/nat.html#ipv6-forwarding">IPv6 Forwarding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/nat.html#dhcp">DHCP</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../centos/openldap.html">OpenLDAP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../centos/openldap.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/openldap.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/openldap.html#tutorial-preface-notes-and-recommendations">Tutorial Preface, Notes, and Recommendations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/openldap.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#packages">Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#certificates">Certificates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#ldap-server-configuration">LDAP Server Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#ldap-structure">LDAP Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#add-users-via-migration">Add Users via Migration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#add-users-via-ldif">Add Users via LDIF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#nfs-export-home-directories">NFS Export Home Directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#firewall">Firewall</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/openldap.html#client">Client</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#rhel-6-rhel-7-fedora-20">RHEL 6/RHEL 7/Fedora 20+</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#automounting-home-directories">Automounting Home Directories</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/openldap.html#ldap-structure-add-ons">LDAP Structure Add-ons</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#sudo">SUDO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#member-groups">Member Groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#referential-integrity">Referential Integrity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#acl">ACL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#disable-anonymous-binding">Disable Anonymous Binding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#ldap-logging">LDAP Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/openldap.html#password-policy">Password Policy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../centos/sysadmin.html">The System Administrator Experience</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../centos/sysadmin.html#recommendations">Recommendations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/sysadmin.html#certification-completions">Certification Completions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/sysadmin.html#notes-and-changelog">Notes and Changelog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../centos/sysadmin.html#begin">Begin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#setup-a-kvm-hypervisor">Setup a KVM Hypervisor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#dhcp-and-dns">DHCP and DNS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#server-and-content-management">Server and Content Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#connect-content-management-to-hypervisor">Connect Content Management to Hypervisor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#spin-up-vm-s-using-katello-spacewalk">Spin Up VM’s Using Katello/Spacewalk</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#setup-freeipa">Setup FreeIPA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#spin-up-two-vm-s-for-databases">Spin Up Two VM’s for Databases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#spin-up-configuration-management">Spin Up Configuration Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#spin-up-vm-for-nfs-iscsi">Spin Up VM for NFS/iSCSI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#deploy-bacula-server">Deploy Bacula Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#deploy-four-vm-s">Deploy Four VM’s</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#deploy-load-balancer-vm">Deploy Load Balancer VM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#deploy-postfix-vm">Deploy Postfix VM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#setup-nagios-vm">Setup Nagios VM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#setup-syslog-vm">Setup Syslog VM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#document-your-work">Document Your Work</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#rpm-build-server">RPM Build Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#git-server">Git Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../centos/sysadmin.html#ansible">Ansible</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Training Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../training/ex362.html">EX362 Exam Prep</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#exam-information">Exam Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#hardware-recommendations">Hardware Recommendations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#installing-freeipa-red-hat-idm-with-replicas-for-growth-and-scale">Installing FreeIPA/Red Hat IdM with replicas for growth and scale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#creating-users-groups-and-policies">Creating Users, Groups, and Policies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../training/ex362.html#new-passwords-expired">New Passwords Expired</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#install-and-configure-idm-clients">Install and configure IdM Clients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#configure-roaming-automounted-home-directories">Configure roaming/automounted home directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#use-the-rest-api-to-query-idm">Use the REST api to query IdM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#configure-kerberized-services">Configure Kerberized services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#create-a-trust-with-active-directory">Create a trust with Active Directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#configure-control-policies-and-user-access">Configure/control policies and user access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#configure-and-manage-a-certificate-authority">Configure and manage a certificate authority</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#back-up-an-idm-infrastructure">Back up an IdM infrastructure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#configure-idm-as-an-ldap-backend-for-external-services">Configure IdM as an LDAP backend for external services</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../training/ex362.html#kerberos">Kerberos</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#implement-a-sso">Implement a SSO</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Linux Guide and Hints</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Emulators</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/nazunalika/linux-guide-and-hints/blob/master/source/fedora/emulators.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="emulators">
+<h1>Emulators<a class="headerlink" href="#emulators" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="dolphin">
+<h2>Dolphin<a class="headerlink" href="#dolphin" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="wii-controls">
+<h3>Wii controls<a class="headerlink" href="#wii-controls" title="Permalink to this headline">¶</a></h3>
+<p>In order to set up mouse controls for “Motion Controls and IR”, reset the controls to default. If you are playing Super Paper Mario, make sure <strong>Sideways Wii Remote</strong> is ticked.</p>
+</div>
+<div class="section" id="game-idiosyncrasies">
+<h3>Game idiosyncrasies<a class="headerlink" href="#game-idiosyncrasies" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="paper-mario-the-thousand-year-door">
+<h4>Paper Mario: The Thousand-Year Door<a class="headerlink" href="#paper-mario-the-thousand-year-door" title="Permalink to this headline">¶</a></h4>
+<p>When you need to enter “Tube Mode” in Chapter 4, the game asks you to rapidly rotate your stick. However, using a keyboard where i.e. WASD is mapped to Up/Left/Down/Right, this is physically impossible. An easier way is to map something straight in a line i.e. 1324 in the top number row to Up/Left/Down/Right.</p>
+</div>
+</div>
+</div>
+<div class="section" id="compiling-pcsx2">
+<h2>Compiling PCSX2<a class="headerlink" href="#compiling-pcsx2" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/PCSX2/pcsx2">PCSX2</a>  is a 32-bit only Playstation 2 emulator. The wiki does not contain any
+instructions (other than install from RPMFusion) for Fedora. This is what you need to do.</p>
+<div class="section" id="dependencies">
+<h3>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h3>
+<pre><code class="language-bash">dnf install zlib-devel.i686 bzip2-devel.i686 freetype-devel.i686 \
+glew-devel.i686 libX11-devel.i686 libICE-devel.i686 libXrandr-devel.i686 \
+mesa-libGLES-devel.i686 alsa-lib-devel.i686 SDL-devel.i686 gtk2-devel.i686 \
+portaudio-devel.i686 sparsehash-devel.i686 wxGTK-devel.i686 \
+soundtouch-devel.i686 libaio-devel.i686 lzma-devel.i686</code></pre><p>You might also need <code class="docutils literal notranslate"><span class="pre">xz-devel.i686</span></code> and <code class="docutils literal notranslate"><span class="pre">compat-wtkGTK3-gtk2-devel.i686</span></code>. Do not install <code class="docutils literal notranslate"><span class="pre">wxGTK3-devel.i686</span></code> or CMake will say it can’t find <code class="docutils literal notranslate"><span class="pre">wxWidgets</span></code>.</p>
+</div>
+<div class="section" id="cmake-flags">
+<h3>CMake flags<a class="headerlink" href="#cmake-flags" title="Permalink to this headline">¶</a></h3>
+<p>These are taken from the RPMFusion spec.</p>
+<pre><code class="language-bash">cmake .. \
+-DCMAKE_TOOLCHAIN_FILE=$PWD/../cmake/linux-compiler-i386-multilib.cmake \
+-DXDG_STD=TRUE -DGLSL_API=TRUE -DFORCE_INTERNAL_SOUNDTOUCH=FALSE \
+-DFORCE_INTERNAL_SDL=FALSE -DCMAKE_BUILD_STRIP=FALSE -DGTK3_API=FALSE \
+-DEXTRA_PLUGINS=FALSE -DSDL2_API=FALSE -DCMAKE_BUILD_TYPE=Release</code></pre><p>Most of these are self-explanatory. <code class="docutils literal notranslate"><span class="pre">XDG_STD</span></code> will have it put files in standard Linux locations (<code class="docutils literal notranslate"><span class="pre">.config</span></code>, etc).
+We need to use the i386 toolchain because PCSX2 can’t be compiled for 64-bit currently.</p>
+</div>
+</div>
+<div class="section" id="retroarch">
+<h2>RetroArch<a class="headerlink" href="#retroarch" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="building-beetle-psx-libretro-mednafen">
+<h3>Building beetle-psx-libretro (mednafen)<a class="headerlink" href="#building-beetle-psx-libretro-mednafen" title="Permalink to this headline">¶</a></h3>
+<p>First, clone the <a class="reference external" href="https://github.com/libretro/beetle-psx-libretro">beetle-psx-libretro repo</a>:</p>
+<pre><code class="language-bash">git clone git@github.com:libretro/beetle-psx-libretro.git</code></pre><p>Then enable the Vulkan renderer and build:</p>
+<pre><code class="language-bash">make HAVE_VULKAN=1</code></pre><p>Copy the core to the RetroArch directory:</p>
+<pre><code class="language-bash">cp mednafen_psx_hw_libretro.so ~/.config/retroarch/cores/</code></pre></div>
+<div class="section" id="enabling-the-vulkan-renderer-and-32-bit-color">
+<h3>Enabling the Vulkan renderer and 32-bit color<a class="headerlink" href="#enabling-the-vulkan-renderer-and-32-bit-color" title="Permalink to this headline">¶</a></h3>
+<p>Mednafen, being an accurate PSX emulator, doesn’t support 32-bit color depth.
+Patching it to disable <a class="reference external" href="https://en.wikipedia.org/wiki/Dither">dithering</a> will
+result in color banding as expected, which looks something like this:</p>
+<div class="figure align-default" id="id8">
+<img alt="16-bit rendering with dithering disabled (OpenGL)" src="../_images/silent_hill_16.png" />
+<p class="caption"><span class="caption-text">16-bit rendering with dithering disabled (OpenGL). Source: <a class="reference external" href="https://forums.libretro.com/t/mednafen-psx-32-bit-rendering-a-possibility/4440">https://forums.libretro.com/t/mednafen-psx-32-bit-rendering-a-possibility/4440</a></span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+<p>However, the <a class="reference external" href="https://github.com/libretro/beetle-psx-libretro">beetle-psx-libretro</a> core
+for RetroArch supports 32-bit color depth, but it’s a little tricky to setup.</p>
+<p>We will be using the Vulkan renderer because the OpenGL renderer is a little buggy
+(see <a class="reference external" href="https://github.com/libretro/beetle-psx-libretro/issues/43">beetle-psx-libretro#43</a>).
+For example, this is what 32-bit rendering with dithering disabled looks like in the OpenGL
+renderer:</p>
+<div class="figure align-default" id="id9">
+<img alt="32-bit rendering with dithering disabled (OpenGL)" src="../_images/silent_hill_32.png" />
+<p class="caption"><span class="caption-text">32-bit rendering with dithering disabled (OpenGL). Source: <a class="reference external" href="https://forums.libretro.com/t/mednafen-psx-32-bit-rendering-a-possibility/4440">https://forums.libretro.com/t/mednafen-psx-32-bit-rendering-a-possibility/4440</a></span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
+<p>On the other hand, this is what it looks like with Vulkan:</p>
+<div class="figure align-default" id="id10">
+<img alt="32-bit rendering with dithering disabled (Vulkan)" src="../_images/silent_hill.png" />
+<p class="caption"><span class="caption-text">32-bit rendering with dithering disabled (Vulkan)</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</div>
+<p>In this particular instance, however, the issue is because mask bit emulation is yet to be backported
+to the OpenGL renderer. This article may become out of date once that’s implemented.</p>
+<p>If you followed our guide on installing Nvidia drivers from <a class="reference internal" href="negativo.html"><span class="doc">negativo17 repositories and Nvidia drivers</span></a>, then you can
+install the <code class="docutils literal notranslate"><span class="pre">vulkan</span></code> package.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">retroarch.cfg</span></code>, put <code class="docutils literal notranslate"><span class="pre">video_driver</span> <span class="pre">=</span> <span class="pre">&quot;vulkan&quot;</span></code>. In <code class="docutils literal notranslate"><span class="pre">retroarch-core-options.cfg</span></code>, put <code class="docutils literal notranslate"><span class="pre">beetle_psx_hw_renderer</span> <span class="pre">=</span> <span class="pre">&quot;vulkan&quot;</span></code>.</p>
+<p>Due to an unknown reason (see <a class="reference external" href="https://github.com/libretro/beetle-psx-libretro/issues/158">beetle-psx-libretro#158</a>),
+on X11 (i.e, if you are running XFCE, as opposed to Gnome which uses Wayland), you will get a “bad sector” error. The
+fix is to set <code class="docutils literal notranslate"><span class="pre">beetle_psx_hw_cd_access_method</span> <span class="pre">=</span> <span class="pre">&quot;precache&quot;</span></code> (this enables what the documentation refers to as “CD image cache”).</p>
+<p>Finally, ensure that <code class="docutils literal notranslate"><span class="pre">beetle_psx_hw_color_depth</span> <span class="pre">=</span> <span class="pre">&quot;32bpp&quot;</span></code>.</p>
+</div>
+<div class="section" id="shaders">
+<h3>Shaders<a class="headerlink" href="#shaders" title="Permalink to this headline">¶</a></h3>
+<p>Since texture filtering is only supported with the OpenGL renderer, shaders are an alternative. However, since shaders are essentially
+a post-process effect, this will also affect pre-rendered backgrounds (like in Resident Evil). It can also be slightly slower.</p>
+<p>If you are using the OpenGL renderer, download the <a class="reference external" href="https://github.com/libretro/glsl-shaders">glsl-shaders</a> repository. If you
+are using the Vulkan renderer, download the <a class="reference external" href="https://github.com/libretro/slang-shaders">slang-shaders</a> repository. In order to load
+these shader presets, load a core/content then go to <strong>Quick Menu</strong> -&gt; <strong>Shaders</strong> -&gt; <strong>Load Shader Preset</strong>. Then look for files with
+the <code class="docutils literal notranslate"><span class="pre">.glslp</span></code> or <code class="docutils literal notranslate"><span class="pre">.slangp</span></code> file extensions. For convenience, you might want to install these to <code class="docutils literal notranslate"><span class="pre">~/.config/retroarch/shaders</span></code>.</p>
+</div>
+</div>
+<div class="section" id="mednafen-randomly-speeds-up">
+<h2>mednafen randomly speeds up<a class="headerlink" href="#mednafen-randomly-speeds-up" title="Permalink to this headline">¶</a></h2>
+<p>mednafen seems to have problems with pulseaudio; change the <code class="docutils literal notranslate"><span class="pre">sound.driver</span></code> to <code class="docutils literal notranslate"><span class="pre">sdl</span></code>. Note: this doesn’t seem to apply
+to RetroArch.</p>
+</div>
+<div class="section" id="mupen64plus-unofficial-faq">
+<h2>Mupen64Plus unofficial FAQ<a class="headerlink" href="#mupen64plus-unofficial-faq" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="where-does-mupen64plus-like-to-put-files">
+<h3>Where does Mupen64Plus like to put files?<a class="headerlink" href="#where-does-mupen64plus-like-to-put-files" title="Permalink to this headline">¶</a></h3>
+<p>The config is located in <code class="docutils literal notranslate"><span class="pre">~/.config/mupen64plus</span></code>. Hi-res textures are
+expected to be found in <code class="docutils literal notranslate"><span class="pre">~/.local/share/mupen64plus</span></code> although this can be changed
+in the configuration. Some cache files for hi-res textures and memory are created
+in <code class="docutils literal notranslate"><span class="pre">~/.cache/mupen64plus</span></code>. The default prefix is <code class="docutils literal notranslate"><span class="pre">/usr/local</span></code>.</p>
+<p>There are also <code class="docutils literal notranslate"><span class="pre">.ini</span></code> files that contain ROM information installed in <code class="docutils literal notranslate"><span class="pre">$PREFIX/share</span></code>.
+mupen64plus and the Rice video plugin need to find these files. If you are using the
+mupen64plus-ui-console, specify <code class="docutils literal notranslate"><span class="pre">--datadir</span> <span class="pre">$PREFIX/share/mupen64plus</span></code> at the command-line.</p>
+</div>
+<div class="section" id="i-m-getting-a-dlopen-error">
+<h3>I’m getting a <code class="docutils literal notranslate"><span class="pre">dlopen</span></code> error<a class="headerlink" href="#i-m-getting-a-dlopen-error" title="Permalink to this headline">¶</a></h3>
+<p>The console UI is compiled with the default path it looks for the core library,
+which is <code class="docutils literal notranslate"><span class="pre">libmupen64plus.so.2</span></code>. This is the reason why specifying <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code>
+does not work. Although it uses <code class="docutils literal notranslate"><span class="pre">dlopen</span></code>, the console UI only searches in the place
+specified at compile-time or at the command line with <code class="docutils literal notranslate"><span class="pre">--corelib</span></code>, which takes an
+absolute path including the filename.</p>
+<pre><code class="language-bash">./mupen64plus --corelib $PWD/libmupen64plus.so.2</code></pre></div>
+<div class="section" id="keycode-values">
+<h3>Keycode values<a class="headerlink" href="#keycode-values" title="Permalink to this headline">¶</a></h3>
+<p>Please use the keycode values from <code class="docutils literal notranslate"><span class="pre">SDL_keysym.h</span></code> (found <a class="reference external" href="https://www.libsdl.org/release/SDL-1.2.15/include/SDL_keysym.h">here</a>)
+and not the values from the wiki.</p>
+</div>
+<div class="section" id="i-changed-one-of-the-hi-res-textures-and-no-change-is-visible">
+<h3>I changed one of the hi-res textures and no change is visible<a class="headerlink" href="#i-changed-one-of-the-hi-res-textures-and-no-change-is-visible" title="Permalink to this headline">¶</a></h3>
+<p>A cache of the textures are created after the first time and then read from the hard disk.
+This file can be found in <code class="docutils literal notranslate"><span class="pre">~/.cache/mupen64plus</span></code>. So you have to delete this file everytime
+you make a modification for a game.</p>
+</div>
+<div class="section" id="recommended-plugins">
+<h3>Recommended plugins?<a class="headerlink" href="#recommended-plugins" title="Permalink to this headline">¶</a></h3>
+<p>Video: <a class="reference external" href="https://github.com/gonetz/GLideN64/releases">GLideN64</a> Do not confuse this with
+glide64mk2, which seems to be made for ancient graphics cards</p>
+<p>RSP (processor): <a class="reference external" href="https://github.com/mupen64plus/mupen64plus-rsp-cxd4">cxd4</a></p>
+<p>Note that the Rice video plugin is not compatible with cxd4.</p>
+</div>
+<div class="section" id="how-do-i-compile-it">
+<h3>How do I compile it?<a class="headerlink" href="#how-do-i-compile-it" title="Permalink to this headline">¶</a></h3>
+<p>All of the projects follow a pattern: their Makefiles are located in <code class="docutils literal notranslate"><span class="pre">project/unix</span></code> and they
+do not use autotools. You specify make variables like so:</p>
+<pre><code class="language-bash">make PREFIX=$PWD</code></pre><p>The six mandatory projects you need to compile are:</p>
+<ul class="simple">
+<li>The <a class="reference external" href="https://github.com/mupen64plus/mupen64plus-core">core library (mupen64plus-core)</a></li>
+<li>RSP plugin. i.e, <a class="reference external" href="https://github.com/mupen64plus/mupen64plus-rsp-hle">mupen64plus-rsp-hle</a></li>
+<li>Video plugin. i.e, <a class="reference external" href="https://github.com/mupen64plus/mupen64plus-video-rice">mupen64plus-rice</a></li>
+<li>Audio plugin. <a class="reference external" href="https://github.com/mupen64plus/mupen64plus-audio-sdl">mupen64plus-audio-sdl</a></li>
+<li>Input plugin. <a class="reference external" href="https://github.com/mupen64plus/mupen64plus-input-sdl">mupen64plus-input-sdl</a></li>
+<li>UI. <a class="reference external" href="https://github.com/mupen64plus/mupen64plus-ui-console">mupen64plus-ui-console</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="gba">
+<h2>GBA<a class="headerlink" href="#gba" title="Permalink to this headline">¶</a></h2>
+<p>There are a plethora of emulators out there, some of them good, most of
+them bad. <a class="reference external" href="http://vba-m.com/">VBA-M</a> has reigned supreme as a gameboy
+emulator for many years and is recommended by pretty much every site out
+there. But overall, it has poor performance, is limited in its
+functionality, has a horrid codebase and the GTK version doesn’t even
+run.</p>
+<p>There are some high quality alternatives:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/sinamas/gambatte">gambatte</a> - GB and GBC</li>
+<li><a class="reference external" href="https://github.com/mgba-emu/mgba">mGBA</a> - GB, GBC and GBA</li>
+<li><a class="reference external" href="http://mamedev.org">MAME</a> - GB, GBC and GBA</li>
+<li><a class="reference external" href="http://bgb.bircd.org">BGB</a> - GB, GBC</li>
+</ul>
+<p>Which one you use is a matter of preference, although they all have
+their pros and cons. Personally, I alternate between mGBA and MAME.</p>
+</div>
+<div class="section" id="id1">
+<h2>MAME<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="configuration">
+<h3>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h3>
+<p>MAME looks for configuration in at least two places:
+<code class="docutils literal notranslate"><span class="pre">/etc/mame/mame.ini</span></code> and <code class="docutils literal notranslate"><span class="pre">~/.mame/ini/mame.ini</span></code>. The latter
+overrides the former.</p>
+<div class="section" id="example-mame-ini">
+<h4>Example <code class="docutils literal notranslate"><span class="pre">mame.ini</span></code><a class="headerlink" href="#example-mame-ini" title="Permalink to this headline">¶</a></h4>
+<p>For some reason, fullscreen mode likes to eat up as much screenspace as
+possible with no regards to aspect ratio, etc. It’s not even true fullscreen
+mode. So I enable windowed mode instead. I disable sound by default instead
+opting to explicitly enable it on the command line if I wish. This is because
+MAME doesn’t seem to have a feature to mute or disable audio while the emulator
+is running. I disable filtering because I personally don’t like how blurry it
+looks. Finally, <code class="docutils literal notranslate"><span class="pre">autosave</span></code> is a feature that allows you to resume execution
+right from where you left off. While this may be a convenience if you
+accidentally close MAME or find saving to be boring, I like using in-game saves
+and don’t like having to soft reset whenever I start up MAME.</p>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="56%" />
+<col width="44%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Option</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>video</td>
+<td>opengl</td>
+</tr>
+<tr class="row-odd"><td>window</td>
+<td>1</td>
+</tr>
+<tr class="row-even"><td>sound</td>
+<td>none</td>
+</tr>
+<tr class="row-odd"><td>filter</td>
+<td>0</td>
+</tr>
+<tr class="row-even"><td>autosave</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Also if you enable <code class="docutils literal notranslate"><span class="pre">gl_glsl</span></code> you want to set <code class="docutils literal notranslate"><span class="pre">gl_glsl_filter</span></code> to <code class="docutils literal notranslate"><span class="pre">0</span></code> (if
+you don’t like the bilinear filter.)</p>
+</div>
+<div class="section" id="example-command-line-options">
+<h4>Example command line options<a class="headerlink" href="#example-command-line-options" title="Permalink to this headline">¶</a></h4>
+<p>I’m assuming that you’re using the ini file in the previous section. In
+general, starting up MAME looks like this:</p>
+<pre><code class="language-bash">mame &lt;driver&gt; -cart &lt;file&gt; -resolution &lt;widthxheight&gt; -sound &lt;auto or none&gt; -speed &lt;floating point value&gt;</code></pre><p>For example:</p>
+<pre><code class="language-bash">mame gbcolor -cart "Pokemon - Red.gb" -resolution 320x288 -sound auto -speed 1.0</code></pre><p>In this case, I’ve taken the native resolution of the gameboy color and doubled
+it. In this case, I want sound. And finally, the game will run at normal speed.
+It’s probably possible to add some further configuration with scaling and what
+not but I’ve found it to be tedious and inconsistent, so instead I wrote a <a class="reference internal" href="#ui-script">UI
+script</a> that has preset resolutions for certain consoles.</p>
+</div>
+</div>
+<div class="section" id="speed">
+<h3>Speed<a class="headerlink" href="#speed" title="Permalink to this headline">¶</a></h3>
+<p>Emulators have tackled gamer’s impatience in different ways, by adding speed
+boosting options. For example, throttling, frame skipping, boosting
+(essentially key-activated throttling) and so on. These features tend to be
+broken, choppy or make the game unplayable. The emulators I’ve mentioned in the
+introductory section use a much more reasonable approach: an FPS target and in
+the case of MAME, a real-time speed option. The latter two approaches result in
+much less choppy gameplay, consistent results and more control over the speed
+of the emulation.</p>
+<p>The difference between mGBA’s and gambatte’s FPS target and MAME’s speed
+feature is that the latter is relative to real time. That means an
+option of <code class="docutils literal notranslate"><span class="pre">2.0</span></code> will not make the game run at 120 FPS for example.
+Despite this, trying arbitrary speed values between <code class="docutils literal notranslate"><span class="pre">1.0</span></code> and <code class="docutils literal notranslate"><span class="pre">10.0</span></code>
+(for example, <code class="docutils literal notranslate"><span class="pre">10.0</span></code> being roughly <code class="docutils literal notranslate"><span class="pre">350%</span></code>) doesn’t result in any
+choppiness. On the other hand, I’ve experienced choppiness in mGBA when
+setting an FPS target above 120.</p>
+</div>
+<div class="section" id="ui-script">
+<h3>UI script<a class="headerlink" href="#ui-script" title="Permalink to this headline">¶</a></h3>
+<p>In lieu of using a MAME front-end, I’ve opted to write a simple start-up
+script. A precursory glance at the list of front-ends seems to show
+either old projects or those written specifically for systems like
+Ubuntu. Rather than go out of my way to install and deal with even more
+software on my system that may not even work properly, I’ve found this
+script to work perfectly fine for my needs.</p>
+<p>This requires <code class="docutils literal notranslate"><span class="pre">zenity</span></code>, a simple program that creates GTK dialogs.</p>
+<p>The script takes two arguments, a value for sound and speed respectively. i.e,
+<code class="docutils literal notranslate"><span class="pre">mameui.sh</span> <span class="pre">auto</span> <span class="pre">1.0</span></code>. I did this so I could write two trivial wrapper scripts
+for launchers in my menu, one for muted gameplay at normal speed, and another
+for muted gameplay at an arbitrary speed.</p>
+<pre><code class="language-bash">#!/bin/bash
+
+# enable ** and avoiding non-matches
+shopt -s globstar nullglob
+DIR="/home/tom/Downloads/games"
+LIST=("$DIR"/**/*{.gba,.gbc,.gb,.md,.nes,.sfc,.n64})
+SOUND="${1:-auto}"
+SPEED="${2:-1.0}"
+
+# geometry of zenity dialog
+WIDTH=640
+HEIGHT=480
+
+declare -A RESOLUTIONS
+RESOLUTIONS=(\
+        [gb]="320x288" \
+        [gbc]="320x288" \
+        [gba]="480x320" \
+        [md]="640x480" \
+        [sfc]="640x480" \
+        [nes]="640x480" \
+        [n64]="640x480"
+)
+
+declare -A MAPPINGS
+MAPPINGS=(\
+        [gb]="gbcolor" \
+        [gbc]="gbcolor" \
+        [gba]="gba" \
+        [md]="genesis" \
+        [sfc]="snes" \
+        [nes]="nes" \
+        [n64]="n64"
+)
+
+EXTS=()
+for FILE in "${LIST[@]}"; do
+        FILENAME=$(basename "$FILE")
+        EXTENSION="${FILENAME##*.}"
+        EXTS+=("$EXTENSION")
+done
+
+# zenity requires arguments to be
+# interspersed.
+MERGED=()
+for INDEX in "${!LIST[@]}"; do
+        MERGED+=("${EXTS[$INDEX]}")
+        MERGED+=("$(basename "${LIST[$INDEX]}")")
+done
+
+set -x
+# zenity outputs choices delimited
+# by a pipe, hence IFS
+CHOICE=$(zenity --width=$WIDTH --height=$HEIGHT \
+        --list --print-column=ALL \
+        --column "Extension" --column "Filename" \
+        "${MERGED[@]}") IFS='|'
+
+# if we didn't hit cancel
+if [ $? -ne 1 ]; then
+        SPLIT_CHOICE=("$CHOICE")
+        unset IFS
+
+        EXT_CHOICE="${SPLIT_CHOICE[0]}"
+        FILE_CHOICE="${SPLIT_CHOICE[1]}"
+
+        FILE_CHOICE=$(find "$DIR" -name "$FILE_CHOICE")
+
+        mame "${MAPPINGS[$EXT_CHOICE]}" -cart "$FILE_CHOICE" -resolution \
+                "${RESOLUTIONS[$EXT_CHOICE]}" -sound "$SOUND" -speed "$SPEED"
+fi</code></pre></div>
+</div>
+<div class="section" id="id2">
+<h2>mGBA<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="controller-joystick-issue">
+<h3>Controller/joystick issue<a class="headerlink" href="#controller-joystick-issue" title="Permalink to this headline">¶</a></h3>
+<p>If you have certain brands of USB devices, namely mice or keyboards, i.e
+Microsoft Nano Transceiver, it will try to load that as a joystick.
+Unfortunately, you have to manually clear the controls everytime the
+emulator loads and there doesn’t seem to be any way to fix this via the
+config. I’ve also tried to unsuccessfully patch it.</p>
+<p>One workaround is to blacklist your device from udev. The
+<a class="reference external" href="https://github.com/denilsonsa/udev-joystick-blacklist">udev-joystick-blacklist</a> project on
+Github provides a script that does this for you and covers a range of
+devices known to be detected as joysticks. Of course, you do this at
+your own risk but I’ve had no problems with this approach.</p>
+</div>
+<div class="section" id="building">
+<h3>Building<a class="headerlink" href="#building" title="Permalink to this headline">¶</a></h3>
+<p>An RPM for mGBA doesn’t seem to exist, but luckily the compilation
+process is painless. As is the case for all CMake projects, you want to
+create a build folder. Don’t run <code class="docutils literal notranslate"><span class="pre">cmake</span></code> directly in the source
+folder. Make sure to set a prefix with <code class="docutils literal notranslate"><span class="pre">CMAKE_INSTALL_PREFIX</span></code> to avoid
+polluting <code class="docutils literal notranslate"><span class="pre">/usr</span></code>.</p>
+<pre><code class="language-bash">cd mgba
+mkdir build
+cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=... -DOTHER_VARIABLE=...
+make
+make install</code></pre><p>Make sure to set <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> to the location of <code class="docutils literal notranslate"><span class="pre">libmgba.so</span></code>
+if you decided to build a shared library. Include the installation
+folder in your <code class="docutils literal notranslate"><span class="pre">PATH</span></code> for the binaries and man pages. Also located in
+the <code class="docutils literal notranslate"><span class="pre">share</span></code> folder are some shaders but they aren’t anything special.</p>
+<div class="section" id="cmake-variables">
+<h4>CMake variables<a class="headerlink" href="#cmake-variables" title="Permalink to this headline">¶</a></h4>
+<p>Some of the variables that are important are:</p>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="29%" />
+<col width="9%" />
+<col width="62%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Variable</th>
+<th class="head">Value</th>
+<th class="head">Comment</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>BUILD_GL</td>
+<td>ON</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>BUILD_GLES2</td>
+<td>OFF</td>
+<td>This is for embedded systems</td>
+</tr>
+<tr class="row-even"><td>BUILD_LIBRETRO</td>
+<td>OFF</td>
+<td>This is for embedded systems</td>
+</tr>
+<tr class="row-odd"><td>BUILD_QT</td>
+<td>ON</td>
+<td>The Qt front-end is superior to the SDL front-end</td>
+</tr>
+<tr class="row-even"><td>BUILD_SDL</td>
+<td>ON</td>
+<td>No reason not to include it, though</td>
+</tr>
+<tr class="row-odd"><td>CMAKE_BUILD_TYPE</td>
+<td>Release</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>OpenGL_GL_PREFERENCE</td>
+<td>GLVND</td>
+<td>Required because CMake uses legacy GL by default</td>
+</tr>
+<tr class="row-odd"><td>OPENGLx_mesa_INCLUDE_DIR</td>
+<td>&#160;</td>
+<td>This can be ignored, as it’s not applicable to Linux systems</td>
+</tr>
+</tbody>
+</table>
+<p>The rest is discretionary, such as whether or not to disable the
+debugger. It lists <code class="docutils literal notranslate"><span class="pre">libepoxy</span></code> after <code class="docutils literal notranslate"><span class="pre">OpenGL</span> <span class="pre">support</span></code>, however it is
+simply a library that seems to deal with pointer safety. It really has
+no bearing aside from compilation.</p>
+</div>
+<div class="section" id="id3">
+<h4>Dependencies<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p>You need Qt5, Qt5 Multimedia (for audio) and libzip if you want to load
+ROMs directly from zipped files.</p>
+<pre><code class="language-bash">dnf install qt5-qtmultimedia-devel SDL2-devel libzip-devel sqlite-devel qt5-linguist</code></pre></div>
+</div>
+</div>
+<div class="section" id="link-cable-support">
+<h2>Link cable support<a class="headerlink" href="#link-cable-support" title="Permalink to this headline">¶</a></h2>
+<p>Both mGBA and BGB emulate linking on the same computer.</p>
+<div class="section" id="id4">
+<h3>BGB<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>You need to run two instances of the emulator, one which acts as the
+server and the other as the client. For the server, <code class="docutils literal notranslate"><span class="pre">Right-click</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Link</span></code> &gt;
+<code class="docutils literal notranslate"><span class="pre">Listen</span></code>. Accept the default port. In the other client instance,
+<code class="docutils literal notranslate"><span class="pre">Right-click</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Link</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Connect</span></code>. Whatever port you entered for
+the server, append to the end. For example, <code class="docutils literal notranslate"><span class="pre">127.0.0.1:8765</span></code>. Note
+that once the two are connected, pausing one instance will pause the
+other.</p>
+<p>You can now alternate between windows to send independent input.</p>
+</div>
+<div class="section" id="id5">
+<h3>mGBA<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>This emulator allegedly requires two controllers for multiplayer to work
+properly. mGBA has a distinct lack of documentation and instructions,
+but here is a <a class="reference external" href="https://www.youtube.com/watch?v=f1LWEUTbcLA">youtube video</a> showing somebody who
+managed to get it to work (again, no instructions). If you want to try it yourself, you need to
+go to <code class="docutils literal notranslate"><span class="pre">File</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">multiplayer</span> <span class="pre">window</span></code> rather than running two
+instances of the emulator.</p>
+</div>
+</div>
+<div class="section" id="kega-fusion">
+<h2>Kega Fusion<a class="headerlink" href="#kega-fusion" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h3>Dependencies<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>To get Kega to run on Fedora, install the following dependencies:</p>
+<pre><code class="language-bash">dnf install alsa-plugins-pulseaudio.i686 mesa-dri-drivers.i686 mesa-libGLU.i686 gtk2.i686 alsa-lib.i686 libSM.i686</code></pre></div>
+<div class="section" id="id7">
+<h3>Configuration<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>The following assumes a new install.</p>
+<pre><code class="language-bash"># Fresh configuration, skip if you already have one
+% mkdir ~/.Kega\ Fusion
+% cat &gt; ~/.Kega\ Fusion/Fusion.ini &lt;&lt;EOF
+ALSADeviceName=default
+libmpg123path=/usr/lib/libmpg123.so.0
+EOF
+# Make a desktop file
+% mkdir -p ~/.local/share/icons/hicolor/256x256
+% wget -q -O ~/.local/share/icons/hicolor/256x256/kega-fusion.png http://trya.alwaysdata.net/linux/icons/kega-fusion.png
+% cat &gt; ~/.local/share/applications/Fusion.desktop &lt;&lt;EOF
+[Desktop Entry]
+Version=1.0
+Type=Application
+Exec=/home/username/Games/Fusion/Fusion
+Name=Kega Fusion
+GenericName=Sega Emulator
+Comment=Sega Emulator
+Icon=kega-fusion
+Categories=Game;Emulator;</code></pre></div>
+<div class="section" id="no-sound">
+<h3>No Sound?<a class="headerlink" href="#no-sound" title="Permalink to this headline">¶</a></h3>
+<p>Make sure all dependencies are met above. If you’ve already installed them and still have no sound and you already have a Fusion.ini file (meaning you’ve ran it once before), change ALSADeviceName to ‘default’ in Fusion.ini, open Kega, click ‘Sound’ and click ‘Disable Sound’ and ensure the checkmark goes away.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </main>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="firefox.html" class="btn btn-neutral float-right" title="Firefox" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="docker.html" class="btn btn-neutral" title="Docker" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, remyabel, nazunalika
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+  <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/js/documentation_options.js" defer></script>
+      <script type="text/javascript" src="../_static/jquery.js" defer></script>
+      <script type="text/javascript" src="../_static/underscore.js" defer></script>
+      <script type="text/javascript" src="../_static/doctools.js" defer></script>
+      <script type="text/javascript" src="../_static/language_data.js" defer></script>
+      <script type="text/javascript" src="../_static/js/prism.min.js" defer></script>
+      <script type="text/javascript" src="../_static/js/components/prism-bash.min.js" defer></script>
+      <script type="text/javascript" src="../_static/js/components/prism-docker.min.js" defer></script>
+      <script type="text/javascript" src="../_static/js/prism-freeipa.min.js" defer></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js" defer></script>
+  
+
+  <script type="text/javascript" src="../_static/js/stickynav.js" defer></script> 
+
+</body>
+</html>
