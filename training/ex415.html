@@ -989,18 +989,18 @@ password    sufficient    pam_unix.so sha512 shadow nullok try_first_pass use_au
 </ul>
 <p>What you’ll find when you view the initial rules is that you’ll see a <cite>-D</cite> (which deletes all current rules) and then a <cite>-b</cite>, which is a backlog buffer. As for the syntax of an audit rule where we are attempting to monitor something, it generally works like this:</p>
 <pre><code class="language-shell"># Action can be always/never, filter can be task, exit, user
--a <action>,<filter> \
+-a action,filter \
 # field=value specifies additional options that modify the rule to match events.
 # It can match based on arch, group ID, process ID, and many others. See man auditctl(8)
--F <field=value> \
+-F field=value \
 # This is an interfield comparison. It checks whether something equals or doesn't equal another value.
 # Example, -C uid!=euid means that the UID of the event should NOT equal/match the EFFECTIVE UID
--C <comparison> \
+-C comparison \
 # Specify the system call by name. Examples would be setuid, execve. See /usr/include/asm/unistd_64.h
--S <system call> \
+-S system call \
 # This is a key that can be used to match against when running ausearch or aureport. This can also be
 # specified using -F key=name instead of using -k name
--k <key>
+-k key
 
 # Example ruleset:
 # Delete all rules
@@ -1119,7 +1119,7 @@ TTY Report
 ===============================================
 # date time event auid term sess comm data
 ===============================================
-<no events of interest were found>
+no events of interest were found
 
 # I can also try to search for events though.
 % ausearch --start boot -m LOGIN | head -3
