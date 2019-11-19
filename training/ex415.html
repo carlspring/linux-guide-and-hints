@@ -985,7 +985,7 @@ password    sufficient    pam_unix.so sha512 shadow nullok try_first_pass use_au
 <p>There’s a couple of ways to enable auditd rules.</p>
 <ul class="simple">
 <li>You can either modify <cite>/etc/audit/rules.d/audit.rules</cite> or drop a file appended with <cite>.rules</cite> and then run augenrules</li>
-<li>You can run <cite>auditctl</cite> - Though the next time auditd or the system is restarted, the rule you have added in is lost</li>
+<li>You can run <cite>auditctl</cite> - Though the next time auditd or the system is restarted, the rule you have added is lost. This should only be used as a test.</li>
 </ul>
 <p>What you’ll find when you view the initial rules is that you’ll see a <cite>-D</cite> (which deletes all current rules) and then a <cite>-b</cite>, which is a backlog buffer. As for the syntax of an audit rule where we are attempting to monitor something, it generally works like this:</p>
 <pre><code class="language-shell"># Action can be always/never, filter can be task, exit, user
@@ -1119,7 +1119,7 @@ TTY Report
 ===============================================
 # date time event auid term sess comm data
 ===============================================
-no events of interest were found
+&lt;no events of interest were found&gt;
 
 # I can also try to search for events though.
 % ausearch --start boot -m LOGIN | head -3
@@ -1130,7 +1130,8 @@ type=LOGIN msg=audit(1571799698.833:107001): pid=26065 uid=0 subj=system_u:syste
 # Check it out, in CSV format!
 % ausearch --start boot -m LOGIN --format csv | head -2
 NODE,EVENT,DATE,TIME,SERIAL_NUM,EVENT_KIND,SESSION,SUBJ_PRIME,SUBJ_SEC,SUBJ_KIND,ACTION,RESULT,OBJ_PRIME,OBJ_SEC,OBJ_KIND,HOW
-,LOGIN,10/22/2019,20:01:38,107001,user-login,64,system,root,privileged-acct,changed-login-id-to,success,nazu,,user-session,</code></pre></div>
+,LOGIN,10/22/2019,20:01:38,107001,user-login,64,system,root,privileged-acct,changed-login-id-to,success,nazu,,user-session,</code></pre><p>A nice thing to know how to configure too is the auditd settings themselves in <cite>/etc/audit/auditd.conf</cite>. This configuration can be modified to control how big logs can be, what to do if the filesystem is filled up, or what to do when the logs have been maxed out.</p>
+</div>
 <div class="section" id="configure-selinux">
 <h2><a class="toc-backref" href="#id11">Configure SELinux</a><a class="headerlink" href="#configure-selinux" title="Permalink to this headline">¶</a></h2>
 <p>To help you with SELinux troubleshooting, here are a list of packages that can provide helpful binaries:</p>
