@@ -1170,7 +1170,13 @@ SELINUX=enforcing
 /srv/www        system_u:object_r:httpd_sys_content_t:s0
 % matchpathcon /var/www/html
 /var/www/html   system_u:object_r:httpd_sys_content_t:s0</code></pre><p>You can find all the contexts using the <cite>semanage</cite> command. You’ll be surprised at the number of contexts there are.</p>
-<pre><code class="language-shell">% semanage fcontext -l</code></pre><p>You will find if you run <cite>cp</cite> the contexts will change based on the directory the file lands. If you run <cite>mv</cite>, the context moves with it. If you find if a context is set incorrectly, <cite>restorecon</cite> will come to the rescue.</p>
+<pre><code class="language-shell">% semanage fcontext -l</code></pre><p>Let’s say you want to make some directory outside of the norm allowable by SELinux for httpd.</p>
+<pre><code class="language-shell">% mkdir /opt/www
+% semanage fcontext -a -t httpd_sys_content_t "/opt/www(/.*)?"
+% restorecon -Rv /opt/www
+
+# There is also the chcon command, but it is not permanent. A restorecon or
+# an autorelabel will wipe out the contexts.</code></pre><p>You will find if you run <cite>cp</cite> the contexts will change based on the directory the file lands. If you run <cite>mv</cite>, the context moves with it. If you find if a context is set incorrectly, <cite>restorecon</cite> will come to the rescue.</p>
 <pre><code class="language-shell">% ls -lZ /tmp/id_rsa*
 -rw-------. 1 root root unconfined_u:object_r:user_tmp_t:s0 1843 Nov 19 22:27 /tmp/id_rsa
 -rw-r--r--. 1 root root unconfined_u:object_r:user_tmp_t:s0  415 Nov 19 22:27 /tmp/id_rsa.pub
@@ -1183,7 +1189,22 @@ total 12
 Relabeled /root/.ssh/id_rsa from unconfined_u:object_r:user_tmp_t:s0 to unconfined_u:object_r:ssh_home_t:s0
 Relabeled /root/.ssh/id_rsa.pub from unconfined_u:object_r:user_tmp_t:s0 to unconfined_u:object_r:ssh_home_t:s0
 
-# Not the best example, but you get the idea.</code></pre><p>One sort of uncommon, but clever piece of SELinux is the idea of SELinux users. An SELinux User has roles. Some users have more than one role. What the role means is defined by policy. Roles dictates what domains (contexts) are possible, including transitioning between roles. Let’s take a look at some defaults.</p>
+# Not the best example, but you get the idea.</code></pre><p>Some interesting tidbits is how the <cite>ps</cite> command can show the context in which a process is running under.</p>
+<pre><code class="language-shell">% ps -Z -C systemd
+LABEL                             PID TTY          TIME CMD
+system_u:system_r:init_t:s0         1 ?        00:02:18 systemd
+unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 2709 ? 00:00:01 systemd
+
+# This would show you all running processes, including their contexts.
+# Both formats support the option.
+% ps -efZ
+% ps auxZ</code></pre><p>Since processes run under some form of context, they do sometimes have the ability to transition. For example.</p>
+<pre><code class="language-shell"># Search for allow rules with the source type of ftpd_t
+# and a target type of public_content_t, and the class name of 'file'
+% sesearch -A -s ftpd_t -t public_content_t -c file
+Found 2 semantic av rules:
+   allow ftpd_t public_content_t : file { ioctl read getattr lock open } ;
+   allow ftpd_t non_security_file_type : file { ioctl read write create getattr setattr lock append unlink link rename open } ;</code></pre><p>One sort of uncommon, but clever piece of SELinux is the idea of SELinux users. An SELinux User has roles. Some users have more than one role. What the role means is defined by policy. Roles dictates what domains (contexts) are possible, including transitioning between roles. Let’s take a look at some defaults.</p>
 <pre><code class="language-shell">% semanage login -l
 
 Login Name           SELinux User         MLS/MCS Range        Service
@@ -1286,7 +1307,11 @@ xguest_exec_content --> on
 semanage fcontext -> Manages file contexts
 semanage port     -> Manages network port types
 semanage login    -> Manages login mappings between linux and selinux confined users
-semanage user     -> Manages confined users</code></pre></div>
+semanage user     -> Manages confined users
+
+# setsebool / getsebool -> SELinux boolean values
+setsebool [-PNV] -> Sets a boolean value
+getsebool [-a] -> Gets a or all booleans and their values</code></pre></div>
 </div>
 <div class="section" id="enforce-security-compliance">
 <h2><a class="toc-backref" href="#id14">Enforce Security Compliance</a><a class="headerlink" href="#enforce-security-compliance" title="Permalink to this headline">¶</a></h2>
