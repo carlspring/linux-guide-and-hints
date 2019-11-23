@@ -612,10 +612,8 @@ However, you will still need to obtain <code class="docutils literal notranslate
 <a class="reference external" href="https://github.com/kubernetes/minikube/">Github repository</a>. The installation instructions recommend that you
 download the binary and copy it to <code class="docutils literal notranslate"><span class="pre">/usr/local/bin</span></code>, but many would prefer not to use a binary blob obtained
 from the Internet and compile from source instead.</p>
-<p>Fortunately, it is quite simple.</p>
-<script src="https://gist.github.com/remyabel/e9c33b830da73768fe6ea2363fc27e1a.js"></script>
-
-<noscript><pre><code class="language-bash">#!/bin/bash
+<p>Fortunately, it is quite simple. First, install <code class="docutils literal notranslate"><span class="pre">libvirt-devel</span></code>. Then use the following script:</p>
+<pre><code class="language-bash">#!/bin/bash
 
 set -xe
 
@@ -630,25 +628,11 @@ fi
 cd $GOPATH/src/k8s.io/minikube
 git checkout -- .
 git checkout $(git describe --abbrev=0 --tags)
-git apply patch
 make clean
-make && make drivers
+make && make docker-machine-driver-kvm2
 
 cp out/minikube $GOBIN
-cp out/docker-machine-driver-kvm2 $GOBIN</code></pre><p>And the patch:</p>
-<pre><code class="language-bash">diff --git a/Makefile b/Makefile
-index 42b571bfd..8da3cf0b1 100755
---- a/Makefile
-+++ b/Makefile
-@@ -173,7 +173,7 @@ depend: out/minikube.d out/test.d out/docker-machine-driver-hyperkit.d out/stora
- all: cross drivers e2e-cross
-
- .PHONY: drivers
--drivers: out/docker-machine-driver-hyperkit out/docker-machine-driver-kvm2
-+drivers: out/docker-machine-driver-kvm2
-
- .PHONY: integration
-integration: out/minikube</code></pre></noscript><p>Then simply add <code class="docutils literal notranslate"><span class="pre">$GOBIN</span></code> to your path.</p>
+cp out/docker-machine-driver-kvm2 $GOBIN</code></pre><p>Then simply add <code class="docutils literal notranslate"><span class="pre">$GOBIN</span></code> to your path.</p>
 <div class="card">
 <div class="card-header bg-info">
 <i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
