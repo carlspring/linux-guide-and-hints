@@ -2025,18 +2025,29 @@ full_name_format = %1$s
 default_domain_suffix = ad.example.com</code></pre></div>
 <div class="section" id="ad-and-ipa-group-names-with-short-names">
 <h3><a class="toc-backref" href="#id42">AD and IPA group names with short names</a><a class="headerlink" href="#ad-and-ipa-group-names-with-short-names" title="Permalink to this headline">¶</a></h3>
-<p>If your IPA domain and AD trusted domain have groups with the same names, you are using domain resolution order, and you are shortening the names, you may notice that your clients may have intermittent issues with name resolution. You may want to actually search for them to identify the errant groups and then correct them. You can correct them either on the AD or IPA side. I would opt for the IPA side.</p>
+<p>You may notice that your clients have intermittent issues with name resolution when the following are true:</p>
+<ul class="simple">
+<li>Groups (or users) have the same names in both IPA and AD</li>
+<li>You are using domain resolution order</li>
+<li>You are shortening names on the clients</li>
+</ul>
+<p>You may want to actually search for them to identify the errant groups and then correct them. You can correct them either on the AD or IPA side. I would opt for the IPA side.</p>
 <pre><code class="language-shell">% kinit admin@IPA.EXAMPLE.COM
 % vi /tmp/dupecheck.sh
 #!/bin/bash
 for x in ${ARRAY[*]} ; do
-  ldapsearch -x -h ad.example.com -LLL -w 'PASSWORD' -D '...,dc=ad,dc=example,dc=com' samaccountname="$x" samaccountname | grep -q $x
+  ldapsearch -x -b "DC=ad,DC=example,DC=com" -h ad.example.com -LLL -w 'PASSWORD' -D 'username@ad.example.com' samaccountname="$x" samaccountname | grep -q $x
   if [[ $? -eq 0 ]]; then
-    echo "$x: DUPLICATE NAME IN IPA"
+    echo "$x: DUPLICATE"
   fi
 done
 
-% bash /tmp/dupecheck.sh</code></pre><p>If you run into any duplicates, they should show up. <strong>Note</strong>: The “CN” and “sAMAccountName” attributes sometimes are not the same in AD. The sAMAccountName attribute is the value used to determine group names when coming from AD (this includes if you had a server enrolled in AD). This is why we are searching for that attribute, and not the CN.</p>
+% bash /tmp/dupecheck.sh</code></pre><p>If you run into any duplicates, they should show up in a list for you address.</p>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+<h5 class="card-title">
+sAMAccountName vs CN</h5>The “CN” and “sAMAccountName” attributes are not the same in AD, depending on who made the group or other factors. The sAMAccountName attribute is the value used to determine names from AD, whether you are enrolled with AD or the IPA server SSSD is pulling the information. This is why we are searching for that attribute, and not the CN.</div></div>
 </div>
 <div class="section" id="sites-and-ad-dc-s">
 <h3><a class="toc-backref" href="#id43">Sites and AD DC’s</a><a class="headerlink" href="#sites-and-ad-dc-s" title="Permalink to this headline">¶</a></h3>
@@ -2048,8 +2059,8 @@ ad_site = Site_Name
 ad_server = dc1.ad.example.com, dc2.ad.example.com
 # A backup?
 ad_backup_server = dc3.ad.example.com, dc4.ad.example.com</code></pre><p>If you don’t have access or a way to find the sites using the Windows tools, you can run an ldapsearch to find it (or an equivalent ldap browsing tool).</p>
-<pre><code class="language-shell">% ldapsearch -x -h ad.example.com -WD 'CN=username,CN=Users,DC=ad,DC=example,DC=com' \
-  -b 'CN=Configuration,DC=ad,DC=example,DC=com' '(CN=Sites)' site</code></pre><p>This should report back your sites. If you want to know the servers for those sites (in case you don’t want to deal with the sites, but just the DC’s themselves), you use ldapsearch but use the base DN of the site name.</p>
+<pre><code class="language-shell">% ldapsearch -x -h ad.example.com -s one -WD 'CN=username,CN=Users,DC=ad,DC=example,DC=com' \
+  -b 'CN=Sites,CN=Configuration,DC=ad,DC=example,DC=com' cn</code></pre><p>This should report back your sites. If you want to know the servers for those sites (in case you don’t want to deal with the sites, but just the DC’s themselves), you use ldapsearch but use the base DN of the site name.</p>
 <pre><code class="language-shell">% ldapsearch -x -h ad.example.com -WD 'CN=username,CN=Users,DC=ad,DC=example,DC=com' \
   -b 'CN=Servers,CN=Site_Name,CN=Sites,CN=Configuration,DC=ad,DC=example,DC=com' dnsHostName</code></pre><div class="card">
 <div class="card-header bg-info">
