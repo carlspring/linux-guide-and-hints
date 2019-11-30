@@ -238,24 +238,6 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Git</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#setting-up-cloudflare-and-github-pages">Setting up Cloudflare and Github pages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gpg">GPG</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#workflow">Workflow</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#keeping-forks-synchronized">Keeping forks synchronized</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#versioning">Versioning</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#git-commit-am-didnt-add-my-latest-files"><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-am</span></code> didn’t add my latest files</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#what-creates-duplicate-commits-different-shas">What creates duplicate commits (different SHA’s)?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#merge">Merge</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#temporary-hotfix-branch">Temporary (hotfix) branch</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#feature-long-lived-branch">Feature (long-lived) branch</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#rebase">Rebase</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#local-branch-diverges-from-origin-remote">Local branch diverges from origin (remote)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#example">Example</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#clean-up-your-work">Clean up your work</a></li>
-</ul>
-</li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="gitlab.html">Gitlab</a><ul>
@@ -670,105 +652,6 @@ the www subdomain) does not resolve correctly and the HTTP -&gt; HTTPS redirect 
 <pre><code class="language-bash">GPG_TTY=$(tty)
 export GPG_TTY</code></pre><p>For fish:</p>
 <pre><code class="language-bash">set -gx GPG_TTY (tty)</code></pre></div>
-<div class="section" id="workflow">
-<h2>Workflow<a class="headerlink" href="#workflow" title="Permalink to this headline">¶</a></h2>
-<p>This is a living set of notes I have for a Git workflow.</p>
-<div class="card">
-<div class="card-header bg-warning">
-<i class='fa fa-exclamation-circle'></i> Warning</div><div class="card-body">
-This contains incomplete and possibly incorrect advice. It
-will continue to be amended as I use it in my workflow and see
-what works and doesn’t.</div></div>
-<div class="section" id="keeping-forks-synchronized">
-<h3>Keeping forks synchronized<a class="headerlink" href="#keeping-forks-synchronized" title="Permalink to this headline">¶</a></h3>
-<p>Working on a branch out of sync with the upstream master can lead to headaches
-later on. First, in your fork, ensure you have a remote to the upstream:</p>
-<pre><code class="language-bash">git remote add upstream upstream-url</code></pre><p>Regularly, keep your master branch up-to-date:</p>
-<pre><code class="language-bash">git checkout master
-git fetch upstream
-git merge upstream/master</code></pre><p>Depending on the upstream repo’s policy, they may prefer you rebase or merge
-master regularly. The rebase workflow involves <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rebase</span> <span class="pre">master</span></code> in your
-topic branch then doing a <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">--force</span></code>. The upstream repo may then
-choose to squash the pull request into a single commit, so there is no messy
-history.</p>
-<p>For a merge workflow, then do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span> <span class="pre">master</span></code>. Keep in mind that this
-leads to a lot of merge commits, which can pollute your history, but <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span>
-<span class="pre">--force</span></code> usually is not required.</p>
-<p>It may also be a good idea to use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">--force-with-lease</span></code> to avoid
-overwriting any changes made ahead of you.</p>
-</div>
-<div class="section" id="versioning">
-<h3>Versioning<a class="headerlink" href="#versioning" title="Permalink to this headline">¶</a></h3>
-<p>We will be using <a class="reference external" href="https://github.com/tpope/git-bump">git-bump</a>. Install gem and the package:</p>
-<pre><code class="language-bash">sudo dnf install gem
-sudo gem install git-bump</code></pre><p>Modify whatever appropriate files for versioning, i.e <code class="docutils literal notranslate"><span class="pre">package.json</span></code>,
-<code class="docutils literal notranslate"><span class="pre">conf.py</span></code>, etc. Stage the changes then run <code class="docutils literal notranslate"><span class="pre">git-bump</span> <span class="pre">&lt;version&gt;</span></code>. You can then verify the tag with
-<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">tag</span> <span class="pre">-v</span> <span class="pre">&lt;version&gt;</span></code>.</p>
-</div>
-<div class="section" id="git-commit-am-didnt-add-my-latest-files">
-<h3><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-am</span></code> didn’t add my latest files<a class="headerlink" href="#git-commit-am-didnt-add-my-latest-files" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">-a</span></code> option only allows you to skip <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">&lt;filename&gt;</span></code> for files already tracked.</p>
-</div>
-<div class="section" id="what-creates-duplicate-commits-different-shas">
-<h3>What creates duplicate commits (different SHA’s)?<a class="headerlink" href="#what-creates-duplicate-commits-different-shas" title="Permalink to this headline">¶</a></h3>
-<p>Rebasing, cherry-picking.</p>
-</div>
-<div class="section" id="merge">
-<h3>Merge<a class="headerlink" href="#merge" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="temporary-hotfix-branch">
-<h4>Temporary (hotfix) branch<a class="headerlink" href="#temporary-hotfix-branch" title="Permalink to this headline">¶</a></h4>
-<ul class="simple">
-<li>If master is ahead, use rebase and <code class="docutils literal notranslate"><span class="pre">--ff-only</span></code></li>
-</ul>
-<p>Example:</p>
-<pre><code class="language-bash">git checkout hotfix
-
-git rebase master
-
-git checkout master
-
-git merge hotfix --ff-only</code></pre><ul class="simple">
-<li>If master is untouched, do a fast-forward merge</li>
-</ul>
-</div>
-<div class="section" id="feature-long-lived-branch">
-<h4>Feature (long-lived) branch<a class="headerlink" href="#feature-long-lived-branch" title="Permalink to this headline">¶</a></h4>
-<ul class="simple">
-<li>If master is untouched, do a non-fast-forward merge with <code class="docutils literal notranslate"><span class="pre">--no-ff</span></code></li>
-<li>Otherwise git merge will perform a “true merge”.</li>
-</ul>
-<p>After merging a branch into master, fast-forward master back into it to advance the HEAD pointer. It’s important to do this regularly so you are not forced to create a merge commit from master after staging some changes. If you run into this situation, do:</p>
-<ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">HEAD^</span></code> (not <code class="docutils literal notranslate"><span class="pre">--hard</span></code>)</li>
-<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span> <span class="pre">master</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-am</span> <span class="pre">&quot;whatever&quot;</span></code></li>
-</ul>
-</div>
-</div>
-<div class="section" id="rebase">
-<h3>Rebase<a class="headerlink" href="#rebase" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="local-branch-diverges-from-origin-remote">
-<h4>Local branch diverges from origin (remote)<a class="headerlink" href="#local-branch-diverges-from-origin-remote" title="Permalink to this headline">¶</a></h4>
-<p>This happens if someone pushed work ahead of you. Git will deny the push and recommend you pull which is ill-advised. Instead, you should do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">--rebase=preserve</span></code>. The preserve option ensures that any local merges will not be flattened.</p>
-</div>
-<div class="section" id="example">
-<h4>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h4>
-<p>Let’s say you have three repositories: remote, workA and workB.</p>
-<ul class="simple">
-<li>workA does an initial commit.</li>
-<li>workB does a git pull to incorporate the initial commit.</li>
-<li>workB adds a new commit and pushes to remote.</li>
-<li>workA adds a new commit but is denied a push because workB already pushed.</li>
-<li>workA does <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">--rebase=preserve</span></code> and can now safely git push.</li>
-<li>workB can now merge (in this case, a fast-forward). All three repositories have a clean, linear history.</li>
-</ul>
-</div>
-<div class="section" id="clean-up-your-work">
-<h4>Clean up your work<a class="headerlink" href="#clean-up-your-work" title="Permalink to this headline">¶</a></h4>
-<p>Local changes (haven’t been pushed elsewhere) should be cleaned up by using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rebase</span> <span class="pre">-i</span></code>. Squash the commits and use <code class="docutils literal notranslate"><span class="pre">[#issueno]</span> <span class="pre">Summary</span></code> in the message. Otherwise if the changes have already been pushed, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">revert</span></code> etc. should be used. Do not overwrite (that is, dropping their commits) other people’s changes or rewrite history. This problem is slightly mitigated by using protected branches that disable force pushes.</p>
-</div>
-</div>
-</div>
 </div>
 
 
