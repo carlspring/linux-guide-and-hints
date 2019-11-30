@@ -599,8 +599,11 @@ The two major disadvantages is that backup/restore time is lengthy and that the
 incremental backups are useless without the full backup in the chain. One thing
 I will give to Duplicity compared to Duplicacy is that the command-line
 interface is superior.</p>
-<p>However, duplicity uses Python 2.7 (which is EOL in 2020) and doesn’t support
-SELinux contexts when restoring.</p>
+<div class="card">
+<div class="card-header bg-danger">
+<i class='fa fa-exclamation-circle'></i> Danger</div><div class="card-body">
+Duplicity is undergoing a Python 2 to 3 transition, which seems to be
+resulting in a lot of bugs. Use at your own risk.</div></div>
 <div class="card">
 <div class="card-header bg-warning">
 <i class='fa fa-exclamation-circle'></i> Warning</div><div class="card-body">
