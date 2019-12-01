@@ -709,6 +709,9 @@ until the given command is complete. Per the <a class="reference external" href=
 can inhibit a variety of operations. By default, this is
 <code class="docutils literal notranslate"><span class="pre">idle:sleep:shutdown</span></code> but laptop users will find <code class="docutils literal notranslate"><span class="pre">handle-lid-switch</span></code>
 useful.</p>
+<p>Alternatively, if you choose not to use <code class="docutils literal notranslate"><span class="pre">systemd-inhibit</span></code>, you can simply adjust the power
+management inactivity value. For example, on XFCE this would look like:</p>
+<p>This has the advantage of not requiring root privileges.</p>
 </div>
 <div class="section" id="id3">
 <h2>git-annex<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
@@ -722,6 +725,16 @@ rather than centralized workflow</li>
 <li>In v6, once a file is unlocked, it remains unlocked. If you make frequent changes to files you should
 use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">annex</span> <span class="pre">unlock</span></code> since direct mode is deprecated</li>
 </ul>
+<p>As far as I’m aware, git-annex doesn’t track permissions or xattrs (important
+for SELinux). However, etckeeper has some helper scripts which store and
+restore metadata: <a class="reference external" href="https://git.joeyh.name/index.cgi/etckeeper.git/tree/pre-commit.d/30store-metadata">30store-metadata</a>
+and <a class="reference external" href="https://git.joeyh.name/index.cgi/etckeeper.git/tree/pre-commit.d/30store-metadata">30restore-etckeeper</a>
+respectively. Rename the scripts to <code class="docutils literal notranslate"><span class="pre">git-store-metadata</span></code> and
+<code class="docutils literal notranslate"><span class="pre">git-restore-metadata</span></code> and add them to your <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.  You will need to set
+the <code class="docutils literal notranslate"><span class="pre">VCS</span></code> environment variable to <code class="docutils literal notranslate"><span class="pre">git</span></code>.</p>
+<p>In order to restore security contexts, you can simply use <code class="docutils literal notranslate"><span class="pre">chcon</span> <span class="pre">-R</span>
+<span class="pre">--reference=source_dir/</span> <span class="pre">target_dir/</span></code>, where <code class="docutils literal notranslate"><span class="pre">source_dir</span></code> contains the
+context you want to apply to <code class="docutils literal notranslate"><span class="pre">target_dir</span></code>.</p>
 <p>The following helper script should get you started:</p>
 <script src="https://gist.github.com/remyabel/2cac59a778fa34d0c61e246554fe3e3c.js"></script>
 
@@ -750,9 +763,15 @@ git annex unlock ./* || fail
 
 # ...snip...
 # Copy your files to backup here
+# If using cp, make sure you use -a to preserve permissions and xattrs
+# If using rsync, make sure you use -avzAX
 # ...snip...
 
-git annex add --include-dotfiles . || fail
+# We use git add and not git annex add here to add the files directly.
+# Adding them to the annex would create symlinks, which do not preserve
+# permissions.
+git-store-metadata
+git add --all || fail
 git annex sync --content --message="$(date +%F)" || fail
 
 # For each remote we need to run sync in order to actually
@@ -764,6 +783,7 @@ do
     URL=$(git remote get-url "$remote")
     cd "$URL" || fail
     git annex sync --content --message="$(date +%F)" || fail
+    git-restore-metadata
 done</code></pre></noscript></div>
 </div>
 
