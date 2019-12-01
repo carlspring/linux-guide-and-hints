@@ -34,7 +34,7 @@
   <link rel="stylesheet" href="../_static/css/prism-okaidia.min.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="The Euphemism Review" href="../misc/euphemism.html" />
+    <link rel="next" title="Anti-patterns" href="../security/antipatterns.html" />
     <link rel="prev" title="Linux Guide and Hints" href="../index.html" /> 
 
   <noscript>
@@ -101,6 +101,25 @@
 </ul>
 </li>
 </ul>
+<p class="caption"><span class="caption-text">Security</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../security/antipatterns.html">Anti-patterns</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../security/antipatterns.html#not-using-https">Not using HTTPS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../security/antipatterns.html#insecure-requests">Insecure requests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/antipatterns.html#using-insecure-ciphers">Using insecure ciphers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../security/antipatterns.html#password-security">Password security</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../security/antipatterns.html#using-deprecated-hashing-functions">Using deprecated hashing functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/antipatterns.html#arbitrary-password-lengths">Arbitrary password lengths</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/antipatterns.html#client-side-hashing">Client-side hashing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../security/antipatterns.html#disabling-mitigations">Disabling mitigations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/antipatterns.html#disabling-selinux">Disabling SELinux</a></li>
+</ul>
+</li>
+</ul>
 <p class="caption"><span class="caption-text">Miscellaneous</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../misc/euphemism.html">The Euphemism Review</a><ul>
@@ -112,22 +131,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/port465.html">Is port 465 deprecated?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../misc/security.html">Security and anti-patterns</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../misc/security.html#https">HTTPS</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../misc/security.html#insecure-requests">Insecure requests</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../misc/security.html#using-insecure-ciphers">Using insecure ciphers</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../misc/security.html#password-security">Password security</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../misc/security.html#using-deprecated-hashing-functions">Using deprecated hashing functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../misc/security.html#arbitrary-password-lengths">Arbitrary password lengths</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../misc/security.html#client-side-hashing">Client-side hashing</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../misc/security.html#disabling-mitigations">Disabling mitigations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../misc/security.html#disabling-selinux">Disabling SELinux</a></li>
-</ul>
-</li>
 </ul>
 <p class="caption"><span class="caption-text">Fedora</span></p>
 <ul>
@@ -591,6 +594,10 @@
 explain what went missing and why.</p>
 <div class="section" id="removed-articles">
 <h2>Removed articles<a class="headerlink" href="#removed-articles" title="Permalink to this headline">¶</a></h2>
+<p>12-01-2019</p>
+<ul class="simple">
+<li>misc/security was renamed to security/antipatterns.</li>
+</ul>
 <p>11-17-2019</p>
 <ul class="simple">
 <li>Removed Blockify article because it is no longer maintained. Spotify prohibits
@@ -619,7 +626,7 @@ ad blockers.</li>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../misc/euphemism.html" class="btn btn-neutral float-right" title="The Euphemism Review" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../security/antipatterns.html" class="btn btn-neutral float-right" title="Anti-patterns" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../index.html" class="btn btn-neutral" title="Linux Guide and Hints" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

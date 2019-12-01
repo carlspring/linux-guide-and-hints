@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="MinGW" href="mingw.html" />
-    <link rel="prev" title="Errata" href="../errata/removed.html" /> 
+    <link rel="prev" title="Anti-patterns" href="../security/antipatterns.html" /> 
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -101,6 +101,25 @@
 </ul>
 </li>
 </ul>
+<p class="caption"><span class="caption-text">Security</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../security/antipatterns.html">Anti-patterns</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../security/antipatterns.html#not-using-https">Not using HTTPS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../security/antipatterns.html#insecure-requests">Insecure requests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/antipatterns.html#using-insecure-ciphers">Using insecure ciphers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../security/antipatterns.html#password-security">Password security</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../security/antipatterns.html#using-deprecated-hashing-functions">Using deprecated hashing functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/antipatterns.html#arbitrary-password-lengths">Arbitrary password lengths</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/antipatterns.html#client-side-hashing">Client-side hashing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../security/antipatterns.html#disabling-mitigations">Disabling mitigations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/antipatterns.html#disabling-selinux">Disabling SELinux</a></li>
+</ul>
+</li>
+</ul>
 <p class="caption"><span class="caption-text">Miscellaneous</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">The Euphemism Review</a><ul>
@@ -112,22 +131,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="port465.html">Is port 465 deprecated?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="security.html">Security and anti-patterns</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="security.html#https">HTTPS</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="security.html#insecure-requests">Insecure requests</a></li>
-<li class="toctree-l3"><a class="reference internal" href="security.html#using-insecure-ciphers">Using insecure ciphers</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="security.html#password-security">Password security</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="security.html#using-deprecated-hashing-functions">Using deprecated hashing functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="security.html#arbitrary-password-lengths">Arbitrary password lengths</a></li>
-<li class="toctree-l3"><a class="reference internal" href="security.html#client-side-hashing">Client-side hashing</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="security.html#disabling-mitigations">Disabling mitigations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="security.html#disabling-selinux">Disabling SELinux</a></li>
-</ul>
-</li>
 </ul>
 <p class="caption"><span class="caption-text">Fedora</span></p>
 <ul>
@@ -661,7 +664,7 @@ authors on this website.</div></div>
         <a href="mingw.html" class="btn btn-neutral float-right" title="MinGW" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../errata/removed.html" class="btn btn-neutral" title="Errata" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../security/antipatterns.html" class="btn btn-neutral" title="Anti-patterns" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
