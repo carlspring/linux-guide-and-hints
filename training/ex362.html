@@ -1090,6 +1090,11 @@ curl -v \
 </div>
 <div class="section" id="create-a-trust-with-active-directory">
 <h2><a class="toc-backref" href="#id13">Create a trust with Active Directory</a><a class="headerlink" href="#create-a-trust-with-active-directory" title="Permalink to this headline">¶</a></h2>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+<h5 class="card-title">
+AD Setup</h5>We do not cover setting up an AD forest here. This is out of scope for this series.</div></div>
 <table border="1" class="docutils align-default">
 <colgroup>
 <col width="63%" />
@@ -1102,12 +1107,127 @@ curl -v \
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>ad.example.net</td>
-<td>192.168.15.12</td>
+<td>192.168.15.15</td>
 </tr>
 </tbody>
 </table>
 <p>For our trust, the AD server will need to be configured to be the example.net domain with the hostname of ad.example.net. This way, we are not colliding in DNS and both AD and IdM should be able to communicate with each other as two separate forests. It is recommended to use Windows Server 2016 (with the same domain functional level) for this setup, as experience with that product is a recommended prerequisite for the exam.</p>
-</div>
+<pre><code class="language-shell">% yum install ipa-server-trust-ad -y
+% firewall-cmd --add-service=freeipa-trust --permanent
+success
+% firewall-cmd --reload
+success
+% ipa-adtrust-install
+. . .
+# This is the admin@REALM IPA account
+admin password:
+
+WARNING: The smb.conf already exists. Running ipa-adtrust-install will break your existing samba configuration.
+
+# Type 'yes' here
+Do you wish to continue? [no]: yes
+
+Do you want to enable support for trusted domains in Schema Compatibility plugin?
+This will allow clients older than SSSD 1.9 and non-Linux clients to work with trusted users.
+
+# You can press enter here to accept the default. If you have BSD, Solaris, Omnios, HP-UX, AIX, or RHEL 5 and older clients
+# you may want to enable this. Some apps may benefit from this also.
+Enable trusted domains support in slapi-nis? [no]:
+
+Enter the NetBIOS name for the IPA domain.
+Only up to 15 uppercase ASCII letters, digits and dashes are allowed.
+Example: EXAMPLE.
+
+# You can accept the default or put your own.
+NetBIOS domain name [IPA]: IPA0
+
+WARNING: 4 existing users or groups do not have a SID identifier assigned.
+Installer can run a task to have ipa-sidgen Directory Server plugin generate
+the SID identifier for all these users. Please note, in case of a high
+number of users and groups, the operation might lead to high replication
+traffic and performance degradation. Refer to ipa-adtrust-install(1) man page
+for details.
+
+# You should always say yes.
+Do you want to run the ipa-sidgen task? [no]: yes
+
+. . .
+
+# This will complete and list ports to open and such. We did this earlier.</code></pre><p>Now that the AD trust components are prepped, depending on the setup, we’ll need to do some DNS zone forwards. It is likely you have IPA and AD running their own DNS. <strong>Note</strong>: This may not be the case in a real world scenario.</p>
+<pre><code class="language-shell"># We need to create a forward zone here for the example.net zone
+% ipa dnsforwardzone-add example.net --forwarder=192.168.15.15 --forward-policy=only
+Server will check DNS forwarder(s).
+This may take some time, please wait ...
+  Zone name: example.net.
+  Active zone: TRUE
+  Zone forwarders: 192.168.15.15
+  Forward policy: only
+
+# We should probably create a few dns records...
+# Assuming the AD netbios name is EXAMPLEAD, use the syntax hostname.NETBIOS here
+% ipa dnsrecord-add example.com ad.EXAMPLEAD --a-ip-address=192.168.15.15
+# Same idea here, but we're only doing the netbios name and saying the name server record is the AD server
+% ipa dnsrecord-add example.com EXAMPLEAD --ns-hostname=ad.EXAMPLEAD
+
+# We need to allow the zones to be transferable to the AD domain
+% ipa dnszone-mod example.com --allow-transfer=192.168.15.15</code></pre><p>On the AD side, we need to create the IPA zone. It’s absolutely required.</p>
+<pre><code class="language-shell">C:\Windows\System32>dnscmd 127.0.0.1 /ZoneAdd example.com /Secondary 192.168.15.2</code></pre><p>You should probably double check that the DNS records are returning on the IDM servers.</p>
+<pre><code class="language-shell">% dig _ldap._tcp.example.com SRV
+; <<>> DiG 9.9.4-RedHat-9.9.4-61.el7 <<>> SRV _ldap._tcp.example.com
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 14793
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;_ldap._tcp.example.com.      IN      SRV
+
+;; ANSWER SECTION:
+_ldap._tcp.example.com. 86400 IN      SRV     0 100 389 idm1.example.com.
+_ldap._tcp.example.com. 86400 IN      SRV     0 100 389 idm2.example.com.
+
+;; AUTHORITY SECTION:
+example.com.          86400   IN      NS      idm1.example.com.
+example.com.          86400   IN      NS      idm2.example.com.
+
+;; ADDITIONAL SECTION:
+idm1.example.com.      1200    IN      A       192.168.15.2
+idm2.example.com.      1200    IN      A       192.168.15.3
+
+# Same with the AD records
+% dig _ldap._tcp.example.net SRV
+; <<>> DiG 9.9.4-RedHat-9.9.4-61.el7 <<>> SRV _ldap._tcp.example.net
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 12195
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 4, ADDITIONAL: 9
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;_ldap._tcp.example.net.       IN      SRV
+
+;; ANSWER SECTION:
+_ldap._tcp.example.net. 600    IN      SRV     0 100 389 ad.example.net.
+
+. . .</code></pre><p>Now that they are returning, intiate the trust.</p>
+<pre><code class="language-shell">% ipa trust-add --type=ad example.net --admin Administrator --password
+Active Directiron domain administrator's password: (type password here)
+-----------------------------------------------------
+Added Active Directory trust for realm "example.net"
+-----------------------------------------------------
+  Realm name: example.net
+  Domain NetBIOS name: EXAMPLEAD
+  Domain Security Identifier: S-1-5-21-XXXXXXXXXX-YYYYYYYYY-ZZZZZZZZZZ
+  Trust direction: Trusting forest
+  Trust type: Active Directory domain
+  Trust status: Established and verified
+
+# Check that an AD user is resolvable. You can do this with DOMAIN\name or name@DOMAIN
+% id EXAMPLEAD\\administrator
+% id administrator@example.net</code></pre></div>
 <div class="section" id="configure-control-policies-and-user-access">
 <h2><a class="toc-backref" href="#id14">Configure/control policies and user access</a><a class="headerlink" href="#configure-control-policies-and-user-access" title="Permalink to this headline">¶</a></h2>
 <p>In FreeIPA, there are two sets of policies:</p>
