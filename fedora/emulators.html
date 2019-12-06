@@ -180,11 +180,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#compiling-pcsx2">Compiling PCSX2</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#dependencies">Dependencies</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cmake-flags">CMake flags</a></li>
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="#retroarch">RetroArch</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#building-beetle-psx-libretro-mednafen">Building beetle-psx-libretro (mednafen)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#enabling-the-vulkan-renderer-and-32-bit-color">Enabling the Vulkan renderer and 32-bit color</a></li>
@@ -216,19 +211,19 @@
 <li class="toctree-l3"><a class="reference internal" href="#controller-joystick-issue">Controller/joystick issue</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#building">Building</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#cmake-variables">CMake variables</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id3">Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dependencies">Dependencies</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#link-cable-support">Link cable support</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id4">BGB</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">mGBA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">BGB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">mGBA</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#kega-fusion">Kega Fusion</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id6">Dependencies</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id7">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#no-sound">No Sound?</a></li>
 </ul>
 </li>
@@ -613,29 +608,6 @@
 </div>
 </div>
 </div>
-<div class="section" id="compiling-pcsx2">
-<h2>Compiling PCSX2<a class="headerlink" href="#compiling-pcsx2" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://github.com/PCSX2/pcsx2">PCSX2</a>  is a 32-bit only Playstation 2 emulator. The wiki does not contain any
-instructions (other than install from RPMFusion) for Fedora. This is what you need to do.</p>
-<div class="section" id="dependencies">
-<h3>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h3>
-<pre><code class="language-bash">dnf install zlib-devel.i686 bzip2-devel.i686 freetype-devel.i686 \
-glew-devel.i686 libX11-devel.i686 libICE-devel.i686 libXrandr-devel.i686 \
-mesa-libGLES-devel.i686 alsa-lib-devel.i686 SDL-devel.i686 gtk2-devel.i686 \
-portaudio-devel.i686 sparsehash-devel.i686 wxGTK-devel.i686 \
-soundtouch-devel.i686 libaio-devel.i686 lzma-devel.i686</code></pre><p>You might also need <code class="docutils literal notranslate"><span class="pre">xz-devel.i686</span></code> and <code class="docutils literal notranslate"><span class="pre">compat-wtkGTK3-gtk2-devel.i686</span></code>. Do not install <code class="docutils literal notranslate"><span class="pre">wxGTK3-devel.i686</span></code> or CMake will say it can’t find <code class="docutils literal notranslate"><span class="pre">wxWidgets</span></code>.</p>
-</div>
-<div class="section" id="cmake-flags">
-<h3>CMake flags<a class="headerlink" href="#cmake-flags" title="Permalink to this headline">¶</a></h3>
-<p>These are taken from the RPMFusion spec.</p>
-<pre><code class="language-bash">cmake .. \
--DCMAKE_TOOLCHAIN_FILE=$PWD/../cmake/linux-compiler-i386-multilib.cmake \
--DXDG_STD=TRUE -DGLSL_API=TRUE -DFORCE_INTERNAL_SOUNDTOUCH=FALSE \
--DFORCE_INTERNAL_SDL=FALSE -DCMAKE_BUILD_STRIP=FALSE -DGTK3_API=FALSE \
--DEXTRA_PLUGINS=FALSE -DSDL2_API=FALSE -DCMAKE_BUILD_TYPE=Release</code></pre><p>Most of these are self-explanatory. <code class="docutils literal notranslate"><span class="pre">XDG_STD</span></code> will have it put files in standard Linux locations (<code class="docutils literal notranslate"><span class="pre">.config</span></code>, etc).
-We need to use the i386 toolchain because PCSX2 can’t be compiled for 64-bit currently.</p>
-</div>
-</div>
 <div class="section" id="retroarch">
 <h2>RetroArch<a class="headerlink" href="#retroarch" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="building-beetle-psx-libretro-mednafen">
@@ -649,9 +621,9 @@ We need to use the i386 toolchain because PCSX2 can’t be compiled for 64-bit c
 <p>Mednafen, being an accurate PSX emulator, doesn’t support 32-bit color depth.
 Patching it to disable <a class="reference external" href="https://en.wikipedia.org/wiki/Dither">dithering</a> will
 result in color banding as expected, which looks something like this:</p>
-<div class="figure align-default" id="id8">
+<div class="figure align-default" id="id7">
 <img alt="16-bit rendering with dithering disabled (OpenGL)" src="../_images/silent_hill_16.png" />
-<p class="caption"><span class="caption-text">16-bit rendering with dithering disabled (OpenGL). Source: <a class="reference external" href="https://forums.libretro.com/t/mednafen-psx-32-bit-rendering-a-possibility/4440">https://forums.libretro.com/t/mednafen-psx-32-bit-rendering-a-possibility/4440</a></span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">16-bit rendering with dithering disabled (OpenGL). Source: <a class="reference external" href="https://forums.libretro.com/t/mednafen-psx-32-bit-rendering-a-possibility/4440">https://forums.libretro.com/t/mednafen-psx-32-bit-rendering-a-possibility/4440</a></span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
 <p>However, the <a class="reference external" href="https://github.com/libretro/beetle-psx-libretro">beetle-psx-libretro</a> core
 for RetroArch supports 32-bit color depth, but it’s a little tricky to setup.</p>
@@ -659,14 +631,14 @@ for RetroArch supports 32-bit color depth, but it’s a little tricky to setup.<
 (see <a class="reference external" href="https://github.com/libretro/beetle-psx-libretro/issues/43">beetle-psx-libretro#43</a>).
 For example, this is what 32-bit rendering with dithering disabled looks like in the OpenGL
 renderer:</p>
-<div class="figure align-default" id="id9">
+<div class="figure align-default" id="id8">
 <img alt="32-bit rendering with dithering disabled (OpenGL)" src="../_images/silent_hill_32.png" />
-<p class="caption"><span class="caption-text">32-bit rendering with dithering disabled (OpenGL). Source: <a class="reference external" href="https://forums.libretro.com/t/mednafen-psx-32-bit-rendering-a-possibility/4440">https://forums.libretro.com/t/mednafen-psx-32-bit-rendering-a-possibility/4440</a></span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">32-bit rendering with dithering disabled (OpenGL). Source: <a class="reference external" href="https://forums.libretro.com/t/mednafen-psx-32-bit-rendering-a-possibility/4440">https://forums.libretro.com/t/mednafen-psx-32-bit-rendering-a-possibility/4440</a></span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </div>
 <p>On the other hand, this is what it looks like with Vulkan:</p>
-<div class="figure align-default" id="id10">
+<div class="figure align-default" id="id9">
 <img alt="32-bit rendering with dithering disabled (Vulkan)" src="../_images/silent_hill.png" />
-<p class="caption"><span class="caption-text">32-bit rendering with dithering disabled (Vulkan)</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">32-bit rendering with dithering disabled (Vulkan)</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </div>
 <p>In this particular instance, however, the issue is because mask bit emulation is yet to be backported
 to the OpenGL renderer. This article may become out of date once that’s implemented.</p>
@@ -1015,8 +987,8 @@ debugger. It lists <code class="docutils literal notranslate"><span class="pre">
 simply a library that seems to deal with pointer safety. It really has
 no bearing aside from compilation.</p>
 </div>
-<div class="section" id="id3">
-<h4>Dependencies<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="dependencies">
+<h4>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h4>
 <p>You need Qt5, Qt5 Multimedia (for audio) and libzip if you want to load
 ROMs directly from zipped files.</p>
 <pre><code class="language-bash">dnf install qt5-qtmultimedia-devel SDL2-devel libzip-devel sqlite-devel qt5-linguist</code></pre></div>
@@ -1025,8 +997,8 @@ ROMs directly from zipped files.</p>
 <div class="section" id="link-cable-support">
 <h2>Link cable support<a class="headerlink" href="#link-cable-support" title="Permalink to this headline">¶</a></h2>
 <p>Both mGBA and BGB emulate linking on the same computer.</p>
-<div class="section" id="id4">
-<h3>BGB<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3>BGB<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>You need to run two instances of the emulator, one which acts as the
 server and the other as the client. For the server, <code class="docutils literal notranslate"><span class="pre">Right-click</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">Link</span></code> &gt;
 <code class="docutils literal notranslate"><span class="pre">Listen</span></code>. Accept the default port. In the other client instance,
@@ -1036,8 +1008,8 @@ that once the two are connected, pausing one instance will pause the
 other.</p>
 <p>You can now alternate between windows to send independent input.</p>
 </div>
-<div class="section" id="id5">
-<h3>mGBA<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h3>mGBA<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>This emulator allegedly requires two controllers for multiplayer to work
 properly. mGBA has a distinct lack of documentation and instructions,
 but here is a <a class="reference external" href="https://www.youtube.com/watch?v=f1LWEUTbcLA">youtube video</a> showing somebody who
@@ -1048,12 +1020,12 @@ instances of the emulator.</p>
 </div>
 <div class="section" id="kega-fusion">
 <h2>Kega Fusion<a class="headerlink" href="#kega-fusion" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id6">
-<h3>Dependencies<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id5">
+<h3>Dependencies<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>To get Kega to run on Fedora, install the following dependencies:</p>
 <pre><code class="language-bash">dnf install alsa-plugins-pulseaudio.i686 mesa-dri-drivers.i686 mesa-libGLU.i686 gtk2.i686 alsa-lib.i686 libSM.i686</code></pre></div>
-<div class="section" id="id7">
-<h3>Configuration<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id6">
+<h3>Configuration<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>The following assumes a new install.</p>
 <pre><code class="language-bash"># Fresh configuration, skip if you already have one
 % mkdir ~/.Kega\ Fusion
