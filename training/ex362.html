@@ -594,7 +594,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="ex362-exam-prep">
-<h1><a class="toc-backref" href="#id1">EX362 Exam Prep</a><a class="headerlink" href="#ex362-exam-prep" title="Permalink to this headline">¶</a></h1>
+<h1><a class="toc-backref" href="#id3">EX362 Exam Prep</a><a class="headerlink" href="#ex362-exam-prep" title="Permalink to this headline">¶</a></h1>
 <p>This page contains the necessary resources to help you prepare for the Red Hat Certified Specialist in Identity Management exam, EX362. This follows loosely the youtube playlist as much as possible with various examples and ideas. At the bottom, you will also find our own example practice exam for you to try your hand at to test your knowledge.</p>
 <p>The list of objectives can be found <a class="reference external" href="https://www.redhat.com/en/services/training/ex362-red-hat-certified-specialist-identity-management-exam">here</a>. Note that the exam objectives can change at any time. It is the responsibility of the reader to always review the objectives prior to studying and taking the exam to ensure success.</p>
 <div class="card">
@@ -602,63 +602,64 @@
 <i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
 <h5 class="card-title">
 Affiliation and Exam Information</h5><p>Please note that we are not affiliated with Red Hat. The materials and examples used are our own and do not reflect the training programs provided by Red Hat and are educational only. We do not disclose any of the tasks, questions, or material on the exam as it would violate the NDA. Any questions sent to us about anything directly related to the exam will not be answered. We also do not provide any one-on-one tutoring or online teaching courses.</p>
-<p>If exam objectives have changed to where the videos and this material are missing information, we can add on at any time upon request. If there are things about FreeIPA that you’d like to see in the videos that may fit into objective, we can add it also upon request. However, it is likely those extra things would be better suited in the separate FreeIPA section on this site.</p>
+<p>If exam objectives have changed to where the videos and this material are missing information, we can add on at any time upon request. If exam objectives have not changed but operational tasks have, we will note them as we find them. If there are things about FreeIPA that you’d like to see in the videos that may fit into objective, we can add it also upon request. However, it is likely those extra things would be better suited in the separate FreeIPA section on this site.</p>
 </div></div>
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#ex362-exam-prep" id="id1">EX362 Exam Prep</a><ul>
-<li><a class="reference internal" href="#overview" id="id2">Overview</a></li>
-<li><a class="reference internal" href="#exam-information" id="id3">Exam Information</a></li>
-<li><a class="reference internal" href="#resources" id="id4">Resources</a></li>
-<li><a class="reference internal" href="#hardware-recommendations" id="id5">Hardware Recommendations</a></li>
-<li><a class="reference internal" href="#installing-freeipa-red-hat-idm-with-replicas-for-growth-and-scale" id="id6">Installing FreeIPA/Red Hat IdM with replicas for growth and scale</a></li>
-<li><a class="reference internal" href="#creating-users-groups-and-policies" id="id7">Creating Users, Groups, and Policies</a><ul>
-<li><a class="reference internal" href="#new-passwords-expired" id="id8">New Passwords Expired</a></li>
+<li><a class="reference internal" href="#ex362-exam-prep" id="id3">EX362 Exam Prep</a><ul>
+<li><a class="reference internal" href="#overview" id="id4">Overview</a></li>
+<li><a class="reference internal" href="#exam-information" id="id5">Exam Information</a></li>
+<li><a class="reference internal" href="#resources" id="id6">Resources</a></li>
+<li><a class="reference internal" href="#hardware-recommendations" id="id7">Hardware Recommendations</a></li>
+<li><a class="reference internal" href="#installing-freeipa-red-hat-idm-with-replicas-for-growth-and-scale" id="id8">Installing FreeIPA/Red Hat IdM with replicas for growth and scale</a></li>
+<li><a class="reference internal" href="#creating-users-groups-and-policies" id="id9">Creating Users, Groups, and Policies</a><ul>
+<li><a class="reference internal" href="#new-passwords-expired" id="id10">New Passwords Expired</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#install-and-configure-idm-clients" id="id9">Install and configure IdM Clients</a></li>
-<li><a class="reference internal" href="#configure-roaming-automounted-home-directories" id="id10">Configure roaming/automounted home directories</a></li>
-<li><a class="reference internal" href="#use-the-rest-api-to-query-idm" id="id11">Use the REST api to query IdM</a></li>
-<li><a class="reference internal" href="#configure-kerberized-services" id="id12">Configure Kerberized services</a></li>
-<li><a class="reference internal" href="#create-a-trust-with-active-directory" id="id13">Create a trust with Active Directory</a></li>
-<li><a class="reference internal" href="#configure-control-policies-and-user-access" id="id14">Configure/control policies and user access</a><ul>
-<li><a class="reference internal" href="#rbac" id="id15">RBAC</a></li>
-<li><a class="reference internal" href="#hbac" id="id16">HBAC</a></li>
+<li><a class="reference internal" href="#install-and-configure-idm-clients" id="id11">Install and configure IdM Clients</a></li>
+<li><a class="reference internal" href="#configure-roaming-automounted-home-directories" id="id12">Configure roaming/automounted home directories</a></li>
+<li><a class="reference internal" href="#use-the-rest-api-to-query-idm" id="id13">Use the REST api to query IdM</a></li>
+<li><a class="reference internal" href="#configure-kerberized-services" id="id14">Configure Kerberized services</a></li>
+<li><a class="reference internal" href="#create-a-trust-with-active-directory" id="id15">Create a trust with Active Directory</a></li>
+<li><a class="reference internal" href="#configure-control-policies-and-user-access" id="id16">Configure/control policies and user access</a><ul>
+<li><a class="reference internal" href="#rbac" id="id17">RBAC</a></li>
+<li><a class="reference internal" href="#hbac" id="id18">HBAC</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#configure-and-manage-a-certificate-authority" id="id17">Configure and manage a certificate authority</a></li>
-<li><a class="reference internal" href="#back-up-an-idm-infrastructure" id="id18">Back up an IdM infrastructure</a></li>
-<li><a class="reference internal" href="#configure-idm-as-an-ldap-backend-for-external-services" id="id19">Configure IdM as an LDAP backend for external services</a><ul>
-<li><a class="reference internal" href="#kerberos" id="id20">Kerberos</a></li>
+<li><a class="reference internal" href="#configure-and-manage-a-certificate-authority" id="id19">Configure and manage a certificate authority</a></li>
+<li><a class="reference internal" href="#back-up-an-idm-infrastructure" id="id20">Back up an IdM infrastructure</a></li>
+<li><a class="reference internal" href="#configure-idm-as-an-ldap-backend-for-external-services" id="id21">Configure IdM as an LDAP backend for external services</a><ul>
+<li><a class="reference internal" href="#kerberos" id="id22">Kerberos</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#implement-a-sso" id="id21">Implement a SSO</a></li>
+<li><a class="reference internal" href="#implement-a-sso" id="id23">Implement a SSO</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="overview">
-<h2><a class="toc-backref" href="#id2">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>The video series goes over setting up FreeIPA in a lab/VM environment by following the objectives as outlined by Red Hat. The list of objectives can be found <a class="reference external" href="https://www.redhat.com/en/services/training/ex362-red-hat-certified-specialist-identity-management-exam">here</a>.</p>
 </div>
 <div class="section" id="exam-information">
-<h2><a class="toc-backref" href="#id3">Exam Information</a><a class="headerlink" href="#exam-information" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">Exam Information</a><a class="headerlink" href="#exam-information" title="Permalink to this headline">¶</a></h2>
 <p>The EX362 exam tests your knowledge in a real world format style test - Meaning just like any Red Hat exam, it is performance-based and you perform tasks as if you were on the job. You are evaluated on the tasks you perform and if they meet the objective criteria. The EX362 is related to FreeIPA or Red Hat Identity Management and counts toward the RHCA (Red Hat Certified Architect).</p>
 <p><strong>To take the exam, you must have at least an RHCSA. If you are attempting to become a Red Hat Certified Architect, you must have an RHCE.</strong></p>
 </div>
 <div class="section" id="resources">
-<h2><a class="toc-backref" href="#id4">Resources</a><a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">Resources</a><a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><a class="reference external" href="https://www.freeipa.org">FreeIPA</a></li>
 <li><a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/">Red Hat Documentation</a></li>
 <li><a class="reference external" href="https://jhrozek.wordpress.com/2015/08/19/performance-tuning-sssd-for-large-ipa-ad-trust-deployments/">Trust Anatomy/SSSD Troubleshooting</a></li>
 <li><a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_directory_server/10/html/performance_tuning_guide/">Directory Server Tuning</a></li>
+<li><a href="#id1"><span class="problematic" id="id2">`FreeIPA Workshop &lt;https://github.com/freeipa/freeipa-workshop &gt;`__</span></a></li>
 <li><a class="reference external" href="https://linuxguideandhints.com/centos/freeipa.html">Our Page</a></li>
 </ul>
 </div>
 <div class="section" id="hardware-recommendations">
-<h2><a class="toc-backref" href="#id5">Hardware Recommendations</a><a class="headerlink" href="#hardware-recommendations" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id7">Hardware Recommendations</a><a class="headerlink" href="#hardware-recommendations" title="Permalink to this headline">¶</a></h2>
 <p>The minimum requirements for IdM are fairly low. 2GB of RAM, 1 core, and a 10GB disk. However, we believe that’s too low, especially if we plan on scaling out. And during upgrades, you would need at least 4GB of RAM for the operations to be successful. Below are our minimum recommendations:</p>
 <ul class="simple">
 <li>2 (virtual) CPU Core</li>
@@ -669,7 +670,7 @@ Affiliation and Exam Information</h5><p>Please note that we are not affiliated w
 <p>View the resources above in the previous section for directory server tuning information.</p>
 </div>
 <div class="section" id="installing-freeipa-red-hat-idm-with-replicas-for-growth-and-scale">
-<h2><a class="toc-backref" href="#id6">Installing FreeIPA/Red Hat IdM with replicas for growth and scale</a><a class="headerlink" href="#installing-freeipa-red-hat-idm-with-replicas-for-growth-and-scale" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">Installing FreeIPA/Red Hat IdM with replicas for growth and scale</a><a class="headerlink" href="#installing-freeipa-red-hat-idm-with-replicas-for-growth-and-scale" title="Permalink to this headline">¶</a></h2>
 <table border="1" class="docutils align-default">
 <colgroup>
 <col width="63%" />
@@ -739,7 +740,7 @@ IPA Servers should either have a DHCP reservation or a static address. In the ev
     --no-forwarders \
     --unattended</code></pre></div>
 <div class="section" id="creating-users-groups-and-policies">
-<h2><a class="toc-backref" href="#id7">Creating Users, Groups, and Policies</a><a class="headerlink" href="#creating-users-groups-and-policies" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id9">Creating Users, Groups, and Policies</a><a class="headerlink" href="#creating-users-groups-and-policies" title="Permalink to this headline">¶</a></h2>
 <table border="1" class="docutils align-default">
 <colgroup>
 <col width="29%" />
@@ -907,12 +908,12 @@ changetype: modify
 delete: krbLastPwdChange
 
 (Press CTRL+D)</code></pre><div class="section" id="new-passwords-expired">
-<h3><a class="toc-backref" href="#id8">New Passwords Expired</a><a class="headerlink" href="#new-passwords-expired" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id10">New Passwords Expired</a><a class="headerlink" href="#new-passwords-expired" title="Permalink to this headline">¶</a></h3>
 <p>The common question we receive (and even the #freeipa IRC receive) is “Why can’t we just set the password to not be expired right away?” See <a class="reference external" href="https://www.freeipa.org/page/New_Passwords_Expired">this page</a> for information on why this is. You may also look at the <a class="reference external" href="https://pagure.io/freeipa/issue/5763">pagure</a> page and the <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1317060">Red Hat bugzilla related bug</a>.</p>
 </div>
 </div>
 <div class="section" id="install-and-configure-idm-clients">
-<h2><a class="toc-backref" href="#id9">Install and configure IdM Clients</a><a class="headerlink" href="#install-and-configure-idm-clients" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id11">Install and configure IdM Clients</a><a class="headerlink" href="#install-and-configure-idm-clients" title="Permalink to this headline">¶</a></h2>
 <table border="1" class="docutils align-default">
 <colgroup>
 <col width="63%" />
@@ -964,7 +965,7 @@ Depending on your architecture and setup, IdM clients should either be pointing 
 % id admin
 uid=686600000(admin) gid=686600000(admins) groups=686600000(admins)</code></pre></div>
 <div class="section" id="configure-roaming-automounted-home-directories">
-<h2><a class="toc-backref" href="#id10">Configure roaming/automounted home directories</a><a class="headerlink" href="#configure-roaming-automounted-home-directories" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id12">Configure roaming/automounted home directories</a><a class="headerlink" href="#configure-roaming-automounted-home-directories" title="Permalink to this headline">¶</a></h2>
 <p>You will need to configure your NFS server to serve up roaming home directories for users and then your client should have automouting enabled.</p>
 <div class="card">
 <div class="card-header bg-info">
@@ -1017,7 +1018,7 @@ SECURE_NFS="yes"
 % klist -ket /etc/krb5.keytab</code></pre><p>To test, login to the system via ssh or console and verify the home directory has mounted. /var/log/messages and secure will display errors in case of failure.</p>
 </div>
 <div class="section" id="use-the-rest-api-to-query-idm">
-<h2><a class="toc-backref" href="#id11">Use the REST api to query IdM</a><a class="headerlink" href="#use-the-rest-api-to-query-idm" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id13">Use the REST api to query IdM</a><a class="headerlink" href="#use-the-rest-api-to-query-idm" title="Permalink to this headline">¶</a></h2>
 <p>When you invoke the <cite>ipa</cite> command, you are actually communicating with the API that runs on the IdM replicas. Operations done are sent via a POST with JSON data. The return data is also in JSON and translated to be readable in the terminal. Because it’s JSON, custom scripts can be made with say perl or python that communicates with the API to send the calls, perhaps for specific tasks, jobs, or other operations that could be automated. You can also use <cite>curl</cite> to do this also if you so choose.</p>
 <p>The question becomes, “well, how do I know the right data to send?” You can issue the -vv switch to see the request being sent.</p>
 <pre><code class="language-shell">% ipa -vv ping
@@ -1088,7 +1089,7 @@ curl -v \
   https://$ipaReplica/ipa/session/json</code></pre><p>Any of the commands ran via <cite>ipa</cite> can be reviewed with the -vv switch so you can see what kind of call it’s making and how it’s making it. Thus, making it easier to tie into your own scripts. On the Web UI, you can go to IPA Server -&gt; API Browser to find more information on the specific API calls.</p>
 </div>
 <div class="section" id="configure-kerberized-services">
-<h2><a class="toc-backref" href="#id12">Configure Kerberized services</a><a class="headerlink" href="#configure-kerberized-services" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id14">Configure Kerberized services</a><a class="headerlink" href="#configure-kerberized-services" title="Permalink to this headline">¶</a></h2>
 <p>One of the things that you may end up doing, whether by hand or in an automated fashion, is creating kerberized services. In a previous section, we addressed creating an NFS service for both a server and a client for the purpose of automating home directory mounts on a client when a user logs in. So you already have the idea of what this entails.</p>
 <pre><code class="language-shell"># Create kerberos service
 % ipa service-add HTTP/http.example.com</code></pre><p>Not only that, it’s probably a good idea to actually <em>get</em> the keytab.</p>
@@ -1096,7 +1097,7 @@ curl -v \
 % ipa-getkeytab -s idm1.example.com -p HTTP/http.example.com -k /etc/krb5.keytab</code></pre><p>For an example of automating keytab creation and retrieval, see the CentOS/FreeIPA page on this site.</p>
 </div>
 <div class="section" id="create-a-trust-with-active-directory">
-<h2><a class="toc-backref" href="#id13">Create a trust with Active Directory</a><a class="headerlink" href="#create-a-trust-with-active-directory" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id15">Create a trust with Active Directory</a><a class="headerlink" href="#create-a-trust-with-active-directory" title="Permalink to this headline">¶</a></h2>
 <div class="card">
 <div class="card-header bg-info">
 <i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
@@ -1236,19 +1237,19 @@ Added Active Directory trust for realm "example.net"
 % id EXAMPLEAD\\administrator
 % id administrator@example.net</code></pre></div>
 <div class="section" id="configure-control-policies-and-user-access">
-<h2><a class="toc-backref" href="#id14">Configure/control policies and user access</a><a class="headerlink" href="#configure-control-policies-and-user-access" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id16">Configure/control policies and user access</a><a class="headerlink" href="#configure-control-policies-and-user-access" title="Permalink to this headline">¶</a></h2>
 <p>In FreeIPA, there are two sets of policies:</p>
 <ul class="simple">
 <li>Role Based Access Control (RBAC) which are the permissions, delegated or otherwise, that allow (or deny) access to various pieces of FreeIPA. This can be users that have the ability to reset passwords, modify groups, or perhaps they can issue keytabs.</li>
 <li>Host Based Access Control (HBAC) which are the permissions granted to a user or users to access systems on various (PAM) services, such as ssh or logging into a desktop system (eg, GDM).</li>
 </ul>
 <div class="section" id="rbac">
-<h3><a class="toc-backref" href="#id15">RBAC</a><a class="headerlink" href="#rbac" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id17">RBAC</a><a class="headerlink" href="#rbac" title="Permalink to this headline">¶</a></h3>
 <p>In FreeIPA, there are a set of predefined roles that are, for the most part, sane. You can find them using <cite>ipa role-find</cite>.</p>
 <p>In a previous section, we already created roles and added groups to the roles.</p>
 </div>
 <div class="section" id="hbac">
-<h3><a class="toc-backref" href="#id16">HBAC</a><a class="headerlink" href="#hbac" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id18">HBAC</a><a class="headerlink" href="#hbac" title="Permalink to this headline">¶</a></h3>
 <p>In FreeIPA, there is typically a rule already predefined that allows everyone to access all systems and all services. This can be removed or disabled and this removes host access to everything immediately. This is typically recommended.</p>
 <pre><code class="language-shell"># To disable
 % ipa hbacrule-disable allow_all
@@ -1270,7 +1271,7 @@ Added Active Directory trust for realm "example.net"
 % ipa hbactest --rules=corp_access --user=brufus --host=client.example.com --service=sshd</code></pre></div>
 </div>
 <div class="section" id="configure-and-manage-a-certificate-authority">
-<h2><a class="toc-backref" href="#id17">Configure and manage a certificate authority</a><a class="headerlink" href="#configure-and-manage-a-certificate-authority" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id19">Configure and manage a certificate authority</a><a class="headerlink" href="#configure-and-manage-a-certificate-authority" title="Permalink to this headline">¶</a></h2>
 <p>By default FreeIPA stands up its own CA. And because of this, this allows you or your workplace to be able to issue certificates, that can be used in a wide variety of services, the most common or obvious one would be for Apache httpd.</p>
 <p>There’s a couple of ways you can get a certificate signed by FreeIPA. One method is to generate your own CSR and request it to be signed by FreeIPA. Another way is you can do it all from one command, <cite>ipa-getcert</cite>, and optionally, either have the certificate in PEM format or an NSS database. We’ll address these examples.</p>
 <pre><code class="language-shell"># Creating an SSL certificate in the PEM format
@@ -1323,7 +1324,7 @@ Request ID '20190902000756':
         auto-renew: yes</code></pre><p>By default, when a certificate request is performed (and succeeds to be signed by the IPA CA), it is typically tracked and auto-renewed by default. This is done by the certmonger service, which eliminates the need to have to renew anything by hand.</p>
 </div>
 <div class="section" id="back-up-an-idm-infrastructure">
-<h2><a class="toc-backref" href="#id18">Back up an IdM infrastructure</a><a class="headerlink" href="#back-up-an-idm-infrastructure" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id20">Back up an IdM infrastructure</a><a class="headerlink" href="#back-up-an-idm-infrastructure" title="Permalink to this headline">¶</a></h2>
 <p>There are multiple ways you can backup IPA.</p>
 <ul class="simple">
 <li>Full backup: Default, shuts down IPA before performing a backup. This backs up with raw files. As such, it must be done offline.</li>
@@ -1337,7 +1338,7 @@ Request ID '20190902000756':
 % ipa-backup --gpg --gpg-keyring=/root/keys --data --online</code></pre><p>To restore a backup, the ipa-restore command is available.</p>
 <pre><code class="language-shell">% ipa-restore /var/lib/ipa/backup/</code></pre></div>
 <div class="section" id="configure-idm-as-an-ldap-backend-for-external-services">
-<h2><a class="toc-backref" href="#id19">Configure IdM as an LDAP backend for external services</a><a class="headerlink" href="#configure-idm-as-an-ldap-backend-for-external-services" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id21">Configure IdM as an LDAP backend for external services</a><a class="headerlink" href="#configure-idm-as-an-ldap-backend-for-external-services" title="Permalink to this headline">¶</a></h2>
 <p>Most services and applications that authenticate users do typically have LDAP support. IdM can be used as an LDAP backend. You typically need only a few things to authenticate users from IdM to an application.</p>
 <ul class="simple">
 <li>Base DN, this always ends up being the top level of your domain: dc=example,dc=com - All accounts share this common base.</li>
@@ -1435,12 +1436,12 @@ EOF
 % ipa-ldap-updater binder.update</code></pre><p>When this account is created, you can then specify the full DN for that object into a bind DN field, along with it’s password into an accompanying bind password field.</p>
 <p>If you’d like an example of setting up Ansible Tower (or AWX, the open source version of tower) against IdM, you can click <a class="reference external" href="https://github.com/ansible/awx/blob/devel/docs/auth/ldap.md">here</a>.</p>
 <div class="section" id="kerberos">
-<h3><a class="toc-backref" href="#id20">Kerberos</a><a class="headerlink" href="#kerberos" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id22">Kerberos</a><a class="headerlink" href="#kerberos" title="Permalink to this headline">¶</a></h3>
 <p>On some applications, it is possible to use kerberos authentication rather than a straight bind account. The general idea is the same when picking out the base dn, attributes, and the like. However, instead you would create an account with an accompanying LDAP/… service principal to do the authentication.</p>
 </div>
 </div>
 <div class="section" id="implement-a-sso">
-<h2><a class="toc-backref" href="#id21">Implement a SSO</a><a class="headerlink" href="#implement-a-sso" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id23">Implement a SSO</a><a class="headerlink" href="#implement-a-sso" title="Permalink to this headline">¶</a></h2>
 <p>To setup a very, very simple SSO, you can setup a simple location that requires a login.</p>
 <pre><code class="language-shell">% ipa-getkeytab -s idm1.example.com -p http/http.example.com -k /etc/httpd/conf/http.keytab
 % vi /etc/httpd/conf.d/location.conf
