@@ -601,13 +601,18 @@ from 2018. This will provide a quick guide on how to build Bup from source.</p>
 <p>First, install some system dependencies:</p>
 <pre><code class="language-shell">dnf install fuse-devel libacl-devel perl-Time-HiRes</code></pre><p>Now we need the Python dependencies. <code class="docutils literal notranslate"><span class="pre">python3-fuse</span></code> doesn’t appear to exist,
 only <code class="docutils literal notranslate"><span class="pre">python2-fuse</span></code>. Not only is the latter package very old, but since
-Fedora 31 there has been a mass migration from Python 2 to 3.</p>
+Fedora 31 there has been a mass migration from Python 2 to 3. Unfortunately,
+bup hasn’t fully been ported to Python 3 yet and will not start if you invoke
+it with Python 3.</p>
 <p>For simplicity, we’ll use a virtualenv:</p>
-<pre><code class="language-shell">virtualenv -p python3 ~/.venv
+<pre><code class="language-shell">virtualenv -p python2 ~/.venv
 source ~/.venv/bin/activate
-pip install pyxattr pylibacl</code></pre><p>Then build it:</p>
-<pre><code class="language-shell">make
-make long-check</code></pre></div>
+pip2 install pyxattr pylibacl</code></pre><p>Then build it:</p>
+<pre><code class="language-shell">./configure
+make
+make long-check</code></pre><p>The <code class="docutils literal notranslate"><span class="pre">configure</span></code> script will automatically detect which Python binary is used
+to invoke bup. Remember to run it inside the virtualenv.</p>
+</div>
 
 
            </div>
