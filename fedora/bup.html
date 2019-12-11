@@ -10,7 +10,7 @@
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests; default-src 'self'; style-src 'self' https://github.githubassets.com/ stackpath.bootstrapcdn.com; script-src 'self' https://gist.github.com/remyabel/2cac59a778fa34d0c61e246554fe3e3c.js https://gist.github.com/remyabel/bbebf3043860abe24a19bf0b1d67bd33.js https://gist.github.com/remyabel/e9c33b830da73768fe6ea2363fc27e1a.js; img-src 'self'; media-src 'self'; font-src 'self' fonts.gstatic.com stackpath.bootstrapcdn.com;">
   
   
-  <title>GCC &mdash; Linux Guide and Hints</title>
+  <title>Bup &mdash; Linux Guide and Hints</title>
   
 
   
@@ -34,8 +34,8 @@
   <link rel="stylesheet" href="../_static/css/prism-okaidia.min.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Git" href="git.html" />
-    <link rel="prev" title="Firefox" href="firefox.html" /> 
+    <link rel="next" title="Cisco IP Communicator" href="cipc.html" />
+    <link rel="prev" title="Backups" href="backups.html" /> 
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -155,7 +155,7 @@
 <li class="toctree-l2"><a class="reference internal" href="backups.html#id3">git-annex</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="bup.html">Bup</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Bup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cipc.html">Cisco IP Communicator</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cipc.html#installing-via-playonlinux">Installing via PlayOnLinux</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cipc.html#installing-via-regular-wine">Installing via Regular Wine</a></li>
@@ -236,11 +236,11 @@
 <li class="toctree-l2"><a class="reference internal" href="firefox.html#enabling-secure-dns-and-encrypted-sni">Enabling Secure DNS and Encrypted SNI</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">GCC</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#installing-prerequisites-gmp-mpfr-mpc">Installing prerequisites: GMP, MPFR, MPC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#building">Building</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#docker">Docker</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#invalid-instruction-suffix-for">“invalid instruction suffix for”</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gcc.html">GCC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gcc.html#installing-prerequisites-gmp-mpfr-mpc">Installing prerequisites: GMP, MPFR, MPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gcc.html#building">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gcc.html#docker">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gcc.html#invalid-instruction-suffix-for">“invalid instruction suffix for”</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="git.html">Git</a><ul>
@@ -572,14 +572,14 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>GCC</li>
+      <li>Bup</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/nazunalika/linux-guide-and-hints/blob/master/source/fedora/gcc.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/nazunalika/linux-guide-and-hints/blob/master/source/fedora/bup.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -593,61 +593,21 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="gcc">
-<h1>GCC<a class="headerlink" href="#gcc" title="Permalink to this headline">¶</a></h1>
-<p>This is a short summary of the <a class="reference external" href="https://gcc.gnu.org/wiki/InstallingGCC">Installing GCC</a> page from the GCC wiki. The
-article was written by a GCC maintainer, Johnathan Wakely. There are
-tutorials on the Internet that either get it wrong or describe an obtuse
-way of installing it. This page simplifies things quite a bit. This does
-<em>not</em> replace reading the actual wiki page, so please visit it.</p>
-<p>If you don’t actually need to build an application,  but instead want a
-platform for testing scripts or sharing snippets then consider <a class="reference external" href="https://gcc.godbolt.org/">godbolt</a> or <a class="reference external" href="http://coliru.stacked-crooked.com/">coliru</a>.
-Godbolt is an online disassembler and has a plethora of compilers on various
-architectures and even comes with support for some well-known libraries.</p>
-<p>A more complete list of online compilers can be found in the <a class="reference external" href="https://stackoverflow.com/tags/c%2b%2b/info">StackOverflow C++
-tag wiki description</a>.</p>
-<div class="section" id="installing-prerequisites-gmp-mpfr-mpc">
-<h2>Installing prerequisites: GMP, MPFR, MPC<a class="headerlink" href="#installing-prerequisites-gmp-mpfr-mpc" title="Permalink to this headline">¶</a></h2>
-<p>Generally, you should prefer to install these through your package
-manager first. On Fedora:</p>
-<pre><code class="language-bash">dnf install gmp-devel mpfr-devel libmpc-devel</code></pre><p>Otherwise, GCC provides a script that will download and build the dependencies.
-When you build GCC, these will be linked against automatically. In the GCC
-source directory:</p>
-<pre><code class="language-bash">./contrib/download_prerequisites</code></pre><p>Seriously, that’s it. You don’t need to do anything else.</p>
-</div>
-<div class="section" id="building">
-<h2>Building<a class="headerlink" href="#building" title="Permalink to this headline">¶</a></h2>
-<p>It’s ill-advised to run <code class="docutils literal notranslate"><span class="pre">./configure</span></code> (that is from the source
-directory.) It’s better to run it out-of-source by doing the following:</p>
-<pre><code class="language-bash">tar xzf gcc-4.6.2.tar.gz
-cd gcc-4.6.2
-./contrib/download_prerequisites
-cd ..
-mkdir objdir
-cd objdir
-$PWD/../gcc-4.6.2/configure --prefix=$HOME/gcc-4.6.2
-make
-make install</code></pre><p>Some options you may consider passing to <code class="docutils literal notranslate"><span class="pre">configure</span></code> may be
-<code class="docutils literal notranslate"><span class="pre">--enable-languages=c,c++</span></code>, <code class="docutils literal notranslate"><span class="pre">--disable-nls</span></code> and <code class="docutils literal notranslate"><span class="pre">--enable-multilib</span></code>.</p>
-</div>
-<div class="section" id="docker">
-<h2>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h2>
-<p>If you don’t need a cross compiler or customized toolchain, then it may be
-easier to just use the official <a class="reference external" href="https://docs.docker.com/samples/library/gcc/">Docker image</a>:</p>
-<pre><code class="language-bash">docker run --rm -v "$PWD":/usr/src/myapp -w /usr/src/myapp gcc:4.9 gcc -o myapp myapp.c</code></pre></div>
-<div class="section" id="invalid-instruction-suffix-for">
-<h2>“invalid instruction suffix for”<a class="headerlink" href="#invalid-instruction-suffix-for" title="Permalink to this headline">¶</a></h2>
-<p>If you are building a cross-compiler (i.e, following along with the <a class="reference external" href="http://wiki.osdev.org/GCC_Cross-Compiler">osdev
-article</a>) and come across this
-error, you simply need to set the install prefix for Binutils and GCC to the
-same directory. For some strange reason, GCC will fallback to the system
-assembler even if Binutils binaries are in the path.</p>
-<div class="card">
-<div class="card-header bg-info">
-<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
-TODO: Additional research needed.</div></div>
-</div>
-</div>
+  <div class="section" id="bup">
+<h1>Bup<a class="headerlink" href="#bup" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://github.com/bup/bup">Bup</a> is a backup system based on the git
+packfile format. The current version shipped in Fedora is <code class="docutils literal notranslate"><span class="pre">0.29.2</span></code>, which is
+from 2018. This will provide a quick guide on how to build Bup from source.</p>
+<p>First, install some system dependencies:</p>
+<pre><code class="language-shell">dnf install fuse-devel libacl-devel perl-Time-HiRes</code></pre><p>Now we need the Python dependencies. <code class="docutils literal notranslate"><span class="pre">python3-fuse</span></code> doesn’t appear to exist,
+only <code class="docutils literal notranslate"><span class="pre">python2-fuse</span></code>. Not only is the latter package very old, but since
+Fedora 31 there has been a mass migration from Python 2 to 3.</p>
+<p>For simplicity, we’ll use a virtualenv:</p>
+<pre><code class="language-shell">virtualenv -p python3 ~/.venv
+source ~/.venv/bin/activate
+pip install pyxattr pylibacl</code></pre><p>Then build it:</p>
+<pre><code class="language-shell">make
+make long-check</code></pre></div>
 
 
            </div>
@@ -657,10 +617,10 @@ TODO: Additional research needed.</div></div>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="git.html" class="btn btn-neutral float-right" title="Git" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="cipc.html" class="btn btn-neutral float-right" title="Cisco IP Communicator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="firefox.html" class="btn btn-neutral" title="Firefox" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="backups.html" class="btn btn-neutral" title="Backups" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
