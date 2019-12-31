@@ -1103,7 +1103,11 @@ curl -v \
 <div class="card-header bg-info">
 <i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
 <h5 class="card-title">
-AD Setup</h5>We do not cover setting up an AD forest here. This is out of scope for this series.</div></div>
+AD Setup</h5><p>We do not cover setting up an AD forest here. This is out of scope for this series. If you are using Server 2016 or higher and you are using “core”, look up the commands:</p>
+<p>Install-WindowsFeature AD-domain-services
+Import-Module ADDSDeployment
+Install-ADDSForest</p>
+</div></div>
 <table border="1" class="docutils align-default">
 <colgroup>
 <col width="63%" />
