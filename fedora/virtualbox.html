@@ -167,7 +167,11 @@
 <li class="toctree-l2"><a class="reference internal" href="clang.html#clang-format">clang-format</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="copr.html">COPR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copr.html">COPR</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="copr.html#gzdoom">gzdoom</a></li>
+<li class="toctree-l2"><a class="reference internal" href="copr.html#ircd">ircd</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="docker.html#changing-the-data-directory">Changing the data directory</a></li>
 </ul>
@@ -598,6 +602,11 @@
             
   <div class="section" id="virtualbox">
 <h1>VirtualBox<a class="headerlink" href="#virtualbox" title="Permalink to this headline">¶</a></h1>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+<h5 class="card-title">
+KVM</h5>While VirtualBox is available in RPMFusion, it is recommended to use libvirt, which is already built into the kernel and the various virt-* packages can be installed as needed to get a hypervisor rolling. GNOME Boxes provides the functionality out-of-the-box with a Fedora Workstation install.</div></div>
 <div class="section" id="failed-to-start-load-kernel-modules-after-uninstalling">
 <h2>“Failed to start Load Kernel Modules” after uninstalling<a class="headerlink" href="#failed-to-start-load-kernel-modules-after-uninstalling" title="Permalink to this headline">¶</a></h2>
 <p>If <code class="docutils literal notranslate"><span class="pre">journalctl</span></code> shows that you still get <code class="docutils literal notranslate"><span class="pre">could</span> <span class="pre">not</span> <span class="pre">insert</span> <span class="pre">vboxdrv</span></code> errors, run <code class="docutils literal notranslate"><span class="pre">dracut</span> <span class="pre">-v</span> <span class="pre">-f</span></code> then restart your computer.</p>
