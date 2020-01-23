@@ -1406,7 +1406,11 @@ homedir_substring = /home
 % systemctl enable sssd --now
 
 # Verify
-% id admin</code></pre></div>
+% id admin</code></pre><p>In the case of having an IPA-AD trust, you may need to change a line in your pam configuration.</p>
+<pre><code class="language-shell">% sed -i 's/use_first_pass/forward_pass/g' /etc/pam.d/common-auth-pc
+
+# The affected line should appear like the below
+auth    sufficient      pam_sss.so      forward_pass</code></pre></div>
 </div>
 <div class="section" id="hbac">
 <h2><a class="toc-backref" href="#id25">HBAC</a><a class="headerlink" href="#hbac" title="Permalink to this headline">¶</a></h2>
@@ -1428,8 +1432,8 @@ homedir_substring = /home
 # Add the external group as a member of the IPA posix group.
 # aduser1 and adgroup1 are now effectively members of the linuxadm group in IPA.
 % ipa group-add-member --groups=linuxadm_external linuxadm</code></pre><p>Now, let’s create an HBAC for our Linux Administrator account for our group.</p>
-<pre><code class="language-shell">% ipa hbacrule-add --hostcat=all --servicecat=all --desc='linux admins all access' all_linux
-% ipa hbacrule-add-user --groups=linuxadm all_linux
+<pre><code class="language-shell">% ipa hbacrule-add --hostcat=all --servicecat=all --desc='linux admins all access' linuxadm
+% ipa hbacrule-add-user --groups=linuxadm linuxadm
 % ipa hbactest --rules=All_Systems --user=flast --host=server1.ipa.example.com --service=sshd
 % ipa hbactest --rules=All_Systems --user=aduser1@example.com --host=server1.ipa.example.com --service=sshd</code></pre><p>You might want to create an HBAC rule specifically for your IPA admin accounts to have ssh access to the IPA servers too. You can follow something like the above to make it possible. Or you can just add the IPA admins group into the HBAC rule we just made above.</p>
 <div class="card">
