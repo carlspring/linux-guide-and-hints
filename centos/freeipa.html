@@ -395,11 +395,12 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#situational-options">Situational Options</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#domain-options">Domain Options</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#remove-realm-for-ad-users">Remove &#64;realm for AD users</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ad-and-ipa-group-names-with-short-names">AD and IPA group names with short names</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sites-and-ad-dc-s">Sites and AD DC’s</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rhel-6-sudo-and-default-domain-suffix">RHEL 6 SUDO and Default Domain Suffix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-default-shell-for-ad-users">Set Default Shell for AD Users</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#automated-kerberos-principals">Automated Kerberos Principals</a><ul>
@@ -656,17 +657,18 @@
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#situational-options" id="id41">Situational Options</a><ul>
+<li><a class="reference internal" href="#domain-options" id="id41">Domain Options</a><ul>
 <li><a class="reference internal" href="#remove-realm-for-ad-users" id="id42">Remove &#64;realm for AD users</a></li>
 <li><a class="reference internal" href="#ad-and-ipa-group-names-with-short-names" id="id43">AD and IPA group names with short names</a></li>
 <li><a class="reference internal" href="#sites-and-ad-dc-s" id="id44">Sites and AD DC’s</a></li>
 <li><a class="reference internal" href="#rhel-6-sudo-and-default-domain-suffix" id="id45">RHEL 6 SUDO and Default Domain Suffix</a></li>
+<li><a class="reference internal" href="#set-default-shell-for-ad-users" id="id46">Set Default Shell for AD Users</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#automated-kerberos-principals" id="id46">Automated Kerberos Principals</a><ul>
-<li><a class="reference internal" href="#hadoop-cloudera" id="id47">Hadoop/Cloudera</a><ul>
-<li><a class="reference internal" href="#cloudera-manager-woes" id="id48">Cloudera Manager Woes</a></li>
-<li><a class="reference internal" href="#the-solution" id="id49">The Solution</a></li>
+<li><a class="reference internal" href="#automated-kerberos-principals" id="id47">Automated Kerberos Principals</a><ul>
+<li><a class="reference internal" href="#hadoop-cloudera" id="id48">Hadoop/Cloudera</a><ul>
+<li><a class="reference internal" href="#cloudera-manager-woes" id="id49">Cloudera Manager Woes</a></li>
+<li><a class="reference internal" href="#the-solution" id="id50">The Solution</a></li>
 </ul>
 </li>
 </ul>
@@ -2012,8 +2014,8 @@ account required        pam_hbac.so ignore_unknown_user ignore_authinfo_unavail<
 </div>
 </div>
 </div>
-<div class="section" id="situational-options">
-<h2><a class="toc-backref" href="#id41">Situational Options</a><a class="headerlink" href="#situational-options" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="domain-options">
+<h2><a class="toc-backref" href="#id41">Domain Options</a><a class="headerlink" href="#domain-options" title="Permalink to this headline">¶</a></h2>
 <p>This section goes over “situational” scenarios. These scenarios are reflective of the environment in which IPA is installed and not all will fit into your environment. These are more or less common situations that could occur during an IPA deployment or even post-deployment.</p>
 <div class="section" id="remove-realm-for-ad-users">
 <h3><a class="toc-backref" href="#id42">Remove &#64;realm for AD users</a><a class="headerlink" href="#remove-realm-for-ad-users" title="Permalink to this headline">¶</a></h3>
@@ -2027,7 +2029,11 @@ Info</h5><p>The following is only applicable in an IPA-AD trust. An IPA-only sce
 </div></div>
 <p>On the IPA servers, you will need to set the domain resolution order. This was introduced in 4.5.0.</p>
 <pre><code class="language-shell">% kinit admin
-% ipa config-mod --domain-resolution-order="example.com:ipa.example.com"</code></pre><p>The below is optional. It will remove the &#64;realm off the usernames, like on the prompt or id or whoami commands. Only do this if required.</p>
+% ipa config-mod --domain-resolution-order="example.com:ipa.example.com"</code></pre><p>After, you will need to clear out your SSSD cache.</p>
+<pre><code class="language-shell"># sss_cache -E is insufficient for this.
+% systemctl stop sssd
+% rm -rf /var/lib/sss/db/*
+% systemctl start sssd</code></pre><p>The below is optional. It will remove the &#64;realm off the usernames, like on the prompt or id or whoami commands. Only do this if required. <strong>Only do this on the clients. Do not make this change on an IPA replica.</strong></p>
 <pre><code class="language-shell"># vi /etc/sssd/sssd.conf
 
 [domain/ipa.example.com]
@@ -2092,12 +2098,21 @@ Hardcoded DC’s</h5>If the DC’s change at any time and they are harded in you
 <h3><a class="toc-backref" href="#id45">RHEL 6 SUDO and Default Domain Suffix</a><a class="headerlink" href="#rhel-6-sudo-and-default-domain-suffix" title="Permalink to this headline">¶</a></h3>
 <p>This issue with the above section is that once you do this, sudo rules will begin failing, they will no longer work for RHEL 6. This is because sssd was changed to look for cn=sudo rather than ou=sudoers. To enable the compatibility fall back, you will need to install the latest SSSD from COPR.</p>
 </div>
+<div class="section" id="set-default-shell-for-ad-users">
+<h3><a class="toc-backref" href="#id46">Set Default Shell for AD Users</a><a class="headerlink" href="#set-default-shell-for-ad-users" title="Permalink to this headline">¶</a></h3>
+<p>By default, after a trust has been established, the shell all AD users get is /bin/sh. To change this, you must change the sssd.conf on the IPA masters.</p>
+<pre><code class="language-shell">% vi /etc/sssd/sssd.conf
+[domain/ipa.example.com]
+. . .
+default_shell = /bin/bash
+
+% systemctl restart sssd</code></pre></div>
 </div>
 <div class="section" id="automated-kerberos-principals">
-<h2><a class="toc-backref" href="#id46">Automated Kerberos Principals</a><a class="headerlink" href="#automated-kerberos-principals" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id47">Automated Kerberos Principals</a><a class="headerlink" href="#automated-kerberos-principals" title="Permalink to this headline">¶</a></h2>
 <p>Once in a great while, we run into situations where we need to have an automated process for creating principals and keytabs. This section takes a look at some of those examples that we’ve ran into.</p>
 <div class="section" id="hadoop-cloudera">
-<h3><a class="toc-backref" href="#id47">Hadoop/Cloudera</a><a class="headerlink" href="#hadoop-cloudera" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id48">Hadoop/Cloudera</a><a class="headerlink" href="#hadoop-cloudera" title="Permalink to this headline">¶</a></h3>
 <p>This assumes you are using Cloudera Manager and not Ambari in any form.</p>
 <div class="card">
 <div class="card-header bg-warning">
@@ -2105,7 +2120,7 @@ Hardcoded DC’s</h5>If the DC’s change at any time and they are harded in you
 <h5 class="card-title">
 DNS Information</h5>It is <em>highly</em> likely that if you are using AWS, your nodes are getting stupid names like compute.internal. While there is a <a class="reference external" href="https://blog.cloudera.com/custom-hostname-for-cloud-instances/">a way to change this</a> if you don’t change it, you will need to rely on something like DNSMASQ to allow the nodes to communicate with FreeIPA. FreeIPA <em>will</em> be upset about the stupid names because it can’t do a rDNS lookup.</div></div>
 <div class="section" id="cloudera-manager-woes">
-<h4><a class="toc-backref" href="#id48">Cloudera Manager Woes</a><a class="headerlink" href="#cloudera-manager-woes" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id49">Cloudera Manager Woes</a><a class="headerlink" href="#cloudera-manager-woes" title="Permalink to this headline">¶</a></h4>
 <p>It is likely you have Cloudera/Hadoop, it is also very likely you (or another team) are deploying and using Cloudera Manager (or Director?). You may be running into issues that involve direct Active Directory integration. Maybe you’re moving away from a standalone LDAP system over to Active Directory or even FreeIPA. Maybe you have FreeIPA in an AD trust but the users or contractors absolutely insist on using AD against their better judgement, despite the problems they’re running into. Whatever the scenario is, we feel your pain. Here are some things you should probably know:</p>
 <ul class="simple">
 <li>Cloudera Manager (or Director?) supports Active Directory out of the box and obviously not FreeIPA despite the devs wanting to work something out back in 2015<ul>
@@ -2121,7 +2136,7 @@ DNS Information</h5>It is <em>highly</em> likely that if you are using AWS, your
 <p>FreeIPA does not have the name limitation and using an AD trust, AD users can freely use Hadoop when the cluster is properly setup. Enrolling the cluster nodes into FreeIPA and using a custom retrieval script will solve most (if not all) of the issues you may run into as well when it comes to keytabs, which Hadoop heavily relies on. The custom script is simply because Cloudera by default likes having direct access to the kerberos infrastructure, which is a no-go for FreeIPA.</p>
 </div>
 <div class="section" id="the-solution">
-<h4><a class="toc-backref" href="#id49">The Solution</a><a class="headerlink" href="#the-solution" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id50">The Solution</a><a class="headerlink" href="#the-solution" title="Permalink to this headline">¶</a></h4>
 <p>To summarize, here is our proposed solution:</p>
 <ul class="simple">
 <li>Create an account called cdh</li>
