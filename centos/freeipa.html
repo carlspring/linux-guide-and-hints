@@ -518,6 +518,34 @@
 <li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#implement-a-sso">Implement a SSO</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../training/ex407.html">EX407 Exam Prep</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../training/ex407.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/ex407.html#exam-information">Exam Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/ex407.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/ex407.html#objectives">Objectives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../training/ex407.html#practice-exam">Practice Exam</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-1-adhoc">Task 1: Adhoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-2-manage-file-content">Task 2: Manage File Content</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-3-manage-ssh-configuration">Task 3: Manage SSH Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-4-ansible-vault">Task 4: Ansible Vault</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-5-users-and-groups">Task 5: Users and Groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-6-scheduling-tasks">Task 6: Scheduling Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-7-software-repositories">Task 7: Software Repositories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-8-working-with-roles">Task 8: Working with Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-9-working-with-roles">Task 9: Working with Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-10-download-roles-from-galaxy">Task 10: Download roles from Galaxy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-11-security">Task 11: Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-12-use-conditionals-to-control-play-execution">Task 12: Use conditionals to control play execution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-13-use-archiving">Task 13: Use archiving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-14-work-with-facts">Task 14: Work with facts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-15-install-software">Task 15: Install software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-16-services">Task 16: Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-17-create-and-use-templates">Task 17: Create and use templates</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../training/ex415.html">EX415 Exam Prep</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../training/ex415.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../training/ex415.html#exam-information">Exam Information</a></li>
@@ -1006,7 +1034,7 @@ modifying entry "cn=config"</code></pre></div>
 % ipa-client-install --realm EXAMPLE.COM --domain example.com --mkhomedir</code></pre></div>
 <div class="section" id="mac-clients">
 <h3><a class="toc-backref" href="#id22">Mac Clients</a><a class="headerlink" href="#mac-clients" title="Permalink to this headline">¶</a></h3>
-<p>Mac Clients are an interesting workstation to setup as a FreeIPA client. It takes a little bit of fighting and troubleshooting, but it can work with the right settings.</p>
+<p>MacOS Clients are an interesting workstation to setup as a FreeIPA client. It takes a little bit of fighting and troubleshooting, but it can work with the right settings. <strong>Note that as of Catalina, you may not be able to login to your account nor will creating a mobile account function as you would expect.</strong></p>
 <div class="card">
 <div class="card-header bg-info">
 <i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
@@ -1023,7 +1051,8 @@ AD Users</h5>You cannot login as AD users on a Mac when going through FreeIPA. Y
 <pre><code class="language-shell">% sudo scutil --set HostName mac.example.com</code></pre><p>Get the IPA certificate. You’ll need to double click it after you get it and import it.</p>
 <pre><code class="language-shell">% cd ~/Desktop && curl -OL http://server1.ipa.example.com/ipa/config/ca.crt
 % sudo mkdir /etc/ipa
-% sudo cp ca.crt /etc/ipa/ca.crt</code></pre><p>On the IPA server, you will need to create a host and get the keytab.</p>
+% sudo cp ca.crt /etc/ipa/ca.crt
+% sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain /etc/ipa/ca.crt</code></pre><p>On the IPA server, you will need to create a host and get the keytab.</p>
 <pre><code class="language-shell">% ipa host-add mac.example.com --macaddress="00:00:00:00:00:00"
 % ipa-getkeytab -s server1.ipa.example.com -p host/mac.example.com -k /tmp/krb5.keytab</code></pre><p>You will need to transfer that keytab to your mac.</p>
 <pre><code class="language-shell">% cd ~
