@@ -5,12 +5,13 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  
+  <meta content="How to install/configure Unbound on CentOS for DNS forwarding for a network or a standalone machine." name="description" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests; default-src 'self'; style-src 'self' https://github.githubassets.com/ stackpath.bootstrapcdn.com; script-src 'self' https://gist.github.com/remyabel/2cac59a778fa34d0c61e246554fe3e3c.js https://gist.github.com/remyabel/bbebf3043860abe24a19bf0b1d67bd33.js https://gist.github.com/remyabel/e9c33b830da73768fe6ea2363fc27e1a.js; img-src 'self'; media-src 'self'; font-src 'self' fonts.gstatic.com stackpath.bootstrapcdn.com;">
   
   
-  <title>Auto-Provisioning &mdash; Linux Guide and Hints</title>
+  <title>Unbound &mdash; Linux Guide and Hints</title>
   
 
   
@@ -34,8 +35,8 @@
   <link rel="stylesheet" href="../_static/css/prism-okaidia.min.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="FreeIPA" href="freeipa.html" />
-    <link rel="prev" title="XScreenSaver" href="../fedora/xscreensaver.html" /> 
+    <link rel="next" title="EX362 Exam Prep" href="../training/ex362.html" />
+    <link rel="prev" title="The System Administrator Experience" href="sysadmin.html" /> 
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -344,7 +345,7 @@
 </ul>
 <p class="caption"><span class="caption-text">CentOS</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Auto-Provisioning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="builds.html">Auto-Provisioning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="freeipa.html">FreeIPA</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="freeipa.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="freeipa.html#requirements">Requirements</a></li>
@@ -489,11 +490,11 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="unbound.html">Unbound</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="unbound.html#requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="unbound.html#setup">Setup</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="unbound.html#installation">Installation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="unbound.html#dns-over-tls-dot">DNS over TLS (DoT)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Unbound</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup">Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dns-over-tls-dot">DNS over TLS (DoT)</a></li>
 </ul>
 </li>
 </ul>
@@ -625,14 +626,14 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Auto-Provisioning</li>
+      <li>Unbound</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/nazunalika/linux-guide-and-hints/blob/master/source/centos/builds.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/nazunalika/linux-guide-and-hints/blob/master/source/centos/unbound.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -646,15 +647,22 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="auto-provisioning">
-<h1>Auto-Provisioning<a class="headerlink" href="#auto-provisioning" title="Permalink to this headline">¶</a></h1>
-<p>This page goes over various ways that installs can be automated without the use of PXE. Instead, we can use templated scripts with pre-configured commands, boot images, and mirrors for builds. We cover the following here:</p>
-<ul class="simple">
-<li>CentOS 7, 8</li>
-<li>Fedora</li>
-<li>openSUSE 15+</li>
-<li>Windows Server</li>
-</ul>
+  <div class="section" id="unbound">
+<h1>Unbound<a class="headerlink" href="#unbound" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
+<pre><code class="language-shell">% yum install unbound -y
+% systemctl enable unbound</code></pre></div>
+<div class="section" id="dns-over-tls-dot">
+<h3>DNS over TLS (DoT)<a class="headerlink" href="#dns-over-tls-dot" title="Permalink to this headline">¶</a></h3>
+<p>TBD</p>
+</div>
+</div>
 </div>
 
 
@@ -665,10 +673,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="freeipa.html" class="btn btn-neutral float-right" title="FreeIPA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../training/ex362.html" class="btn btn-neutral float-right" title="EX362 Exam Prep" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../fedora/xscreensaver.html" class="btn btn-neutral" title="XScreenSaver" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="sysadmin.html" class="btn btn-neutral" title="The System Administrator Experience" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
