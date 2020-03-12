@@ -778,7 +778,10 @@ IPA Servers should either have a DHCP reservation or a static address. In the ev
     --setup-dns \
     --setup-adtrust \
     -p Passw0rd! \
-    -a Passw0rd!</code></pre><pre><code class="language-shell">% kinit admin
+    -a Passw0rd!</code></pre><pre><code class="language-shell"># Configure the firewall for RHEL 7
+% firewall-cmd --permanent --add-service={ntp,http,https,freeipa-ldap,freeipa-ldaps,kerberos,freeipa-replication,kpasswd,dns}
+# RHEL 8
+% firewall-cmd --permanent --add-service={freeipa-4,ntp,dns}</code></pre><pre><code class="language-shell">% kinit admin
 # We need to make sure that any A records get a corresponding PTR record, otherwise you're making them manually.
 % ipa dnsconfig-mod --allow-sync-ptr=True</code></pre><pre><code class="language-shell"># Adding a replica
 % ipa-replica-install --setup-dns \
