@@ -1380,6 +1380,11 @@ root# /System/Library/CoreServices/ManagedClient.app/Contents/Resources/createmo
 <div class="section" id="suse">
 <h3><a class="toc-backref" href="#id24">SUSE</a><a class="headerlink" href="#suse" title="Permalink to this headline">¶</a></h3>
 <p>To setup openSUSE with FreeIPA, we’ll need to do some manual work. This applies to SUSE 12 and up.</p>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+<h5 class="card-title">
+freeipa repos</h5>There are OpenSUSE repos with the freeipa packages, though they are considered “experimental”. If they show up in the base, then the below steps will be removed. However, if you are willing to use the <a class="reference external" href="https://software.opensuse.org/download/package?package=freeipa-client&amp;project=openSUSE%3Ainfrastructure%3Aipsilon">repo</a>, a lot of the steps below may not be needed. We have not tested this.</div></div>
 <pre><code class="language-shell"># On an IPA server or client with the IPA utilities...
 % ipa host-add suse.example.com
 % /usr/sbin/ipa-getkeytab -s ipa.example.com -p host/suse.example.com -k /tmp/suse.keytab
