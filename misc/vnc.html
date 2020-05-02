@@ -10,7 +10,7 @@
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests; default-src 'self'; style-src 'self' https://github.githubassets.com/ stackpath.bootstrapcdn.com; script-src 'self' https://gist.github.com/remyabel/2cac59a778fa34d0c61e246554fe3e3c.js https://gist.github.com/remyabel/bbebf3043860abe24a19bf0b1d67bd33.js https://gist.github.com/remyabel/e9c33b830da73768fe6ea2363fc27e1a.js; img-src 'self'; media-src 'self'; font-src 'self' fonts.gstatic.com stackpath.bootstrapcdn.com;">
   
   
-  <title>Cisco IP Communicator &mdash; Linux Guide and Hints</title>
+  <title>VNC &mdash; Linux Guide and Hints</title>
   
 
   
@@ -34,8 +34,8 @@
   <link rel="stylesheet" href="../_static/css/prism-okaidia.min.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Clang" href="clang.html" />
-    <link rel="prev" title="Bup" href="bup.html" /> 
+    <link rel="next" title="Getting started" href="../gettingstarted.html" />
+    <link rel="prev" title="Is port 465 deprecated?" href="port465.html" /> 
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -130,219 +130,219 @@
 </li>
 </ul>
 <p class="caption"><span class="caption-text">Miscellaneous</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../misc/euphemism.html">The Euphemism Review</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../misc/euphemism.html#please-don-t-say-timeframe">Please don’t say “timeframe”</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="euphemism.html">The Euphemism Review</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="euphemism.html#please-don-t-say-timeframe">Please don’t say “timeframe”</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../misc/mingw.html">MinGW</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../misc/mingw.html#why-not-use-wsl">Why not use WSL?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mingw.html">MinGW</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mingw.html#why-not-use-wsl">Why not use WSL?</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../misc/port465.html">Is port 465 deprecated?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../misc/vnc.html">VNC</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../misc/vnc.html#setup">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="port465.html">Is port 465 deprecated?</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">VNC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#setup">Setup</a></li>
 </ul>
 </li>
 </ul>
 <p class="caption"><span class="caption-text">Fedora</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted.html">Getting started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../gettingstarted.html#other-things-negativo17-related">Other things negativo17 related</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="backups.html">Backups</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="backups.html#id1">Duplicity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="backups.html#gpg">GPG</a></li>
-<li class="toctree-l2"><a class="reference internal" href="backups.html#keychain">Keychain</a></li>
-<li class="toctree-l2"><a class="reference internal" href="backups.html#unattended-backups">Unattended backups</a></li>
-<li class="toctree-l2"><a class="reference internal" href="backups.html#id3">git-annex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/backups.html">Backups</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/backups.html#id1">Duplicity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/backups.html#gpg">GPG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/backups.html#keychain">Keychain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/backups.html#unattended-backups">Unattended backups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/backups.html#id3">git-annex</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="bup.html">Bup</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Cisco IP Communicator</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#installing-via-playonlinux">Installing via PlayOnLinux</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installing-via-regular-wine">Installing via Regular Wine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#pulse-audio">Pulse Audio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/bup.html">Bup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/cipc.html">Cisco IP Communicator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/cipc.html#installing-via-playonlinux">Installing via PlayOnLinux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/cipc.html#installing-via-regular-wine">Installing via Regular Wine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/cipc.html#pulse-audio">Pulse Audio</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="clang.html">Clang</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="clang.html#msan-line-numbers">MSan line numbers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="clang.html#clang-format">clang-format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/clang.html">Clang</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/clang.html#msan-line-numbers">MSan line numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/clang.html#clang-format">clang-format</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="copr.html">COPR</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="copr.html#gzdoom">gzdoom</a></li>
-<li class="toctree-l2"><a class="reference internal" href="copr.html#ircd">ircd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/copr.html">COPR</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/copr.html#gzdoom">gzdoom</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/copr.html#ircd">ircd</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#changing-the-data-directory">Changing the data directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/docker.html">Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/docker.html#changing-the-data-directory">Changing the data directory</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="emulators.html">Emulators</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="emulators.html#dolphin">Dolphin</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="emulators.html#wii-controls">Wii controls</a></li>
-<li class="toctree-l3"><a class="reference internal" href="emulators.html#game-idiosyncrasies">Game idiosyncrasies</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="emulators.html#paper-mario-the-thousand-year-door">Paper Mario: The Thousand-Year Door</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="emulators.html#retroarch">RetroArch</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="emulators.html#building-beetle-psx-libretro-mednafen">Building beetle-psx-libretro (mednafen)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="emulators.html#enabling-the-vulkan-renderer-and-32-bit-color">Enabling the Vulkan renderer and 32-bit color</a></li>
-<li class="toctree-l3"><a class="reference internal" href="emulators.html#shaders">Shaders</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="emulators.html#mednafen-randomly-speeds-up">mednafen randomly speeds up</a></li>
-<li class="toctree-l2"><a class="reference internal" href="emulators.html#mupen64plus-unofficial-faq">Mupen64Plus unofficial FAQ</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="emulators.html#where-does-mupen64plus-like-to-put-files">Where does Mupen64Plus like to put files?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="emulators.html#i-m-getting-a-dlopen-error">I’m getting a <code class="docutils literal notranslate"><span class="pre">dlopen</span></code> error</a></li>
-<li class="toctree-l3"><a class="reference internal" href="emulators.html#keycode-values">Keycode values</a></li>
-<li class="toctree-l3"><a class="reference internal" href="emulators.html#i-changed-one-of-the-hi-res-textures-and-no-change-is-visible">I changed one of the hi-res textures and no change is visible</a></li>
-<li class="toctree-l3"><a class="reference internal" href="emulators.html#recommended-plugins">Recommended plugins?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="emulators.html#how-do-i-compile-it">How do I compile it?</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="emulators.html#gba">GBA</a></li>
-<li class="toctree-l2"><a class="reference internal" href="emulators.html#id1">MAME</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="emulators.html#configuration">Configuration</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="emulators.html#example-mame-ini">Example <code class="docutils literal notranslate"><span class="pre">mame.ini</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="emulators.html#example-command-line-options">Example command line options</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="emulators.html#speed">Speed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="emulators.html#ui-script">UI script</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="emulators.html#id2">mGBA</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="emulators.html#controller-joystick-issue">Controller/joystick issue</a></li>
-<li class="toctree-l3"><a class="reference internal" href="emulators.html#building">Building</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="emulators.html#cmake-variables">CMake variables</a></li>
-<li class="toctree-l4"><a class="reference internal" href="emulators.html#dependencies">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/emulators.html">Emulators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/emulators.html#dolphin">Dolphin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#wii-controls">Wii controls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#game-idiosyncrasies">Game idiosyncrasies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../fedora/emulators.html#paper-mario-the-thousand-year-door">Paper Mario: The Thousand-Year Door</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="emulators.html#link-cable-support">Link cable support</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="emulators.html#id3">BGB</a></li>
-<li class="toctree-l3"><a class="reference internal" href="emulators.html#id4">mGBA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/emulators.html#retroarch">RetroArch</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#building-beetle-psx-libretro-mednafen">Building beetle-psx-libretro (mednafen)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#enabling-the-vulkan-renderer-and-32-bit-color">Enabling the Vulkan renderer and 32-bit color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#shaders">Shaders</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="emulators.html#kega-fusion">Kega Fusion</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="emulators.html#id5">Dependencies</a></li>
-<li class="toctree-l3"><a class="reference internal" href="emulators.html#id6">Configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="emulators.html#no-sound">No Sound?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/emulators.html#mednafen-randomly-speeds-up">mednafen randomly speeds up</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/emulators.html#mupen64plus-unofficial-faq">Mupen64Plus unofficial FAQ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#where-does-mupen64plus-like-to-put-files">Where does Mupen64Plus like to put files?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#i-m-getting-a-dlopen-error">I’m getting a <code class="docutils literal notranslate"><span class="pre">dlopen</span></code> error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#keycode-values">Keycode values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#i-changed-one-of-the-hi-res-textures-and-no-change-is-visible">I changed one of the hi-res textures and no change is visible</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#recommended-plugins">Recommended plugins?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#how-do-i-compile-it">How do I compile it?</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/emulators.html#gba">GBA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/emulators.html#id1">MAME</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#configuration">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../fedora/emulators.html#example-mame-ini">Example <code class="docutils literal notranslate"><span class="pre">mame.ini</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../fedora/emulators.html#example-command-line-options">Example command line options</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="firefox.html">Firefox</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="firefox.html#disable-automatic-redirect-to-a-website-if-typing-an-invalid-url">Disable automatic redirect to a website if typing an invalid URL</a></li>
-<li class="toctree-l2"><a class="reference internal" href="firefox.html#glitchy-ui-when-using-custom-gtk-theme">Glitchy UI when using custom GTK theme</a></li>
-<li class="toctree-l2"><a class="reference internal" href="firefox.html#enabling-secure-dns-and-encrypted-sni">Enabling Secure DNS and Encrypted SNI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#speed">Speed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#ui-script">UI script</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="gcc.html">GCC</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="gcc.html#installing-prerequisites-gmp-mpfr-mpc">Installing prerequisites: GMP, MPFR, MPC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gcc.html#building">Building</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gcc.html#docker">Docker</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gcc.html#invalid-instruction-suffix-for">“invalid instruction suffix for”</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="git.html">Git</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="git.html#setting-up-cloudflare-and-github-pages">Setting up Cloudflare and Github pages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="git.html#gpg">GPG</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="gitlab.html">Gitlab</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="gitlab.html#ssh-and-git-access">SSH and Git access</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gitlab.html#enabling-https-with-let-s-encrypt">Enabling HTTPS with Let’s Encrypt</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="gnometips.html">GNOME Tips</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="gnometips.html#system-tray">System Tray</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gnometips.html#add-minimize-maximize">Add minimize/maximize</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gnometips.html#pidgin">Pidgin</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="iphone.html">iPhone</a></li>
-<li class="toctree-l1"><a class="reference internal" href="kubernetes.html">Kubernetes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="kubernetes.html#installation">Installation</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="mcafee.html">McAfee</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc.html">Misc</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="misc.html#using-ld-library-path-in-fish">Using <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> in Fish</a></li>
-<li class="toctree-l2"><a class="reference internal" href="misc.html#unable-to-find-liblzma">Unable to find <code class="docutils literal notranslate"><span class="pre">LibLZMA</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="misc.html#unable-to-find-wxwidgets">Unable to find <code class="docutils literal notranslate"><span class="pre">wxWidgets</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="misc.html#update-all-repositories-in-the-current-directory">Update all repositories in the current directory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="misc.html#youcompleteme-crashes-due-to-libtinfo-so-version-mismatch">YouCompleteMe crashes due to <code class="docutils literal notranslate"><span class="pre">libtinfo.so</span></code> version mismatch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="misc.html#keepasshttp-no-longer-works">KeePassHttp no longer works</a></li>
-<li class="toctree-l2"><a class="reference internal" href="misc.html#disable-tcp-ip-and-use-sockets-for-mysql">Disable TCP/IP and use sockets for MySQL</a></li>
-<li class="toctree-l2"><a class="reference internal" href="misc.html#selinux-is-preventing-abrt-action-sav-from-write-access-on-the-directory-var-lib-rpm">SELinux is preventing <code class="docutils literal notranslate"><span class="pre">abrt-action-sav</span></code> from write access on the directory /var/lib/rpm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="misc.html#swapping-desktop-environments">Swapping Desktop Environments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="misc.html#upon-logging-into-xfce-desktop-freezes-until-you-switch-to-another-tty">Upon logging into XFCE, desktop freezes until you switch to another TTY</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="mpv.html">mpv</a></li>
-<li class="toctree-l1"><a class="reference internal" href="negativo.html">negativo17 repositories and Nvidia drivers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="negativo.html#multimedia">Multimedia</a></li>
-<li class="toctree-l2"><a class="reference internal" href="negativo.html#nvidia">Nvidia</a></li>
-<li class="toctree-l2"><a class="reference internal" href="negativo.html#dkms">DKMS</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="packaging.html">Packaging</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pip.html">pip</a></li>
-<li class="toctree-l1"><a class="reference internal" href="powerline.html">Powerline</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="powerline.html#installing-via-dnf">Installing via <code class="docutils literal notranslate"><span class="pre">dnf</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="powerline.html#enabling-powerline-installed-via-dnf">Enabling powerline (installed via <code class="docutils literal notranslate"><span class="pre">dnf</span></code>)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="powerline.html#fish">Fish</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="powerline.html#oh-my-fish">oh-my-fish</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="powerline.html#vim">vim</a></li>
-<li class="toctree-l3"><a class="reference internal" href="powerline.html#tmux">tmux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/emulators.html#id2">mGBA</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#controller-joystick-issue">Controller/joystick issue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#building">Building</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../fedora/emulators.html#cmake-variables">CMake variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../fedora/emulators.html#dependencies">Dependencies</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="pulseaudio.html">Pulseaudio</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pulseaudio.html#flat-volume">Flat Volume</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pulseaudio.html#sound-crackling">Sound Crackling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/emulators.html#link-cable-support">Link cable support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#id3">BGB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#id4">mGBA</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="tmux.html">tmux</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vim.html">vim</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="vim.html#plugins">Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/emulators.html#kega-fusion">Kega Fusion</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#id5">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#id6">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/emulators.html#no-sound">No Sound?</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="virtualbox.html">VirtualBox</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="virtualbox.html#failed-to-start-load-kernel-modules-after-uninstalling">“Failed to start Load Kernel Modules” after uninstalling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="virtualbox.html#kernel-modules-do-not-build-upon-kernel-update">Kernel modules do not build upon kernel update</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="vmware.html">VMware</a></li>
-<li class="toctree-l1"><a class="reference internal" href="winetips.html">Wine Tips</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="winetips.html#out-of-memory-errors">Out of memory errors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="winetips.html#new-vegas">New Vegas</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="winetips.html#installing-via-wine">Installing via Wine</a></li>
-<li class="toctree-l3"><a class="reference internal" href="winetips.html#modding">Modding</a></li>
-<li class="toctree-l3"><a class="reference internal" href="winetips.html#id2">Mod Organizer</a></li>
-<li class="toctree-l3"><a class="reference internal" href="winetips.html#loot">LOOT</a></li>
-<li class="toctree-l3"><a class="reference internal" href="winetips.html#lutana-nvse">Lutana NVSE</a></li>
-<li class="toctree-l3"><a class="reference internal" href="winetips.html#ini-modifications">.ini modifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/firefox.html">Firefox</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/firefox.html#disable-automatic-redirect-to-a-website-if-typing-an-invalid-url">Disable automatic redirect to a website if typing an invalid URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/firefox.html#glitchy-ui-when-using-custom-gtk-theme">Glitchy UI when using custom GTK theme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/firefox.html#enabling-secure-dns-and-encrypted-sni">Enabling Secure DNS and Encrypted SNI</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="winetips.html#gmdx">GMDX</a></li>
-<li class="toctree-l2"><a class="reference internal" href="winetips.html#directx11-games">DirectX11 games</a></li>
-<li class="toctree-l2"><a class="reference internal" href="winetips.html#proton">Proton</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/gcc.html">GCC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/gcc.html#installing-prerequisites-gmp-mpfr-mpc">Installing prerequisites: GMP, MPFR, MPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/gcc.html#building">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/gcc.html#docker">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/gcc.html#invalid-instruction-suffix-for">“invalid instruction suffix for”</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="xscreensaver.html">XScreenSaver</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="xscreensaver.html#gamma-or-brightness-is-too-high-when-unlocking">Gamma or brightness is too high when unlocking</a></li>
-<li class="toctree-l2"><a class="reference internal" href="xscreensaver.html#disable-fade-to-black-effect">Disable fade to black effect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/git.html">Git</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/git.html#setting-up-cloudflare-and-github-pages">Setting up Cloudflare and Github pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/git.html#gpg">GPG</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/gitlab.html">Gitlab</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/gitlab.html#ssh-and-git-access">SSH and Git access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/gitlab.html#enabling-https-with-let-s-encrypt">Enabling HTTPS with Let’s Encrypt</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/gnometips.html">GNOME Tips</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/gnometips.html#system-tray">System Tray</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/gnometips.html#add-minimize-maximize">Add minimize/maximize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/gnometips.html#pidgin">Pidgin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/iphone.html">iPhone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/kubernetes.html">Kubernetes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/kubernetes.html#installation">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/mcafee.html">McAfee</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/misc.html">Misc</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/misc.html#using-ld-library-path-in-fish">Using <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> in Fish</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/misc.html#unable-to-find-liblzma">Unable to find <code class="docutils literal notranslate"><span class="pre">LibLZMA</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/misc.html#unable-to-find-wxwidgets">Unable to find <code class="docutils literal notranslate"><span class="pre">wxWidgets</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/misc.html#update-all-repositories-in-the-current-directory">Update all repositories in the current directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/misc.html#youcompleteme-crashes-due-to-libtinfo-so-version-mismatch">YouCompleteMe crashes due to <code class="docutils literal notranslate"><span class="pre">libtinfo.so</span></code> version mismatch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/misc.html#keepasshttp-no-longer-works">KeePassHttp no longer works</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/misc.html#disable-tcp-ip-and-use-sockets-for-mysql">Disable TCP/IP and use sockets for MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/misc.html#selinux-is-preventing-abrt-action-sav-from-write-access-on-the-directory-var-lib-rpm">SELinux is preventing <code class="docutils literal notranslate"><span class="pre">abrt-action-sav</span></code> from write access on the directory /var/lib/rpm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/misc.html#swapping-desktop-environments">Swapping Desktop Environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/misc.html#upon-logging-into-xfce-desktop-freezes-until-you-switch-to-another-tty">Upon logging into XFCE, desktop freezes until you switch to another TTY</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/mpv.html">mpv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/negativo.html">negativo17 repositories and Nvidia drivers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/negativo.html#multimedia">Multimedia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/negativo.html#nvidia">Nvidia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/negativo.html#dkms">DKMS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/packaging.html">Packaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/pip.html">pip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/powerline.html">Powerline</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/powerline.html#installing-via-dnf">Installing via <code class="docutils literal notranslate"><span class="pre">dnf</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/powerline.html#enabling-powerline-installed-via-dnf">Enabling powerline (installed via <code class="docutils literal notranslate"><span class="pre">dnf</span></code>)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/powerline.html#fish">Fish</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../fedora/powerline.html#oh-my-fish">oh-my-fish</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/powerline.html#vim">vim</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/powerline.html#tmux">tmux</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/pulseaudio.html">Pulseaudio</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/pulseaudio.html#flat-volume">Flat Volume</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/pulseaudio.html#sound-crackling">Sound Crackling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/tmux.html">tmux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/vim.html">vim</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/vim.html#plugins">Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/virtualbox.html">VirtualBox</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/virtualbox.html#failed-to-start-load-kernel-modules-after-uninstalling">“Failed to start Load Kernel Modules” after uninstalling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/virtualbox.html#kernel-modules-do-not-build-upon-kernel-update">Kernel modules do not build upon kernel update</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/vmware.html">VMware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/winetips.html">Wine Tips</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/winetips.html#out-of-memory-errors">Out of memory errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/winetips.html#new-vegas">New Vegas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/winetips.html#installing-via-wine">Installing via Wine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/winetips.html#modding">Modding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/winetips.html#id2">Mod Organizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/winetips.html#loot">LOOT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/winetips.html#lutana-nvse">Lutana NVSE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fedora/winetips.html#ini-modifications">.ini modifications</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/winetips.html#gmdx">GMDX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/winetips.html#directx11-games">DirectX11 games</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/winetips.html#proton">Proton</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fedora/xscreensaver.html">XScreenSaver</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/xscreensaver.html#gamma-or-brightness-is-too-high-when-unlocking">Gamma or brightness is too high when unlocking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fedora/xscreensaver.html#disable-fade-to-black-effect">Disable fade to black effect</a></li>
 </ul>
 </li>
 </ul>
@@ -633,14 +633,14 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Cisco IP Communicator</li>
+      <li>VNC</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/nazunalika/linux-guide-and-hints/blob/master/source/fedora/cipc.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/nazunalika/linux-guide-and-hints/blob/master/source/misc/vnc.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -654,56 +654,35 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="cisco-ip-communicator">
-<h1>Cisco IP Communicator<a class="headerlink" href="#cisco-ip-communicator" title="Permalink to this headline">¶</a></h1>
-<p>Cisco IP Communicator is a SoftPhone for VOIP communications. Mainly
-used for Corporations that have Cisco desk phones or users who are
-remote. The issue is that Cisco Jabber, a SIP client, nor the IP
-Communicator have Linux versions. Wine will work, but it’s normally
-troublesome to setup or get it working correctly. There were various
-issues:</p>
+  <div class="section" id="vnc">
+<h1>VNC<a class="headerlink" href="#vnc" title="Permalink to this headline">¶</a></h1>
+<p>This was written because this seems to be a common question on IRC, which could easily be researched every single time. That and despite “research”, there’s a lot of tutorials that get it wrong or do some ridiculous nonsense (such as copying Xresources to your home directory, which is unnecessary).</p>
 <div class="card">
 <div class="card-header bg-info">
 <i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
 <h5 class="card-title">
-Issues</h5><ul class="simple">
-<li>Moving the Window would crash the application</li>
-<li>After a crash, it was near impossible to get it to open back up</li>
-<li>There was a horrendous noise crackling issue (much like with Skype)</li>
-<li>(VPN/Network) Calls would result in no sound</li>
-</ul>
+VNC is abyssmal</h5><p>We frown upon the use of VNC, regardless of CentOS or Fedora. It’s security is considered pathetic and there are much better options.</p>
+<p>Also note that wayland is <strong>not</strong> supported in VNC whatsoever. You are heavily encouraged to use gnome’s built in remote desktop instead which uses vino and wayland should work.</p>
 </div></div>
-<div class="section" id="installing-via-playonlinux">
-<h2>Installing via PlayOnLinux<a class="headerlink" href="#installing-via-playonlinux" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic simple">
-<li>Install PlayOnLinux</li>
-<li>Open PlayOnLinux, install a non-listed program</li>
-<li>Select all boxes: Use another version of Wine (only if you want to try another version), Configure Wine, Install some libraries</li>
-<li>Use the system wine first. You can try another version if you’d like.</li>
-<li>Configure Wine -&gt; Override libraries for crypt32, run as Windows XP</li>
-<li>Install some libraries -&gt; POL_Function_OverrideDLL, POL_Install_corefonts, POL_Install_crypt32, POL_Internal_InstallFonts</li>
-<li>Install the application normally by selecting the msi.</li>
-<li>It will crash at the end. This is normal.</li>
-<li>Make a shortcut for communicatork9.</li>
-<li>Run the program normally. It will try a audio tuning wizard. This should succeed. If you hear crackling, this is OK.</li>
-<li>Configure your phone as necessary.</li>
-</ol>
-</div>
-<div class="section" id="installing-via-regular-wine">
-<h2>Installing via Regular Wine<a class="headerlink" href="#installing-via-regular-wine" title="Permalink to this headline">¶</a></h2>
-<p>Most of the steps used for PlayOnLinux can be done in a regular wineprefix. Ensure corefonts is at least done.</p>
-</div>
-<div class="section" id="pulse-audio">
-<h2>Pulse Audio<a class="headerlink" href="#pulse-audio" title="Permalink to this headline">¶</a></h2>
-<p>Many VOIP applications have a sound crackling issue. Skype is no exception.
-In a different part of this guide, there is a trick to making Skype be OK.
-However, that’s for Skype. To fix it system wide, we can do this.</p>
-<pre><code class="language-bash"># sed -i.bak ’/load-module module-udev-detect/ s/$/ tsched=0/’ /etc/pulse/default.pa</code></pre><p>Killing pulseaudio or restarting your system will allow this to take affect.</p>
-<p>The result.</p>
-<pre><code class="language-none">### Automatically load driver modules depending on the hardware available
-.ifexists module-udev-detect.so
-load-module module-udev-detect tsched=0
-.else</code></pre></div>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<pre><code class="language-shell"># Install the packages
+root% yum install tigervnc-server -y
+root% cp /usr/lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@.service
+root% vi /etc/systemd/system/vncserver@.service
+# modify <USER> to username
+root% systemctl enable vncserver@:1.service
+root% su - username
+username% vncpasswd
+. . .
+username% vi ~/.vnc/xstartup
+export XDG_SESSION_TYPE=x11
+export GDK_BACKEND=x11
+# Modify --session to be gnome-classic or otherwise that you need
+# If you are using XFCE, you could put exec xfce4-session instead
+exec gnome-session --session=gnome
+username% chmod +x ~/.vnc/xstartup
+# Reboot or logout</code></pre></div>
 </div>
 
 
@@ -714,10 +693,10 @@ load-module module-udev-detect tsched=0
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="clang.html" class="btn btn-neutral float-right" title="Clang" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../gettingstarted.html" class="btn btn-neutral float-right" title="Getting started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="bup.html" class="btn btn-neutral" title="Bup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="port465.html" class="btn btn-neutral" title="Is port 465 deprecated?" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
