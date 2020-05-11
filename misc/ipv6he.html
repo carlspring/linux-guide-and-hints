@@ -10,7 +10,7 @@
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests; default-src 'self'; style-src 'self' https://github.githubassets.com/ stackpath.bootstrapcdn.com; script-src 'self' https://gist.github.com/remyabel/2cac59a778fa34d0c61e246554fe3e3c.js https://gist.github.com/remyabel/bbebf3043860abe24a19bf0b1d67bd33.js https://gist.github.com/remyabel/e9c33b830da73768fe6ea2363fc27e1a.js; img-src 'self'; media-src 'self'; font-src 'self' fonts.gstatic.com stackpath.bootstrapcdn.com;">
   
   
-  <title>Password management &mdash; Linux Guide and Hints</title>
+  <title>Hurricane Electric IPv6 Tunnel &mdash; Linux Guide and Hints</title>
   
 
   
@@ -34,8 +34,8 @@
   <link rel="stylesheet" href="../_static/css/prism-okaidia.min.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="The Euphemism Review" href="../misc/euphemism.html" />
-    <link rel="prev" title="Anti-patterns" href="antipatterns.html" /> 
+    <link rel="next" title="MinGW" href="mingw.html" />
+    <link rel="prev" title="The Euphemism Review" href="euphemism.html" /> 
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -102,47 +102,47 @@
 </li>
 </ul>
 <p class="caption"><span class="caption-text">Security</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="antipatterns.html">Anti-patterns</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="antipatterns.html#not-using-https">Not using HTTPS</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="antipatterns.html#insecure-requests">Insecure requests</a></li>
-<li class="toctree-l3"><a class="reference internal" href="antipatterns.html#using-insecure-ciphers">Using insecure ciphers</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../security/antipatterns.html">Anti-patterns</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../security/antipatterns.html#not-using-https">Not using HTTPS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../security/antipatterns.html#insecure-requests">Insecure requests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/antipatterns.html#using-insecure-ciphers">Using insecure ciphers</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="antipatterns.html#password-security">Password security</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="antipatterns.html#using-deprecated-hashing-functions">Using deprecated hashing functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="antipatterns.html#arbitrary-password-lengths">Arbitrary password lengths</a></li>
-<li class="toctree-l3"><a class="reference internal" href="antipatterns.html#client-side-hashing">Client-side hashing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/antipatterns.html#password-security">Password security</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../security/antipatterns.html#using-deprecated-hashing-functions">Using deprecated hashing functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/antipatterns.html#arbitrary-password-lengths">Arbitrary password lengths</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/antipatterns.html#client-side-hashing">Client-side hashing</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="antipatterns.html#disabling-mitigations">Disabling mitigations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="antipatterns.html#disabling-selinux">Disabling SELinux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/antipatterns.html#disabling-mitigations">Disabling mitigations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/antipatterns.html#disabling-selinux">Disabling SELinux</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Password management</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#backing-your-databases-up-to-your-phone">Backing your databases up to your phone</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#faq">FAQ</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#isn-t-using-a-single-password-bad">Isn’t using a single password bad?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#but-your-master-password-can-be-stolen-by-a-keylogger">But your master password can be stolen by a keylogger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/passwords.html">Password management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../security/passwords.html#backing-your-databases-up-to-your-phone">Backing your databases up to your phone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/passwords.html#faq">FAQ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../security/passwords.html#isn-t-using-a-single-password-bad">Isn’t using a single password bad?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/passwords.html#but-your-master-password-can-be-stolen-by-a-keylogger">But your master password can be stolen by a keylogger</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 <p class="caption"><span class="caption-text">Miscellaneous</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../misc/euphemism.html">The Euphemism Review</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../misc/euphemism.html#please-don-t-say-timeframe">Please don’t say “timeframe”</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="euphemism.html">The Euphemism Review</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="euphemism.html#please-don-t-say-timeframe">Please don’t say “timeframe”</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../misc/ipv6he.html">Hurricane Electric IPv6 Tunnel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../misc/mingw.html">MinGW</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../misc/mingw.html#why-not-use-wsl">Why not use WSL?</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Hurricane Electric IPv6 Tunnel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mingw.html">MinGW</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mingw.html#why-not-use-wsl">Why not use WSL?</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../misc/port465.html">Is port 465 deprecated?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../misc/vnc.html">VNC</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../misc/vnc.html#setup">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="port465.html">Is port 465 deprecated?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vnc.html">VNC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vnc.html#setup">Setup</a></li>
 </ul>
 </li>
 </ul>
@@ -638,14 +638,14 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Password management</li>
+      <li>Hurricane Electric IPv6 Tunnel</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/nazunalika/linux-guide-and-hints/blob/master/source/security/passwords.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/nazunalika/linux-guide-and-hints/blob/master/source/misc/ipv6he.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -659,67 +659,40 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="password-management">
-<h1>Password management<a class="headerlink" href="#password-management" title="Permalink to this headline">¶</a></h1>
-<p>Our <a class="reference internal" href="antipatterns.html"><span class="doc">antipatterns</span></a> article discusses some insecure things
-that can be done w.r.t. password from a system administrator or developer point
-of view. This article is aimed towards users.</p>
-<p>There is a wealth of information about there about how to choose a secure
-password.  Often this involves multiple character classes (such as lowercase,
-uppercase, punctuation etc.) or passphrases (strings of randomly chosen
-dictionary words, ala <a class="reference external" href="https://en.wikipedia.org/wiki/Diceware">Diceware</a>).
-However, what’s often skipped is the discussion of two other important
-elements: length and entropy of the password.  Without dwelving into a deep
-discussion, a complex password which is short is weak.  And a password with low
-entropy (that is, the password is generated using a poor random number
-generator or manually by a human) is also bad. The rule of thumb to remember is
-that <strong>how a password is generated</strong> is more important than heuristic measures
-of the complexity of a password. Furthermore, you should avoid reusing passwords
-due to <a class="reference external" href="https://www.owasp.org/index.php/Credential_stuffing">credential stuffing attacks</a>.</p>
-<p>Regardless of what your password ends up being or how complex your password is,
-you should be using password manager software to store your passwords. For the
-desktop, I highly recommend <a class="reference external" href="https://keepassxc.org/">KeePassXC</a> and for
-mobile <a class="reference external" href="https://github.com/strongbox/strongbox">Strongbox</a> as KeePassXC does
-not have a mobile client. You can also use <a class="reference external" href="https://www.passwordstore.org/">Pass</a>, which is a commandline password store that
-uses GPG to encrypt your passwords and has a plethora of third party
-integrations.</p>
-<div class="section" id="backing-your-databases-up-to-your-phone">
-<h2>Backing your databases up to your phone<a class="headerlink" href="#backing-your-databases-up-to-your-phone" title="Permalink to this headline">¶</a></h2>
-<p>We assume you’ve read our <a class="reference internal" href="../fedora/iphone.html"><span class="doc">IPhone</span></a> article. A typical mechanism for
-transferring files to your phone is to either use iTunes or the cloud. However, in addition
-to iTunes working poorly on Linux, I consider it to be user unfriendly bloatware. I also do not
-like using iCloud to avoid exposing myself to unnecessary risk.</p>
-<p>Transferring your files to your iphone using <code class="docutils literal notranslate"><span class="pre">ifuse</span></code> is very straightforward:</p>
-<pre><code class="language-shell">#!/bin/bash
+  <div class="section" id="hurricane-electric-ipv6-tunnel">
+<h1>Hurricane Electric IPv6 Tunnel<a class="headerlink" href="#hurricane-electric-ipv6-tunnel" title="Permalink to this headline">¶</a></h1>
+<p>On distributions that use Network Manager, you can setup an IPv6 tunnel with Hurricane Electric. Make sure you have done the following.</p>
+<ol class="arabic simple">
+<li>Create an account at <a class="reference external" href="https://tunnelbroker.net">Hurricane Electric</a></li>
+<li>Click “Create Regular Tunnel” on the left hand side</li>
+<li>Enter your IPv4 public IP address in the first box</li>
+<li>Choose the closest tunnel server to you (in my case, it’s Phoenix) - Note the IP Address (eg. 66.220.7.82)</li>
+<li>Click “create tunnel”</li>
+<li>Note all the information in your “tunnel details”</li>
+</ol>
+<pre><code class="language-shell">% nmcli con add type ip-tunnel \
+        # Name of the interface
+        ifname sit0 \
+        # Tunnel protocol with the endpoint
+        mode sit remote 66.220.7.82 -- \
+        # Disabling IPv4 on this interface
+        ipv4.method disabled \
+        # Manual IPv6 configuration
+        ipv6.method manual \
+        # IPv6 endpoint addresses (not your subnet)
+        ipv6.address 2001:470:1f18:96::2/64 \
+        ipv6.gateway 2001:470:1f18:96::1/64</code></pre><p>You will also need to open some parts of your firewall to allow communication. In particular, ICMP (at least type 8) should be allowed from the tunnel server for the heartbeat.</p>
+<p>After this, you should be able to assign addresses from your routed /64 on your current machine or machines in your network and be able to ping out. You can also create a /48 and make multiple /64’s if you wish.</p>
+<p>It is possible to update the tunnel automatically with your IPv4 address in the event it changes.</p>
+<pre><code class="language-shell">% vi /etc/NetworkManager/dispatcher.d/pre-up.d/00-tunnelfix.sh
+#!/bin/sh
+user=USERNAME
+pass=PASSWORD
+tunnel=TUNNEL_ID
 
-if ifuse --documents com.markmcguill.strongbox "$HOME"/strongbox/;
-then
-    cp "$HOME"/NewDatabase* "$HOME"/strongbox || fail
-    sleep 1
-    fusermount -u "$HOME"/strongbox || fail
-fi</code></pre><p>It is a quick operation and you can start using the database on your phone instantly.</p>
-</div>
-<div class="section" id="faq">
-<h2>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="isn-t-using-a-single-password-bad">
-<h3>Isn’t using a single password bad?<a class="headerlink" href="#isn-t-using-a-single-password-bad" title="Permalink to this headline">¶</a></h3>
-<p>Using a single, complex password stored only in your brain is more secure than
-multiple insecure passwords that you have to remember. Writing those passwords
-down, storing them in a plaintext file or some other mechanism is not as secure
-as an encrypted database. It goes without saying that the master password you
-choose should be long and generated in a cryptographically secure manner.</p>
-</div>
-<div class="section" id="but-your-master-password-can-be-stolen-by-a-keylogger">
-<h3>But your master password can be stolen by a keylogger<a class="headerlink" href="#but-your-master-password-can-be-stolen-by-a-keylogger" title="Permalink to this headline">¶</a></h3>
-<p>The same could be said about any other password, password manager or not.
-Furthermore, if an attacker has physical access to your computer, it’s
-generally considered game over.  Password managers like KeePassXC do have
-features like autotype which can autofill passwords in an obfuscated manner to
-defeat software keyloggers. However, you should be making sure your computer is
-free of malware anyway.</p>
-</div>
-</div>
-</div>
+if [ "$1" = sit0 ]; then
+  wget -O /dev/null https://$user:$pass@ipv4.tunnelbroker.net/ipv4_end.php?tid=$tunnel
+fi</code></pre></div>
 
 
            </div>
@@ -729,10 +702,10 @@ free of malware anyway.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../misc/euphemism.html" class="btn btn-neutral float-right" title="The Euphemism Review" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="mingw.html" class="btn btn-neutral float-right" title="MinGW" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="antipatterns.html" class="btn btn-neutral" title="Anti-patterns" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="euphemism.html" class="btn btn-neutral" title="The Euphemism Review" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
