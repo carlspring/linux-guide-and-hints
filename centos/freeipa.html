@@ -387,8 +387,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#ad-trust-double-uid">AD Trust Double UID</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#omnios-illumos">OmniOS/Illumos</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#legacy-hbac">Legacy HBAC</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id3">Solaris 10</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id4">Solaris 11</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Solaris 10</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Solaris 11</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#omnios">Omnios</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pam-hbac-conf">pam_hbac.conf</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pam-configuration">PAM Configuration</a></li>
@@ -668,89 +668,89 @@
            <div itemprop="articleBody">
             
   <div class="section" id="freeipa">
-<h1><a class="toc-backref" href="#id7">FreeIPA</a><a class="headerlink" href="#freeipa" title="Permalink to this headline">¶</a></h1>
+<h1><a class="toc-backref" href="#id6">FreeIPA</a><a class="headerlink" href="#freeipa" title="Permalink to this headline">¶</a></h1>
 <p>This tutorial goes over how to install and configure FreeIPA on CentOS 7 or 8 servers with replicas, as well as configuring client machines to connect and utilize FreeIPA resources, policies (eg sudo), and host based access control methods. We will also go over a scenario of configuring a trust with an Active Directory domain. The client setup will work for Fedora users as the packages are the same, just newer versions.</p>
 <div class="contents topic" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#freeipa" id="id7">FreeIPA</a><ul>
-<li><a class="reference internal" href="#overview" id="id8">Overview</a></li>
-<li><a class="reference internal" href="#requirements" id="id9">Requirements</a></li>
-<li><a class="reference internal" href="#tutorial-preface-notes-and-recommendations" id="id10">Tutorial Preface, Notes, and Recommendations</a></li>
-<li><a class="reference internal" href="#dns" id="id11">DNS</a><ul>
-<li><a class="reference internal" href="#delegation" id="id12">Delegation</a></li>
+<li><a class="reference internal" href="#freeipa" id="id6">FreeIPA</a><ul>
+<li><a class="reference internal" href="#overview" id="id7">Overview</a></li>
+<li><a class="reference internal" href="#requirements" id="id8">Requirements</a></li>
+<li><a class="reference internal" href="#tutorial-preface-notes-and-recommendations" id="id9">Tutorial Preface, Notes, and Recommendations</a></li>
+<li><a class="reference internal" href="#dns" id="id10">DNS</a><ul>
+<li><a class="reference internal" href="#delegation" id="id11">Delegation</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#server-setup" id="id13">Server Setup</a><ul>
-<li><a class="reference internal" href="#required-packages" id="id14">Required Packages</a></li>
-<li><a class="reference internal" href="#installation" id="id15">Installation</a></li>
-<li><a class="reference internal" href="#replica" id="id16">Replica</a></li>
-<li><a class="reference internal" href="#replica-automation" id="id17">Replica Automation</a></li>
+<li><a class="reference internal" href="#server-setup" id="id12">Server Setup</a><ul>
+<li><a class="reference internal" href="#required-packages" id="id13">Required Packages</a></li>
+<li><a class="reference internal" href="#installation" id="id14">Installation</a></li>
+<li><a class="reference internal" href="#replica" id="id15">Replica</a></li>
+<li><a class="reference internal" href="#replica-automation" id="id16">Replica Automation</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#server-migration-upgrade" id="id18">Server Migration/Upgrade</a></li>
-<li><a class="reference internal" href="#active-directory-trust" id="id19">Active Directory Trust</a></li>
-<li><a class="reference internal" href="#disable-anonymous-bind" id="id20">Disable Anonymous Bind</a></li>
-<li><a class="reference internal" href="#client-setup" id="id21">Client Setup</a><ul>
-<li><a class="reference internal" href="#rhel-7-8" id="id22">RHEL 7 &amp; 8</a></li>
-<li><a class="reference internal" href="#mac-clients" id="id23">Mac Clients</a><ul>
-<li><a class="reference internal" href="#discovery-and-settings" id="id24">Discovery and Settings</a></li>
+<li><a class="reference internal" href="#server-migration-upgrade" id="id17">Server Migration/Upgrade</a></li>
+<li><a class="reference internal" href="#active-directory-trust" id="id18">Active Directory Trust</a></li>
+<li><a class="reference internal" href="#disable-anonymous-bind" id="id19">Disable Anonymous Bind</a></li>
+<li><a class="reference internal" href="#client-setup" id="id20">Client Setup</a><ul>
+<li><a class="reference internal" href="#rhel-7-8" id="id21">RHEL 7 &amp; 8</a></li>
+<li><a class="reference internal" href="#mac-clients" id="id22">Mac Clients</a><ul>
+<li><a class="reference internal" href="#discovery-and-settings" id="id23">Discovery and Settings</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#suse" id="id25">SUSE</a></li>
+<li><a class="reference internal" href="#suse" id="id24">SUSE</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#hbac" id="id26">HBAC</a></li>
-<li><a class="reference internal" href="#sudo" id="id27">SUDO</a></li>
-<li><a class="reference internal" href="#legacy-client-setup" id="id28">Legacy Client Setup</a><ul>
-<li><a class="reference internal" href="#solaris-10" id="id29">Solaris 10</a></li>
-<li><a class="reference internal" href="#solaris-11" id="id30">Solaris 11</a></li>
-<li><a class="reference internal" href="#automated-scripts" id="id31">Automated Scripts</a></li>
-<li><a class="reference internal" href="#ad-trust-double-uid" id="id32">AD Trust Double UID</a></li>
-<li><a class="reference internal" href="#omnios-illumos" id="id33">OmniOS/Illumos</a></li>
-<li><a class="reference internal" href="#legacy-hbac" id="id34">Legacy HBAC</a><ul>
-<li><a class="reference internal" href="#id3" id="id35">Solaris 10</a></li>
-<li><a class="reference internal" href="#id4" id="id36">Solaris 11</a></li>
-<li><a class="reference internal" href="#omnios" id="id37">Omnios</a></li>
-<li><a class="reference internal" href="#pam-hbac-conf" id="id38">pam_hbac.conf</a></li>
-<li><a class="reference internal" href="#pam-configuration" id="id39">PAM Configuration</a></li>
+<li><a class="reference internal" href="#hbac" id="id25">HBAC</a></li>
+<li><a class="reference internal" href="#sudo" id="id26">SUDO</a></li>
+<li><a class="reference internal" href="#legacy-client-setup" id="id27">Legacy Client Setup</a><ul>
+<li><a class="reference internal" href="#solaris-10" id="id28">Solaris 10</a></li>
+<li><a class="reference internal" href="#solaris-11" id="id29">Solaris 11</a></li>
+<li><a class="reference internal" href="#automated-scripts" id="id30">Automated Scripts</a></li>
+<li><a class="reference internal" href="#ad-trust-double-uid" id="id31">AD Trust Double UID</a></li>
+<li><a class="reference internal" href="#omnios-illumos" id="id32">OmniOS/Illumos</a></li>
+<li><a class="reference internal" href="#legacy-hbac" id="id33">Legacy HBAC</a><ul>
+<li><a class="reference internal" href="#id2" id="id34">Solaris 10</a></li>
+<li><a class="reference internal" href="#id3" id="id35">Solaris 11</a></li>
+<li><a class="reference internal" href="#omnios" id="id36">Omnios</a></li>
+<li><a class="reference internal" href="#pam-hbac-conf" id="id37">pam_hbac.conf</a></li>
+<li><a class="reference internal" href="#pam-configuration" id="id38">PAM Configuration</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#login-with-ad-users-to-legacy-clients" id="id40">Login with AD Users to Legacy Clients</a></li>
-<li><a class="reference internal" href="#legacy-active-directory-trust-notes" id="id41">Legacy Active Directory Trust Notes</a><ul>
-<li><a class="reference internal" href="#domain-resolution-order-oddness" id="id42">Domain Resolution Order Oddness</a></li>
-<li><a class="reference internal" href="#solaris-weirdness" id="id43">Solaris Weirdness</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#domain-options" id="id44">Domain Options</a><ul>
-<li><a class="reference internal" href="#remove-realm-for-ad-users" id="id45">Remove &#64;realm for AD users</a></li>
-<li><a class="reference internal" href="#ad-and-ipa-group-names-with-short-names" id="id46">AD and IPA group names with short names</a></li>
-<li><a class="reference internal" href="#sites-and-ad-dc-s" id="id47">Sites and AD DC’s</a></li>
-<li><a class="reference internal" href="#rhel-6-sudo-and-default-domain-suffix" id="id48">RHEL 6 SUDO and Default Domain Suffix</a></li>
-<li><a class="reference internal" href="#set-default-shell-for-ad-users" id="id49">Set Default Shell for AD Users</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#automated-kerberos-principals" id="id50">Automated Kerberos Principals</a><ul>
-<li><a class="reference internal" href="#hadoop-cloudera" id="id51">Hadoop/Cloudera</a><ul>
-<li><a class="reference internal" href="#cloudera-manager-woes" id="id52">Cloudera Manager Woes</a></li>
-<li><a class="reference internal" href="#the-solution" id="id53">The Solution</a></li>
+<li><a class="reference internal" href="#login-with-ad-users-to-legacy-clients" id="id39">Login with AD Users to Legacy Clients</a></li>
+<li><a class="reference internal" href="#legacy-active-directory-trust-notes" id="id40">Legacy Active Directory Trust Notes</a><ul>
+<li><a class="reference internal" href="#domain-resolution-order-oddness" id="id41">Domain Resolution Order Oddness</a></li>
+<li><a class="reference internal" href="#solaris-weirdness" id="id42">Solaris Weirdness</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#dns-forwarding" id="id54">DNS Forwarding</a><ul>
-<li><a class="reference internal" href="#dns-forwarding-to-dot" id="id55">DNS Forwarding to DoT</a></li>
+<li><a class="reference internal" href="#domain-options" id="id43">Domain Options</a><ul>
+<li><a class="reference internal" href="#remove-realm-for-ad-users" id="id44">Remove &#64;realm for AD users</a></li>
+<li><a class="reference internal" href="#ad-and-ipa-group-names-with-short-names" id="id45">AD and IPA group names with short names</a></li>
+<li><a class="reference internal" href="#sites-and-ad-dc-s" id="id46">Sites and AD DC’s</a></li>
+<li><a class="reference internal" href="#rhel-6-sudo-and-default-domain-suffix" id="id47">RHEL 6 SUDO and Default Domain Suffix</a></li>
+<li><a class="reference internal" href="#set-default-shell-for-ad-users" id="id48">Set Default Shell for AD Users</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#logging" id="id56">Logging</a><ul>
-<li><a class="reference internal" href="#audit-logs" id="id57">Audit Logs</a></li>
+<li><a class="reference internal" href="#automated-kerberos-principals" id="id49">Automated Kerberos Principals</a><ul>
+<li><a class="reference internal" href="#hadoop-cloudera" id="id50">Hadoop/Cloudera</a><ul>
+<li><a class="reference internal" href="#cloudera-manager-woes" id="id51">Cloudera Manager Woes</a></li>
+<li><a class="reference internal" href="#the-solution" id="id52">The Solution</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#certificates" id="id58">Certificates</a><ul>
-<li><a class="reference internal" href="#renewed-ipa-http-certificate-stuck" id="id59">Renewed IPA HTTP Certificate Stuck</a></li>
-<li><a class="reference internal" href="#ca-related-certificates-stuck" id="id60">CA Related Certificates Stuck</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dns-forwarding" id="id53">DNS Forwarding</a><ul>
+<li><a class="reference internal" href="#dns-forwarding-to-dot" id="id54">DNS Forwarding to DoT</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#logging" id="id55">Logging</a><ul>
+<li><a class="reference internal" href="#audit-logs" id="id56">Audit Logs</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#certificates" id="id57">Certificates</a><ul>
+<li><a class="reference internal" href="#renewed-ipa-http-certificate-stuck" id="id58">Renewed IPA HTTP Certificate Stuck</a></li>
+<li><a class="reference internal" href="#ca-related-certificates-stuck" id="id59">CA Related Certificates Stuck</a></li>
 </ul>
 </li>
 </ul>
@@ -758,11 +758,11 @@
 </ul>
 </div>
 <div class="section" id="overview">
-<h2><a class="toc-backref" href="#id8">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id7">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>FreeIPA is an integrated security information management system combining Linux, a Directory Server (389), Kerberos, NTP, DNS, DogTag. It’s a system that can be loosely compared to Active Directory in what it attempts to solve for Linux and UNIX clients and even mixed environments. While it is <strong>not</strong> an active directory, it is an integrated Identity and Authentication solution for Linux/UNIX environments, which means it does not support Windows clients. One problem that FreeIPA attempts to solve is giving back control to the Linux/UNIX administration teams of access, authentication, and authorization rather than trying to integrate directly into Active Directory, where the controls do not work the same or do not work at all. And because of this, no third party software is required to be installed.</p>
 </div>
 <div class="section" id="requirements">
-<h2><a class="toc-backref" href="#id9">Requirements</a><a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">Requirements</a><a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <p>Here are the list of requirements below.</p>
 <ul class="simple">
 <li>CentOS 7+ or Fedora 30+</li>
@@ -772,7 +772,7 @@
 </ul>
 </div>
 <div class="section" id="tutorial-preface-notes-and-recommendations">
-<h2><a class="toc-backref" href="#id10">Tutorial Preface, Notes, and Recommendations</a><a class="headerlink" href="#tutorial-preface-notes-and-recommendations" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id9">Tutorial Preface, Notes, and Recommendations</a><a class="headerlink" href="#tutorial-preface-notes-and-recommendations" title="Permalink to this headline">¶</a></h2>
 <div class="card">
 <div class="card-header bg-warning">
 <i class='fa fa-exclamation-circle'></i> Warning</div><div class="card-body">
@@ -811,12 +811,12 @@ Trust Information</h5>If you are in a mixed environment (both Windows and Linux/
 NOFILE limits</h5>You may run into file descriptor limit problems depending on the IPA version you are using and/or patch level. Ensure that /etc/sysconfig/dirsrv.systemd has LimitNOFILE set to at least 16384. By default this shouldn’t happen in 7.6+</div></div>
 </div>
 <div class="section" id="dns">
-<h2><a class="toc-backref" href="#id11">DNS</a><a class="headerlink" href="#dns" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id10">DNS</a><a class="headerlink" href="#dns" title="Permalink to this headline">¶</a></h2>
 <p>As noted in the previous section, you must try not to hijack a domain. You can migrate records over to FreeIPA’s DNS if you’d like, but care must be taken with that approach.</p>
 <p>While FreeIPA can do the typical DNS server work such as forward/reverse zones and various types of records, it should not be considered a full solution. It does not support views (eg, you can’t have internal and external views, assuming you have domains that are publically facing). In the event you need to have views, that’s when you need a different DNS server or service to provide this to you.</p>
 <p>There are two ways you can have DNS entries updated dynamically: –enable-dns-updates for ipa-client-install and DHCP dynamic DNS updates. Both are sufficient. The latter requires additional work and is outside the scope of this write up.</p>
 <div class="section" id="delegation">
-<h3><a class="toc-backref" href="#id12">Delegation</a><a class="headerlink" href="#delegation" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id11">Delegation</a><a class="headerlink" href="#delegation" title="Permalink to this headline">¶</a></h3>
 <p>Throughout this guide, you may find we will be using a subdomain by DNS delegation, as it would be a more real world example of bringing in FreeIPA to an environment that is already in place, working, with a DNS hosted by AD or by an appliance. Majority of the examples assume both IPA and AD is delegated (when it’s normally IPA that’s just delegated while AD hosts the actual parent zone). Using this type of setup, it is not required for clients to have entries in the IPA domain. In fact, they can be in other domains as long as they have A/AAAA/PTR records associated with them. This assumes that there could be dynamic dns associated with DHCP or everything is static and lives in the parent zones. <strong>The caveat to this is SSO will fail</strong>.</p>
 <p>You can setup already existing DNS servers to delegate an entire domain or a subdomain for FreeIPA. This way, you don’t overlap with a domain that’s already in use. So for example, if AD owns example.com, you could have AD delegate ipa.example.com or even forward example.net. If AD is not the DNS provider for the environment, you can have the appliance delegate the domain in the same manner.</p>
 <p>Below is a bind example of what example.com would look like when delegating the IPA domain:</p>
@@ -837,9 +837,9 @@ np-ipa02                A       10.200.0.231</code></pre><p>Note that AD can sen
 </div>
 </div>
 <div class="section" id="server-setup">
-<h2><a class="toc-backref" href="#id13">Server Setup</a><a class="headerlink" href="#server-setup" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id12">Server Setup</a><a class="headerlink" href="#server-setup" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="required-packages">
-<h3><a class="toc-backref" href="#id14">Required Packages</a><a class="headerlink" href="#required-packages" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id13">Required Packages</a><a class="headerlink" href="#required-packages" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>ipa-server</li>
 <li>ipa-client (required as an IPA server is technically a client of the domain)</li>
@@ -849,7 +849,7 @@ np-ipa02                A       10.200.0.231</code></pre><p>Note that AD can sen
 </ul>
 </div>
 <div class="section" id="installation">
-<h3><a class="toc-backref" href="#id15">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id14">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
 <p>To install the server, make sure the hostname is set to the A records and NS delegations you’ve put in DNS (which won’t respond to a DNS lookup). If these are stand-alone, then you can just keep it at the top level (eg, example.com). You’ll also need to modify /etc/hosts, set static IP addresses, and then run the ipa-server-install command.</p>
 <pre><code class="language-shell">% hostnamectl set-hostname server1.ipa.example.com
 % nmcli con mod ens192 ipv4.address 10.200.0.230/24
@@ -883,7 +883,7 @@ np-ipa02                A       10.200.0.231</code></pre><p>Note that AD can sen
 % ipa user-add --first=First --last=Last --cn="First Last Admin" --gecos="First Last Admin" flast2
 % ipa group-add-member --users=flast2 admins</code></pre></div>
 <div class="section" id="replica">
-<h3><a class="toc-backref" href="#id16">Replica</a><a class="headerlink" href="#replica" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id15">Replica</a><a class="headerlink" href="#replica" title="Permalink to this headline">¶</a></h3>
 <p>On the replica, ensure you repeat the same steps as above.</p>
 <pre><code class="language-shell">% hostnamectl set-hostname server2.ipa.example.com
 % nmcli con mod ens192 ipv4.address 10.200.0.231/24
@@ -904,7 +904,7 @@ np-ipa02                A       10.200.0.231</code></pre><p>Note that AD can sen
 server1.ipa.example.com: master
 server2.ipa.example.com: master</code></pre></div>
 <div class="section" id="replica-automation">
-<h3><a class="toc-backref" href="#id17">Replica Automation</a><a class="headerlink" href="#replica-automation" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id16">Replica Automation</a><a class="headerlink" href="#replica-automation" title="Permalink to this headline">¶</a></h3>
 <p>It is possible to automate the replica installation. To automate the replica installation, the following requirements would need to be met:</p>
 <ul class="simple">
 <li>Server must be added as a client (ipa-client-install) with an IP address on the commandline</li>
@@ -916,7 +916,7 @@ server2.ipa.example.com: master</code></pre></div>
 </div>
 </div>
 <div class="section" id="server-migration-upgrade">
-<h2><a class="toc-backref" href="#id18">Server Migration/Upgrade</a><a class="headerlink" href="#server-migration-upgrade" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id17">Server Migration/Upgrade</a><a class="headerlink" href="#server-migration-upgrade" title="Permalink to this headline">¶</a></h2>
 <p>To perform a migration from RHEL 7 to RHEL 8, the following steps will have to take place:</p>
 <ul class="simple">
 <li>RHEL 8 system is installed and enrolled as a client</li>
@@ -1026,7 +1026,7 @@ el7% init 0</code></pre><p>The above is in the case of a single master installat
 </ul>
 </div>
 <div class="section" id="active-directory-trust">
-<h2><a class="toc-backref" href="#id19">Active Directory Trust</a><a class="headerlink" href="#active-directory-trust" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id18">Active Directory Trust</a><a class="headerlink" href="#active-directory-trust" title="Permalink to this headline">¶</a></h2>
 <p>To initiate a trust with your active directory domain, ensure the following requirements are met.</p>
 <div class="card">
 <div class="card-header bg-info">
@@ -1065,7 +1065,7 @@ UDP: 138, 139, 389, 445</div></div>
 <pre><code class="language-shell">% id aduser1@example.com
 uid=XXXXX(aduser1@example.com) gid=XXXXX(aduser1@example.com) groups=XXXXX(aduser1@example.com)</code></pre></div>
 <div class="section" id="disable-anonymous-bind">
-<h2><a class="toc-backref" href="#id20">Disable Anonymous Bind</a><a class="headerlink" href="#disable-anonymous-bind" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id19">Disable Anonymous Bind</a><a class="headerlink" href="#disable-anonymous-bind" title="Permalink to this headline">¶</a></h2>
 <p>In some cases, it is a requirement to disable <em>all</em> anonymous binds. If this is the case, you will need to modify cn=config on each master as it is not replicated.</p>
 <div class="card">
 <div class="card-header bg-warning">
@@ -1081,14 +1081,14 @@ nsslapd-allow-anonymous-access: rootdse
 
 modifying entry "cn=config"</code></pre></div>
 <div class="section" id="client-setup">
-<h2><a class="toc-backref" href="#id21">Client Setup</a><a class="headerlink" href="#client-setup" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id20">Client Setup</a><a class="headerlink" href="#client-setup" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="rhel-7-8">
-<h3><a class="toc-backref" href="#id22">RHEL 7 &amp; 8</a><a class="headerlink" href="#rhel-7-8" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id21">RHEL 7 &amp; 8</a><a class="headerlink" href="#rhel-7-8" title="Permalink to this headline">¶</a></h3>
 <p>Ensure your /etc/resolv.conf (or other dns settings) are set correctly. Ensure your hostname is also set correctly.</p>
 <pre><code class="language-shell">% yum install ipa-client -y
 % ipa-client-install --realm EXAMPLE.COM --domain example.com --mkhomedir</code></pre></div>
 <div class="section" id="mac-clients">
-<h3><a class="toc-backref" href="#id23">Mac Clients</a><a class="headerlink" href="#mac-clients" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id22">Mac Clients</a><a class="headerlink" href="#mac-clients" title="Permalink to this headline">¶</a></h3>
 <p>MacOS Clients are an interesting workstation to setup as a FreeIPA client. It takes a little bit of fighting and troubleshooting, but it can work with the right settings. <strong>Note that as of Catalina, you may not be able to login to your account nor will creating a mobile account function as you would expect.</strong></p>
 <div class="card">
 <div class="card-header bg-info">
@@ -1191,7 +1191,7 @@ Encrypt using SSL (selected)</code></pre><ol class="arabic simple">
 </ol>
 <ul class="simple">
 <li>If you select rfc2307, it will ask for your base DN (eg, dc=ipa,dc=example,dc=com)</li>
-<li>If you select “custom”, you will need to do this manually for each record type. <strong>This is recommended for most deployments.</strong></li>
+<li>If you select “custom”, you will need to do this manually for each record type. <strong>You’re better off using rfc2307 and working from there</strong></li>
 </ul>
 <ol class="arabic simple">
 <li>Click the “+” to add a groups record type or scroll and find “groups”.</li>
@@ -1275,7 +1275,7 @@ Encrypt using SSL (selected)</code></pre><ol class="arabic simple">
 </tbody>
 </table>
 <ol class="arabic simple">
-<li>Expand “users” and ensure the following for each record type. You can click the “+” to add the attribute types as needed.</li>
+<li>Expand “users” and ensure the following for each record type. You can click the “+” to add the attribute types as needed. <strong>Do not set homeDirectory otherwise you will fail to login.</strong></li>
 </ol>
 <table border="1" class="docutils align-default">
 <colgroup>
@@ -1294,28 +1294,25 @@ Encrypt using SSL (selected)</code></pre><ol class="arabic simple">
 <tr class="row-odd"><td>GeneratedUID</td>
 <td>GeneratedUID or ipaUniqueID</td>
 </tr>
-<tr class="row-even"><td>HomeDirectory</td>
+<tr class="row-even"><td>NFSHomeDirectory</td>
 <td>#/Users/$uid$</td>
 </tr>
-<tr class="row-odd"><td>NFSHomeDirectory</td>
-<td>#/Users/$uid$</td>
-</tr>
-<tr class="row-even"><td>PrimaryGroupID</td>
+<tr class="row-odd"><td>PrimaryGroupID</td>
 <td>gidNumber</td>
 </tr>
-<tr class="row-odd"><td>RealName</td>
+<tr class="row-even"><td>RealName</td>
 <td>cn</td>
 </tr>
-<tr class="row-even"><td>RecordName</td>
+<tr class="row-odd"><td>RecordName</td>
 <td>uid</td>
 </tr>
-<tr class="row-odd"><td>UniqueID</td>
+<tr class="row-even"><td>UniqueID</td>
 <td>uidNumber</td>
 </tr>
-<tr class="row-even"><td>UserShell</td>
+<tr class="row-odd"><td>UserShell</td>
 <td>loginShell</td>
 </tr>
-<tr class="row-odd"><td>AltSecurityIdentities</td>
+<tr class="row-even"><td>AltSecurityIdentities</td>
 <td>#Kerberos:$krbPrincipalName$</td>
 </tr>
 </tbody>
@@ -1333,9 +1330,12 @@ Encrypt using SSL (selected)</code></pre><ol class="arabic simple">
 <pre><code class="language-shell">% dscacheutil -flushcache
 % dscacheutil -q user -a name username</code></pre><p>You should get a return.</p>
 <p>If you want to further verify users and groups after the above succeeds, open up the directory utility again. Click “Directory Editor”, ensure you are searching for “users” and check that they appear in a list on the right hand side, optionally doing a search. In a default setup, you shouldn’t need an account to do (some) anonymous lookups. If you changed that in any way, you will need to create a readonly system account in cn=sysaccounts,cn=etc.</p>
-<p>In a terminal, you will need to create the home directories via the createmobileaccount command. <a class="footnote-reference" href="#f2" id="id2">[2]</a></p>
-<pre><code class="language-shell">% sudo /System/Library/CoreServices/ManagedClient.app/Contents/Resources/createmobileaccount -n username -P</code></pre><p>Log out and login as your IPA user. It should succeed. It takes a few moments, but you will eventually see the first login prompts that require you to hit next a couple of times. You’ll get a fresh desktop.</p>
-<p>Log out and go back to your local account. Go to system preferences, users &amp; groups, find the account, set it as an administrator of the machine.</p>
+<p>Login to the account for the first time from the login screen. Once the setup has complete, log out and back to a login account. In a terminal, you will need to make a mobile account.[#f2]_</p>
+<pre><code class="language-shell">% sudo /System/Library/CoreServices/ManagedClient.app/Contents/Resources/createmobileaccount -n username
+# Press enter
+# OPTIONAL: Allow the mobile account to be an administrator
+% sudo dscl . -append /Groups/admin GroupMembership username</code></pre><p>Go to system preferences, users &amp; groups and ensure the account is a mobile account.</p>
+<p><strong>Note</strong>: If you want groups from IPA to resolve to the system, you’ll need to enable the compat tree when using this setup (RFC2307).</p>
 <div class="card">
 <div class="card-header bg-warning">
 <i class='fa fa-exclamation-circle'></i> Warning</div><div class="card-body">
@@ -1344,6 +1344,7 @@ Password Notes</h5><p>There are a couple of problems with this setup that you sh
 <ul class="simple">
 <li>If you do a mobile account, changing your password through the FreeIPA gui does not change your passwords on your system.</li>
 <li>If your account does not have any keytabs (eg, you haven’t had your mac on or haven’t logged in in over 24 hours), you can login with the new password and it will suceed. The system will cache the new password right away. However, your keychain the first time will ask for the old passwords and this is normal. So you can change them by hand or you can log out and back in and the system will ask you if you want to update the password and it will just update automatically.</li>
+<li>There have been reports in a github issue that states you can change the password in the system preferences but I’ve been unable to confirm this.</li>
 </ul>
 </div></div>
 <p>And that’s it! My own script that I made (as a reference) is below to do the work. It’s highly recommended that you do the mapping first and make a tar file of the content from /Library/Preferences/OpenDirectory and just untar it to other Mac’s.</p>
@@ -1392,7 +1393,7 @@ root# ditto localfolder networkfolder (or maybe an mv?)
 root# chown -R user:user folder
 root# /System/Library/CoreServices/ManagedClient.app/Contents/Resources/createmobileaccount -n username -P</code></pre><p>Another issue you may run into, if you have been using your Mac with a local account for a while, a lot of directories in /Applications will be owned by localuser:staff or localuser:admin. It’s recommended to fix those too.</p>
 <div class="section" id="discovery-and-settings">
-<h4><a class="toc-backref" href="#id24">Discovery and Settings</a><a class="headerlink" href="#discovery-and-settings" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id23">Discovery and Settings</a><a class="headerlink" href="#discovery-and-settings" title="Permalink to this headline">¶</a></h4>
 <p>The directory framework in MacOS has the ability to discover settings for a particular LDAP server that it is being connected to. FreeIPA does not contain the schema, plugins, nor the infrastructure to provide the same things (for example, mDNS/Avahi, among other things). There was a (WIP) plugin created in 2017 by abbra. However, it is unclear if this works at all, nor is it clear if it ever did and will in python3 (abbra noted at the time that it “installs” into python 2 directories, which hints to not being tested or working on python 3). Please see the following resources for discussion and information.</p>
 <ul class="simple">
 <li><a class="reference external" href="https://pagure.io/freeipa/issue/4813">Pagure</a></li>
@@ -1401,7 +1402,7 @@ root# /System/Library/CoreServices/ManagedClient.app/Contents/Resources/createmo
 </div>
 </div>
 <div class="section" id="suse">
-<h3><a class="toc-backref" href="#id25">SUSE</a><a class="headerlink" href="#suse" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id24">SUSE</a><a class="headerlink" href="#suse" title="Permalink to this headline">¶</a></h3>
 <p>To setup openSUSE with FreeIPA, we’ll need to do some manual work. This applies to SUSE 12 and up.</p>
 <div class="card">
 <div class="card-header bg-info">
@@ -1510,7 +1511,7 @@ homedir_substring = /home
 auth    sufficient      pam_sss.so      forward_pass</code></pre></div>
 </div>
 <div class="section" id="hbac">
-<h2><a class="toc-backref" href="#id26">HBAC</a><a class="headerlink" href="#hbac" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id25">HBAC</a><a class="headerlink" href="#hbac" title="Permalink to this headline">¶</a></h2>
 <p>When we first setup our IPA servers, we had an option set to make it so hbac wasn’t allowed for everyone. This way we have to create HBAC rules for our systems. I personally do this out of habit when working with IPA. What we need to do though is create an “admin” group that can login to all machines.</p>
 <pre><code class="language-shell">% ipa idrange-show IPA.EXAMPLE.COM_id_range
   Range name: IPA.EXAMPLE.COM_id_range
@@ -1540,17 +1541,17 @@ auth    sufficient      pam_sss.so      forward_pass</code></pre></div>
 Group Types</h5>Groups in Active Directory have three types. These three types can actually change the behavior of how SSSD on the IPA domain controllers resolve them or if they’ll even be resolvable at all. The three types are ‘Domain Local’, ‘Global’, and ‘Universal’. If at all possible, avoid groups being ‘Global’. Domain Local or Universal is recommended.</div></div>
 </div>
 <div class="section" id="sudo">
-<h2><a class="toc-backref" href="#id27">SUDO</a><a class="headerlink" href="#sudo" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id26">SUDO</a><a class="headerlink" href="#sudo" title="Permalink to this headline">¶</a></h2>
 <p>Setting up sudo is relatively easy. RHEL 6 and newer for sssd supports IPA as a provider for sudo. Based on the last section, let’s create a sample rule for our Linux admins that can login to every system, we want to ensure they can run all commands.</p>
 <pre><code class="language-shell">% ipa sudorule-add --runasusercat=all --hostcat=all --cmdcat=all --desc='linux admins all sudo' all_linux_sudo
 % ipa sudorule-add-user --groups=linuxadm all_linux_sudo</code></pre><p>You can make this a little more specific, such as /bin/bash as everyone or otherwise. It’s your call here. If you want to create a sudo rule and add some commands to it, you can do something like this.</p>
 <pre><code class="language-shell">% ipa sudorule-add sudo_rule
 % ipa sudorule-add-allow-command --sudocmds="/usr/bin/less" sudo_rule</code></pre></div>
 <div class="section" id="legacy-client-setup">
-<h2><a class="toc-backref" href="#id28">Legacy Client Setup</a><a class="headerlink" href="#legacy-client-setup" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id27">Legacy Client Setup</a><a class="headerlink" href="#legacy-client-setup" title="Permalink to this headline">¶</a></h2>
 <p>This applies to Solaris, Omnios, others based on Illumos.</p>
 <div class="section" id="solaris-10">
-<h3><a class="toc-backref" href="#id29">Solaris 10</a><a class="headerlink" href="#solaris-10" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id28">Solaris 10</a><a class="headerlink" href="#solaris-10" title="Permalink to this headline">¶</a></h3>
 <p>Setting up Solaris 10 as an IPA client is an interesting feat. However, it comes with security issues.</p>
 <div class="card">
 <div class="card-header bg-warning">
@@ -1803,7 +1804,7 @@ dn: uid=flast2,cn=users,cn=compat,dc=ipa,dc=example,dc=com
         uid: first.last2</code></pre><p>I recommend setting up sudo at least… if you want to use sudo, install the sudo-ldap from sudo.ws for Solaris 10.</p>
 </div>
 <div class="section" id="solaris-11">
-<h3><a class="toc-backref" href="#id30">Solaris 11</a><a class="headerlink" href="#solaris-11" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id29">Solaris 11</a><a class="headerlink" href="#solaris-11" title="Permalink to this headline">¶</a></h3>
 <p>Solaris 11 shares similar configuration to Solaris 10. There are a couple of manual things we have to do, but they are trivial. Solaris 11/Omnios will use TLS and sudo should just work.</p>
 <div class="card">
 <div class="card-header bg-info">
@@ -2091,11 +2092,11 @@ dn: uid=flast2,cn=users,cn=compat,dc=ipa,dc=example,dc=com
         homeDirectory: /home/first.last2
         uid: first.last2</code></pre></div>
 <div class="section" id="automated-scripts">
-<h3><a class="toc-backref" href="#id31">Automated Scripts</a><a class="headerlink" href="#automated-scripts" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id30">Automated Scripts</a><a class="headerlink" href="#automated-scripts" title="Permalink to this headline">¶</a></h3>
 <p>I at one point built a bunch of scripts to automate Solaris servers talking to IPA <a class="reference external" href="https://github.com/nazunalika/useful-scripts/tree/master/freeipa">here</a>. However, it is likely the scripts no longer work or contain outdated information.</p>
 </div>
 <div class="section" id="ad-trust-double-uid">
-<h3><a class="toc-backref" href="#id32">AD Trust Double UID</a><a class="headerlink" href="#ad-trust-double-uid" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id31">AD Trust Double UID</a><a class="headerlink" href="#ad-trust-double-uid" title="Permalink to this headline">¶</a></h3>
 <p>Solaris 11 once in a while gets random regressions when it comes to authentication and ID’s, among many other things they randomly decide to break. Big shout out to Oracle.</p>
 <p>In a brief discussion with a user in the #freeipa IRC channel, the user was trying to find a way to chop off the domain name for logins but also have sudo still work as there were some random issues in general. We both discovered that in SRU 11.4.20.4.0, even though both UID’s are present from <cite>ldaplist -l passwd</cite>, sudo was no longer working properly. The first thing we tried was to create an ID view and override a user with a new username. This successfully removed the domain, but did not solve the sudo problem. He instead got “no account present for that user”. However, I wasn’t able to replicate this.</p>
 <p>However, later, one thing he noticed is after creating an ID view with no overrides and pointing Solaris 11 to the view in the compat tree, Solaris 10-esque authentication ID reporting started to occur. Running <cite>ldaplist -l passwd user</cite> reported back the double UID as expected, but the FQDN comes first which resolved his group/sudo issues.</p>
@@ -2135,11 +2136,11 @@ dn: uid=flast2,cn=users,cn=compat,dc=ipa,dc=example,dc=com
 . . .</code></pre><p>Thank you to “mewho” on freenode for finding this interesting workaround.</p>
 </div>
 <div class="section" id="omnios-illumos">
-<h3><a class="toc-backref" href="#id33">OmniOS/Illumos</a><a class="headerlink" href="#omnios-illumos" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id32">OmniOS/Illumos</a><a class="headerlink" href="#omnios-illumos" title="Permalink to this headline">¶</a></h3>
 <p>Some steps between Solaris 10 and 11 can be followed to make OmniOS work. However, we have been unable to resolve why sudo will not work when using an AD trust. If you are using a standalone FreeIPA and no trust, sudo should work just fine.</p>
 </div>
 <div class="section" id="legacy-hbac">
-<h3><a class="toc-backref" href="#id34">Legacy HBAC</a><a class="headerlink" href="#legacy-hbac" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id33">Legacy HBAC</a><a class="headerlink" href="#legacy-hbac" title="Permalink to this headline">¶</a></h3>
 <p>For HBAC to work on Solaris, you will need to compile the pam_hbac module found <a class="reference external" href="https://github.com/jhrozek/pam_hbac">here</a>. I would clone the current master branch or download the master.zip to your Solaris system. Each OS has their set of instructions for compiling.</p>
 <p>First, create the following system account. We will need this when we are configuring our legacy clients.</p>
 <pre><code class="language-default">dn: uid=hbac,cn=sysaccounts,cn=etc,dc=ipa,dc=example,dc=com
@@ -2147,8 +2148,8 @@ objectClass: account
 objectClass: simplesecurityobject
 objectClass: top
 uid: hbac
-userPassword: password</code></pre><div class="section" id="id3">
-<h4><a class="toc-backref" href="#id35">Solaris 10</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+userPassword: password</code></pre><div class="section" id="id2">
+<h4><a class="toc-backref" href="#id34">Solaris 10</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <pre><code class="language-shell">% /opt/csw/bin/pkgutil -i -y libnet ar binutils gcc4g++ glib2 libglib2_dev gmake
 % /opt/csw/bin/pkgutil -i -y libnet ar binutils gcc4g++ glib2 libglib2_dev gmake
 % PATH=$PATH:/opt/csw/bin
@@ -2161,15 +2162,15 @@ userPassword: password</code></pre><div class="section" id="id3">
 % ./configure AR=/opt/csw/bin/gar --with-pammoddir=/usr/lib/security --sysconfdir=/etc/ --disable-ssl --disable-man-pages
 % make
 % make install</code></pre></div>
-<div class="section" id="id4">
-<h4><a class="toc-backref" href="#id36">Solaris 11</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id3">
+<h4><a class="toc-backref" href="#id35">Solaris 11</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
 <pre><code class="language-shell">% pkg install autoconf libtool pkg-config automake gcc docbook
 % autoreconf -if
 % ./configure --with-pammoddir=/usr/lib/security --mandir=/usr/share/man --sysconfdir=/etc/
 % make
 % make install</code></pre></div>
 <div class="section" id="omnios">
-<h4><a class="toc-backref" href="#id37">Omnios</a><a class="headerlink" href="#omnios" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id36">Omnios</a><a class="headerlink" href="#omnios" title="Permalink to this headline">¶</a></h4>
 <pre><code class="language-shell">% pkg install developer/build/autoconf developer/build/libtool \
               developer/pkg-config developer/build/automake    \
               developer/gcc48 system/header developer/object-file \
@@ -2179,7 +2180,7 @@ userPassword: password</code></pre><div class="section" id="id3">
 % make
 % make install</code></pre></div>
 <div class="section" id="pam-hbac-conf">
-<h4><a class="toc-backref" href="#id38">pam_hbac.conf</a><a class="headerlink" href="#pam-hbac-conf" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id37">pam_hbac.conf</a><a class="headerlink" href="#pam-hbac-conf" title="Permalink to this headline">¶</a></h4>
 <pre><code class="language-shell">% vim /etc/pam_hbac.conf
 
 # Replace client with your server's FQDN
@@ -2190,7 +2191,7 @@ BIND_PW = password
 SSL_PATH = /var/ldap
 HOST_NAME = client</code></pre></div>
 <div class="section" id="pam-configuration">
-<h4><a class="toc-backref" href="#id39">PAM Configuration</a><a class="headerlink" href="#pam-configuration" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id38">PAM Configuration</a><a class="headerlink" href="#pam-configuration" title="Permalink to this headline">¶</a></h4>
 <pre><code class="language-shell"># Solaris 10 - /etc/pam.conf
 # Modify the other account section... It should come at the end of the account blocks.
 . . .
@@ -2203,30 +2204,30 @@ account required        pam_hbac.so ignore_unknown_user ignore_authinfo_unavail<
 </div>
 </div>
 <div class="section" id="login-with-ad-users-to-legacy-clients">
-<h3><a class="toc-backref" href="#id40">Login with AD Users to Legacy Clients</a><a class="headerlink" href="#login-with-ad-users-to-legacy-clients" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id39">Login with AD Users to Legacy Clients</a><a class="headerlink" href="#login-with-ad-users-to-legacy-clients" title="Permalink to this headline">¶</a></h3>
 <p>For AD users to be able to login to legacy clients, you have to enable system-auth to the IPA servers. Without it, users will be denied access, regardless of HBAC controls or if you’re using the pam_hbac module.</p>
 <pre><code class="language-shell">% ipa hbacsvc-add system-auth
 % ipa hbacrule-add legacy_client_auth
 % ipa hbacrule-add-host --hostgroups=ipaservers legacy_client_auth
 % ipa hbacrule-mod --usercat=all legacy_client_auth</code></pre></div>
 <div class="section" id="legacy-active-directory-trust-notes">
-<h3><a class="toc-backref" href="#id41">Legacy Active Directory Trust Notes</a><a class="headerlink" href="#legacy-active-directory-trust-notes" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id40">Legacy Active Directory Trust Notes</a><a class="headerlink" href="#legacy-active-directory-trust-notes" title="Permalink to this headline">¶</a></h3>
 <p>Just a section of notes.</p>
 <div class="section" id="domain-resolution-order-oddness">
-<h4><a class="toc-backref" href="#id42">Domain Resolution Order Oddness</a><a class="headerlink" href="#domain-resolution-order-oddness" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id41">Domain Resolution Order Oddness</a><a class="headerlink" href="#domain-resolution-order-oddness" title="Permalink to this headline">¶</a></h4>
 <p>If using domain resolution order, AD users get double uid attributes - but only if they login with their shortname. If they login with fqdn, double uid’s do not occur. But shortnames do not work anymore. Have to restart the directory server to make short names work again.</p>
 </div>
 <div class="section" id="solaris-weirdness">
-<h4><a class="toc-backref" href="#id43">Solaris Weirdness</a><a class="headerlink" href="#solaris-weirdness" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id42">Solaris Weirdness</a><a class="headerlink" href="#solaris-weirdness" title="Permalink to this headline">¶</a></h4>
 <p>If using domain resolution order, Solaris 10 gets the group resolution correct for short named AD users. Solaris 11 does not unless you are on SRU 11.4.7.4.0 or newer. There is a way to chop off the domain name from the uid using views.</p>
 </div>
 </div>
 </div>
 <div class="section" id="domain-options">
-<h2><a class="toc-backref" href="#id44">Domain Options</a><a class="headerlink" href="#domain-options" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id43">Domain Options</a><a class="headerlink" href="#domain-options" title="Permalink to this headline">¶</a></h2>
 <p>This section goes over “situational” scenarios. These scenarios are reflective of the environment in which IPA is installed and not all will fit into your environment. These are more or less common situations that could occur during an IPA deployment or even post-deployment.</p>
 <div class="section" id="remove-realm-for-ad-users">
-<h3><a class="toc-backref" href="#id45">Remove &#64;realm for AD users</a><a class="headerlink" href="#remove-realm-for-ad-users" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id44">Remove &#64;realm for AD users</a><a class="headerlink" href="#remove-realm-for-ad-users" title="Permalink to this headline">¶</a></h3>
 <p>A common scenario is that IPA and AD will have a trust, but there will not be any IPA users with the exception of the engineering team for managing IPA itself. The common theme is that because of this, the engineers and customers would rather not login with <a class="reference external" href="mailto:username&#37;&#52;&#48;realm">username<span>&#64;</span>realm</a>.</p>
 <div class="card">
 <div class="card-header bg-info">
@@ -2258,7 +2259,7 @@ full_name_format = %1$s
 . . .
 default_domain_suffix = example.com</code></pre></div>
 <div class="section" id="ad-and-ipa-group-names-with-short-names">
-<h3><a class="toc-backref" href="#id46">AD and IPA group names with short names</a><a class="headerlink" href="#ad-and-ipa-group-names-with-short-names" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id45">AD and IPA group names with short names</a><a class="headerlink" href="#ad-and-ipa-group-names-with-short-names" title="Permalink to this headline">¶</a></h3>
 <p>You may notice that your clients have intermittent issues with name resolution when the following are true:</p>
 <ul class="simple">
 <li>Groups (or users) have the same names in both IPA and AD</li>
@@ -2284,7 +2285,7 @@ done
 sAMAccountName vs CN</h5>The “CN” and “sAMAccountName” attributes are not the same in AD, depending on who made the group or other factors. The sAMAccountName attribute is the value used to determine names from AD, whether you are enrolled with AD or the IPA server SSSD is pulling the information. This is why we are searching for that attribute, and not the CN.</div></div>
 </div>
 <div class="section" id="sites-and-ad-dc-s">
-<h3><a class="toc-backref" href="#id47">Sites and AD DC’s</a><a class="headerlink" href="#sites-and-ad-dc-s" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id46">Sites and AD DC’s</a><a class="headerlink" href="#sites-and-ad-dc-s" title="Permalink to this headline">¶</a></h3>
 <p>By creating a subdomain section in <cite>/etc/sssd/sssd.conf</cite> on an IPA server, it is possible to set an AD Site or AD server(s) directly in SSSD. By default, sssd tries to do location based discovery. There may be a case where this isn’t possible (eg, only a set of AD servers may only be contacted in certain “air gapped” networks).</p>
 <pre><code class="language-shell">[domain/ipa.example.com/example.com]
 # If you want a site
@@ -2303,11 +2304,11 @@ ad_backup_server = dc3.example.com, dc4.example.com</code></pre><p>If you don’
 Hardcoded DC’s</h5>If the DC’s change at any time and they are harded in your sssd.conf, it is up to you to know when new controllers are being added or removed as to not disrupt the connectivity from IPA to AD when performing user or group lookups.</div></div>
 </div>
 <div class="section" id="rhel-6-sudo-and-default-domain-suffix">
-<h3><a class="toc-backref" href="#id48">RHEL 6 SUDO and Default Domain Suffix</a><a class="headerlink" href="#rhel-6-sudo-and-default-domain-suffix" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id47">RHEL 6 SUDO and Default Domain Suffix</a><a class="headerlink" href="#rhel-6-sudo-and-default-domain-suffix" title="Permalink to this headline">¶</a></h3>
 <p>This issue with the above section is that once you do this, sudo rules will begin failing, they will no longer work for RHEL 6. This is because sssd was changed to look for cn=sudo rather than ou=sudoers. To enable the compatibility fall back, you will need to install the latest SSSD from COPR.</p>
 </div>
 <div class="section" id="set-default-shell-for-ad-users">
-<h3><a class="toc-backref" href="#id49">Set Default Shell for AD Users</a><a class="headerlink" href="#set-default-shell-for-ad-users" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id48">Set Default Shell for AD Users</a><a class="headerlink" href="#set-default-shell-for-ad-users" title="Permalink to this headline">¶</a></h3>
 <p>By default, after a trust has been established, the shell all AD users get is /bin/sh. To change this, you must change the sssd.conf on the IPA masters.</p>
 <pre><code class="language-shell">% vi /etc/sssd/sssd.conf
 [domain/ipa.example.com]
@@ -2317,10 +2318,10 @@ default_shell = /bin/bash
 % systemctl restart sssd</code></pre></div>
 </div>
 <div class="section" id="automated-kerberos-principals">
-<h2><a class="toc-backref" href="#id50">Automated Kerberos Principals</a><a class="headerlink" href="#automated-kerberos-principals" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id49">Automated Kerberos Principals</a><a class="headerlink" href="#automated-kerberos-principals" title="Permalink to this headline">¶</a></h2>
 <p>Once in a great while, we run into situations where we need to have an automated process for creating principals and keytabs. This section takes a look at some of those examples that we’ve ran into.</p>
 <div class="section" id="hadoop-cloudera">
-<h3><a class="toc-backref" href="#id51">Hadoop/Cloudera</a><a class="headerlink" href="#hadoop-cloudera" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id50">Hadoop/Cloudera</a><a class="headerlink" href="#hadoop-cloudera" title="Permalink to this headline">¶</a></h3>
 <p>This assumes you are using Cloudera Manager and not Ambari in any form.</p>
 <div class="card">
 <div class="card-header bg-warning">
@@ -2328,7 +2329,7 @@ default_shell = /bin/bash
 <h5 class="card-title">
 DNS Information</h5>It is <em>highly</em> likely that if you are using AWS, your nodes are getting stupid names like compute.internal. While there is a <a class="reference external" href="https://blog.cloudera.com/custom-hostname-for-cloud-instances/">a way to change this</a> if you don’t change it, you will need to rely on something like DNSMASQ to allow the nodes to communicate with FreeIPA. FreeIPA <em>will</em> be upset about the stupid names because it can’t do a rDNS lookup.</div></div>
 <div class="section" id="cloudera-manager-woes">
-<h4><a class="toc-backref" href="#id52">Cloudera Manager Woes</a><a class="headerlink" href="#cloudera-manager-woes" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id51">Cloudera Manager Woes</a><a class="headerlink" href="#cloudera-manager-woes" title="Permalink to this headline">¶</a></h4>
 <p>It is likely you have Cloudera/Hadoop, it is also very likely you (or another team) are deploying and using Cloudera Manager (or Director?). You may be running into issues that involve direct Active Directory integration. Maybe you’re moving away from a standalone LDAP system over to Active Directory or even FreeIPA. Maybe you have FreeIPA in an AD trust but the users or contractors absolutely insist on using AD against their better judgement, despite the problems they’re running into. Whatever the scenario is, we feel your pain. Here are some things you should probably know:</p>
 <ul class="simple">
 <li>Cloudera Manager (or Director?) supports Active Directory out of the box and obviously not FreeIPA despite the devs wanting to work something out back in 2015<ul>
@@ -2344,7 +2345,7 @@ DNS Information</h5>It is <em>highly</em> likely that if you are using AWS, your
 <p>FreeIPA does not have the name limitation and using an AD trust, AD users can freely use Hadoop when the cluster is properly setup. Enrolling the cluster nodes into FreeIPA and using a custom retrieval script will solve most (if not all) of the issues you may run into as well when it comes to keytabs, which Hadoop heavily relies on. The custom script is simply because Cloudera by default likes having direct access to the kerberos infrastructure, which is a no-go for FreeIPA.</p>
 </div>
 <div class="section" id="the-solution">
-<h4><a class="toc-backref" href="#id53">The Solution</a><a class="headerlink" href="#the-solution" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id52">The Solution</a><a class="headerlink" href="#the-solution" title="Permalink to this headline">¶</a></h4>
 <p>To summarize, here is our proposed solution:</p>
 <ul class="simple">
 <li>Create an account called cdh</li>
@@ -2458,8 +2459,8 @@ PRINC=$(echo $FULLPRINC | sed "s/\@$(echo $IPAREALM)//")
 
 kdestroy
 exit 0</code></pre><p>Place the above script in a file that is accessible by the cloudera manager such as <cite>/usr/local/bin/getKeytabsCDH.sh</cite> and ensure it is owned by cloudera-scm with a permission set of 775.</p>
-<p>During the kerberos wizard, stop when you are verifying the “cdh” user. You will need to set the configuration for “Custom Kerberos Keytab Retrieval Script” to <cite>/usr/local/bin/getKeytabsCDH.sh</cite> and then you’re almost there. <a class="footnote-reference" href="#f3" id="id5">[3]</a></p>
-<p>An important tidbit is currently RHEL/CentOS 7+ and higher use memory based keytabs and java doesn’t support them. <a class="footnote-reference" href="#f4" id="id6">[4]</a> Because of this, the /etc/krb5.conf should be modified.</p>
+<p>During the kerberos wizard, stop when you are verifying the “cdh” user. You will need to set the configuration for “Custom Kerberos Keytab Retrieval Script” to <cite>/usr/local/bin/getKeytabsCDH.sh</cite> and then you’re almost there. <a class="footnote-reference" href="#f3" id="id4">[3]</a></p>
+<p>An important tidbit is currently RHEL/CentOS 7+ and higher use memory based keytabs and java doesn’t support them. <a class="footnote-reference" href="#f4" id="id5">[4]</a> Because of this, the /etc/krb5.conf should be modified.</p>
 <pre><code class="language-shell">% cat /etc/krb5.conf
 . . .
 # Make sure the below is commented
@@ -2468,9 +2469,9 @@ exit 0</code></pre><p>Place the above script in a file that is accessible by the
 </div>
 </div>
 <div class="section" id="dns-forwarding">
-<h2><a class="toc-backref" href="#id54">DNS Forwarding</a><a class="headerlink" href="#dns-forwarding" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id53">DNS Forwarding</a><a class="headerlink" href="#dns-forwarding" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="dns-forwarding-to-dot">
-<h3><a class="toc-backref" href="#id55">DNS Forwarding to DoT</a><a class="headerlink" href="#dns-forwarding-to-dot" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id54">DNS Forwarding to DoT</a><a class="headerlink" href="#dns-forwarding-to-dot" title="Permalink to this headline">¶</a></h3>
 <p>Presently, FreeIPA does not support DoT (DNS over TLS) nor DoH (DNS over HTTPS) (this appears to be a bind limitation and we can’t find documentation that says otherwise). However, it is possible to setup unbound to do the forwarding for you, in which you tell your bind servers (or in this case, the bind DNS servers in your IPA domain) to forward to that unbound server for all forwarding.</p>
 <div class="card">
 <div class="card-header bg-info">
@@ -2485,9 +2486,9 @@ Keep it Separate</h5>It is recommended to keep your unbound service separate fro
 % ipa dnsconfig-mod --forward-policy=only --forwarder='10.100.0.224 port 9553'</code></pre></div>
 </div>
 <div class="section" id="logging">
-<h2><a class="toc-backref" href="#id56">Logging</a><a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id55">Logging</a><a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="audit-logs">
-<h3><a class="toc-backref" href="#id57">Audit Logs</a><a class="headerlink" href="#audit-logs" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id56">Audit Logs</a><a class="headerlink" href="#audit-logs" title="Permalink to this headline">¶</a></h3>
 <p>By default, the audit logs in <cite>/var/log/dirsrv/slapd-INSTANCE/audit</cite> do not get populated. And the access logs don’t show much in terms of modifications and what is being changed. There is also <cite>/var/log/httpd/*</cite> logs, but it may be useful to see ldif style logging for changes against FreeIPA.</p>
 <pre><code class="language-shell"># Modify the DSE configuration by turning on audit logging
 [label@ipa01 ~]# ldapmodify -D "cn=directory manager" -W -p 389 -h localhost
@@ -2549,10 +2550,10 @@ entryusn: 900028
 -</code></pre></div>
 </div>
 <div class="section" id="certificates">
-<h2><a class="toc-backref" href="#id58">Certificates</a><a class="headerlink" href="#certificates" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id57">Certificates</a><a class="headerlink" href="#certificates" title="Permalink to this headline">¶</a></h2>
 <p>These are notes of things I’ve ran into before while dealing with certificates.</p>
 <div class="section" id="renewed-ipa-http-certificate-stuck">
-<h3><a class="toc-backref" href="#id59">Renewed IPA HTTP Certificate Stuck</a><a class="headerlink" href="#renewed-ipa-http-certificate-stuck" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id58">Renewed IPA HTTP Certificate Stuck</a><a class="headerlink" href="#renewed-ipa-http-certificate-stuck" title="Permalink to this headline">¶</a></h3>
 <p>This was something I discovered sort of on accident but never really “noticed” - Though I’m sure I would’ve noticed sometime in 2021 when my certificate expired. I was running <cite>ipa-healthcheck –failures-only</cite> as I do sometimes, and noticed some weird certmonger things pop up. But it made me look at my certificate list…</p>
 <pre><code class="language-shell">[root@ipa01 ~]# ipa-getcert list
 Number of certificates and requests being tracked: 9.
@@ -2632,7 +2633,7 @@ Request ID '20200504003758':
         track: yes
         auto-renew: yes</code></pre></div>
 <div class="section" id="ca-related-certificates-stuck">
-<h3><a class="toc-backref" href="#id60">CA Related Certificates Stuck</a><a class="headerlink" href="#ca-related-certificates-stuck" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id59">CA Related Certificates Stuck</a><a class="headerlink" href="#ca-related-certificates-stuck" title="Permalink to this headline">¶</a></h3>
 <p>Like with the IPA httpd certificates, I noticed at least 4 certificates stuck because a PIN was missing. Turns out that it’s actually easy to modify the tracking request and fix the issue entirely. Below is my example doing this on the auditSigningCert. This seems to only occur on CentOS 8.</p>
 <pre><code class="language-shell">[root@ipa01 alias]# getcert list -i 20200615180351
 Number of certificates and requests being tracked: 9.
@@ -2677,19 +2678,19 @@ Request ID '20200615180351':
 <table class="docutils footnote" frame="void" id="f2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>The -P asks for the password of the username in question, that way it is cached right away. The directory service on the system then has credentials to compare to. I have found that sometimes if you don’t use -P, even if you’re logged in as the account, the password does not get cached and you’ll get stuck at a background image the next time you login. Again, this is only sometimes. Your mileage may vary here.</td></tr>
+<tr><td class="label">[2]</td><td>The -P asks for the password of the username in question, that way it is cached right away. The directory service on the system then has credentials to compare to. I have found that sometimes if you don’t use -P, even if you’re logged in as the account, the password does not get cached and you’ll get stuck at a background image the next time you login. Again, this is only sometimes. Your mileage may vary here.</td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="f3" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id5">[3]</a></td><td>Please read <a class="reference external" href="https://www.cloudera.com/documentation/enterprise/latest/topics/sg_keytab_retrieval_script.html">this page</a> for more information.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id4">[3]</a></td><td>Please read <a class="reference external" href="https://www.cloudera.com/documentation/enterprise/latest/topics/sg_keytab_retrieval_script.html">this page</a> for more information.</td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="f4" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id6">[4]</a></td><td>This may have changed. However it is up to you to test if this is the case.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id5">[4]</a></td><td>This may have changed. However it is up to you to test if this is the case.</td></tr>
 </tbody>
 </table>
 </div>
