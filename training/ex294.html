@@ -580,34 +580,6 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ex407.html">EX407 Exam Prep</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="ex407.html#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ex407.html#exam-information">Exam Information</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ex407.html#resources">Resources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ex407.html#objectives">Objectives</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="ex407.html#understand-core-components-of-ansible">Understand core components of Ansible</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ex407.html#install-and-configure-an-ansible-control-node">Install and configure an Ansible control node</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="ex407.html#practice-exam">Practice Exam</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="ex407.html#requirements">Requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-1-adhoc">Task 1: Adhoc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-2-manage-file-content">Task 2: Manage File Content</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-3-manage-ssh-configuration">Task 3: Manage SSH Configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-4-ansible-vault">Task 4: Ansible Vault</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-5-users-and-groups">Task 5: Users and Groups</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-6-scheduling-tasks">Task 6: Scheduling Tasks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-7-software-repositories">Task 7: Software Repositories</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-8-working-with-roles">Task 8: Working with Roles</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-9-working-with-roles">Task 9: Working with Roles</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-10-download-roles-from-galaxy">Task 10: Download roles from Galaxy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-11-security">Task 11: Security</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-12-use-conditionals-to-control-play-execution">Task 12: Use conditionals to control play execution</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-13-use-archiving">Task 13: Use archiving</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-14-work-with-facts">Task 14: Work with facts</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-15-install-software">Task 15: Install software</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-16-services">Task 16: Services</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-17-create-and-use-templates">Task 17: Create and use templates</a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ex415.html">EX415 Exam Prep</a><ul>
@@ -816,9 +788,29 @@ What objectives does this test?</h5><ul class="simple">
 </li>
 <li>Run a test ping to all ansible nodes using the setup module</li>
 </ul>
+<div class="toggle card">
+<div class="toggle card-header bg-primary">
+<i class='fa fa-exclamation-circle'></i> </div><div class="toggle card-body">
+<p class="admonition-title">Solution</p>
+<p># cat ~/adhoc
+#!/bin/bash
+# Copy the keys using ansible adhoc
+ansible all –ask-pass -m authorized_key -a ‘user=ansible state=present key=”{{lookup(‘file’, ‘/home/automation/.ssh/id_rsa.pub’}}”’</p>
+</div></div>
 </div>
 <div class="section" id="task-2-file-content">
 <h3><a class="toc-backref" href="#id8">Task 2 - File Content</a><a class="headerlink" href="#task-2-file-content" title="Permalink to this headline">¶</a></h3>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+<h5 class="card-title">
+What objectives does this test?</h5><ul class="simple">
+<li>Understand core components of Ansible: Inventories, Modules, Plays, Playbooks</li>
+<li>Create Ansible plays and playbooks: Know how to work with commonly used Ansible modules</li>
+<li>Create Ansible plays and playbooks: Create playbooks to configure systems to a specific state</li>
+<li>Use Ansible modules for system administration tasks that work with: File content</li>
+</ul>
+</div></div>
 <p>Create a playbook at <cite>~/automation/plays/motd.yml</cite> that does the following:</p>
 <ul class="simple">
 <li>Replace <cite>/etc/motd</cite> with text that depends on the host group:<ul>
@@ -828,27 +820,75 @@ What objectives does this test?</h5><ul class="simple">
 </ul>
 </li>
 </ul>
+<div class="toggle card">
+<div class="toggle card-header bg-primary">
+<i class='fa fa-exclamation-circle'></i> </div><div class="toggle card-body">
+<p class="admonition-title">Solution</p>
+<p>You should use the “copy” module that fills in the content for you and use the “when” conditional.</p>
+</div></div>
 </div>
 <div class="section" id="task-3-configure-ssh-server">
 <h3><a class="toc-backref" href="#id9">Task 3 - Configure SSH Server</a><a class="headerlink" href="#task-3-configure-ssh-server" title="Permalink to this headline">¶</a></h3>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+<h5 class="card-title">
+What objectives does this test?</h5><ul class="simple">
+<li>Understand core components of Ansible: Modules, Plays, Playbooks</li>
+<li>Create Ansible plays and playbooks: Know how to work with commonly used Ansible modules</li>
+<li>Create Ansible plays and playbooks: Create playbooks to configure systems to a specific state</li>
+<li>Use Ansible modules for system administration tasks that work with: Services, File content</li>
+</ul>
+</div></div>
 <p>Create a playbook at <cite>~/automation/plays/sshd.yml</cite> that runs on all hosts and configures ssh like:</p>
 <ul class="simple">
 <li>Banner is set to <cite>/etc/motd</cite></li>
 <li>X11Forwarding is disabled</li>
 <li>MaxAuthTries is set to 3</li>
 <li>PermitRootLogin is set to no</li>
+<li>sshd is enabled</li>
 </ul>
+<div class="toggle card">
+<div class="toggle card-header bg-primary">
+<i class='fa fa-exclamation-circle'></i> </div><div class="toggle card-body">
+<p class="admonition-title">Solution</p>
+<p>You should copy the configuration file with your necessary changes. You can also use regex, but that may or may not be clean.</p>
+</div></div>
 </div>
 <div class="section" id="task-4-ansible-vault">
 <h3><a class="toc-backref" href="#id10">Task 4 - Ansible Vault</a><a class="headerlink" href="#task-4-ansible-vault" title="Permalink to this headline">¶</a></h3>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+<h5 class="card-title">
+What objectives does this test?</h5><ul class="simple">
+<li>Use advanced Ansible features: Use Ansible Vault in playbooks to protect sensitive data</li>
+</ul>
+</div></div>
 <p>Create an ansible vault file at <cite>~/automation/plays/secrets.yml</cite> with a password of <strong>redhat</strong> with the following variables:</p>
 <ul class="simple">
 <li>user_password: redhat</li>
 <li>database_password: redhat</li>
 </ul>
+<div class="toggle card">
+<div class="toggle card-header bg-primary">
+<i class='fa fa-exclamation-circle'></i> </div><div class="toggle card-body">
+<p class="admonition-title">Solution</p>
+<p># ansible-vault encrypt_string –ask-vault-pass ‘redhat’ –name ‘user_password’
+# ansible-vault encrypt_string –ask-vault-pass ‘redhat’ –name ‘database_password’</p>
+</div></div>
 </div>
 <div class="section" id="task-5-users-and-groups">
 <h3><a class="toc-backref" href="#id11">Task 5 - Users and Groups</a><a class="headerlink" href="#task-5-users-and-groups" title="Permalink to this headline">¶</a></h3>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+<h5 class="card-title">
+What objectives does this test?</h5><ul class="simple">
+<li>Understand core components of Ansible: Inventories, Modules, Variables, Plays, Playbooks</li>
+<li>Use Ansible modules for system administration tasks that work with: Users and groups</li>
+</ul>
+</div></div>
 <p>Create a variables file at <cite>~/automation/vars/userlist.yml</cite> that lists the following:</p>
 <pre><code class="language-shell">---
 users:
@@ -867,8 +907,14 @@ users:
 <li>All users passwords should be used from the vault (user_password)</li>
 <li>Shell should be <cite>/bin/bash</cite></li>
 <li>Passwords should be SHA512</li>
-<li>Each user should have an SSH key</li>
+<li>Each user should have an SSH key (you can use the ansible keys or create their own)</li>
 </ul>
+<div class="toggle card">
+<div class="toggle card-header bg-primary">
+<i class='fa fa-exclamation-circle'></i> </div><div class="toggle card-body">
+<p class="admonition-title">Solution</p>
+<p>You can solve this in two different ways. One way is to create two separate blocks where each work against their respective host group if you plan on using the same keys from the ansible user. Another way is to have a singular task that creates the users and their keys on their respective servers. Regardless, you will use the “when” conditional.</p>
+</div></div>
 </div>
 <div class="section" id="task-6-schedulded-tasks">
 <h3><a class="toc-backref" href="#id12">Task 6 - Schedulded Tasks</a><a class="headerlink" href="#task-6-schedulded-tasks" title="Permalink to this headline">¶</a></h3>
@@ -907,11 +953,10 @@ sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
 log-error=/var/log/mysqld.log
 pid-file=/var/run/mysqld/mysqld.pid</code></pre><p>Create the playbook <cite>~/automation/plays/mysql.yml</cite> that ruses that role and runs on the db host group.</p>
 <div class="toggle card">
-<div class="toggle card-header bg-primary">
-<i class='fa fa-exclamation-circle'></i> </div><div class="toggle card-body">
-<p class="admonition-title">Solution</p>
-<p>You will use the ansible_default_ipv4.address variable to solve the template.</p>
-</div></div>
+<div class="toggle card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="toggle card-body">
+<h5 class="toggle card-title">
+Solution</h5>You will use the ansible_default_ipv4.address variable to solve the template.</div></div>
 </div>
 <div class="section" id="task-8-use-archiving-to-backup-mysql">
 <h3><a class="toc-backref" href="#id14">Task 8 - Use Archiving to backup mysql</a><a class="headerlink" href="#task-8-use-archiving-to-backup-mysql" title="Permalink to this headline">¶</a></h3>
@@ -933,11 +978,10 @@ pid-file=/var/run/mysqld/mysqld.pid</code></pre><p>Create the playbook <cite>~/a
 <pre><code class="language-shell"># cat index.html.j2
 The address of this server is: REPLACE_ME_IPV4VAR_OR_FACT</code></pre><p>Create a playbook <cite>~/automation/plays/apache.yml</cite> that uses that role only on the web host group.</p>
 <div class="toggle card">
-<div class="toggle card-header bg-primary">
-<i class='fa fa-exclamation-circle'></i> </div><div class="toggle card-body">
-<p class="admonition-title">Solution</p>
-<p>You will use the ansible_default_ipv4.address variable to solve the template.</p>
-</div></div>
+<div class="toggle card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="toggle card-body">
+<h5 class="toggle card-title">
+Solution</h5>You will use the ansible_default_ipv4.address variable to solve the template.</div></div>
 </div>
 <div class="section" id="task-10-download-roles-from-galaxy">
 <h3><a class="toc-backref" href="#id16">Task 10 - Download Roles from Galaxy</a><a class="headerlink" href="#task-10-download-roles-from-galaxy" title="Permalink to this headline">¶</a></h3>
