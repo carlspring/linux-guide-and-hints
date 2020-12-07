@@ -31,26 +31,11 @@
   
     <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/prism-okaidia.min.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Cisco IP Communicator" href="cipc.html" />
-    <link rel="prev" title="Backups" href="backups.html" />
-  <script type="text/javascript">
-      $(document).ready(function() {
-          //
-          //
-          $(".toggle > *").hide();
-          $(".toggle .admonition-title").show();
-          $(".toggle .admonition-title").click(function() {
-              $(this).parent().children().not(".admonition-title").toggle(400);
-              $(this).parent().children(".admonition-title").toggleClass("open");
-          })
-      });
-  </script>
- 
-
+    <link rel="prev" title="Backups" href="backups.html" /> 
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -711,6 +696,28 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
+  <div class="section" id="bup">
+<h1>Bup<a class="headerlink" href="#bup" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://github.com/bup/bup">Bup</a> is a backup system based on the git
+packfile format. The current version shipped in Fedora is <code class="docutils literal notranslate"><span class="pre">0.29.2</span></code>, which is
+from 2018. This will provide a quick guide on how to build Bup from source.</p>
+<p>First, install some system dependencies:</p>
+<pre><code class="language-shell">dnf install fuse-devel libacl-devel perl-Time-HiRes</code></pre><p>Now we need the Python dependencies. <code class="docutils literal notranslate"><span class="pre">python3-fuse</span></code> doesn’t appear to exist,
+only <code class="docutils literal notranslate"><span class="pre">python2-fuse</span></code>. Not only is the latter package very old, but since
+Fedora 31 there has been a mass migration from Python 2 to 3. Unfortunately,
+bup hasn’t fully been ported to Python 3 yet and will not start if you invoke
+it with Python 3.</p>
+<p>For simplicity, we’ll use a virtualenv:</p>
+<pre><code class="language-shell">virtualenv -p python2 ~/.venv
+source ~/.venv/bin/activate
+pip2 install pyxattr pylibacl</code></pre><p>Then build it:</p>
+<pre><code class="language-shell">./configure
+make
+make long-check</code></pre><p>The <code class="docutils literal notranslate"><span class="pre">configure</span></code> script will automatically detect which Python binary is used
+to invoke bup. Remember to run it inside the virtualenv.</p>
+</div>
+
+
            </div>
            
           </main>

@@ -31,26 +31,11 @@
   
     <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/prism-okaidia.min.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="COPR" href="copr.html" />
-    <link rel="prev" title="Cisco IP Communicator" href="cipc.html" />
-  <script type="text/javascript">
-      $(document).ready(function() {
-          //
-          //
-          $(".toggle > *").hide();
-          $(".toggle .admonition-title").show();
-          $(".toggle .admonition-title").click(function() {
-              $(this).parent().children().not(".admonition-title").toggle(400);
-              $(this).parent().children(".admonition-title").toggleClass("open");
-          })
-      });
-  </script>
- 
-
+    <link rel="prev" title="Cisco IP Communicator" href="cipc.html" /> 
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -711,6 +696,21 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
+  <div class="section" id="clang">
+<h1>Clang<a class="headerlink" href="#clang" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="msan-line-numbers">
+<h2>MSan line numbers<a class="headerlink" href="#msan-line-numbers" title="Permalink to this headline">¶</a></h2>
+<p>Install the <code class="docutils literal notranslate"><span class="pre">llvm</span></code> package, not just <code class="docutils literal notranslate"><span class="pre">clang</span></code>. MemorySanitizer requires the <code class="docutils literal notranslate"><span class="pre">llvm-symbolizer</span></code> binary to display files/line numbers.</p>
+</div>
+<div class="section" id="clang-format">
+<h2>clang-format<a class="headerlink" href="#clang-format" title="Permalink to this headline">¶</a></h2>
+<p>Installing <code class="docutils literal notranslate"><span class="pre">clang</span></code> via the package manager only grabs the <code class="docutils literal notranslate"><span class="pre">clang-format</span></code> binary, which doesn’t have vim integration. Grab the python script from llvm directly, i.e their <a class="reference external" href="https://raw.githubusercontent.com/llvm-mirror/clang/master/tools/clang-format/clang-format.py">github page</a>. Put it somewhere then add the following to your <code class="docutils literal notranslate"><span class="pre">.vimrc</span></code>:</p>
+<pre><code class="language-bash">map <C-K> :py3f /home/tom/Test/C++/clang-format.py<cr>
+imap <C-K> <c-o>:py3f /home/tom/Test/C++/clang-format.py<cr></code></pre><p>This script requires the <code class="docutils literal notranslate"><span class="pre">clang-format</span></code> binary to be installed. Note that I’m deliberately using <code class="docutils literal notranslate"><span class="pre">py3f</span></code> instead of <code class="docutils literal notranslate"><span class="pre">pyf</span></code> under the assumption that you are running at least one Python 3 plugin. Otherwise stick with <code class="docutils literal notranslate"><span class="pre">pyf</span></code>.</p>
+</div>
+</div>
+
+
            </div>
            
           </main>

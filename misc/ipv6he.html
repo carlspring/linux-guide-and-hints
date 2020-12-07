@@ -31,26 +31,11 @@
   
     <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/prism-okaidia.min.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="MinGW" href="mingw.html" />
-    <link rel="prev" title="The Euphemism Review" href="euphemism.html" />
-  <script type="text/javascript">
-      $(document).ready(function() {
-          //
-          //
-          $(".toggle > *").hide();
-          $(".toggle .admonition-title").show();
-          $(".toggle .admonition-title").click(function() {
-              $(this).parent().children().not(".admonition-title").toggle(400);
-              $(this).parent().children(".admonition-title").toggleClass("open");
-          })
-      });
-  </script>
- 
-
+    <link rel="prev" title="The Euphemism Review" href="euphemism.html" /> 
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -711,6 +696,42 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
+  <div class="section" id="hurricane-electric-ipv6-tunnel">
+<h1>Hurricane Electric IPv6 Tunnel<a class="headerlink" href="#hurricane-electric-ipv6-tunnel" title="Permalink to this headline">¶</a></h1>
+<p>On distributions that use Network Manager, you can setup an IPv6 tunnel with Hurricane Electric. Make sure you have done the following.</p>
+<ol class="arabic simple">
+<li>Create an account at <a class="reference external" href="https://tunnelbroker.net">Hurricane Electric</a></li>
+<li>Click “Create Regular Tunnel” on the left hand side</li>
+<li>Enter your IPv4 public IP address in the first box</li>
+<li>Choose the closest tunnel server to you (in my case, it’s Phoenix) - Note the IP Address (eg. 66.220.7.82)</li>
+<li>Click “create tunnel”</li>
+<li>Note all the information in your “tunnel details”</li>
+</ol>
+<pre><code class="language-shell">% nmcli con add type ip-tunnel \
+        # Name of the interface
+        ifname sit0 \
+        # Tunnel protocol with the endpoint
+        mode sit remote 66.220.7.82 -- \
+        # Disabling IPv4 on this interface
+        ipv4.method disabled \
+        # Manual IPv6 configuration
+        ipv6.method manual \
+        # IPv6 endpoint addresses (not your subnet)
+        ipv6.address 2001:470:1f18:96::2/64 \
+        ipv6.gateway 2001:470:1f18:96::1/64</code></pre><p>You will also need to open some parts of your firewall to allow communication. In particular, ICMP (at least type 8) should be allowed from the tunnel server for the heartbeat.</p>
+<p>After this, you should be able to assign addresses from your routed /64 on your current machine or machines in your network and be able to ping out. You can also create a /48 and make multiple /64’s if you wish.</p>
+<p>It is possible to update the tunnel automatically with your IPv4 address in the event it changes.</p>
+<pre><code class="language-shell">% vi /etc/NetworkManager/dispatcher.d/pre-up.d/00-tunnelfix.sh
+#!/bin/sh
+user=USERNAME
+pass=PASSWORD
+tunnel=TUNNEL_ID
+
+if [ "$1" = sit0 ]; then
+  wget -O /dev/null https://$user:$pass@ipv4.tunnelbroker.net/ipv4_end.php?tid=$tunnel
+fi</code></pre></div>
+
+
            </div>
            
           </main>

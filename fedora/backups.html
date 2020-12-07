@@ -31,26 +31,11 @@
   
     <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/prism-okaidia.min.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Bup" href="bup.html" />
-    <link rel="prev" title="Getting started" href="../gettingstarted.html" />
-  <script type="text/javascript">
-      $(document).ready(function() {
-          //
-          //
-          $(".toggle > *").hide();
-          $(".toggle .admonition-title").show();
-          $(".toggle .admonition-title").click(function() {
-              $(this).parent().children().not(".admonition-title").toggle(400);
-              $(this).parent().children(".admonition-title").toggleClass("open");
-          })
-      });
-  </script>
- 
-
+    <link rel="prev" title="Getting started" href="../gettingstarted.html" /> 
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -711,6 +696,209 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
+  <div class="section" id="backups">
+<h1>Backups<a class="headerlink" href="#backups" title="Permalink to this headline">¶</a></h1>
+<p>While there is a variety of backup software out there, this article will only
+cover two: <a class="reference external" href="http://duplicity.nongnu.org/">duplicity</a> and <a class="reference external" href="https://git-annex.branchable.com/">git-annex</a>. git-annex is not backup software in of
+itself, but it is still useful for such a purpose.</p>
+<div class="section" id="id1">
+<h2>Duplicity<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Duplicity uses a GPG encrypted tar format. The primary advantage of duplicity
+is that the archives are very small compared to alternatives (see
+<a class="reference external" href="https://github.com/gilbertchen/benchmarking">gilbertchen’s benchmarks</a>).
+The two major disadvantages is that backup/restore time is lengthy and that the
+incremental backups are useless without the full backup in the chain. One thing
+I will give to Duplicity compared to Duplicacy is that the command-line
+interface is superior.</p>
+<div class="card">
+<div class="card-header bg-danger">
+<i class='fa fa-exclamation-circle'></i> Danger</div><div class="card-body">
+Duplicity is undergoing a Python 2 to 3 transition, which seems to be
+resulting in a lot of bugs. Use at your own risk.</div></div>
+<div class="card">
+<div class="card-header bg-warning">
+<i class='fa fa-exclamation-circle'></i> Warning</div><div class="card-body">
+I’m not sure if this is a bug or not, but you should be aware that for
+include/exclude patterns, specifying a path like <code class="docutils literal notranslate"><span class="pre">/path/to/go</span></code> will also
+match <code class="docutils literal notranslate"><span class="pre">/path/to/gopher</span></code>, even when not using a wildcard.</div></div>
+</div>
+<div class="section" id="gpg">
+<h2>GPG<a class="headerlink" href="#gpg" title="Permalink to this headline">¶</a></h2>
+<p>In order to instruct Duplicity to use <code class="docutils literal notranslate"><span class="pre">gpg2</span></code>, pass <code class="docutils literal notranslate"><span class="pre">--gpg-binary='gpg2'</span></code>.
+You can then either use the <code class="docutils literal notranslate"><span class="pre">PASSPHRASE</span></code> environment variable or the
+<code class="docutils literal notranslate"><span class="pre">--use-agent</span></code> flag. If you go with the former route, your passphrase will be
+in cleartext, but if it’s in your crontab or protected with <code class="docutils literal notranslate"><span class="pre">700</span></code> permissions
+only your user can read it. For the latter, you may opt to keep your passphrase
+cached so that you can run the backups unattended. Add these to your
+<code class="docutils literal notranslate"><span class="pre">~/.gnupg/gpg-agent.conf</span></code>:</p>
+<pre><code class="language-none">default-cache-ttl 34560000
+max-cache-ttl 34560000</code></pre><p>Then reload the GPG agent (either <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">RELOADAGENT</span> <span class="pre">|</span> <span class="pre">gpg-connect-agent</span></code> or
+<code class="docutils literal notranslate"><span class="pre">gpgconf</span> <span class="pre">--kill</span> <span class="pre">gpg-agent</span></code>).</p>
+</div>
+<div class="section" id="keychain">
+<h2>Keychain<a class="headerlink" href="#keychain" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/funtoo/keychain">Keychain</a> is a front-end for
+<code class="docutils literal notranslate"><span class="pre">ssh-agent</span></code> and <code class="docutils literal notranslate"><span class="pre">gpg-agent</span></code>. It will cache your keys and export environment
+variables (<code class="docutils literal notranslate"><span class="pre">SSH_AUTH_SOCK</span></code>, etc.) that can be sourced for non-interactive
+scripts like crontabs. At the time of writing, Fedora ships version 2.8.0,
+which is too old for our purposes. The latest version at the time of writing
+(2.8.5) allows us to use GPG2. Since it’s just a shell script, installation is
+simple:</p>
+<pre><code class="language-bash">git clone git@github.com:funtoo/keychain.git
+cd keychain && make
+cp keychain ~/.local/bin/</code></pre><p>Unless specified, Keychain will not start <code class="docutils literal notranslate"><span class="pre">gpg-agent</span></code> nor use <code class="docutils literal notranslate"><span class="pre">gpg2</span></code>. Further,
+you need to explicitly specify which keys to use (i.e, <code class="docutils literal notranslate"><span class="pre">id_rsa</span></code>). You will also need
+to invoke Keychain from your shell startup scripts. For Bash, this will look like:</p>
+<pre><code class="language-bash"># Environment variables automatically sourced, no need to do it manually here
+eval `keychain --agents gpg,ssh --gpg2 --eval id_rsa some_gpg_key_id`</code></pre><p>For Fish:</p>
+<pre><code class="language-fish">if status --is-interactive
+    keychain --agents gpg,ssh --gpg2 --eval id_rsa some_gpg_key_id
+end
+
+if test -f ~/.keychain/(hostname)-gpg-fish
+    source ~/.keychain/(hostname)-gpg-fish
+end
+
+if test -f ~/.keychain/(hostname)-fish
+    source ~/.keychain/(hostname)-fish
+end</code></pre><div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+At the time of writing the Fish example in the man Keychain page is broken.
+This example was pulled from <a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/4583">issue #4583</a> in the Fish issue
+tracker.</div></div>
+<p>Finally, add this to the top of your cron jobs:</p>
+<pre><code class="language-bash">[ -z "$HOSTNAME" ] && HOSTNAME=$(uname -n)
+[ -f "$HOME/.keychain/$HOSTNAME-sh" ] && \
+    source "$HOME/.keychain/$HOSTNAME-sh" 2>/dev/null
+[ -f "$HOME/.keychain/$HOSTNAME-sh-gpg" ] && \
+    source "$HOME/.keychain/$HOSTNAME-sh-gpg" 2>/dev/null</code></pre></div>
+<div class="section" id="unattended-backups">
+<h2>Unattended backups<a class="headerlink" href="#unattended-backups" title="Permalink to this headline">¶</a></h2>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+If you intend to use systemd, it cannot be used within a (user) cron tab. It can only
+run within a login session or be run as root.</div></div>
+<p>However, two commands you may find useful are <code class="docutils literal notranslate"><span class="pre">flock</span></code> and
+<code class="docutils literal notranslate"><span class="pre">systemd-inhibit</span></code>. <code class="docutils literal notranslate"><span class="pre">flock</span></code> will allow you to prevent jobs from overlapping. You can also
+wake up the system by writing a systemd unit and using the <code class="docutils literal notranslate"><span class="pre">WakeSystem</span></code> property. Example:</p>
+<pre><code class="language-bash">[Unit]
+Description=Weekly backup
+
+[Timer]
+Unit=weekly_backup.service
+OnCalendar=Sun 23:00:00
+WakeSystem=true
+
+[Install]
+WantedBy=multi-user.target</code></pre><p>And the corresponding service file:</p>
+<pre><code class="language-bash">[Unit]
+Description=Weekly backup
+
+[Service]
+Type=oneshot
+ExecStartPre=/bin/sleep 1m
+ExecStart=/bin/systemd-inhibit /bin/su -c "/usr/bin/flock -w 0 /path/to/cron.lock # ...</code></pre><p>We sleep before running <code class="docutils literal notranslate"><span class="pre">systemd-inhibit</span></code> because there’s a race condition if
+it runs while the system is still waking from suspend. See this <a class="reference external" href="https://lists.freedesktop.org/archives/systemd-devel/2019-April/042423.html">mailing list
+post</a>
+for details.</p>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+The service files should <strong>not</strong> have an [Install] section. When you enable the units,
+only enable the timers.</div></div>
+<p>Read <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">systemd.time</span></code> for what format <code class="docutils literal notranslate"><span class="pre">OnCalendar</span></code> takes. You can verify
+the time format is correct by using <code class="docutils literal notranslate"><span class="pre">systemd</span> <span class="pre">calendar</span></code>. Since <code class="docutils literal notranslate"><span class="pre">WakeSystem</span></code>
+requires privileges, this cannot be a per-user unit. So place them inside
+<code class="docutils literal notranslate"><span class="pre">/etc/systemd/system</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">flock</span></code> ensures that if there’s a conflict, the monthly (i.e, full backup) job will take
+precedence. You can run <code class="docutils literal notranslate"><span class="pre">fuser</span> <span class="pre">-v</span> <span class="pre">/path/to/cron.lock</span></code> to see what processes are holding
+a lock.</p>
+<p><code class="docutils literal notranslate"><span class="pre">systemd-inhibit</span></code> on the other hand will prevent the system from suspending
+until the given command is complete. Per the <a class="reference external" href="https://www.freedesktop.org/software/systemd/man/systemd-inhibit.html">documentation</a>, it
+can inhibit a variety of operations. By default, this is
+<code class="docutils literal notranslate"><span class="pre">idle:sleep:shutdown</span></code> but laptop users will find <code class="docutils literal notranslate"><span class="pre">handle-lid-switch</span></code>
+useful.</p>
+<p>Alternatively, if you choose not to use <code class="docutils literal notranslate"><span class="pre">systemd-inhibit</span></code>, you can simply adjust the power
+management inactivity value. For example, on XFCE this would look like:</p>
+<pre><code class="language-shell">xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/inactivity-on-ac -s 0</code></pre><p>This has the advantage of not requiring root privileges.</p>
+</div>
+<div class="section" id="id3">
+<h2>git-annex<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>git-annex is a location/metadata tracker that’s built on top of git. It essentially adds new verbs
+(prefixed with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">annex</span></code>) to any configured repository. There are a few things to keep in mind:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">annex</span> <span class="pre">init</span></code> may not initialize the repository with the latest version. i.e, if you have
+git-annex v6, the repository may be v5. In that case, you should run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">annex</span> <span class="pre">upgrade</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">annex</span> <span class="pre">sync</span></code> needs to be run in each repository, not just one, if you are using a distributed
+rather than centralized workflow</li>
+<li>In v6, once a file is unlocked, it remains unlocked. If you make frequent changes to files you should
+use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">annex</span> <span class="pre">unlock</span></code> since direct mode is deprecated</li>
+</ul>
+<p>As far as I’m aware, git-annex doesn’t track permissions or xattrs (important
+for SELinux). However, etckeeper has some helper scripts which store and
+restore metadata: <a class="reference external" href="https://git.joeyh.name/index.cgi/etckeeper.git/tree/pre-commit.d/30store-metadata">30store-metadata</a>
+and <a class="reference external" href="https://git.joeyh.name/index.cgi/etckeeper.git/tree/pre-commit.d/30store-metadata">30restore-etckeeper</a>
+respectively. Rename the scripts to <code class="docutils literal notranslate"><span class="pre">git-store-metadata</span></code> and
+<code class="docutils literal notranslate"><span class="pre">git-restore-metadata</span></code> and add them to your <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.  You will need to set
+the <code class="docutils literal notranslate"><span class="pre">VCS</span></code> environment variable to <code class="docutils literal notranslate"><span class="pre">git</span></code>.</p>
+<p>In order to restore security contexts, you can simply use <code class="docutils literal notranslate"><span class="pre">chcon</span> <span class="pre">-R</span>
+<span class="pre">--reference=source_dir/</span> <span class="pre">target_dir/</span></code>, where <code class="docutils literal notranslate"><span class="pre">source_dir</span></code> contains the
+context you want to apply to <code class="docutils literal notranslate"><span class="pre">target_dir</span></code>.</p>
+<p>The following helper script should get you started:</p>
+<script src="https://gist.github.com/remyabel/2cac59a778fa34d0c61e246554fe3e3c.js"></script>
+
+<noscript><pre><code class="language-bash">#!/bin/bash
+
+set -x
+set -o pipefail
+shopt -s dotglob
+
+function fail {
+    echo "Fail."
+    exit 1
+}
+
+# Import environment variables SSH_AUTH_SOCK, etc.
+[ -z "$HOSTNAME" ] && HOSTNAME=$(uname -n)
+[ -f "$HOME/.keychain/$HOSTNAME-sh" ] && \
+    source "$HOME/.keychain/$HOSTNAME-sh" 2>/dev/null
+[ -f "$HOME/.keychain/$HOSTNAME-sh-gpg" ] && \
+    source "$HOME/.keychain/$HOSTNAME-sh-gpg" 2>/dev/null
+
+cd "$HOME/backup" || fail
+# We need to unlock the files in order to allow modifications. Note that direct
+# mode is deprecated.
+git annex unlock ./* || fail
+
+# ...snip...
+# Copy your files to backup here
+# If using cp, make sure you use -a to preserve permissions and xattrs
+# If using rsync, make sure you use -avzAX
+# ...snip...
+
+# We use git add and not git annex add here to add the files directly.
+# Adding them to the annex would create symlinks, which do not preserve
+# permissions.
+git-store-metadata
+git add --all || fail
+git annex sync --content --message="$(date +%F)" || fail
+
+# For each remote we need to run sync in order to actually
+# propagate the changes. Doing sync from the initial directory
+# only creates a branch with the changes. Running sync in the target
+# directory performs the merge.
+for remote in $(git remote)
+do
+    URL=$(git remote get-url "$remote")
+    cd "$URL" || fail
+    git annex sync --content --message="$(date +%F)" || fail
+    git-restore-metadata
+done</code></pre></noscript></div>
+</div>
+
+
            </div>
            
           </main>

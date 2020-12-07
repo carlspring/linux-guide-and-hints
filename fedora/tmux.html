@@ -31,26 +31,11 @@
   
     <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/prism-okaidia.min.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="vim" href="vim.html" />
-    <link rel="prev" title="Pulseaudio" href="pulseaudio.html" />
-  <script type="text/javascript">
-      $(document).ready(function() {
-          //
-          //
-          $(".toggle > *").hide();
-          $(".toggle .admonition-title").show();
-          $(".toggle .admonition-title").click(function() {
-              $(this).parent().children().not(".admonition-title").toggle(400);
-              $(this).parent().children(".admonition-title").toggleClass("open");
-          })
-      });
-  </script>
- 
-
+    <link rel="prev" title="Pulseaudio" href="pulseaudio.html" /> 
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -711,6 +696,32 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
+  <div class="section" id="tmux">
+<h1>tmux<a class="headerlink" href="#tmux" title="Permalink to this headline">¶</a></h1>
+<p>If you start vim within a tmux session, you might notice that your
+terminal’s color scheme “bleeds” into vim’s. This is a result of tmux
+not using a 256 color terminal. It is covered in the tmux FAQ <a class="reference external" href="http://tmux.cvs.sourceforge.net/viewvc/tmux/tmux/FAQ">“How do I
+use a 256 colour terminal?”</a>. The following
+is a complete excerpt but edited for formatting purposes.</p>
+<blockquote>
+<div>If you attach to your tmux session and <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$TERM</span></code> says something
+like <code class="docutils literal notranslate"><span class="pre">screen</span></code>, then you know something’s wrong. Before attaching to
+your tmux session, do <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$TERM</span></code> (it may be something like
+<code class="docutils literal notranslate"><span class="pre">xterm-256color</span></code>).  This is what you want to put for
+<code class="docutils literal notranslate"><span class="pre">default-terminal.</span></code></div></blockquote>
+<p>Provided the underlying terminal supports 256 colours, it is usually sufficient
+to add the following to <code class="docutils literal notranslate"><span class="pre">~/.tmux.conf</span></code>:</p>
+<pre><code class="language-bash">set -g default-terminal "screen-256color"</code></pre><p>Note that some platforms do not support “screen-256color” (<code class="docutils literal notranslate"><span class="pre">infocmp</span>
+<span class="pre">screen-256color</span></code> will return an error) - in this case see the next entry in
+this FAQ.</p>
+<p>tmux attempts to detect a 256 colour terminal both by looking at the colors
+terminfo entry and by looking for the string “256col” in the TERM environment
+variable.</p>
+<p>If both these methods fail, the -2 flag may be passed to tmux when attaching
+to a session to indicate the terminal supports 256 colours.</p>
+<pre><code class="language-bash">tmux -2 attach</code></pre></div>
+
+
            </div>
            
           </main>

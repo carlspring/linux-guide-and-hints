@@ -31,26 +31,11 @@
   
     <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/prism-okaidia.min.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="GCC" href="gcc.html" />
-    <link rel="prev" title="Emulators" href="emulators.html" />
-  <script type="text/javascript">
-      $(document).ready(function() {
-          //
-          //
-          $(".toggle > *").hide();
-          $(".toggle .admonition-title").show();
-          $(".toggle .admonition-title").click(function() {
-              $(this).parent().children().not(".admonition-title").toggle(400);
-              $(this).parent().children(".admonition-title").toggleClass("open");
-          })
-      });
-  </script>
- 
-
+    <link rel="prev" title="Emulators" href="emulators.html" /> 
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -711,6 +696,32 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
+  <div class="section" id="firefox">
+<h1>Firefox<a class="headerlink" href="#firefox" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="disable-automatic-redirect-to-a-website-if-typing-an-invalid-url">
+<h2>Disable automatic redirect to a website if typing an invalid URL<a class="headerlink" href="#disable-automatic-redirect-to-a-website-if-typing-an-invalid-url" title="Permalink to this headline">¶</a></h2>
+<p>Example, you type <code class="docutils literal notranslate"><span class="pre">firefox</span> <span class="pre">build/html/fedora/gcc.rst</span></code> (where gcc.rst doesn’t exist) and it opens up <code class="docutils literal notranslate"><span class="pre">build.com/...</span></code>. Go to <code class="docutils literal notranslate"><span class="pre">about:config</span></code> and set <code class="docutils literal notranslate"><span class="pre">browser.fixup.alternate.enabled</span></code> to <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+</div>
+<div class="section" id="glitchy-ui-when-using-custom-gtk-theme">
+<h2>Glitchy UI when using custom GTK theme<a class="headerlink" href="#glitchy-ui-when-using-custom-gtk-theme" title="Permalink to this headline">¶</a></h2>
+<p>If you are using a custom GTK theme for your window manager, you need to instruct Firefox to use the default theme. On XFCE, this will be something like:</p>
+<pre><code class="language-bash">env GTK_THEME=Adwaita:light firefox</code></pre><p>If that’s inconvenient, you can add the change to Firefox directly. Go to <code class="docutils literal notranslate"><span class="pre">about:config</span></code> and add a new key called <code class="docutils literal notranslate"><span class="pre">widget.content.gtk-theme-override</span></code>. Set the value to <code class="docutils literal notranslate"><span class="pre">Adwaita:light</span></code> or whatever you prefer.</p>
+</div>
+<div class="section" id="enabling-secure-dns-and-encrypted-sni">
+<h2>Enabling Secure DNS and Encrypted SNI<a class="headerlink" href="#enabling-secure-dns-and-encrypted-sni" title="Permalink to this headline">¶</a></h2>
+<p>For some reason, this is disabled by default. First, ensure you’re using
+Cloudflare’s DNS servers 1.1.1.1 and 1.0.0.1. Then go to Firefox Options &gt;
+General &gt; Network Settings and check the box “Enable DNS over HTTPS” (by
+default this will use Mozilla’s provider). Then, in <code class="docutils literal notranslate"><span class="pre">about::config</span></code> set
+<code class="docutils literal notranslate"><span class="pre">network.trr.bootstrapAddress</span></code> to <code class="docutils literal notranslate"><span class="pre">1.1.1.1</span></code> and
+<code class="docutils literal notranslate"><span class="pre">network.security.esni.enabled</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code>. After restarting your browser,
+run the test at <a class="reference external" href="https://www.cloudflare.com/ssl/encrypted-sni/">https://www.cloudflare.com/ssl/encrypted-sni/</a> to check your
+results.</p>
+<p>Source: <a class="reference external" href="https://www.reddit.com/r/firefox/comments/a5evhr/configure_dns_over_https_in_firefox/">https://www.reddit.com/r/firefox/comments/a5evhr/configure_dns_over_https_in_firefox/</a></p>
+</div>
+</div>
+
+
            </div>
            
           </main>

@@ -31,26 +31,11 @@
   
     <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/prism-okaidia.min.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Packaging" href="packaging.html" />
-    <link rel="prev" title="mpv" href="mpv.html" />
-  <script type="text/javascript">
-      $(document).ready(function() {
-          //
-          //
-          $(".toggle > *").hide();
-          $(".toggle .admonition-title").show();
-          $(".toggle .admonition-title").click(function() {
-              $(this).parent().children().not(".admonition-title").toggle(400);
-              $(this).parent().children(".admonition-title").toggleClass("open");
-          })
-      });
-  </script>
- 
-
+    <link rel="prev" title="mpv" href="mpv.html" /> 
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -711,6 +696,47 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
+  <div class="section" id="negativo17-repositories-and-nvidia-drivers">
+<h1>negativo17 repositories and Nvidia drivers<a class="headerlink" href="#negativo17-repositories-and-nvidia-drivers" title="Permalink to this headline">¶</a></h1>
+<p>This page serves as a summary of the repositories located at <a class="reference external" href="https://negativo17.org/">https://negativo17.org/</a> to save the reader the trouble of sifting through the blog posts.</p>
+<p>The source RPMs, repos and other files can be found <a class="reference external" href="https://negativo17.org/repos/">here</a>.</p>
+<div class="section" id="multimedia">
+<h2>Multimedia<a class="headerlink" href="#multimedia" title="Permalink to this headline">¶</a></h2>
+<pre><code class="language-bash">dnf config-manager --add-repo=http://negativo17.org/repos/fedora-multimedia.repo</code></pre><p>This is incompatible with and not a replacement for RPMFusion. However, the epoch is set to override RPMFusion packages whenever possible.</p>
+<p>Packages of interest:</p>
+<ul class="simple">
+<li>Nvidia drivers</li>
+<li><code class="docutils literal notranslate"><span class="pre">gstreamer1-plugins-bad</span></code>, <code class="docutils literal notranslate"><span class="pre">gstreamer1-plugins-ugly</span></code>, <code class="docutils literal notranslate"><span class="pre">gstreamer1-libav</span></code>, <code class="docutils literal notranslate"><span class="pre">gstreamer1-plugins-bad-fluidsynth</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">mozilla-openh264</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">mpv</span></code></li>
+</ul>
+</div>
+<div class="section" id="nvidia">
+<h2>Nvidia<a class="headerlink" href="#nvidia" title="Permalink to this headline">¶</a></h2>
+<p>The multimedia repo contains the Nvidia packages. Before using it, make sure you remove all previous Nvidia packages (i.e, from RPMFusion):</p>
+<pre><code class="language-bash">sudo dnf remove \*nvidia\*</code></pre><p>Packages of interest:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">vulkan-loader</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">nvidia-settings</span></code>, <code class="docutils literal notranslate"><span class="pre">nvidia-driver-libs</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">dkms-nvidia</span></code> or <code class="docutils literal notranslate"><span class="pre">akmod-nvidia</span></code></li>
+</ul>
+<p>Both <code class="docutils literal notranslate"><span class="pre">vulkan-loader</span></code> and <code class="docutils literal notranslate"><span class="pre">nvidia-driver-libs</span></code> have <code class="docutils literal notranslate"><span class="pre">i686</span></code> versions when you need 32-bit (i.e, Wine).</p>
+<p>You need to also explicitly install <code class="docutils literal notranslate"><span class="pre">kernel-devel</span></code> to avoid pulling in the debug package.</p>
+</div>
+<div class="section" id="dkms">
+<h2>DKMS<a class="headerlink" href="#dkms" title="Permalink to this headline">¶</a></h2>
+<p>Run <code class="docutils literal notranslate"><span class="pre">dkms</span> <span class="pre">status</span></code>. If the output is empty, then you’ll need to manually run the build and install:</p>
+<pre><code class="language-bash">dkms add nvidia/&lt;version&gt;
+dkms build nvidia/&lt;version&gt;
+dkms install nvidia/&lt;version&gt;</code></pre><p>Where <code class="docutils literal notranslate"><span class="pre">&lt;version&gt;</span></code> is something like <code class="docutils literal notranslate"><span class="pre">390.25</span></code>. You may prefer to do this before rebooting. In that case, append the <code class="docutils literal notranslate"><span class="pre">-k</span></code> switch and specify
+the kernel version.</p>
+<p>If you receive an error like the following:</p>
+<pre><code class="language-bash">Error! Could not locate dkms.conf file</code></pre><p>You will need to remove the previous driver version you have installed. i.e, if you previously had 415.18 installed and upgraded to 415.22,
+then remove the 415.18 directory.</p>
+<pre><code class="language-bash">rm -r /var/lib/dkms/nvidia/415.18</code></pre></div>
+</div>
+
+
            </div>
            
           </main>

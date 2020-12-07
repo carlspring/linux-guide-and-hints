@@ -31,26 +31,11 @@
   
     <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/prism-okaidia.min.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Gitlab" href="gitlab.html" />
-    <link rel="prev" title="GCC" href="gcc.html" />
-  <script type="text/javascript">
-      $(document).ready(function() {
-          //
-          //
-          $(".toggle > *").hide();
-          $(".toggle .admonition-title").show();
-          $(".toggle .admonition-title").click(function() {
-              $(this).parent().children().not(".admonition-title").toggle(400);
-              $(this).parent().children(".admonition-title").toggleClass("open");
-          })
-      });
-  </script>
- 
-
+    <link rel="prev" title="GCC" href="gcc.html" /> 
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -711,6 +696,76 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
+  <div class="section" id="git">
+<h1>Git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="setting-up-cloudflare-and-github-pages">
+<h2>Setting up Cloudflare and Github pages<a class="headerlink" href="#setting-up-cloudflare-and-github-pages" title="Permalink to this headline">¶</a></h2>
+<p>Because Github has rolled out official support for HTTPS for custom domains, configuring it in tandem with Cloudflare has become
+slightly trickier. Ensure that your Cloudflare settings look like the following. The latest Github IPs can be found in their
+<a class="reference external" href="https://help.github.com/articles/setting-up-an-apex-domain/#configuring-a-records-with-your-dns-provider">documentation</a>.</p>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="9%" />
+<col width="18%" />
+<col width="38%" />
+<col width="35%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Type</td>
+<td>Name</td>
+<td>Value</td>
+<td>Status</td>
+</tr>
+<tr class="row-even"><td>CNAME</td>
+<td>www</td>
+<td>is an alias of example.com</td>
+<td>DNS and HTTP Proxy (CDN)</td>
+</tr>
+<tr class="row-odd"><td>A</td>
+<td>example.com</td>
+<td>points to &lt;GITHUB-IP&gt;</td>
+<td>DNS only</td>
+</tr>
+<tr class="row-even"><td>A</td>
+<td>example.com</td>
+<td>points to &lt;GITHUB-IP&gt;</td>
+<td>DNS only</td>
+</tr>
+<tr class="row-odd"><td>A</td>
+<td>example.com</td>
+<td>points to &lt;GITHUB-IP&gt;</td>
+<td>DNS only</td>
+</tr>
+<tr class="row-even"><td>A</td>
+<td>example.com</td>
+<td>points to &lt;GITHUB-IP&gt;</td>
+<td>DNS only</td>
+</tr>
+</tbody>
+</table>
+<p>The reason you enable the HTTP proxy for the CNAME is to allow Cloudflare’s page rules to work. Without it, <code class="docutils literal notranslate"><span class="pre">example.com</span></code> (without
+the www subdomain) does not resolve correctly and the HTTP -&gt; HTTPS redirect does not work.</p>
+</div>
+<div class="section" id="gpg">
+<h2>GPG<a class="headerlink" href="#gpg" title="Permalink to this headline">¶</a></h2>
+<p>This summarizes the information from <a class="reference external" href="https://help.github.com/articles/signing-commits-with-gpg/">Github Help</a>.</p>
+<ul class="simple">
+<li>List your keys with <code class="docutils literal notranslate"><span class="pre">gpg2</span> <span class="pre">--list-keys</span></code>.</li>
+<li>Configure your git signing key with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">user.signingkey</span> <span class="pre">&lt;key&gt;</span></code>.</li>
+<li>Run <code class="docutils literal notranslate"><span class="pre">gpg2</span> <span class="pre">--armor</span> <span class="pre">--export</span> <span class="pre">&lt;key&gt;</span></code> and add the key to your Github account.</li>
+<li>Sign commits with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-S</span> <span class="pre">&lt;...&gt;</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">git-bump</span></code> will sign tags automatically.</li>
+</ul>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">gpg2</span></code> and <code class="docutils literal notranslate"><span class="pre">gpg</span></code> are not interchangeable. If you decide to use <code class="docutils literal notranslate"><span class="pre">gpg2</span></code>, you can tell git to use it with
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">gpg.program</span> <span class="pre">gpg2</span></code>.</p>
+<p>Ensure that your name and e-mail address match the Github account you’re adding the key to.</p>
+<p><cite>gpg-agent</cite> requires that you set <cite>GPG_TTY</cite>. For bash, this would look like:</p>
+<pre><code class="language-bash">GPG_TTY=$(tty)
+export GPG_TTY</code></pre><p>For fish:</p>
+<pre><code class="language-bash">set -gx GPG_TTY (tty)</code></pre></div>
+</div>
+
+
            </div>
            
           </main>
