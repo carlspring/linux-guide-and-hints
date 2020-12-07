@@ -870,14 +870,8 @@ What objectives does this test?</h5><ul class="simple">
 <li>user_password: redhat</li>
 <li>database_password: redhat</li>
 </ul>
-<div class="toggle card">
-<div class="toggle card-header bg-primary">
-<i class='fa fa-exclamation-circle'></i> </div><div class="toggle card-body">
-<p class="admonition-title">Solution</p>
-<p># ansible-vault encrypt_string –ask-vault-pass ‘redhat’ –name ‘user_password’
-# ansible-vault encrypt_string –ask-vault-pass ‘redhat’ –name ‘database_password’</p>
-</div></div>
-</div>
+<pre><code class="language-shell"># ansible-vault encrypt_string --ask-vault-pass 'redhat' --name 'user_password'
+# ansible-vault encrypt_string --ask-vault-pass 'redhat' --name 'database_password'</code></pre></div>
 <div class="section" id="task-5-users-and-groups">
 <h3><a class="toc-backref" href="#id11">Task 5 - Users and Groups</a><a class="headerlink" href="#task-5-users-and-groups" title="Permalink to this headline">¶</a></h3>
 <div class="card">
