@@ -33,24 +33,10 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="../_static/css/prism-okaidia.min.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/toggle.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pip" href="pip.html" />
-    <link rel="prev" title="negativo17 repositories and Nvidia drivers" href="negativo.html" />
-
-  <script type="text/javascript">
-      $(document).ready(function() {
-          //
-          //
-          $(".toggle > *").hide();
-          $(".toggle .admonition-title").show();
-          $(".toggle .admonition-title").click(function() {
-              $(this).parent().children().not(".admonition-title").toggle(400);
-              $(this).parent().children(".admonition-title").toggleClass("open");
-          })
-      });
-  </script>
- 
-
+    <link rel="prev" title="negativo17 repositories and Nvidia drivers" href="negativo.html" /> 
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -711,6 +697,49 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
+  <div class="section" id="packaging">
+<h1>Packaging<a class="headerlink" href="#packaging" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://github.com/iovation/git-build-rpm">git-build-rpm</a> is a tool (that
+installs itself as a git subcommand) for packaging RPM’s. Conveniently, it
+handles submodules while tito and rpkg do not. First, grab the dependencies:</p>
+<pre><code class="language-bash">sudo dnf install git rpm-build perl-rpm-build-perl perl-IPC-System-Simple \
+            perl-Path-Class perl-Test-Pod perl-Module-Build
+pip3 install --user git-archive-all</code></pre><p>Then build and install:</p>
+<pre><code class="language-bash">perl Build.PL
+./Build
+./bin/git-build-rpm --package-name git-build-rpm
+sudo dnf install git-build-rpm*.rpm</code></pre><p>At the time of writing, it does not copy over SRPM’s (which is what we really
+want to upload to COPR), so apply this patch:</p>
+<pre><code class="language-diff">diff --git a/bin/git-build-rpm b/bin/git-build-rpm
+index 69bea6f..1d18c47 100755
+--- a/bin/git-build-rpm
++++ b/bin/git-build-rpm
+@@ -128,11 +128,20 @@ runx 'rpmbuild', '-ba', '--define', "_topdir $dir",
+ $dir->subdir('RPMS')->recurse(callback => sub {
+     my $rpm = shift;
+     my $bn = $rpm->basename;
+-    return if $bn !~ /[.]rpm$/;
++    return if $bn !~ /rpm$/;
+     move $rpm, $bn;
+     print "* Copy $bn\n" unless $opts{quiet};
+ });
+
++$dir->subdir('SRPMS')->recurse(callback => sub {
++    my $rpm = shift;
++    my $bn = $rpm->basename;
++    return if $bn !~ /rpm$/;
++    move $rpm, $bn;
++    print "* Copy $bn\n" unless $opts{quiet};
++});
++
++
+ sub _pod2usage {
+     require Pod::Usage;
+     Pod::Usage::pod2usage(</code></pre><p>Now you should be able to build the SRPM and upload it to COPR like so:</p>
+<pre><code class="language-bash">git build-rpm --spec example.spec --package-name example
+copr-cli build your-project /path/to/srpm.src.rpm</code></pre></div>
+
+
            </div>
            
           </main>
@@ -758,6 +787,7 @@
       <script type="text/javascript" src="../_static/js/components/prism-bash.min.js" defer></script>
       <script type="text/javascript" src="../_static/js/components/prism-docker.min.js" defer></script>
       <script type="text/javascript" src="../_static/js/prism-freeipa.min.js" defer></script>
+      <script type="text/javascript" src="../_static/js/toggle.js" defer></script>
 
   
 

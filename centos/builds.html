@@ -33,24 +33,10 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="../_static/css/prism-okaidia.min.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/toggle.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="FreeIPA" href="freeipa.html" />
-    <link rel="prev" title="XScreenSaver" href="../fedora/xscreensaver.html" />
-
-  <script type="text/javascript">
-      $(document).ready(function() {
-          //
-          //
-          $(".toggle > *").hide();
-          $(".toggle .admonition-title").show();
-          $(".toggle .admonition-title").click(function() {
-              $(this).parent().children().not(".admonition-title").toggle(400);
-              $(this).parent().children(".admonition-title").toggleClass("open");
-          })
-      });
-  </script>
- 
-
+    <link rel="prev" title="XScreenSaver" href="../fedora/xscreensaver.html" /> 
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -711,6 +697,18 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
+  <div class="section" id="auto-provisioning">
+<h1>Auto-Provisioning<a class="headerlink" href="#auto-provisioning" title="Permalink to this headline">¶</a></h1>
+<p>This page goes over various ways that installs can be automated without the use of PXE. Instead, we can use templated scripts with pre-configured commands, boot images, and mirrors for builds. We cover the following here:</p>
+<ul class="simple">
+<li>CentOS 7, 8</li>
+<li>Fedora</li>
+<li>openSUSE 15+</li>
+<li>Windows Server</li>
+</ul>
+</div>
+
+
            </div>
            
           </main>
@@ -758,6 +756,7 @@
       <script type="text/javascript" src="../_static/js/components/prism-bash.min.js" defer></script>
       <script type="text/javascript" src="../_static/js/components/prism-docker.min.js" defer></script>
       <script type="text/javascript" src="../_static/js/prism-freeipa.min.js" defer></script>
+      <script type="text/javascript" src="../_static/js/toggle.js" defer></script>
 
   
 

@@ -33,24 +33,10 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="../_static/css/prism-okaidia.min.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/toggle.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="GRUB" href="grub.html" />
-    <link rel="prev" title="Gitlab" href="gitlab.html" />
-
-  <script type="text/javascript">
-      $(document).ready(function() {
-          //
-          //
-          $(".toggle > *").hide();
-          $(".toggle .admonition-title").show();
-          $(".toggle .admonition-title").click(function() {
-              $(this).parent().children().not(".admonition-title").toggle(400);
-              $(this).parent().children(".admonition-title").toggleClass("open");
-          })
-      });
-  </script>
- 
-
+    <link rel="prev" title="Gitlab" href="gitlab.html" /> 
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -711,6 +697,25 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
+  <div class="section" id="gnome-tips">
+<h1>GNOME Tips<a class="headerlink" href="#gnome-tips" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="system-tray">
+<h2>System Tray<a class="headerlink" href="#system-tray" title="Permalink to this headline">¶</a></h2>
+<p>GNOME does not come with a system tray. The extension TopIcons Plus used to be the goto for adding a tray back into GNOME. However, the developer has ceased development. GNOME and KDE have both gone to libappindicator instead of the legacy system tray. Quite a few applications now support this, such as Pidgin, Clementine, Discord, Dropbox, Telegram, and potentially many others.</p>
+<p>The extension needed is <a class="reference external" href="https://extensions.gnome.org/extension/615/appindicator-support/">(K)StatusNotifierItem/AppIndicator</a>.</p>
+</div>
+<div class="section" id="add-minimize-maximize">
+<h2>Add minimize/maximize<a class="headerlink" href="#add-minimize-maximize" title="Permalink to this headline">¶</a></h2>
+<p>GNOME Developers seem to think minimize/maximize is not a useful feature of a desktop environment. To enable it, run the following as your user:</p>
+<pre><code class="language-bash">% gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'</code></pre></div>
+<div class="section" id="pidgin">
+<h2>Pidgin<a class="headerlink" href="#pidgin" title="Permalink to this headline">¶</a></h2>
+<p>When using Pidgin in GNOME, there’s no default tray for it to live in. You will need to install the (K)StatusNotiferItem/AppIndicator extension from the <a class="reference external" href="https://extensions.gnome.org/extension/615/appindicator-support/">gnome extension website</a>. And then install this package:</p>
+<pre><code class="language-bash">% dnf install pidgin-indicator -y</code></pre><p>In pidgin, click tools -&gt; plugins, enable Ubuntu Indicator and restart pidgin.</p>
+</div>
+</div>
+
+
            </div>
            
           </main>
@@ -758,6 +763,7 @@
       <script type="text/javascript" src="../_static/js/components/prism-bash.min.js" defer></script>
       <script type="text/javascript" src="../_static/js/components/prism-docker.min.js" defer></script>
       <script type="text/javascript" src="../_static/js/prism-freeipa.min.js" defer></script>
+      <script type="text/javascript" src="../_static/js/toggle.js" defer></script>
 
   
 

@@ -34,24 +34,10 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="../_static/css/prism-okaidia.min.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/toggle.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="EX407 Exam Prep" href="ex407.html" />
-    <link rel="prev" title="EX294 Exam Prep" href="ex294.html" />
-
-  <script type="text/javascript">
-      $(document).ready(function() {
-          //
-          //
-          $(".toggle > *").hide();
-          $(".toggle .admonition-title").show();
-          $(".toggle .admonition-title").click(function() {
-              $(this).parent().children().not(".admonition-title").toggle(400);
-              $(this).parent().children(".admonition-title").toggleClass("open");
-          })
-      });
-  </script>
- 
-
+    <link rel="prev" title="EX294 Exam Prep" href="ex294.html" /> 
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -712,6 +698,912 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
+  <div class="section" id="ex362-exam-prep">
+<h1><a class="toc-backref" href="#id3">EX362 Exam Prep</a><a class="headerlink" href="#ex362-exam-prep" title="Permalink to this headline">¶</a></h1>
+<p>This page contains the necessary resources to help you prepare for the Red Hat Certified Specialist in Identity Management exam, EX362. This follows loosely the youtube playlist as much as possible with various examples and ideas. At the bottom, you will also find our own example practice exam for you to try your hand at to test your knowledge.</p>
+<p>The list of objectives can be found <a class="reference external" href="https://www.redhat.com/en/services/training/ex362-red-hat-certified-specialist-identity-management-exam">here</a>. Note that the exam objectives can change at any time. It is the responsibility of the reader to always review the objectives prior to studying and taking the exam to ensure success.</p>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+<h5 class="card-title">
+Affiliation and Exam Information</h5><p>Please note that we are not affiliated with Red Hat. The materials and examples used are our own and do not reflect the training programs provided by Red Hat and are educational only. We do not disclose any of the tasks, questions, or material on the exam as it would violate the NDA. Any questions sent to us about anything directly related to the exam will not be answered. We also do not provide any one-on-one tutoring or online teaching courses.</p>
+<p>If exam objectives have changed to where the videos and this material are missing information, we can add on at any time upon request. If exam objectives have not changed but operational tasks have, we will note them as we find them. If there are things about FreeIPA that you’d like to see in the videos that may fit into objective, we can add it also upon request. However, it is likely those extra things would be better suited in the separate FreeIPA section on this site.</p>
+</div></div>
+<div class="contents topic" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#ex362-exam-prep" id="id3">EX362 Exam Prep</a><ul>
+<li><a class="reference internal" href="#overview" id="id4">Overview</a></li>
+<li><a class="reference internal" href="#exam-information" id="id5">Exam Information</a></li>
+<li><a class="reference internal" href="#resources" id="id6">Resources</a></li>
+<li><a class="reference internal" href="#hardware-recommendations" id="id7">Hardware Recommendations</a></li>
+<li><a class="reference internal" href="#installing-freeipa-red-hat-idm-with-replicas-for-growth-and-scale" id="id8">Installing FreeIPA/Red Hat IdM with replicas for growth and scale</a></li>
+<li><a class="reference internal" href="#creating-users-groups-and-policies" id="id9">Creating Users, Groups, and Policies</a><ul>
+<li><a class="reference internal" href="#new-passwords-expired" id="id10">New Passwords Expired</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#install-and-configure-idm-clients" id="id11">Install and configure IdM Clients</a></li>
+<li><a class="reference internal" href="#configure-roaming-automounted-home-directories" id="id12">Configure roaming/automounted home directories</a></li>
+<li><a class="reference internal" href="#use-the-rest-api-to-query-idm" id="id13">Use the REST api to query IdM</a></li>
+<li><a class="reference internal" href="#configure-kerberized-services" id="id14">Configure Kerberized services</a></li>
+<li><a class="reference internal" href="#create-a-trust-with-active-directory" id="id15">Create a trust with Active Directory</a></li>
+<li><a class="reference internal" href="#configure-control-policies-and-user-access" id="id16">Configure/control policies and user access</a><ul>
+<li><a class="reference internal" href="#rbac" id="id17">RBAC</a></li>
+<li><a class="reference internal" href="#hbac" id="id18">HBAC</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configure-and-manage-a-certificate-authority" id="id19">Configure and manage a certificate authority</a></li>
+<li><a class="reference internal" href="#back-up-an-idm-infrastructure" id="id20">Back up an IdM infrastructure</a></li>
+<li><a class="reference internal" href="#configure-idm-as-an-ldap-backend-for-external-services" id="id21">Configure IdM as an LDAP backend for external services</a><ul>
+<li><a class="reference internal" href="#kerberos" id="id22">Kerberos</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#implement-a-sso" id="id23">Implement a SSO</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h2><a class="toc-backref" href="#id4">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The video series goes over setting up FreeIPA in a lab/VM environment by following the objectives as outlined by Red Hat. The list of objectives can be found <a class="reference external" href="https://www.redhat.com/en/services/training/ex362-red-hat-certified-specialist-identity-management-exam">here</a>.</p>
+</div>
+<div class="section" id="exam-information">
+<h2><a class="toc-backref" href="#id5">Exam Information</a><a class="headerlink" href="#exam-information" title="Permalink to this headline">¶</a></h2>
+<p>The EX362 exam tests your knowledge in a real world format style test - Meaning just like any Red Hat exam, it is performance-based and you perform tasks as if you were on the job. You are evaluated on the tasks you perform and if they meet the objective criteria. The EX362 is related to FreeIPA or Red Hat Identity Management and counts toward the RHCA (Red Hat Certified Architect).</p>
+<p><strong>To take the exam, you must have at least an RHCSA. If you are attempting to become a Red Hat Certified Architect, you must have an RHCE.</strong></p>
+</div>
+<div class="section" id="resources">
+<h2><a class="toc-backref" href="#id6">Resources</a><a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="https://www.freeipa.org">FreeIPA</a></li>
+<li><a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/">Red Hat Documentation</a></li>
+<li><a class="reference external" href="https://jhrozek.wordpress.com/2015/08/19/performance-tuning-sssd-for-large-ipa-ad-trust-deployments/">Trust Anatomy/SSSD Troubleshooting</a></li>
+<li><a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_directory_server/10/html/performance_tuning_guide/">Directory Server Tuning</a></li>
+<li><a href="#id1"><span class="problematic" id="id2">`FreeIPA Workshop &lt;https://github.com/freeipa/freeipa-workshop &gt;`__</span></a></li>
+<li><a class="reference external" href="https://linuxguideandhints.com/centos/freeipa.html">Our Page</a></li>
+</ul>
+</div>
+<div class="section" id="hardware-recommendations">
+<h2><a class="toc-backref" href="#id7">Hardware Recommendations</a><a class="headerlink" href="#hardware-recommendations" title="Permalink to this headline">¶</a></h2>
+<p>The minimum requirements for IdM are fairly low. 2GB of RAM, 1 core, and a 10GB disk. However, we believe that’s too low, especially if we plan on scaling out. And during upgrades, you would need at least 4GB of RAM for the operations to be successful. Below are our minimum recommendations:</p>
+<ul class="simple">
+<li>2 (virtual) CPU Core</li>
+<li>4 GB of RAM</li>
+<li>10GB+ disk or partition for /var/lib/dirsrv</li>
+</ul>
+<p>Per the Red Hat documentation, consider that with at least 10k users and 100 groups, you would need at least 3GB of RAM and 1GB swap. If you end up having 100k users and 50k groups, then 16GB of RAM and 4GB of swap is recommended. In fact, in larger deployments, it’s more effective to increase RAM than disk, as most data is stored in cache.</p>
+<p>View the resources above in the previous section for directory server tuning information.</p>
+</div>
+<div class="section" id="installing-freeipa-red-hat-idm-with-replicas-for-growth-and-scale">
+<h2><a class="toc-backref" href="#id8">Installing FreeIPA/Red Hat IdM with replicas for growth and scale</a><a class="headerlink" href="#installing-freeipa-red-hat-idm-with-replicas-for-growth-and-scale" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="63%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Server Name</th>
+<th class="head">IP Address</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>idm1.example.com</td>
+<td>192.168.15.2</td>
+</tr>
+<tr class="row-odd"><td>idm2.example.com</td>
+<td>192.168.15.3</td>
+</tr>
+</tbody>
+</table>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+<h5 class="card-title">
+IPA Servers should either have a DHCP reservation or a static address. In the event that you have either, DNS should always be pointing at 127.0.0.1, especially if your replica serves DNS. Both of our replicas serve DNS, so loopback is sufficient and recommended for our name server.</h5>In later versions of FreeIPA, there is support to force network manager to ensure resolv.conf is loopback without the need to set it by hand with nmcli.</div></div>
+<pre><code class="language-shell"># Set a static address - It's important for your IdM servers
+# to have static addresses or a DHCP reservation.
+% nmcli con mod eth0 ipv4.address 192.168.15.2/24
+% nmcli con mod eth0 ipv4.gateway 192.168.15.1
+% nmcli con mod eth0 ipv4.method manual
+% nmcli con mod eth0 ipv4.dns-search example.com
+
+# You should set this if your replica serves DNS! If not, set it to
+# one or more of your IdM replicas that do.
+% nmcli con mod eth0 ipv4.dns 127.0.0.1
+% nmcli con up eth0</code></pre><pre><code class="language-shell"># Examples of using ipa-server-install
+# RHEL 7
+% yum install ipa-server ipa-server-dns ipa-server-trust-ad
+# RHEL 8
+% yum module enable idm:DL1/{server,dns,adtrust,client,common}
+% yum install ipa-server ipa-server-dns ipa-server-trust-ad
+# Installation, interactive, does not setup specific components
+% ipa-server-install
+
+# Installation, mostly automatic (recommended)
+# This will setup DNS and the necessary pieces for an AD trust
+# Optionally, you can use the --netbios-name switch to set your forest netbios name
+% ipa-server-install --domain example.com --realm EXAMPLE.COM \
+    --reverse-zone=15.168.192.in-addr.arpa. \
+    --no-forwarders \
+    --no-ntp \
+    --setup-dns \
+    --setup-adtrust \
+    -p Passw0rd! \
+    -a Passw0rd!</code></pre><pre><code class="language-shell"># Configure the firewall for RHEL 7
+% firewall-cmd --permanent --add-service={ntp,http,https,freeipa-ldap,freeipa-ldaps,kerberos,freeipa-replication,kpasswd,dns}
+# RHEL 8
+% firewall-cmd --permanent --add-service={freeipa-4,ntp,dns}</code></pre><pre><code class="language-shell">% kinit admin
+# We need to make sure that any A records get a corresponding PTR record, otherwise you're making them manually.
+% ipa dnsconfig-mod --allow-sync-ptr=True</code></pre><pre><code class="language-shell"># Adding a replica
+% ipa-replica-install --setup-dns \
+    --setup-ca \
+    --no-forwarders
+
+# Adding a replica unattended without forwarders
+% ipa-client-install --realm EXAMPLE.COM
+% kinit admin
+% ipa hostgroup-add-member --hosts=ipa02.example.com ipaservers
+% ipa-replica-install --setup-dns \
+    --setup-ca \
+    --no-forwarders \
+    --unattended</code></pre></div>
+<div class="section" id="creating-users-groups-and-policies">
+<h2><a class="toc-backref" href="#id9">Creating Users, Groups, and Policies</a><a class="headerlink" href="#creating-users-groups-and-policies" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="29%" />
+<col width="17%" />
+<col width="13%" />
+<col width="12%" />
+<col width="16%" />
+<col width="13%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Users</th>
+<th class="head">Login Name</th>
+<th class="head">Type</th>
+<th class="head">Group</th>
+<th class="head">Role</th>
+<th class="head">UID/GID</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>John Smith</td>
+<td>jsmith</td>
+<td>Normal</td>
+<td>admins</td>
+<td>&#160;</td>
+<td>Auto</td>
+</tr>
+<tr class="row-odd"><td>Bob Rufus</td>
+<td>brufus</td>
+<td>Normal</td>
+<td>corp</td>
+<td>&#160;</td>
+<td>Auto</td>
+</tr>
+<tr class="row-even"><td>Larry Dufus</td>
+<td>ldufus</td>
+<td>Normal</td>
+<td>helpdesk</td>
+<td>&#160;</td>
+<td>Auto</td>
+</tr>
+<tr class="row-odd"><td>Robert Cole</td>
+<td>rcole</td>
+<td>Staged</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>Auto</td>
+</tr>
+<tr class="row-even"><td>Thomas Snyder</td>
+<td>tsnyder</td>
+<td>Preserved</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>Auto</td>
+</tr>
+<tr class="row-odd"><td>SysHost Management</td>
+<td>syshostmgt</td>
+<td>Normal</td>
+<td>&#160;</td>
+<td>Host Manager</td>
+<td>10000</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="49%" />
+<col width="51%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Groups</th>
+<th class="head">Policy</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>HelpDesk</td>
+<td>helpdesk</td>
+</tr>
+<tr class="row-odd"><td>corp</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>enrollers</td>
+<td>Enrollment Administrator</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Roles</th>
+<th class="head">Privilege</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Host Manager</td>
+<td>Host administrators</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>Host group administrators</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>Netgroups administrators</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>Host enrollment</td>
+</tr>
+</tbody>
+</table>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+<h5 class="card-title">
+Custom UID/GID</h5><p>It is possible to create the users with a custom uid/gid with the switches –uid and –gidnumber which you will see below. It is also possible to set random passwords with –random.</p>
+<p>See ipa user-add –help for more switches.</p>
+</div></div>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+<h5 class="card-title">
+Password Expiration</h5>When you make a user with the –password switch or use ipa passwd to set a password, it is automatically expired and must be changed on next login. If you want to avoid this from happening, you will need to set a random password via –password or –random, and then use kpasswd username to change it to the desired password. This does not make the account non-expiring.</div></div>
+<pre><code class="language-shell"># Creating users with a password, create all the accounts from the table (except from syshost)
+% ipa user-add --first="John" --last="Smith" --password jsmith
+
+# Create the system account with a password of Sup3R$ecre7! and a UID of 10000
+% ipa user-add --first="SysHost" --last="Management" --uid=10000 --gidnumber=10000 --password syshostmgt
+
+# Stage a user
+% ipa stageuser-add --first="Robert" --last="Cole" rcole
+
+# Preserve a user
+% ipa user-del tsynder --preserve
+
+# Create a regular (POSIX) group
+% ipa group-add corp
+
+# Create a member only group
+% ipa group-add --nonposix HelpDesk
+% ipa group-add --nonposix enrollers
+
+# Add the HelpDesk group to the helpdesk policy
+# Add the enrollers group to the Enrollment Administrator role
+% ipa role-add-member "helpdesk" --groups=HelpDesk
+% ipa role-add-member "Enrollment Administrator" --groups=enrollers
+
+# Create a role with privileges
+% ipa role-add "Host Manager"
+% ipa role-add-privilege "Host Manager" \
+    --privileges="Host administrators" \
+    --privileges="Host group administrators" \
+    --privileges="Netgroups administrators" \
+    --privileges="Host enrollment"
+
+# Add the syshostmgt user as a member of the role
+% ipa role-add-member "Host Manager" --users="syshostmgt"
+
+# Set our user passwords to CentOS123!$ so that way we don't have to change them later
+% kpasswd jsmith
+
+# If we already set the password we want but we don't want it to expire without making a policy or prompt for a password change (NOT RECOMMENDED)
+% ldapmodify -x -w 'Passw0rd!' -D 'cn=Directory Manager'
+dn: uid=syshostmgt,cn=users,cn=accounts,dc=ipa,dc=chotel,dc=com
+changetype: modify
+delete: krbLastPwdChange
+
+(Press CTRL+D)</code></pre><div class="section" id="new-passwords-expired">
+<h3><a class="toc-backref" href="#id10">New Passwords Expired</a><a class="headerlink" href="#new-passwords-expired" title="Permalink to this headline">¶</a></h3>
+<p>The common question we receive (and even the #freeipa IRC receive) is “Why can’t we just set the password to not be expired right away?” See <a class="reference external" href="https://www.freeipa.org/page/New_Passwords_Expired">this page</a> for information on why this is. You may also look at the <a class="reference external" href="https://pagure.io/freeipa/issue/5763">pagure</a> page and the <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1317060">Red Hat bugzilla related bug</a>.</p>
+</div>
+</div>
+<div class="section" id="install-and-configure-idm-clients">
+<h2><a class="toc-backref" href="#id11">Install and configure IdM Clients</a><a class="headerlink" href="#install-and-configure-idm-clients" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="63%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Client Name</th>
+<th class="head">IP Address</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>client.example.com</td>
+<td>192.168.15.10</td>
+</tr>
+<tr class="row-odd"><td>nfs.example.com</td>
+<td>192.168.15.11</td>
+</tr>
+<tr class="row-even"><td>utility.example.com</td>
+<td>192.168.15.12</td>
+</tr>
+</tbody>
+</table>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+<h5 class="card-title">
+Depending on your architecture and setup, IdM clients should either be pointing directly at the IdM servers for DNS (at least two of them) or pointing at the DNS server in the environment that is delegating that domain to the IdM domain controllers.</h5>In our lab, our IdM servers are our only DNS servers, thus it makes sense that our clients should point to them. In that scenario, you would configure your DHCP server to use the IdM servers as the name servers and/or configure them in a static manner depending on your environment.</div></div>
+<pre><code class="language-shell"># If your client is not pointing at the IdM DNS and you
+# don't have another DNS server that's performing delegation,
+# change your name servers.
+% nmcli con mod eth0 ipv4.dns 192.168.15.2
+% nmcli con mod eth0 +ipv4.dns 192.168.15.3
+% nmcli con mod eth0 ipv4.dns-search example.com
+
+# Optionally, if your clients don't have DHCP
+# reservations, set a static address.
+% nmcli con mod eth0 ipv4.address 192.168.15.10/24
+% nmcli con mod eth0 ipv4.gateway 192.168.15.1
+% nmcli con mod eth0 ipv4.method manual
+
+# It might be a good idea to set your hostname if you haven't already
+% hostnamectl set-hostname client.example.com
+% hostname client.example.com
+
+# Install the ipa-client packages
+% yum install ipa-client -y
+% ipa-client-install --realm EXAMPLE.COM --domain example.com
+. . .
+% id admin
+uid=686600000(admin) gid=686600000(admins) groups=686600000(admins)</code></pre></div>
+<div class="section" id="configure-roaming-automounted-home-directories">
+<h2><a class="toc-backref" href="#id12">Configure roaming/automounted home directories</a><a class="headerlink" href="#configure-roaming-automounted-home-directories" title="Permalink to this headline">¶</a></h2>
+<p>You will need to configure your NFS server to serve up roaming home directories for users and then your client should have automouting enabled.</p>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+<h5 class="card-title">
+Client Kerberos Service</h5>It may not be required to create an nfs kerberos service for the client. The ipa-client-automount command may already handle this but it does not hurt to create one. In fact, the host keytab is used on the client side anyway. Creating an NFS client keytab may have been required back in the EL6 days.</div></div>
+<pre><code class="language-shell"># IDM Steps
+% kinit admin
+% ipa service-add nfs/nfs.example.com
+% ipa service-add nfs/client.example.com
+
+# Setup the automounting locations
+% ipa automountmap-add default auto.home
+% ipa automountkey-add default --key "/home" --info auto.home auto.master
+% ipa automountkey-add default --key "*" --info "-fstype=nfs4,rw,sec=krb5,soft nfs.example.com:/exports/home/&" auto.home
+
+# NFS Server Steps
+% yum install nfs-utils -y
+% mkdir /exports/home
+% vi /etc/exports
+/exports/home *(rw,sec=sys:krb5:krb5i:krb5p)
+
+% vi /etc/sysconfig/nfs
+SECURE_NFS="yes"
+
+# Make the home directories for all users and move them to /export/home
+% mkhomedir_helper jsmith
+% mv /home/jsmith /export/home/
+
+# Create the necessary keytabs
+% kinit admin
+% ipa-getkeytab -s idm1.example.com -p nfs/nfs.example.com -k /etc/krb5.keytab
+
+# Verify keytab
+% klist -ket /etc/krb5.keytab
+
+# Enable and start nfs
+% systemctl enable nfs-server --now
+
+# Open the necessary firewall ports
+% firewall-cmd --add-service=nfs --permanent
+% firewall-cmd --complete-reload
+
+# Client steps
+% kinit admin
+% ipa-getkeytab -s idm1.example.com -p nfs/client.example.com -k /etc/krb5.keytab
+% ipa-client-automount --location=default
+
+# Verify keytab
+% klist -ket /etc/krb5.keytab</code></pre><p>To test, login to the system via ssh or console and verify the home directory has mounted. /var/log/messages and secure will display errors in case of failure.</p>
+</div>
+<div class="section" id="use-the-rest-api-to-query-idm">
+<h2><a class="toc-backref" href="#id13">Use the REST api to query IdM</a><a class="headerlink" href="#use-the-rest-api-to-query-idm" title="Permalink to this headline">¶</a></h2>
+<p>When you invoke the <cite>ipa</cite> command, you are actually communicating with the API that runs on the IdM replicas. Operations done are sent via a POST with JSON data. The return data is also in JSON and translated to be readable in the terminal. Because it’s JSON, custom scripts can be made with say perl or python that communicates with the API to send the calls, perhaps for specific tasks, jobs, or other operations that could be automated. You can also use <cite>curl</cite> to do this also if you so choose.</p>
+<p>The question becomes, “well, how do I know the right data to send?” You can issue the -vv switch to see the request being sent.</p>
+<pre><code class="language-shell">% ipa -vv ping
+ipa: INFO: trying https://idm1.example.com/ipa/json
+ipa: INFO: [try 1]: Forwarding 'schema' to json server 'https://idm1.example.com/ipa/json'
+ipa: INFO: trying https://idm1.example.com/ipa/session/json
+ipa: INFO: [try 1]: Forwarding 'ping/1' to json server 'https://idm1.example.com/ipa/session/json'
+ipa: INFO: Request: {
+    "id": 0,
+    "method": "ping/1",
+    "params": [
+        [],
+        {
+            "version": "2.230"
+        }
+    ]
+}
+ipa: INFO: Response: {
+    "error": null,
+    "id": 0,
+    "principal": "admin@EXAMPLE.COM",
+    "result": {
+        "summary": "IPA server version 4.6.4. API version 2.230"
+    },
+    "version": "4.6.4"
+}
+-------------------------------------------
+IPA server version 4.6.4. API version 2.230
+-------------------------------------------</code></pre><p>If you look at the ‘request’ section, you can see the data that is sent. Each request has a <cite>method</cite> and <cite>params</cite>, where method is a command to be excuted and params is simply an array that contains positional arguments and a dictionary of options. If you take a look at say, group-show, you would see a different request.</p>
+<pre><code class="language-shell">% ipa -vv group-show admins
+ipa: INFO: trying https://idm1.example.com/ipa/session/json
+ipa: INFO: [try 1]: Forwarding 'group_show/1' to json server 'https://idm1.example.com/ipa/session/json'
+ipa: INFO: Request: {
+    "id": 0,
+    "method": "group_show/1",
+    "params": [
+        [
+            "admins"
+        ],
+        {
+            "version": "2.230"
+        }
+    ]
+}
+### Lots of output ###</code></pre><p>Let’s say I wanted to perform that in a simple bash script that uses curl. I would perform a <cite>kinit</cite> and then run the script below to have it login for me via kerberos and do the work.</p>
+<pre><code class="language-shell">#!/bin/bash
+ipaReplica=idm1.example.com
+cookieJar=my.cookie.jar
+
+# Login with Kerberos
+curl -v \
+  -H referer:https://$ipaReplica/ipa \
+  -c $cookieJar -b $cookieJar \
+  --cacert /etc/ipa/ca.crt \
+  --negotiate -u : \
+  -X POST \
+  https://$ipaReplica/ipa/session/login_kerberos
+
+# Send user_find method request
+curl -v \
+  -H referer:https://$ipaReplica/ipa \
+  -H "Content-Type:application/json" \
+  -H "Accept:applicaton/json"\
+  -c $cookieJar -b $cookieJar \
+  --cacert /etc/ipa/ca.crt \
+  -d  '{"method":"group_show/1","params":[["admins"],{}],"id":0}' \
+  -X POST \
+  https://$ipaReplica/ipa/session/json</code></pre><p>Any of the commands ran via <cite>ipa</cite> can be reviewed with the -vv switch so you can see what kind of call it’s making and how it’s making it. Thus, making it easier to tie into your own scripts. On the Web UI, you can go to IPA Server -&gt; API Browser to find more information on the specific API calls.</p>
+</div>
+<div class="section" id="configure-kerberized-services">
+<h2><a class="toc-backref" href="#id14">Configure Kerberized services</a><a class="headerlink" href="#configure-kerberized-services" title="Permalink to this headline">¶</a></h2>
+<p>One of the things that you may end up doing, whether by hand or in an automated fashion, is creating kerberized services. In a previous section, we addressed creating an NFS service for both a server and a client for the purpose of automating home directory mounts on a client when a user logs in. So you already have the idea of what this entails.</p>
+<pre><code class="language-shell"># Create kerberos service
+% ipa service-add HTTP/http.example.com</code></pre><p>Not only that, it’s probably a good idea to actually <em>get</em> the keytab.</p>
+<pre><code class="language-shell">% kinit admin
+% ipa-getkeytab -s idm1.example.com -p HTTP/http.example.com -k /etc/krb5.keytab</code></pre><p>For an example of automating keytab creation and retrieval, see the CentOS/FreeIPA page on this site.</p>
+</div>
+<div class="section" id="create-a-trust-with-active-directory">
+<h2><a class="toc-backref" href="#id15">Create a trust with Active Directory</a><a class="headerlink" href="#create-a-trust-with-active-directory" title="Permalink to this headline">¶</a></h2>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+<h5 class="card-title">
+AD Setup</h5><p>We do not cover setting up an AD forest here. This is out of scope for this series. If you are using Server 2016 or higher and you are using “core”, look up the commands:</p>
+<p>Install-WindowsFeature AD-domain-services
+Import-Module ADDSDeployment
+Install-ADDSForest</p>
+</div></div>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="63%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Server Name</th>
+<th class="head">IP Address</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>ad.example.net</td>
+<td>192.168.15.15</td>
+</tr>
+</tbody>
+</table>
+<p>For our trust, the AD server will need to be configured to be the example.net domain with the hostname of ad.example.net. This way, we are not colliding in DNS and both AD and IdM should be able to communicate with each other as two separate forests. It is recommended to use Windows Server 2016 (with the same domain functional level) for this setup, as experience with that product is a recommended prerequisite for the exam.</p>
+<pre><code class="language-shell">% yum install ipa-server-trust-ad -y
+% firewall-cmd --add-service=freeipa-trust --permanent
+success
+% firewall-cmd --reload
+success
+% ipa-adtrust-install
+. . .
+# This is the admin@REALM IPA account
+admin password:
+
+WARNING: The smb.conf already exists. Running ipa-adtrust-install will break your existing samba configuration.
+
+# Type 'yes' here
+Do you wish to continue? [no]: yes
+
+Do you want to enable support for trusted domains in Schema Compatibility plugin?
+This will allow clients older than SSSD 1.9 and non-Linux clients to work with trusted users.
+
+# You can press enter here to accept the default. If you have BSD, Solaris, Omnios, HP-UX, AIX, or RHEL 5 and older clients
+# you may want to enable this. Some apps may benefit from this also.
+Enable trusted domains support in slapi-nis? [no]:
+
+Enter the NetBIOS name for the IPA domain.
+Only up to 15 uppercase ASCII letters, digits and dashes are allowed.
+Example: EXAMPLE.
+
+# You can accept the default or put your own.
+NetBIOS domain name [IPA]: IPA0
+
+WARNING: 4 existing users or groups do not have a SID identifier assigned.
+Installer can run a task to have ipa-sidgen Directory Server plugin generate
+the SID identifier for all these users. Please note, in case of a high
+number of users and groups, the operation might lead to high replication
+traffic and performance degradation. Refer to ipa-adtrust-install(1) man page
+for details.
+
+# You should always say yes.
+Do you want to run the ipa-sidgen task? [no]: yes
+
+. . .
+
+# This will complete and list ports to open and such. We did this earlier.</code></pre><p>Now that the AD trust components are prepped, depending on the setup, we’ll need to do some DNS zone forwards. It is likely you have IPA and AD running their own DNS. <strong>Note</strong>: This may not be the case in a real world scenario.</p>
+<pre><code class="language-shell"># We need to create a forward zone here for the example.net zone
+% ipa dnsforwardzone-add example.net --forwarder=192.168.15.15 --forward-policy=only
+Server will check DNS forwarder(s).
+This may take some time, please wait ...
+  Zone name: example.net.
+  Active zone: TRUE
+  Zone forwarders: 192.168.15.15
+  Forward policy: only
+
+# We should probably create a few dns records...
+# Assuming the AD netbios name is EXAMPLEAD, use the syntax hostname.NETBIOS here
+% ipa dnsrecord-add example.com ad.EXAMPLEAD --a-ip-address=192.168.15.15
+# Same idea here, but we're only doing the netbios name and saying the name server record is the AD server
+% ipa dnsrecord-add example.com EXAMPLEAD --ns-hostname=ad.EXAMPLEAD
+
+# We need to allow the zones to be transferable to the AD domain
+% ipa dnszone-mod example.com --allow-transfer=192.168.15.15</code></pre><p>On the AD side, we need to create the IPA zone. It’s absolutely required.</p>
+<pre><code class="language-shell">C:\Windows\System32>dnscmd 127.0.0.1 /ZoneAdd example.com /Secondary 192.168.15.2</code></pre><p>You should probably double check that the DNS records are returning on the IDM servers.</p>
+<pre><code class="language-shell">% dig _ldap._tcp.example.com SRV
+; <<>> DiG 9.9.4-RedHat-9.9.4-61.el7 <<>> SRV _ldap._tcp.example.com
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 14793
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;_ldap._tcp.example.com.      IN      SRV
+
+;; ANSWER SECTION:
+_ldap._tcp.example.com. 86400 IN      SRV     0 100 389 idm1.example.com.
+_ldap._tcp.example.com. 86400 IN      SRV     0 100 389 idm2.example.com.
+
+;; AUTHORITY SECTION:
+example.com.          86400   IN      NS      idm1.example.com.
+example.com.          86400   IN      NS      idm2.example.com.
+
+;; ADDITIONAL SECTION:
+idm1.example.com.      1200    IN      A       192.168.15.2
+idm2.example.com.      1200    IN      A       192.168.15.3
+
+# Same with the AD records
+% dig _ldap._tcp.example.net SRV
+; <<>> DiG 9.9.4-RedHat-9.9.4-61.el7 <<>> SRV _ldap._tcp.example.net
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 12195
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 4, ADDITIONAL: 9
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;_ldap._tcp.example.net.       IN      SRV
+
+;; ANSWER SECTION:
+_ldap._tcp.example.net. 600    IN      SRV     0 100 389 ad.example.net.
+
+. . .</code></pre><p>Now that they are returning, intiate the trust.</p>
+<pre><code class="language-shell">% ipa trust-add --type=ad example.net --admin Administrator --password
+Active Directiron domain administrator's password: (type password here)
+-----------------------------------------------------
+Added Active Directory trust for realm "example.net"
+-----------------------------------------------------
+  Realm name: example.net
+  Domain NetBIOS name: EXAMPLEAD
+  Domain Security Identifier: S-1-5-21-XXXXXXXXXX-YYYYYYYYY-ZZZZZZZZZZ
+  Trust direction: Trusting forest
+  Trust type: Active Directory domain
+  Trust status: Established and verified
+
+# Check that an AD user is resolvable. You can do this with DOMAIN\name or name@DOMAIN
+% id EXAMPLEAD\\administrator
+% id administrator@example.net</code></pre></div>
+<div class="section" id="configure-control-policies-and-user-access">
+<h2><a class="toc-backref" href="#id16">Configure/control policies and user access</a><a class="headerlink" href="#configure-control-policies-and-user-access" title="Permalink to this headline">¶</a></h2>
+<p>In FreeIPA, there are two sets of policies:</p>
+<ul class="simple">
+<li>Role Based Access Control (RBAC) which are the permissions, delegated or otherwise, that allow (or deny) access to various pieces of FreeIPA. This can be users that have the ability to reset passwords, modify groups, or perhaps they can issue keytabs.</li>
+<li>Host Based Access Control (HBAC) which are the permissions granted to a user or users to access systems on various (PAM) services, such as ssh or logging into a desktop system (eg, GDM).</li>
+</ul>
+<div class="section" id="rbac">
+<h3><a class="toc-backref" href="#id17">RBAC</a><a class="headerlink" href="#rbac" title="Permalink to this headline">¶</a></h3>
+<p>In FreeIPA, there are a set of predefined roles that are, for the most part, sane. You can find them using <cite>ipa role-find</cite>.</p>
+<p>In a previous section, we already created roles and added groups to the roles.</p>
+</div>
+<div class="section" id="hbac">
+<h3><a class="toc-backref" href="#id18">HBAC</a><a class="headerlink" href="#hbac" title="Permalink to this headline">¶</a></h3>
+<p>HBAC, or Host Based Access Controls, are permissions that grant user or users access to systems via any number of services. The services are PAM services. No doubt you have looked in <cite>/etc/pam.d</cite> before and have seen quite a few files or even modified them by hand at some point.</p>
+<pre><code class="language-shell">% ls -l /etc/pam.d/
+total 80
+-rw-r--r--. 1 root root 272 May 11  2019 atd
+-rw-r--r--. 1 root root 232 Apr 15 15:28 config-util
+-rw-r--r--. 1 root root 328 Nov  8  2019 crond
+lrwxrwxrwx. 1 root root  32 Jan 14  2020 fingerprint-auth -> /etc/authselect/fingerprint-auth
+-rw-r--r--. 1 root root  70 Apr 24 06:35 ksu
+-rw-r--r--. 1 root root 715 Apr 24 05:38 login
+-rw-r--r--. 1 root root 154 Apr 15 15:28 other
+-rw-r--r--. 1 root root 168 Apr  6 20:08 passwd
+lrwxrwxrwx. 1 root root  29 Jan 14  2020 password-auth -> /etc/authselect/password-auth
+-rw-r--r--. 1 root root 155 Apr  8 22:00 polkit-1
+lrwxrwxrwx. 1 root root  25 Jan 14  2020 postlogin -> /etc/authselect/postlogin
+-rw-r--r--. 1 root root 640 Apr 24 05:38 remote
+-rw-r--r--. 1 root root 143 Apr 24 05:38 runuser
+-rw-r--r--. 1 root root 138 Apr 24 05:38 runuser-l
+lrwxrwxrwx. 1 root root  30 Jan 14  2020 smartcard-auth -> /etc/authselect/smartcard-auth
+lrwxrwxrwx. 1 root root  25 Jun 15 10:18 smtp -> /etc/alternatives/mta-pam
+-rw-r--r--. 1 root root  76 Apr  6 20:11 smtp.postfix
+-rw-r--r--. 1 root root 727 Feb  4  2020 sshd
+-rw-r--r--. 1 root root 214 Apr 23 20:48 sssd-shadowutils
+-rw-r--r--. 1 root root 566 Apr 24 05:38 su
+-rw-r--r--. 1 root root 154 Apr 23 19:40 sudo
+-rw-r--r--. 1 root root 178 Apr 23 19:40 sudo-i
+-rw-r--r--. 1 root root 137 Apr 24 05:38 su-l
+lrwxrwxrwx. 1 root root  27 Jan 14  2020 system-auth -> /etc/authselect/system-auth
+-rw-r--r--. 1 root root 248 Jul 21 07:57 systemd-user
+-rw-r--r--. 1 root root  84 May 11  2019 vlock</code></pre><p>On a typical Red Hat system, the most common ones (such as <cite>su</cite>, <cite>sshd</cite>, <cite>sudo</cite>) imports the <cite>system-auth</cite> file, so the login request is processed through those means. When defining HBAC rules, you either must allow “all” services or be selective. For example, if an HBAC rule allows “sshd”, a user is allowed to ssh into a system, but wouldn’t allow them to login locally, as that goes through <cite>login</cite>. If you want the user to be able to run the <cite>su</cite> and <cite>sudo</cite> commands, you would also need to allow those services. Otherwise, the user is denied, despite sudo policies being available.</p>
+<pre><code class="language-shell">[label@mgt ~]$ sudo -i
+[sudo] password for label:
+sudo: PAM account management error: Permission denied</code></pre><p>In FreeIPA, there is typically a rule already predefined that allows everyone to access all systems and all services. This can be removed or disabled and this removes host access to everything immediately. This is typically recommended in most environments where there are security standards and procedures in place.</p>
+<pre><code class="language-shell"># To disable
+% ipa hbacrule-disable allow_all
+# To delete instead
+% ipa hbacrule-del allow_all</code></pre><p>When performing a FreeIPA installation, it is possible to add <cite>–no-hbac-allow</cite> that will disable the allow_all rule.</p>
+<p>Below are some examples of adding access.</p>
+<pre><code class="language-shell"># Allow all admins to access all systems
+% ipa hbacrule-add --hostcat=all --servicecat=all --desc='Allow all admins to access all systems' All_Admins
+% ipa hbacrule-add-user --groups=admins All_Admins
+
+# And then test...
+% ipa hbactest --rules=All_Admins --user=jsmith --host=client.example.com --service=login</code></pre><pre><code class="language-shell"># Allow the corp users to access the client system only using the sshd pam services
+% ipa hbacrule-add --desc='Allow corp users to access client on ssh' corp_access
+% ipa hbacrule-add-user --groups=corp corp_access
+% ipa hbacrule-add-host --hosts=client.example.com corp_access
+% ipa hbacrule-add-service --hbacsvcs=sshd corp_access
+
+# And then test...
+% ipa hbactest --rules=corp_access --user=brufus --host=client.example.com --service=sshd</code></pre></div>
+</div>
+<div class="section" id="configure-and-manage-a-certificate-authority">
+<h2><a class="toc-backref" href="#id19">Configure and manage a certificate authority</a><a class="headerlink" href="#configure-and-manage-a-certificate-authority" title="Permalink to this headline">¶</a></h2>
+<p>By default FreeIPA stands up its own CA. And because of this, this allows you or your workplace to be able to issue certificates, that can be used in a wide variety of services, the most common or obvious one would be for Apache httpd.</p>
+<p>There’s a couple of ways you can get a certificate signed by FreeIPA. One method is to generate your own CSR and request it to be signed by FreeIPA. Another way is you can do it all from one command, <cite>ipa-getcert</cite>, and optionally, either have the certificate in PEM format or an NSS database. We’ll address these examples.</p>
+<pre><code class="language-shell"># Creating an SSL certificate in the PEM format
+% ipa service-add HTTP/http.example.com
+% ipa-getcert request -f /etc/pki/tls/certs/http.pem -k /etc/pki/tls/private/http.key -K HTTP/http.example.com -D http.example.com
+New signing request "20190902000318" added.
+# Verify
+% ipa-getcert list
+Number of certificates and requests being tracked: 1.
+Request ID '20190902000318':
+        status: MONITORING
+        stuck: no
+        key pair storage: type=FILE,location='/etc/pki/tls/private/http.key'
+        certificate: type=FILE,location='/etc/pki/tls/certs/http.pem'
+        CA: IPA
+        issuer: CN=Certificate Authority,O=EXAMPLE.COM
+        subject: CN=http.example.com,O=EXAMPLE.COM
+        expires: 2021-09-02 00:03:19 UTC
+        dns: http.example.com
+        principal name: HTTP/http.example.com@EXAMPLE.COM
+        key usage: digitalSignature,nonRepudiation,keyEncipherment,dataEncipherment
+        eku: id-kp-serverAuth,id-kp-clientAuth
+        pre-save command:
+        post-save command:
+        track: yes
+        auto-renew: yes
+
+# Create an SSL certificate in the NSS format
+% ipa-getcert request -d /etc/pki/tls/certs/nss -n 'Test' -K HTTP/http.example.com -D http.example.com
+New signing request "20190902000756" added.
+# Verify
+% ipa-getcert list
+. . .
+Request ID '20190902000756':
+        status: MONITORING
+        stuck: no
+        key pair storage: type=NSSDB,location='/etc/pki/tls/certs/nss',nickname='Test',token='NSS Certificate DB'
+        certificate: type=NSSDB,location='/etc/pki/tls/certs/nss',nickname='Test',token='NSS Certificate DB'
+        CA: IPA
+        issuer: CN=Certificate Authority,O=EXAMPLE.COM
+        subject: CN=http.example.com,O=EXAMPLE.COM
+        expires: 2021-09-02 00:07:57 UTC
+        dns: http.example.com
+        principal name: HTTP/http.example.com@EXAMPLE.COM
+        key usage: digitalSignature,nonRepudiation,keyEncipherment,dataEncipherment
+        eku: id-kp-serverAuth,id-kp-clientAuth
+        pre-save command:
+        post-save command:
+        track: yes
+        auto-renew: yes</code></pre><p>By default, when a certificate request is performed (and succeeds to be signed by the IPA CA), it is typically tracked and auto-renewed by default. This is done by the certmonger service, which eliminates the need to have to renew anything by hand.</p>
+</div>
+<div class="section" id="back-up-an-idm-infrastructure">
+<h2><a class="toc-backref" href="#id20">Back up an IdM infrastructure</a><a class="headerlink" href="#back-up-an-idm-infrastructure" title="Permalink to this headline">¶</a></h2>
+<p>There are multiple ways you can backup IPA.</p>
+<ul class="simple">
+<li>Full backup: Default, shuts down IPA before performing a backup. This backs up with raw files. As such, it must be done offline.</li>
+<li>Data backup: Backs up a copy of the ldap data and the changelog (the IPA-REALM instance, DogTag, IPA backend). This can be done online.</li>
+</ul>
+<pre><code class="language-shell"># Turns off IPA completely and perform a backup
+% ipa-backup
+# Backs up data only and doesn't take down IPA
+% ipa-backup --data --online
+# Backs up data only and gpg encrypts
+% ipa-backup --gpg --gpg-keyring=/root/keys --data --online</code></pre><p>To restore a backup, the ipa-restore command is available.</p>
+<pre><code class="language-shell">% ipa-restore /var/lib/ipa/backup/</code></pre></div>
+<div class="section" id="configure-idm-as-an-ldap-backend-for-external-services">
+<h2><a class="toc-backref" href="#id21">Configure IdM as an LDAP backend for external services</a><a class="headerlink" href="#configure-idm-as-an-ldap-backend-for-external-services" title="Permalink to this headline">¶</a></h2>
+<p>Most services and applications that authenticate users do typically have LDAP support. IdM can be used as an LDAP backend. You typically need only a few things to authenticate users from IdM to an application.</p>
+<ul class="simple">
+<li>Base DN, this always ends up being the top level of your domain: dc=example,dc=com - All accounts share this common base.</li>
+<li>Bind DN, this is a system account that binds to the directory to assist with searches and authentication</li>
+<li>Attribute mappings</li>
+<li>Groups, depending on the application</li>
+</ul>
+<p>Below is a table of common DN’s you may specify in an application:</p>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="11%" />
+<col width="58%" />
+<col width="31%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">DN’s</th>
+<th class="head">Path</th>
+<th class="head">Filter (if applicable)</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Base DN</td>
+<td>dc=example,dc=com</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>User DN</td>
+<td>cn=users,cn=accounts,dc=example,dc=com</td>
+<td>uid=…</td>
+</tr>
+<tr class="row-even"><td>Group DN</td>
+<td>cn=groups,cn=accounts,dc=example,dc=com</td>
+<td>(objectClass=groupOfNames)</td>
+</tr>
+<tr class="row-odd"><td>Bind DN</td>
+<td>uid=account,cn=sysaccounts,cn=etc,dc=example,dc=com</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-shell">% ipa user-show admin --all | grep '^dn'
+  dn: uid=admin,cn=users,cn=accounts,dc=example,dc=com</code></pre><p>Below is a table of common attributes that may be used to map user information in the application.</p>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="52%" />
+<col width="48%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type</th>
+<th class="head">Attribute</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Login Name</td>
+<td>uid</td>
+</tr>
+<tr class="row-odd"><td>First Name</td>
+<td>givenName</td>
+</tr>
+<tr class="row-even"><td>Surname</td>
+<td>sn</td>
+</tr>
+<tr class="row-odd"><td>Email</td>
+<td>mail</td>
+</tr>
+<tr class="row-even"><td>Groups</td>
+<td>memberOf</td>
+</tr>
+<tr class="row-odd"><td>Full Name</td>
+<td>cn</td>
+</tr>
+</tbody>
+</table>
+<p>Below are two ways to create a bind account (bind DN). The first way is the LDAP way. The second way is the ipa-ldap-updater.</p>
+<pre><code class="language-shell">% kinit admin
+% ldapadd -Y GSSAPI
+. . .
+dn: uid=binder,cn=sysaccounts,cn=etc,dc=example,dc=com
+objectclass: account
+objectclass: simplesecurityobject
+uid: binder
+userPassword: password123
+passwordExpirationTime: 20380119031407Z
+nsIdleTimeout: 0
+# Press CTRL+d
+adding new entry "uid=binder,cn=sysaccounts,cn=etc,dc=example,dc=com"</code></pre><pre><code class="language-shell">% kinit admin
+% cat << EOF > binder.update
+dn: uid=binder,cn=sysaccounts,cn=etc,dc=example,dc=com
+add:objectclass:account
+add:objectclass:simplesecurityobject
+add:uid:binder
+add:userPassword:password123
+add:passwordExpirationTime:20380119031407Z
+add:nsIdleTimeout:0
+EOF
+% ipa-ldap-updater binder.update</code></pre><p>When this account is created, you can then specify the full DN for that object into a bind DN field, along with it’s password into an accompanying bind password field.</p>
+<p>If you’d like an example of setting up Ansible Tower (or AWX, the open source version of tower) against IdM, you can click <a class="reference external" href="https://github.com/ansible/awx/blob/devel/docs/auth/ldap.md">here</a>.</p>
+<div class="section" id="kerberos">
+<h3><a class="toc-backref" href="#id22">Kerberos</a><a class="headerlink" href="#kerberos" title="Permalink to this headline">¶</a></h3>
+<p>On some applications, it is possible to use kerberos authentication rather than a straight bind account. The general idea is the same when picking out the base dn, attributes, and the like. However, instead you would create an account with an accompanying LDAP/… service principal to do the authentication.</p>
+</div>
+</div>
+<div class="section" id="implement-a-sso">
+<h2><a class="toc-backref" href="#id23">Implement a SSO</a><a class="headerlink" href="#implement-a-sso" title="Permalink to this headline">¶</a></h2>
+<p>To setup a very, very simple SSO, you can setup a simple location that requires a login.</p>
+<pre><code class="language-shell">% ipa-getkeytab -s idm1.example.com -p http/http.example.com -k /etc/httpd/conf/http.keytab
+% vi /etc/httpd/conf.d/location.conf
+&lt;Location "/"&gt;
+  AuthType Kerberos
+  AuthName "IPA Kerberos Auth"
+  # Keytab
+  Krb5Keytab /etc/httpd/conf/http.keytab
+  # Kerb settings
+  KrbMethodNegotiate on
+  KrbMethodK5Passwd on
+  KrbServiceName HTTP
+  KrbAuthRealms EXAMPLE.COM
+  KrbSaveCredentials off
+  Require valid-user
+&lt;/Location&gt;</code></pre></div>
+</div>
+
+
            </div>
            
           </main>
@@ -759,6 +1651,7 @@
       <script type="text/javascript" src="../_static/js/components/prism-bash.min.js" defer></script>
       <script type="text/javascript" src="../_static/js/components/prism-docker.min.js" defer></script>
       <script type="text/javascript" src="../_static/js/prism-freeipa.min.js" defer></script>
+      <script type="text/javascript" src="../_static/js/toggle.js" defer></script>
 
   
 

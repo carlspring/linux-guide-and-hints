@@ -33,24 +33,10 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="../_static/css/prism-okaidia.min.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/toggle.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Clang" href="clang.html" />
-    <link rel="prev" title="Bup" href="bup.html" />
-
-  <script type="text/javascript">
-      $(document).ready(function() {
-          //
-          //
-          $(".toggle > *").hide();
-          $(".toggle .admonition-title").show();
-          $(".toggle .admonition-title").click(function() {
-              $(this).parent().children().not(".admonition-title").toggle(400);
-              $(this).parent().children(".admonition-title").toggleClass("open");
-          })
-      });
-  </script>
- 
-
+    <link rel="prev" title="Bup" href="bup.html" /> 
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -711,6 +697,59 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
+  <div class="section" id="cisco-ip-communicator">
+<h1>Cisco IP Communicator<a class="headerlink" href="#cisco-ip-communicator" title="Permalink to this headline">¶</a></h1>
+<p>Cisco IP Communicator is a SoftPhone for VOIP communications. Mainly
+used for Corporations that have Cisco desk phones or users who are
+remote. The issue is that Cisco Jabber, a SIP client, nor the IP
+Communicator have Linux versions. Wine will work, but it’s normally
+troublesome to setup or get it working correctly. There were various
+issues:</p>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+<h5 class="card-title">
+Issues</h5><ul class="simple">
+<li>Moving the Window would crash the application</li>
+<li>After a crash, it was near impossible to get it to open back up</li>
+<li>There was a horrendous noise crackling issue (much like with Skype)</li>
+<li>(VPN/Network) Calls would result in no sound</li>
+</ul>
+</div></div>
+<div class="section" id="installing-via-playonlinux">
+<h2>Installing via PlayOnLinux<a class="headerlink" href="#installing-via-playonlinux" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Install PlayOnLinux</li>
+<li>Open PlayOnLinux, install a non-listed program</li>
+<li>Select all boxes: Use another version of Wine (only if you want to try another version), Configure Wine, Install some libraries</li>
+<li>Use the system wine first. You can try another version if you’d like.</li>
+<li>Configure Wine -&gt; Override libraries for crypt32, run as Windows XP</li>
+<li>Install some libraries -&gt; POL_Function_OverrideDLL, POL_Install_corefonts, POL_Install_crypt32, POL_Internal_InstallFonts</li>
+<li>Install the application normally by selecting the msi.</li>
+<li>It will crash at the end. This is normal.</li>
+<li>Make a shortcut for communicatork9.</li>
+<li>Run the program normally. It will try a audio tuning wizard. This should succeed. If you hear crackling, this is OK.</li>
+<li>Configure your phone as necessary.</li>
+</ol>
+</div>
+<div class="section" id="installing-via-regular-wine">
+<h2>Installing via Regular Wine<a class="headerlink" href="#installing-via-regular-wine" title="Permalink to this headline">¶</a></h2>
+<p>Most of the steps used for PlayOnLinux can be done in a regular wineprefix. Ensure corefonts is at least done.</p>
+</div>
+<div class="section" id="pulse-audio">
+<h2>Pulse Audio<a class="headerlink" href="#pulse-audio" title="Permalink to this headline">¶</a></h2>
+<p>Many VOIP applications have a sound crackling issue. Skype is no exception.
+In a different part of this guide, there is a trick to making Skype be OK.
+However, that’s for Skype. To fix it system wide, we can do this.</p>
+<pre><code class="language-bash"># sed -i.bak ’/load-module module-udev-detect/ s/$/ tsched=0/’ /etc/pulse/default.pa</code></pre><p>Killing pulseaudio or restarting your system will allow this to take affect.</p>
+<p>The result.</p>
+<pre><code class="language-none">### Automatically load driver modules depending on the hardware available
+.ifexists module-udev-detect.so
+load-module module-udev-detect tsched=0
+.else</code></pre></div>
+</div>
+
+
            </div>
            
           </main>
@@ -758,6 +797,7 @@
       <script type="text/javascript" src="../_static/js/components/prism-bash.min.js" defer></script>
       <script type="text/javascript" src="../_static/js/components/prism-docker.min.js" defer></script>
       <script type="text/javascript" src="../_static/js/prism-freeipa.min.js" defer></script>
+      <script type="text/javascript" src="../_static/js/toggle.js" defer></script>
 
   
 

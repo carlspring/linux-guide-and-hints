@@ -33,24 +33,10 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="../_static/css/prism-okaidia.min.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/toggle.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Powerline" href="powerline.html" />
-    <link rel="prev" title="Packaging" href="packaging.html" />
-
-  <script type="text/javascript">
-      $(document).ready(function() {
-          //
-          //
-          $(".toggle > *").hide();
-          $(".toggle .admonition-title").show();
-          $(".toggle .admonition-title").click(function() {
-              $(this).parent().children().not(".admonition-title").toggle(400);
-              $(this).parent().children(".admonition-title").toggleClass("open");
-          })
-      });
-  </script>
- 
-
+    <link rel="prev" title="Packaging" href="packaging.html" /> 
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -711,6 +697,37 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
+  <div class="section" id="pip">
+<h1>pip<a class="headerlink" href="#pip" title="Permalink to this headline">¶</a></h1>
+<p>pip already comes with your Python installation from your distribution’s
+package manager. However, when installing packages, it’s generally not a
+good idea to install them globally. Furthermore, Python has a myriad of
+ways of installing packages, which is confusing and could easily screw
+up your system.</p>
+<p>As a rule of thumb, avoid <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">pip</span></code>. Always append <code class="docutils literal notranslate"><span class="pre">--user</span></code> to the
+<code class="docutils literal notranslate"><span class="pre">install</span></code> command and double check which <code class="docutils literal notranslate"><span class="pre">pip</span></code> you are using with
+<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">--version</span></code>. It should say the version number as well as the
+directory it’s being pulled from.</p>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+There is a proposal to make <code class="docutils literal notranslate"><span class="pre">--user</span></code> the default scheme, see
+<a class="reference external" href="https://github.com/pypa/pip/issues/1668">issue #1668</a>.</div></div>
+<p>Finally, there’s a separate pip for Python 2 and 3. You could easily
+have 4-5 different versions (2 installed globally, 2 installed locally,
+and pip-installed pips) which compounds the issue further.</p>
+<p>Due to the recursive nature of installing <code class="docutils literal notranslate"><span class="pre">pip</span></code> with <code class="docutils literal notranslate"><span class="pre">pip</span></code> and the fact
+that you can orphan packages, you <strong>DO NOT</strong> want to do this:</p>
+<pre><code class="language-bash">pip install --user pip</code></pre><p>It’s tempting to do this so you can keep a newer version of pip without upgrading
+your system pip (and potentially messing it up.) However, upon upgrading from
+Fedora 23 to 24, Python upgraded from 3.4 to 3.5. The <code class="docutils literal notranslate"><span class="pre">pip</span></code> I installed in
+<code class="docutils literal notranslate"><span class="pre">~/.local</span></code> now pointed to 3.5, even if you specify the path manually, and so my
+3.4 packages were “orphaned”. For more information, see <a class="reference external" href="https://github.com/Homebrew/legacy-homebrew/issues/25752">Pip3 from Python3 upgrade will break Pip from Python</a>.</p>
+<p>I ended up just wiping my local <code class="docutils literal notranslate"><span class="pre">pip</span></code>’s and doing a user install with my system
+<code class="docutils literal notranslate"><span class="pre">pip</span></code>.</p>
+</div>
+
+
            </div>
            
           </main>
@@ -758,6 +775,7 @@
       <script type="text/javascript" src="../_static/js/components/prism-bash.min.js" defer></script>
       <script type="text/javascript" src="../_static/js/components/prism-docker.min.js" defer></script>
       <script type="text/javascript" src="../_static/js/prism-freeipa.min.js" defer></script>
+      <script type="text/javascript" src="../_static/js/toggle.js" defer></script>
 
   
 
