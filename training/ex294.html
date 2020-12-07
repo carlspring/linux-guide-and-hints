@@ -5,12 +5,13 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  
+  <meta content="Materials to prepare for the Red Hat Certified Engineer exam" name="description" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests; default-src 'self'; style-src 'self' https://github.githubassets.com/ stackpath.bootstrapcdn.com; script-src 'self' https://gist.github.com/remyabel/2cac59a778fa34d0c61e246554fe3e3c.js https://gist.github.com/remyabel/bbebf3043860abe24a19bf0b1d67bd33.js https://gist.github.com/remyabel/e9c33b830da73768fe6ea2363fc27e1a.js; img-src 'self'; media-src 'self'; font-src 'self' fonts.gstatic.com stackpath.bootstrapcdn.com;">
   
   
-  <title>Password management &mdash; Linux Guide and Hints</title>
+  <title>EX294 Exam Prep &mdash; Linux Guide and Hints</title>
   
 
   
@@ -34,8 +35,8 @@
   <link rel="stylesheet" href="../_static/css/prism-okaidia.min.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="The Euphemism Review" href="../misc/euphemism.html" />
-    <link rel="prev" title="Anti-patterns" href="antipatterns.html" /> 
+    <link rel="next" title="EX362 Exam Prep" href="ex362.html" />
+    <link rel="prev" title="Unbound" href="../centos/unbound.html" /> 
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -102,28 +103,28 @@
 </li>
 </ul>
 <p class="caption"><span class="caption-text">Security</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="antipatterns.html">Anti-patterns</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="antipatterns.html#not-using-https">Not using HTTPS</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="antipatterns.html#insecure-requests">Insecure requests</a></li>
-<li class="toctree-l3"><a class="reference internal" href="antipatterns.html#using-insecure-ciphers">Using insecure ciphers</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../security/antipatterns.html">Anti-patterns</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../security/antipatterns.html#not-using-https">Not using HTTPS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../security/antipatterns.html#insecure-requests">Insecure requests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/antipatterns.html#using-insecure-ciphers">Using insecure ciphers</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="antipatterns.html#password-security">Password security</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="antipatterns.html#using-deprecated-hashing-functions">Using deprecated hashing functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="antipatterns.html#arbitrary-password-lengths">Arbitrary password lengths</a></li>
-<li class="toctree-l3"><a class="reference internal" href="antipatterns.html#client-side-hashing">Client-side hashing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/antipatterns.html#password-security">Password security</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../security/antipatterns.html#using-deprecated-hashing-functions">Using deprecated hashing functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/antipatterns.html#arbitrary-password-lengths">Arbitrary password lengths</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/antipatterns.html#client-side-hashing">Client-side hashing</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="antipatterns.html#disabling-mitigations">Disabling mitigations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="antipatterns.html#disabling-selinux">Disabling SELinux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/antipatterns.html#disabling-mitigations">Disabling mitigations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/antipatterns.html#disabling-selinux">Disabling SELinux</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Password management</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#backing-your-databases-up-to-your-phone">Backing your databases up to your phone</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#faq">FAQ</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#isn-t-using-a-single-password-bad">Isn’t using a single password bad?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#but-your-master-password-can-be-stolen-by-a-keylogger">But your master password can be stolen by a keylogger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/passwords.html">Password management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../security/passwords.html#backing-your-databases-up-to-your-phone">Backing your databases up to your phone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/passwords.html#faq">FAQ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../security/passwords.html#isn-t-using-a-single-password-bad">Isn’t using a single password bad?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/passwords.html#but-your-master-password-can-be-stolen-by-a-keylogger">But your master password can be stolen by a keylogger</a></li>
 </ul>
 </li>
 </ul>
@@ -520,110 +521,110 @@
 </li>
 </ul>
 <p class="caption"><span class="caption-text">Training Resources</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../training/ex294.html">EX294 Exam Prep</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex294.html#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex294.html#exam-information">Exam Information</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex294.html#resources">Resources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex294.html#required-exam-vm-s">Required Exam VM’s</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex294.html#tasks">Tasks</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex294.html#task-1-ansible-configuration">Task 1 - Ansible Configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex294.html#task-2-file-content">Task 2 - File Content</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex294.html#task-3-configure-ssh-server">Task 3 - Configure SSH Server</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex294.html#task-4-ansible-vault">Task 4 - Ansible Vault</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex294.html#task-5-users-and-groups">Task 5 - Users and Groups</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex294.html#task-6-schedulded-tasks">Task 6 - Schedulded Tasks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex294.html#task-7-create-roles-database">Task 7 - Create Roles - Database</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex294.html#task-8-use-archiving-to-backup-mysql">Task 8 - Use Archiving to backup mysql</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex294.html#task-9-create-roles-web">Task 9 - Create Roles - Web</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex294.html#task-10-download-roles-from-galaxy">Task 10 - Download Roles from Galaxy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex294.html#task-11-security">Task 11 - Security</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex294.html#task-12-use-conditionals">Task 12 - Use Conditionals</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex294.html#task-13-custom-facts">Task 13 - Custom Facts</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex294.html#task-14-install-packages">Task 14 - Install Packages</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex294.html#task-15-managing-services">Task 15 - Managing Services</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex294.html#task-16-template-management">Task 16 - Template Management</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">EX294 Exam Prep</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exam-information">Exam Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#required-exam-vm-s">Required Exam VM’s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tasks">Tasks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#task-1-ansible-configuration">Task 1 - Ansible Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#task-2-file-content">Task 2 - File Content</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#task-3-configure-ssh-server">Task 3 - Configure SSH Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#task-4-ansible-vault">Task 4 - Ansible Vault</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#task-5-users-and-groups">Task 5 - Users and Groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#task-6-schedulded-tasks">Task 6 - Schedulded Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#task-7-create-roles-database">Task 7 - Create Roles - Database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#task-8-use-archiving-to-backup-mysql">Task 8 - Use Archiving to backup mysql</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#task-9-create-roles-web">Task 9 - Create Roles - Web</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#task-10-download-roles-from-galaxy">Task 10 - Download Roles from Galaxy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#task-11-security">Task 11 - Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#task-12-use-conditionals">Task 12 - Use Conditionals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#task-13-custom-facts">Task 13 - Custom Facts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#task-14-install-packages">Task 14 - Install Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#task-15-managing-services">Task 15 - Managing Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#task-16-template-management">Task 16 - Template Management</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../training/ex362.html">EX362 Exam Prep</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#exam-information">Exam Information</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#resources">Resources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#hardware-recommendations">Hardware Recommendations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#installing-freeipa-red-hat-idm-with-replicas-for-growth-and-scale">Installing FreeIPA/Red Hat IdM with replicas for growth and scale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#creating-users-groups-and-policies">Creating Users, Groups, and Policies</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex362.html#new-passwords-expired">New Passwords Expired</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ex362.html">EX362 Exam Prep</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ex362.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex362.html#exam-information">Exam Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex362.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex362.html#hardware-recommendations">Hardware Recommendations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex362.html#installing-freeipa-red-hat-idm-with-replicas-for-growth-and-scale">Installing FreeIPA/Red Hat IdM with replicas for growth and scale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex362.html#creating-users-groups-and-policies">Creating Users, Groups, and Policies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ex362.html#new-passwords-expired">New Passwords Expired</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#install-and-configure-idm-clients">Install and configure IdM Clients</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#configure-roaming-automounted-home-directories">Configure roaming/automounted home directories</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#use-the-rest-api-to-query-idm">Use the REST api to query IdM</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#configure-kerberized-services">Configure Kerberized services</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#create-a-trust-with-active-directory">Create a trust with Active Directory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#configure-control-policies-and-user-access">Configure/control policies and user access</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex362.html#rbac">RBAC</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex362.html#hbac">HBAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex362.html#install-and-configure-idm-clients">Install and configure IdM Clients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex362.html#configure-roaming-automounted-home-directories">Configure roaming/automounted home directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex362.html#use-the-rest-api-to-query-idm">Use the REST api to query IdM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex362.html#configure-kerberized-services">Configure Kerberized services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex362.html#create-a-trust-with-active-directory">Create a trust with Active Directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex362.html#configure-control-policies-and-user-access">Configure/control policies and user access</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ex362.html#rbac">RBAC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ex362.html#hbac">HBAC</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#configure-and-manage-a-certificate-authority">Configure and manage a certificate authority</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#back-up-an-idm-infrastructure">Back up an IdM infrastructure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#configure-idm-as-an-ldap-backend-for-external-services">Configure IdM as an LDAP backend for external services</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex362.html#kerberos">Kerberos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex362.html#configure-and-manage-a-certificate-authority">Configure and manage a certificate authority</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex362.html#back-up-an-idm-infrastructure">Back up an IdM infrastructure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex362.html#configure-idm-as-an-ldap-backend-for-external-services">Configure IdM as an LDAP backend for external services</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ex362.html#kerberos">Kerberos</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex362.html#implement-a-sso">Implement a SSO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex362.html#implement-a-sso">Implement a SSO</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../training/ex407.html">EX407 Exam Prep</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex407.html#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex407.html#exam-information">Exam Information</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex407.html#resources">Resources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex407.html#objectives">Objectives</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#understand-core-components-of-ansible">Understand core components of Ansible</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#install-and-configure-an-ansible-control-node">Install and configure an Ansible control node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ex407.html">EX407 Exam Prep</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ex407.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex407.html#exam-information">Exam Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex407.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex407.html#objectives">Objectives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ex407.html#understand-core-components-of-ansible">Understand core components of Ansible</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ex407.html#install-and-configure-an-ansible-control-node">Install and configure an Ansible control node</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex407.html#practice-exam">Practice Exam</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#requirements">Requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-1-adhoc">Task 1: Adhoc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-2-manage-file-content">Task 2: Manage File Content</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-3-manage-ssh-configuration">Task 3: Manage SSH Configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-4-ansible-vault">Task 4: Ansible Vault</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-5-users-and-groups">Task 5: Users and Groups</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-6-scheduling-tasks">Task 6: Scheduling Tasks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-7-software-repositories">Task 7: Software Repositories</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-8-working-with-roles">Task 8: Working with Roles</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-9-working-with-roles">Task 9: Working with Roles</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-10-download-roles-from-galaxy">Task 10: Download roles from Galaxy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-11-security">Task 11: Security</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-12-use-conditionals-to-control-play-execution">Task 12: Use conditionals to control play execution</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-13-use-archiving">Task 13: Use archiving</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-14-work-with-facts">Task 14: Work with facts</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-15-install-software">Task 15: Install software</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-16-services">Task 16: Services</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex407.html#task-17-create-and-use-templates">Task 17: Create and use templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex407.html#practice-exam">Practice Exam</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ex407.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-1-adhoc">Task 1: Adhoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-2-manage-file-content">Task 2: Manage File Content</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-3-manage-ssh-configuration">Task 3: Manage SSH Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-4-ansible-vault">Task 4: Ansible Vault</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-5-users-and-groups">Task 5: Users and Groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-6-scheduling-tasks">Task 6: Scheduling Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-7-software-repositories">Task 7: Software Repositories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-8-working-with-roles">Task 8: Working with Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-9-working-with-roles">Task 9: Working with Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-10-download-roles-from-galaxy">Task 10: Download roles from Galaxy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-11-security">Task 11: Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-12-use-conditionals-to-control-play-execution">Task 12: Use conditionals to control play execution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-13-use-archiving">Task 13: Use archiving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-14-work-with-facts">Task 14: Work with facts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-15-install-software">Task 15: Install software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-16-services">Task 16: Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ex407.html#task-17-create-and-use-templates">Task 17: Create and use templates</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../training/ex415.html">EX415 Exam Prep</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex415.html#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex415.html#exam-information">Exam Information</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex415.html#resources">Resources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex415.html#use-red-hat-ansible-engine">Use Red Hat Ansible Engine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex415.html#configure-intrusion-detection">Configure Intrusion Detection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex415.html#configure-encrypted-storage">Configure Encrypted Storage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex415.html#restrict-usb-devices">Restrict USB Devices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex415.html#manage-system-login-security-using-pluggable-authentication-modules-pam">Manage System Login Security using Pluggable Authentication Modules (PAM)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex415.html#configure-system-auditing">Configure System Auditing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex415.html#configure-selinux">Configure SELinux</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex415.html#package-binary-glossary">Package &amp; Binary Glossary</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../training/ex415.html#command-glossary">Command Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ex415.html">EX415 Exam Prep</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ex415.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex415.html#exam-information">Exam Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex415.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex415.html#use-red-hat-ansible-engine">Use Red Hat Ansible Engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex415.html#configure-intrusion-detection">Configure Intrusion Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex415.html#configure-encrypted-storage">Configure Encrypted Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex415.html#restrict-usb-devices">Restrict USB Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex415.html#manage-system-login-security-using-pluggable-authentication-modules-pam">Manage System Login Security using Pluggable Authentication Modules (PAM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex415.html#configure-system-auditing">Configure System Auditing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex415.html#configure-selinux">Configure SELinux</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ex415.html#package-binary-glossary">Package &amp; Binary Glossary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ex415.html#command-glossary">Command Glossary</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../training/ex415.html#enforce-security-compliance">Enforce Security Compliance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ex415.html#enforce-security-compliance">Enforce Security Compliance</a></li>
 </ul>
 </li>
 </ul>
@@ -675,14 +676,14 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Password management</li>
+      <li>EX294 Exam Prep</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/nazunalika/linux-guide-and-hints/blob/master/source/security/passwords.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/nazunalika/linux-guide-and-hints/blob/master/source/training/ex294.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -696,64 +697,295 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="password-management">
-<h1>Password management<a class="headerlink" href="#password-management" title="Permalink to this headline">¶</a></h1>
-<p>Our <a class="reference internal" href="antipatterns.html"><span class="doc">antipatterns</span></a> article discusses some insecure things
-that can be done w.r.t. password from a system administrator or developer point
-of view. This article is aimed towards users.</p>
-<p>There is a wealth of information about there about how to choose a secure
-password.  Often this involves multiple character classes (such as lowercase,
-uppercase, punctuation etc.) or passphrases (strings of randomly chosen
-dictionary words, ala <a class="reference external" href="https://en.wikipedia.org/wiki/Diceware">Diceware</a>).
-However, what’s often skipped is the discussion of two other important
-elements: length and entropy of the password.  Without dwelving into a deep
-discussion, a complex password which is short is weak.  And a password with low
-entropy (that is, the password is generated using a poor random number
-generator or manually by a human) is also bad. The rule of thumb to remember is
-that <strong>how a password is generated</strong> is more important than heuristic measures
-of the complexity of a password. Furthermore, you should avoid reusing passwords
-due to <a class="reference external" href="https://www.owasp.org/index.php/Credential_stuffing">credential stuffing attacks</a>.</p>
-<p>Regardless of what your password ends up being or how complex your password is,
-you should be using password manager software to store your passwords. For the
-desktop, I highly recommend <a class="reference external" href="https://keepassxc.org/">KeePassXC</a> and for
-mobile <a class="reference external" href="https://github.com/strongbox/strongbox">Strongbox</a> as KeePassXC does
-not have a mobile client. You can also use <a class="reference external" href="https://www.passwordstore.org/">Pass</a>, which is a commandline password store that
-uses GPG to encrypt your passwords and has a plethora of third party
-integrations.</p>
-<div class="section" id="backing-your-databases-up-to-your-phone">
-<h2>Backing your databases up to your phone<a class="headerlink" href="#backing-your-databases-up-to-your-phone" title="Permalink to this headline">¶</a></h2>
-<p>We assume you’ve read our <a class="reference internal" href="../fedora/iphone.html"><span class="doc">IPhone</span></a> article. A typical mechanism for
-transferring files to your phone is to either use iTunes or the cloud. However, in addition
-to iTunes working poorly on Linux, I consider it to be user unfriendly bloatware. I also do not
-like using iCloud to avoid exposing myself to unnecessary risk.</p>
-<p>Transferring your files to your iphone using <code class="docutils literal notranslate"><span class="pre">ifuse</span></code> is very straightforward:</p>
-<pre><code class="language-shell">#!/bin/bash
+  <div class="section" id="ex294-exam-prep">
+<h1><a class="toc-backref" href="#id1">EX294 Exam Prep</a><a class="headerlink" href="#ex294-exam-prep" title="Permalink to this headline">¶</a></h1>
+<p>This page contains necessary resources plus a sample exam to help you prepare for the Red Hat Certified Engineer exam, EX294. For now, we do not have examples or an answer sheet to answer the tasks for the practice exam. However, we will note which objectives each task is testing for.</p>
+<p>The list of objectives can be found <a class="reference external" href="https://www.redhat.com/en/services/training/ex294-red-hat-certified-engineer-rhce-exam-red-hat-enterprise-linux-8?section=Objectives">here</a>. Note that the exam objectives can change at any time. It is the responsibility of the reader to always review the objectives prior to studying and taking the exam to ensure success.</p>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+<h5 class="card-title">
+Affiliation and Exam Information</h5><p>Please note that we are not affiliated with Red Hat. The materials and examples used are our own and do not reflect the training programs provided by Red Hat and are educational only. We do not disclose any of the tasks, questions, or material on the exam as it would violate the NDA. Any questions sent to us about anything directly related to the exam will not be answered. We also do not provide any one-on-one tutoring or online teaching courses.</p>
+<p>If exam objectives have changed to where the videos and this material are missing information, we can add on at any time upon request. If exam objectives have not changed but operational tasks have, we will note them as we find them. If there are things about FreeIPA that you’d like to see in the videos that may fit into objective, we can add it also upon request. However, it is likely those extra things would be better suited in the separate FreeIPA section on this site.</p>
+</div></div>
+<div class="contents topic" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#ex294-exam-prep" id="id1">EX294 Exam Prep</a><ul>
+<li><a class="reference internal" href="#overview" id="id2">Overview</a></li>
+<li><a class="reference internal" href="#exam-information" id="id3">Exam Information</a></li>
+<li><a class="reference internal" href="#resources" id="id4">Resources</a></li>
+<li><a class="reference internal" href="#required-exam-vm-s" id="id5">Required Exam VM’s</a></li>
+<li><a class="reference internal" href="#tasks" id="id6">Tasks</a><ul>
+<li><a class="reference internal" href="#task-1-ansible-configuration" id="id7">Task 1 - Ansible Configuration</a></li>
+<li><a class="reference internal" href="#task-2-file-content" id="id8">Task 2 - File Content</a></li>
+<li><a class="reference internal" href="#task-3-configure-ssh-server" id="id9">Task 3 - Configure SSH Server</a></li>
+<li><a class="reference internal" href="#task-4-ansible-vault" id="id10">Task 4 - Ansible Vault</a></li>
+<li><a class="reference internal" href="#task-5-users-and-groups" id="id11">Task 5 - Users and Groups</a></li>
+<li><a class="reference internal" href="#task-6-schedulded-tasks" id="id12">Task 6 - Schedulded Tasks</a></li>
+<li><a class="reference internal" href="#task-7-create-roles-database" id="id13">Task 7 - Create Roles - Database</a></li>
+<li><a class="reference internal" href="#task-8-use-archiving-to-backup-mysql" id="id14">Task 8 - Use Archiving to backup mysql</a></li>
+<li><a class="reference internal" href="#task-9-create-roles-web" id="id15">Task 9 - Create Roles - Web</a></li>
+<li><a class="reference internal" href="#task-10-download-roles-from-galaxy" id="id16">Task 10 - Download Roles from Galaxy</a></li>
+<li><a class="reference internal" href="#task-11-security" id="id17">Task 11 - Security</a></li>
+<li><a class="reference internal" href="#task-12-use-conditionals" id="id18">Task 12 - Use Conditionals</a></li>
+<li><a class="reference internal" href="#task-13-custom-facts" id="id19">Task 13 - Custom Facts</a></li>
+<li><a class="reference internal" href="#task-14-install-packages" id="id20">Task 14 - Install Packages</a></li>
+<li><a class="reference internal" href="#task-15-managing-services" id="id21">Task 15 - Managing Services</a></li>
+<li><a class="reference internal" href="#task-16-template-management" id="id22">Task 16 - Template Management</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h2><a class="toc-backref" href="#id2">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The Red Hat Certified Engineer exam for Red Hat Enterprise Linux 8 tests your knowledge of the RHCSA plus using Ansible for automation. To pass the same, you must understand the RHCSA concepts as well as be able to configure and utilize ansible.</p>
+</div>
+<div class="section" id="exam-information">
+<h2><a class="toc-backref" href="#id3">Exam Information</a><a class="headerlink" href="#exam-information" title="Permalink to this headline">¶</a></h2>
+<p>The EX294 exam tests your knowledge in a real world format style test - Meaning just like any Red Hat exam, it is performance-based and you perform tasks as if you were on the job. You are evaluated on the tasks you perform and if they meet the objective criteria. The EX294 supersedes the EX300 exam which was for Red Hat Enterprise Linux 7.</p>
+<p><strong>To take the exam, you must have at least an RHCSA. To become an RHCE, you must have an RHCSA. An RHCE is required to become and RHCA.</strong></p>
+</div>
+<div class="section" id="resources">
+<h2><a class="toc-backref" href="#id4">Resources</a><a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="https://docs.ansible.com/">Ansible Documentation</a></li>
+</ul>
+</div>
+<div class="section" id="required-exam-vm-s">
+<h2><a class="toc-backref" href="#id5">Required Exam VM’s</a><a class="headerlink" href="#required-exam-vm-s" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>ansible-master.example.com - Ansible Control Node</li>
+<li>ansible1.example.com</li>
+<li>ansible2.example.com</li>
+<li>ansible3.example.com</li>
+<li>ansible4.example.com<ul>
+<li>This machine should have an additional disk. 1GB is fine.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="tasks">
+<h2><a class="toc-backref" href="#id6">Tasks</a><a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="task-1-ansible-configuration">
+<h3><a class="toc-backref" href="#id7">Task 1 - Ansible Configuration</a><a class="headerlink" href="#task-1-ansible-configuration" title="Permalink to this headline">¶</a></h3>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+<h5 class="card-title">
+What objectives does this test?</h5><ul class="simple">
+<li>Understand and use essential tools</li>
+<li>Manage users and groups</li>
+<li>Understand core components of Ansible: Inventories, Configuration files</li>
+<li>Install and configure an Ansible control node: All 5 sub-objectives</li>
+<li>Configure Ansible managed nodes: All 3 sub-objectives</li>
+<li>Script administration tasks: All 2 sub-objectives</li>
+</ul>
+</div></div>
+<p>On <em>all systems</em>, perform the following list of operations:</p>
+<ul class="simple">
+<li>Create the <em>ansible</em> user with a password of your choosing</li>
+<li>Allow ansible to run all commands using sudo <em>without</em> a password</li>
+</ul>
+<p>On the <em>ansible-master</em> system, perform the following list of operations:</p>
+<ul class="simple">
+<li>Install ansible</li>
+<li>For the <em>ansible</em> user, perform the following:<ul>
+<li>Create SSH keys for the <em>ansible</em> user</li>
+<li>Create a simple bash script (<cite>~/adhoc</cite>) to copy ssh keys to all nodes</li>
+<li>Create the directory <cite>~/automation</cite></li>
+</ul>
+</li>
+<li>Create an <cite>~/automation/ansible.cfg</cite> file that does the following:<ul>
+<li>Role path: <cite>~/automation/roles</cite></li>
+<li>Inventory path: <cite>~/automation/inventory</cite></li>
+<li>Privilege escalation disabled</li>
+<li>Parallelization: 10 hosts at a time</li>
+<li>User: ansible</li>
+</ul>
+</li>
+<li>Create an <cite>~/automation/inventory</cite> that lists the following:<ul>
+<li>ansible1 is a member of proxy host group</li>
+<li>ansible2 is a member of web host group</li>
+<li>ansible3 is a member of web host group</li>
+<li>ansible4 is a member of db host group</li>
+</ul>
+</li>
+<li>Run a test ping to all ansible nodes using the setup module</li>
+</ul>
+</div>
+<div class="section" id="task-2-file-content">
+<h3><a class="toc-backref" href="#id8">Task 2 - File Content</a><a class="headerlink" href="#task-2-file-content" title="Permalink to this headline">¶</a></h3>
+<p>Create a playbook at <cite>~/automation/plays/motd.yml</cite> that does the following:</p>
+<ul class="simple">
+<li>Replace <cite>/etc/motd</cite> with text that depends on the host group:<ul>
+<li>web: “Welcome to an Apache server”</li>
+<li>db: “Welcome to a MariaDB server”</li>
+<li>proxy: “Welcome to an HAProxy server”</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="task-3-configure-ssh-server">
+<h3><a class="toc-backref" href="#id9">Task 3 - Configure SSH Server</a><a class="headerlink" href="#task-3-configure-ssh-server" title="Permalink to this headline">¶</a></h3>
+<p>Create a playbook at <cite>~/automation/plays/sshd.yml</cite> that runs on all hosts and configures ssh like:</p>
+<ul class="simple">
+<li>Banner is set to <cite>/etc/motd</cite></li>
+<li>X11Forwarding is disabled</li>
+<li>MaxAuthTries is set to 3</li>
+<li>PermitRootLogin is set to no</li>
+</ul>
+</div>
+<div class="section" id="task-4-ansible-vault">
+<h3><a class="toc-backref" href="#id10">Task 4 - Ansible Vault</a><a class="headerlink" href="#task-4-ansible-vault" title="Permalink to this headline">¶</a></h3>
+<p>Create an ansible vault file at <cite>~/automation/plays/secrets.yml</cite> with a password of <strong>redhat</strong> with the following variables:</p>
+<ul class="simple">
+<li>user_password: redhat</li>
+<li>database_password: redhat</li>
+</ul>
+</div>
+<div class="section" id="task-5-users-and-groups">
+<h3><a class="toc-backref" href="#id11">Task 5 - Users and Groups</a><a class="headerlink" href="#task-5-users-and-groups" title="Permalink to this headline">¶</a></h3>
+<p>Create a variables file at <cite>~/automation/vars/userlist.yml</cite> that lists the following:</p>
+<pre><code class="language-shell">---
+users:
+  - username: bob
+    uid: 2100
+  - username: bill
+    uid: 2101
+  - username: mary
+    uid: 2201
+  - username: vincent
+    uid: 2202</code></pre><p>Create a playbook at <cite>~/automation/plays/users.yml</cite> that uses the vault file <cite>~/automation/plays/secrets.yml</cite> to:</p>
+<ul class="simple">
+<li>Users whose user ID starts with <em>21</em> should be created only on the web host group</li>
+<li>Users whose user ID starts with <em>22</em> should be created only on the db host group</li>
+<li>All users should be in the <em>wheel</em> group</li>
+<li>All users passwords should be used from the vault (user_password)</li>
+<li>Shell should be <cite>/bin/bash</cite></li>
+<li>Passwords should be SHA512</li>
+<li>Each user should have an SSH key</li>
+</ul>
+</div>
+<div class="section" id="task-6-schedulded-tasks">
+<h3><a class="toc-backref" href="#id12">Task 6 - Schedulded Tasks</a><a class="headerlink" href="#task-6-schedulded-tasks" title="Permalink to this headline">¶</a></h3>
+<p>Create a playbook at <cite>~/automation/plays/cronjobs.yml</cite> that runs on the proxy host group and does:</p>
+<ul class="simple">
+<li>Cronjob created for the root user that runs every hour</li>
+<li>Cronjob appends /var/log/time.log with the output of the <cite>date</cite> command</li>
+</ul>
+</div>
+<div class="section" id="task-7-create-roles-database">
+<h3><a class="toc-backref" href="#id13">Task 7 - Create Roles - Database</a><a class="headerlink" href="#task-7-create-roles-database" title="Permalink to this headline">¶</a></h3>
+<p>Create a role called example-mysql and store it in <cite>~/automation/roles</cite>. The role should perform the following:</p>
+<ul class="simple">
+<li>A primary partition number 1 of size 700MB on device <cite>/dev/sdb</cite> or <cite>/dev/vdb</cite> is created.</li>
+<li>The LVM volume group called vg_db is created that uses the primary partition</li>
+<li>lv_mysql is created of size 512MB in the volume group vg_db</li>
+<li>lv_mysql should be XFS formatted</li>
+<li>lv_mysql is permanently mounted on /mnt/mysql for backups.</li>
+<li>firewalld is configured to allow all incoming traffic on port TCP 3306</li>
+<li>mysql-server should be installed</li>
+<li>mysql root user password should be set from the variable database_password in <cite>~/automation/plays/secrets.yml</cite></li>
+<li>mysql server should be started and enabled on boot</li>
+<li>mysql server configuration file is generated from the my.cnf.j2 Jinja2 template (template is below)</li>
+</ul>
+<pre><code class="language-shell"># cat ~/automation/plays/templates/my.cnf.j2
+[mysqld]
+bind_address = REPLACE_ME_IPV4VAR_OR_FACT
+skip_name_resolve
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
 
-if ifuse --documents com.markmcguill.strongbox "$HOME"/strongbox/;
-then
-    cp "$HOME"/NewDatabase* "$HOME"/strongbox || fail
-    sleep 1
-    fusermount -u "$HOME"/strongbox || fail
-fi</code></pre><p>It is a quick operation and you can start using the database on your phone instantly.</p>
+symbolic-links=0
+sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+
+[mysqld_safe]
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid</code></pre><p>Create the playbook <cite>~/automation/plays/mysql.yml</cite> that ruses that role and runs on the db host group.</p>
 </div>
-<div class="section" id="faq">
-<h2>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="isn-t-using-a-single-password-bad">
-<h3>Isn’t using a single password bad?<a class="headerlink" href="#isn-t-using-a-single-password-bad" title="Permalink to this headline">¶</a></h3>
-<p>Using a single, complex password stored only in your brain is more secure than
-multiple insecure passwords that you have to remember. Writing those passwords
-down, storing them in a plaintext file or some other mechanism is not as secure
-as an encrypted database. It goes without saying that the master password you
-choose should be long and generated in a cryptographically secure manner.</p>
+<div class="section" id="task-8-use-archiving-to-backup-mysql">
+<h3><a class="toc-backref" href="#id14">Task 8 - Use Archiving to backup mysql</a><a class="headerlink" href="#task-8-use-archiving-to-backup-mysql" title="Permalink to this headline">¶</a></h3>
+<p>Create a playbook at <cite>~/automation/plays/archive.yml</cite> that runs on all db hosts:</p>
+<ul class="simple">
+<li>Create <cite>/mnt/mysql/database_list.txt</cite> that has the line: dev,test,qa,prod</li>
+<li>Create a gzip of the file and started at <cite>/mnt/mysql/archive.gz</cite></li>
+</ul>
 </div>
-<div class="section" id="but-your-master-password-can-be-stolen-by-a-keylogger">
-<h3>But your master password can be stolen by a keylogger<a class="headerlink" href="#but-your-master-password-can-be-stolen-by-a-keylogger" title="Permalink to this headline">¶</a></h3>
-<p>The same could be said about any other password, password manager or not.
-Furthermore, if an attacker has physical access to your computer, it’s
-generally considered game over.  Password managers like KeePassXC do have
-features like autotype which can autofill passwords in an obfuscated manner to
-defeat software keyloggers. However, you should be making sure your computer is
-free of malware anyway.</p>
+<div class="section" id="task-9-create-roles-web">
+<h3><a class="toc-backref" href="#id15">Task 9 - Create Roles - Web</a><a class="headerlink" href="#task-9-create-roles-web" title="Permalink to this headline">¶</a></h3>
+<p>Create a role called example-apache and store it in <cite>~/automation/roles</cite>. The role should perform the following:</p>
+<ul class="simple">
+<li>Install the packages httpd, mod_ssl, and php</li>
+<li>firewalld is configured to allow traffic on port 80 and 443</li>
+<li>The <cite>httpd</cite> service should be restarted each time <em>/var/www/html/index.html</em> has been updated</li>
+<li>Create a <cite>index.html.j2</cite> template that creates the index file.</li>
+</ul>
+<pre><code class="language-shell"># cat index.html.j2
+The address of this server is: REPLACE_ME_IPV4VAR_OR_FACT</code></pre><p>Create a playbook <cite>~/automation/plays/apache.yml</cite> that uses that role only on the web host group.</p>
+</div>
+<div class="section" id="task-10-download-roles-from-galaxy">
+<h3><a class="toc-backref" href="#id16">Task 10 - Download Roles from Galaxy</a><a class="headerlink" href="#task-10-download-roles-from-galaxy" title="Permalink to this headline">¶</a></h3>
+<p>Use Ansible Galaxy to download and install the <cite>geerlingguy.haproxy</cite> role into <cite>~/automation/roles</cite>.</p>
+<p>Create a playbook at <cite>~/automation/plays/haproxy.yml</cite> that runs the haproxy role on the proxy host group. It must be the following:</p>
+<ul class="simple">
+<li>Load balance requests between the hosts in web</li>
+<li>Use roundrobin</li>
+<li>Backend servers should be using port 80 only</li>
+<li>firewalld allows port 80 traffic</li>
+</ul>
+<p>To test the playbook on completion, run <cite>curl http://ansible4.example.com</cite>, which should output the IP address of one of the web servers. Run it again to check load balancing.</p>
+</div>
+<div class="section" id="task-11-security">
+<h3><a class="toc-backref" href="#id17">Task 11 - Security</a><a class="headerlink" href="#task-11-security" title="Permalink to this headline">¶</a></h3>
+<p>Create a playbook at <cite>~/automation/plays/selinux.yml</cite> and does the following:</p>
+<ul class="simple">
+<li>Uses the selinux RHEL system role</li>
+<li>Enables httpd_can_network_connect boolean on the web group</li>
+<li>All changes must survive a reboot</li>
+</ul>
+</div>
+<div class="section" id="task-12-use-conditionals">
+<h3><a class="toc-backref" href="#id18">Task 12 - Use Conditionals</a><a class="headerlink" href="#task-12-use-conditionals" title="Permalink to this headline">¶</a></h3>
+<p>Create a playbook at <cite>~/automation/plays/sysctl.yml</cite> that runs on all hosts:</p>
+<ul class="simple">
+<li>If a server has more than 2048MB of RAM, parameter of <cite>vm.swappiness</cite> is set to 10</li>
+<li>If a server has less, display an error message: <strong>Server has less than 2GB of Physical Memory</strong></li>
+</ul>
+</div>
+<div class="section" id="task-13-custom-facts">
+<h3><a class="toc-backref" href="#id19">Task 13 - Custom Facts</a><a class="headerlink" href="#task-13-custom-facts" title="Permalink to this headline">¶</a></h3>
+<p>Create a playbook at <cite>~/automation/plays/facts.yml</cite> that runs on hosts in the db group:</p>
+<ul class="simple">
+<li>A custom Ansible fact <strong>server_role=mysql</strong> is created and can be retrieved from ansible_local.custom.sample_exam using the setup module.</li>
+</ul>
+</div>
+<div class="section" id="task-14-install-packages">
+<h3><a class="toc-backref" href="#id20">Task 14 - Install Packages</a><a class="headerlink" href="#task-14-install-packages" title="Permalink to this headline">¶</a></h3>
+<p>Create a playbook at <cite>~/automation/plays/packages.yml</cite> that installs packages like so:</p>
+<ul class="simple">
+<li>On proxy hosts: tcpdump, mailx</li>
+<li>On db hosts: lsof, mailx</li>
+</ul>
+</div>
+<div class="section" id="task-15-managing-services">
+<h3><a class="toc-backref" href="#id21">Task 15 - Managing Services</a><a class="headerlink" href="#task-15-managing-services" title="Permalink to this headline">¶</a></h3>
+<p>Create a playbook at <cite>~/automation/plays/target.yml</cite> that runs on the web group:</p>
+<ul class="simple">
+<li>Set default boot target to multi-user</li>
+</ul>
+</div>
+<div class="section" id="task-16-template-management">
+<h3><a class="toc-backref" href="#id22">Task 16 - Template Management</a><a class="headerlink" href="#task-16-template-management" title="Permalink to this headline">¶</a></h3>
+<p>Create a playbook at <cite>~/automation/plays/serverlist.yml</cite> that does the following:</p>
+<ul class="simple">
+<li>Uses a <cite>server_list.txt.j2</cite> to create <cite>/etc/server_list.txt</cite> on all hosts in the db group</li>
+<li>Content of the file should be all inventory hosts</li>
+<li>The file <cite>/etc/server_list.txt</cite> should be owned by ansible with permissions of 600</li>
+<li>The SELinux context should be <cite>net_conf_t</cite></li>
+</ul>
 </div>
 </div>
 </div>
@@ -766,10 +998,10 @@ free of malware anyway.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../misc/euphemism.html" class="btn btn-neutral float-right" title="The Euphemism Review" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ex362.html" class="btn btn-neutral float-right" title="EX362 Exam Prep" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="antipatterns.html" class="btn btn-neutral" title="Anti-patterns" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../centos/unbound.html" class="btn btn-neutral" title="Unbound" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
