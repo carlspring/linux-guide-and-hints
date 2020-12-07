@@ -35,7 +35,22 @@
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Is port 465 deprecated?" href="port465.html" />
-    <link rel="prev" title="Hurricane Electric IPv6 Tunnel" href="ipv6he.html" /> 
+    <link rel="prev" title="Hurricane Electric IPv6 Tunnel" href="ipv6he.html" />
+
+  <script type="text/javascript">
+      $(document).ready(function() {
+          //
+          //
+          $(".toggle > *").hide();
+          $(".toggle .admonition-title").show();
+          $(".toggle .admonition-title").click(function() {
+              $(this).parent().children().not(".admonition-title").toggle(400);
+              $(this).parent().children(".admonition-title").toggleClass("open");
+          })
+      });
+  </script>
+ 
+
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -696,23 +711,6 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="mingw">
-<h1>MinGW<a class="headerlink" href="#mingw" title="Permalink to this headline">¶</a></h1>
-<p>To my knowledge, the best MinGW distribution is provided by Stephan T. Lavavej
-(a Microsoft employee who works on the C++ team) and is available on <a class="reference external" href="https://nuwen.net/mingw.html">his site</a>. It contains mingw-w64, GCC and binutils,
-coreutils and several other libraries and command line utilities (including
-git). Installation simply requires extracting to any location and using the
-provided bat files to open a command prompt with a preset PATH.</p>
-<div class="section" id="why-not-use-wsl">
-<h2>Why not use WSL?<a class="headerlink" href="#why-not-use-wsl" title="Permalink to this headline">¶</a></h2>
-<p>They serve different purposes. The MinGW distribution contains Windows
-<strong>ports</strong> of GCC, coreutils, etc. that run natively on Windows. On the other
-hand, WSL attempts to allow you to run native Linux binaries on Windows. WSL2
-supposedly uses Hyper-V for virtualization.</p>
-</div>
-</div>
-
-
            </div>
            
           </main>

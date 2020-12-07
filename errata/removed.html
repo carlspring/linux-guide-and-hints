@@ -35,7 +35,22 @@
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Anti-patterns" href="../security/antipatterns.html" />
-    <link rel="prev" title="Linux Guide and Hints" href="../index.html" /> 
+    <link rel="prev" title="Linux Guide and Hints" href="../index.html" />
+
+  <script type="text/javascript">
+      $(document).ready(function() {
+          //
+          //
+          $(".toggle > *").hide();
+          $(".toggle .admonition-title").show();
+          $(".toggle .admonition-title").click(function() {
+              $(this).parent().children().not(".admonition-title").toggle(400);
+              $(this).parent().children(".admonition-title").toggleClass("open");
+          })
+      });
+  </script>
+ 
+
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -696,42 +711,6 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="errata">
-<h1>Errata<a class="headerlink" href="#errata" title="Permalink to this headline">¶</a></h1>
-<p>Wondering what happened to a removed article or information? This section will
-explain what went missing and why.</p>
-<div class="section" id="removed-articles">
-<h2>Removed articles<a class="headerlink" href="#removed-articles" title="Permalink to this headline">¶</a></h2>
-<p>12-01-2019</p>
-<ul class="simple">
-<li>misc/security was renamed to security/antipatterns.</li>
-</ul>
-<p>11-17-2019</p>
-<ul class="simple">
-<li>Removed Blockify article because it is no longer maintained. Spotify prohibits
-ad blockers.</li>
-<li>Removed gentoo/gdm article because the bug is now fixed.</li>
-</ul>
-</div>
-<div class="section" id="removed-information">
-<h2>Removed information<a class="headerlink" href="#removed-information" title="Permalink to this headline">¶</a></h2>
-<p>12-06-2019</p>
-<ul class="simple">
-<li>Remove PCSX2 instructions since the RPMFusion package no longer exists. You
-should install it via Flatpak instead.</li>
-</ul>
-<p>11-29-2019</p>
-<ul class="simple">
-<li>Removed Git workflow section</li>
-</ul>
-<p>11-17-2019</p>
-<ul class="simple">
-<li>Removed COPR links that no longer exist.</li>
-</ul>
-</div>
-</div>
-
-
            </div>
            
           </main>

@@ -35,7 +35,22 @@
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Auto-Provisioning" href="../centos/builds.html" />
-    <link rel="prev" title="Wine Tips" href="winetips.html" /> 
+    <link rel="prev" title="Wine Tips" href="winetips.html" />
+
+  <script type="text/javascript">
+      $(document).ready(function() {
+          //
+          //
+          $(".toggle > *").hide();
+          $(".toggle .admonition-title").show();
+          $(".toggle .admonition-title").click(function() {
+              $(this).parent().children().not(".admonition-title").toggle(400);
+              $(this).parent().children(".admonition-title").toggleClass("open");
+          })
+      });
+  </script>
+ 
+
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -696,32 +711,6 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="xscreensaver">
-<h1>XScreenSaver<a class="headerlink" href="#xscreensaver" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="gamma-or-brightness-is-too-high-when-unlocking">
-<h2>Gamma or brightness is too high when unlocking<a class="headerlink" href="#gamma-or-brightness-is-too-high-when-unlocking" title="Permalink to this headline">¶</a></h2>
-<p>It’s possible that this is caused by XScreenSaver <a class="reference external" href="https://github.com/GalliumOS/xscreensaver/blob/master/utils/fade.c">changing the hardware gamma</a>
-for its fade to black effect. Although <code class="docutils literal notranslate"><span class="pre">xgamma</span></code> is deprecated, it seems to address the issue. Observe:</p>
-<pre><code class="language-bash">~ xrandr --verbose | grep -i gamma
-    Gamma:      1.0:1.0:1.0
-    Gamma:      1.0:1.0:1.0
-~ xgamma
--> Red  1.664, Green  1.664, Blue  1.664</code></pre><p>Simply run <code class="docutils literal notranslate"><span class="pre">xgamma</span> <span class="pre">-gamma</span> <span class="pre">1.0</span></code>.</p>
-<p>Press <kbd class="kbd docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>+<kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">L</kbd></kbd> to lock the screen. Unlock the screen by entering your password. The brightness should be normal.</p>
-</div>
-<div class="section" id="disable-fade-to-black-effect">
-<h2>Disable fade to black effect<a class="headerlink" href="#disable-fade-to-black-effect" title="Permalink to this headline">¶</a></h2>
-<p>Disabling fade to black will not address the gamma issue as any program that touches the hardware gamma
-will exhibit the same symptoms. However if you find the effect annoying, do:</p>
-<ul class="simple">
-<li>Open up “Screensaver”</li>
-<li>Click the “Advanced tab”</li>
-<li>Under “Fading and Colormaps”, uncheck “Fade to Black when Blanking”</li>
-</ul>
-</div>
-</div>
-
-
            </div>
            
           </main>

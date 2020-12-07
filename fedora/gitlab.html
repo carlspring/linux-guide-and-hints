@@ -35,7 +35,22 @@
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="GNOME Tips" href="gnometips.html" />
-    <link rel="prev" title="Git" href="git.html" /> 
+    <link rel="prev" title="Git" href="git.html" />
+
+  <script type="text/javascript">
+      $(document).ready(function() {
+          //
+          //
+          $(".toggle > *").hide();
+          $(".toggle .admonition-title").show();
+          $(".toggle .admonition-title").click(function() {
+              $(this).parent().children().not(".admonition-title").toggle(400);
+              $(this).parent().children(".admonition-title").toggleClass("open");
+          })
+      });
+  </script>
+ 
+
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -696,54 +711,6 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="gitlab">
-<h1>Gitlab<a class="headerlink" href="#gitlab" title="Permalink to this headline">¶</a></h1>
-<p>This page will summarize some notes to accompany the <a class="reference external" href="https://docs.gitlab.com/omnibus/docker/">installation with Docker
-guide</a>.</p>
-<div class="section" id="ssh-and-git-access">
-<h2>SSH and Git access<a class="headerlink" href="#ssh-and-git-access" title="Permalink to this headline">¶</a></h2>
-<p>Gitlab will run its own SSH server (used for Git authentication). If you are
-running your container in a GCS instance, then you will need to expose the SSH
-server on a different port. For example:</p>
-<pre><code class="language-bash">sudo docker run --detach \
-  # ...snip...
-  --publish 443:443 --publish 80:80 --publish 50001:22 \
-  # ...snip...</code></pre><p>Then you need to change the port in <code class="docutils literal notranslate"><span class="pre">gitlab.rb</span></code>:</p>
-<pre><code class="language-ruby">gitlab_rails['gitlab_shell_ssh_port'] = 50001</code></pre><p>If you’re using GCS, create a firewall rule:</p>
-<pre><code class="language-bash">gcloud compute firewall-rules create allow-ssh-50001 --allow=tcp:50001</code></pre><p>To test that it works, run <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">-p</span> <span class="pre">50001</span> <span class="pre">-Tv</span> <span class="pre">git&#64;gitlab.example.com</span></code>. Finally,
-to ensure that Git uses the correct port, amend your <code class="docutils literal notranslate"><span class="pre">.ssh/config</span></code> like so:</p>
-<pre><code class="language-none">Host gitlab.example.com
-    port 50001</code></pre><p>To actually be able to perform any Git operations, upload your SSH key to the
-Gitlab instance.</p>
-</div>
-<div class="section" id="enabling-https-with-let-s-encrypt">
-<h2>Enabling HTTPS with Let’s Encrypt<a class="headerlink" href="#enabling-https-with-let-s-encrypt" title="Permalink to this headline">¶</a></h2>
-<p>Gitlab allows automatically provisioning a certificate. Just enable the settings
-in <code class="docutils literal notranslate"><span class="pre">gitlab.rb</span></code>:</p>
-<pre><code class="language-ruby">letsencrypt['enable'] = true
-# If you are using a self-signed certificate, you can also put an IP
-# address instead of an FQDN here
-external_url 'https://gitlab.example.com'
-letsencrypt['contact_emails'] = ['foo@email.com']</code></pre><p>You will need firewall rules for both port 80 and 443:</p>
-<pre><code class="language-bash">gcloud compute firewall-rules create allow-http --allow=tcp:80
-gcloud compute firewall-rules create allow-https --allow=tcp:443</code></pre><div class="card">
-<div class="card-header bg-info">
-<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
-If you are using Cloudflare, ensure that you whitelist their IP’s. You may
-also need to disable “Full (Strict)” until your certificate is issued.</div></div>
-<p>Temporarily clear any source range settings by appending <code class="docutils literal notranslate"><span class="pre">--source-ranges=</span></code> to
-the command. Otherwise, Let’s Encrypt will not be able to perform the challenge.</p>
-<p>You can revoke any certificates by using <code class="docutils literal notranslate"><span class="pre">certbot</span> <span class="pre">revoke</span> <span class="pre">--cert-path</span>
-<span class="pre">/path/to/key.pem</span></code>. If you do not have access to the files stored by Gitlab,
-find your certificate at <a class="reference external" href="https://crt.sh">crt.sh</a>. There should be an option
-to download the PEM file in the sidebar. Before you can revoke the certificate,
-you need to perform a validation:</p>
-<pre><code class="language-bash"># Since validation and issuance are done using the same command, we need to
-# specify a non-existent subdomain to ensure the issuance fails.
-certbot certonly --manual --preferred-challenges=dns -d gitlab.linuxguideandhints.com -d nonexistent.linuxguideandhints.com</code></pre></div>
-</div>
-
-
            </div>
            
           </main>

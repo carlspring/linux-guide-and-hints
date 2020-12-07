@@ -36,7 +36,22 @@
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="OpenLDAP" href="openldap.html" />
-    <link rel="prev" title="FreeIPA" href="freeipa.html" /> 
+    <link rel="prev" title="FreeIPA" href="freeipa.html" />
+
+  <script type="text/javascript">
+      $(document).ready(function() {
+          //
+          //
+          $(".toggle > *").hide();
+          $(".toggle .admonition-title").show();
+          $(".toggle .admonition-title").click(function() {
+              $(this).parent().children().not(".admonition-title").toggle(400);
+              $(this).parent().children(".admonition-title").toggleClass("open");
+          })
+      });
+  </script>
+ 
+
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -697,124 +712,6 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="nat-router">
-<h1><a class="toc-backref" href="#id1">NAT/Router</a><a class="headerlink" href="#nat-router" title="Permalink to this headline">¶</a></h1>
-<p>This page goes over setting up a router or a simple NAT service for CentOS.</p>
-<div class="contents topic" id="contents">
-<p class="topic-title">Contents</p>
-<ul class="simple">
-<li><a class="reference internal" href="#nat-router" id="id1">NAT/Router</a><ul>
-<li><a class="reference internal" href="#requirements" id="id2">Requirements</a></li>
-<li><a class="reference internal" href="#tutorial" id="id3">Tutorial</a><ul>
-<li><a class="reference internal" href="#interface-setup" id="id4">Interface Setup</a></li>
-<li><a class="reference internal" href="#firewalld" id="id5">FirewallD</a></li>
-<li><a class="reference internal" href="#iptables" id="id6">iptables</a></li>
-<li><a class="reference internal" href="#nftables" id="id7">nftables</a></li>
-<li><a class="reference internal" href="#ipv6-forwarding" id="id8">IPv6 Forwarding</a></li>
-<li><a class="reference internal" href="#dhcp" id="id9">DHCP</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="section" id="requirements">
-<h2><a class="toc-backref" href="#id2">Requirements</a><a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<p>Here are the list of requirements below.</p>
-<ul class="simple">
-<li>CentOS 7, 8 or Fedora</li>
-<li>An active internet connection to install the packages required or available internal mirrors</li>
-<li>A system with at least two (2) network interfaces</li>
-</ul>
-</div>
-<div class="section" id="tutorial">
-<h2><a class="toc-backref" href="#id3">Tutorial</a><a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="interface-setup">
-<h3><a class="toc-backref" href="#id4">Interface Setup</a><a class="headerlink" href="#interface-setup" title="Permalink to this headline">¶</a></h3>
-<p>To properly setup the system, a few things have to be done.</p>
-<ol class="arabic simple">
-<li>One interface must be the WAN interface, in most cases this is set to DHCP.</li>
-<li>Another interface must be the LAN interface or a group of interfaces must become a bridge with a static address</li>
-<li>ip_forward must be turned on - optionally if you have ipv6, turn on that forwarding as well</li>
-</ol>
-<div class="card">
-<div class="card-header bg-info">
-<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
-<h5 class="card-title">
-IPv6 and NAT</h5>If you have an IPv6 prefix, whether it’s from your ISP or it’s a brokered prefix from he.net, NAT is generally not needed. Instead of using NAT for IPv6, you can just do simple forwarding. This is covered in a later section.</div></div>
-</div>
-<div class="section" id="firewalld">
-<h3><a class="toc-backref" href="#id5">FirewallD</a><a class="headerlink" href="#firewalld" title="Permalink to this headline">¶</a></h3>
-<p>When using firewalld, CentOS 7+ and all Fedora’s can setup a simple NAT with masquerade without having to know iptables or nftables syntax. This may be more or less ideal for some users who want to quickly get a NAT and router going. The drawback is that the syntax and knowing how the rules work are hidden behind a frontend. To setup a NAT:</p>
-<pre><code class="language-shell"># Tell eth0 to be our WAN
-% nmcli con mod eth0 connection.zone external
-# Tell eth1 to be our LAN (or a bridge if you have one)
-% nmcli con mod eth1 connection.zone internal
-# Doesn't hurt to re-up
-% nmcli con up eth0 ; nmcli con up eth1
-
-# The external zone already has masquerade on, but just in case
-% firewall-cmd --zone=external --add-masquerade --permanent
-% firewall-cmd --complete-reload
-% firewall-cmd --get-active-zones
-external
-  interfaces: eth0
-internal
-  interfaces: eth1</code></pre></div>
-<div class="section" id="iptables">
-<h3><a class="toc-backref" href="#id6">iptables</a><a class="headerlink" href="#iptables" title="Permalink to this headline">¶</a></h3>
-<div class="card">
-<div class="card-header bg-warning">
-<i class='fa fa-exclamation-circle'></i> Warning</div><div class="card-body">
-<h5 class="card-title">
-CentOS 7 or older</h5>This is for CentOS 7 or Fedora where iptables is the default. While nftables can be installed on CentOS 7, the NAT functionality does not seem to work properly. This may have changed. Use nftables at your own risk.</div></div>
-<p>To setup NAT with iptables, the following will suffice as the building blocks. Assuming eth0 is the WAN and eth1 is the LAN.</p>
-<pre><code class="language-shell">% systemctl disable firewalld --now
-% systemctl mask firewalld
-% yum install iptables-services
-% systemctl enable iptables --now
-% iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
-% iptables -I FORWARD 1 -i eth0 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT
-% iptables -I FORWARD 2 -i eth1 -o eth0 -j ACCEPT
-% iptables-save > /etc/sysconfig/iptables
-# Verify that the final FORWARD rule is a reject.
-% iptables -nvL
-% iptables -t nat -nvL
-# If it is not, manually modify the file... it should look like this:
-. . .
--A FORWARD -i eth0 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT
--A FORWARD -i eth1 -o eth0 -j ACCEPT
--A FORWARD -j REJECT --reject-with icmp-host-prohibited
-. . .
-# Optionally, you can set the jump to DROP instead.
-# If you modify the file, run...
-% iptables-restore < /etc/sysconfig/iptables</code></pre></div>
-<div class="section" id="nftables">
-<h3><a class="toc-backref" href="#id7">nftables</a><a class="headerlink" href="#nftables" title="Permalink to this headline">¶</a></h3>
-<div class="card">
-<div class="card-header bg-warning">
-<i class='fa fa-exclamation-circle'></i> Warning</div><div class="card-body">
-<h5 class="card-title">
-CentOS 8 or Fedora Only</h5>This is for CentOS 8 or Fedora where nftables is the default. While iptables exists for CentOS 8 still, it is being superseded by nftables. It is recommended to stick with nftables.</div></div>
-<p>The syntax for nftables is a little tricky and quite different from what we may be used to with iptables. This may be an oversimplification and may or may not work. For ideas, you can view the files in /etc/nftables. This is a rough example of what I tried on migration to CentOS 8.</p>
-<pre><code class="language-shell"># Disable firewalld, we'll enable nftables later
-% systemctl disable firewalld --now
-% systemctl mask firewalld
-# Flush all rules
-% nft flush ruleset</code></pre><p>Rest coming soon.</p>
-</div>
-<div class="section" id="ipv6-forwarding">
-<h3><a class="toc-backref" href="#id8">IPv6 Forwarding</a><a class="headerlink" href="#ipv6-forwarding" title="Permalink to this headline">¶</a></h3>
-<p>Coming soon.</p>
-</div>
-<div class="section" id="dhcp">
-<h3><a class="toc-backref" href="#id9">DHCP</a><a class="headerlink" href="#dhcp" title="Permalink to this headline">¶</a></h3>
-<p>Optional. Coming soon</p>
-</div>
-</div>
-</div>
-
-
            </div>
            
           </main>

@@ -35,7 +35,22 @@
   <link rel="stylesheet" href="_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Backups" href="fedora/backups.html" />
-    <link rel="prev" title="VNC" href="misc/vnc.html" /> 
+    <link rel="prev" title="VNC" href="misc/vnc.html" />
+
+  <script type="text/javascript">
+      $(document).ready(function() {
+          //
+          //
+          $(".toggle > *").hide();
+          $(".toggle .admonition-title").show();
+          $(".toggle .admonition-title").click(function() {
+              $(this).parent().children().not(".admonition-title").toggle(400);
+              $(this).parent().children(".admonition-title").toggleClass("open");
+          })
+      });
+  </script>
+ 
+
 
   <noscript>
       <link rel="stylesheet" href="_static/css/nojs.css" type="text/css">
@@ -696,60 +711,6 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="getting-started">
-<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
-<p>To save yourself time, you may prefer to download a <a class="reference external" href="https://dl.fedoraproject.org/pub/alt/live-respins/">respin ISO</a> that has updates preinstalled. The <code class="docutils literal notranslate"><span class="pre">WORK</span></code> ISO comes with GNOME. Fedora only supports the use of base and rpmfusion for packages. However, if you insist on using <a class="reference external" href="https://negativo17.org">negativo17</a>, you will need to either:</p>
-<ul class="simple">
-<li>Not have RPMFusion enabled</li>
-<li>Have RPMFusion enabled but use priorities to ensure negativo17 is used before rpmfusion</li>
-</ul>
-<p>This is because they are not compatible with each other.</p>
-<p>Some other notes:</p>
-<ul class="simple">
-<li>gstreamer 0.10 is deprecated, install gstreamer1.</li>
-<li>negativo17 users, <code class="docutils literal notranslate"><span class="pre">libmpg123</span></code> is now <code class="docutils literal notranslate"><span class="pre">mpg123</span></code></li>
-</ul>
-<p>The <a class="reference internal" href="fedora/negativo.html"><span class="doc">negativo17 repositories and Nvidia drivers</span></a> article contains more information.</p>
-<script src="https://gist.github.com/remyabel/bbebf3043860abe24a19bf0b1d67bd33.js"></script>
-
-<noscript><pre><code class="language-bash">#!/bin/bash
-if [[ $UID != 0 ]]; then
-   echo "Not root."
-   exit
-fi
-
-dnf config-manager --add-repo=http://negativo17.org/repos/fedora-multimedia.repo
-
-# We explicitly list out the packages here because gstreamer1-*
-# will pull in upstream packages that creates conflicts
-dnf install gstreamer1-plugins-bad gstreamer1-plugins-ugly gstreamer1-plugins-bad-fluidsynth gstreamer1-libav
-dnf install mozilla-openh264
-dnf install vlc
-
-dnf install ffmpeg mpg123
-
-# kernel-devel needs to be explicitly listed to avoid pulling in the debug package
-dnf install nvidia-settings kernel-devel vulkan-loader.i686 nvidia-driver-libs.i686
-# You can choose dkms-nvidia if you prefer
-dnf install akmod-nvidia
-
-dnf clean all
-dnf --refresh upgrade</code></pre></noscript><p>Please don’t use Skype unless you enjoy having the NSA read your messages. Finally, check out the <a class="reference internal" href="fedora/pulseaudio.html"><span class="doc">Pulseaudio</span></a> articles on troubleshooting tips.</p>
-<div class="section" id="other-things-negativo17-related">
-<h2>Other things negativo17 related<a class="headerlink" href="#other-things-negativo17-related" title="Permalink to this headline">¶</a></h2>
-<p>negativo17 provides Flash as well, but you should probably just avoid Flash altogether,
-or at least leave it on “Ask to Activate”. Fortunately, it seems most of the web has ditched
-Flash in favor of moving to HTML5 for web players. I haven’t had to activate Flash in a long
-time.</p>
-<p>negativo17 also provides Steam. However, if you have any games that are
-Window only, you need to download Steam via Wine and install the games that way
-or use Proton. See the <a class="reference internal" href="fedora/winetips.html"><span class="doc">Wine Tips</span></a> article for more information.</p>
-<p>Finally, to ensure that Negativo’s repo takes precedence over RPMFusion, edit <code class="docutils literal notranslate"><span class="pre">/etc/yum.repos.d/fedora-multimedia.repo</span></code>
-and add <code class="docutils literal notranslate"><span class="pre">priority=1</span></code> under <code class="docutils literal notranslate"><span class="pre">[fedora-multimedia]</span></code>.</p>
-</div>
-</div>
-
-
            </div>
            
           </main>

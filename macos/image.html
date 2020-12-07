@@ -33,7 +33,22 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="../_static/css/prism-okaidia.min.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+
+  <script type="text/javascript">
+      $(document).ready(function() {
+          //
+          //
+          $(".toggle > *").hide();
+          $(".toggle .admonition-title").show();
+          $(".toggle .admonition-title").click(function() {
+              $(this).parent().children().not(".admonition-title").toggle(400);
+              $(this).parent().children(".admonition-title").toggleClass("open");
+          })
+      });
+  </script>
+ 
+
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -694,19 +709,6 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="create-macos-iso-images">
-<h1>Create macOS ISO Images<a class="headerlink" href="#create-macos-iso-images" title="Permalink to this headline">¶</a></h1>
-<p>To create macOS ISO images for use for a VirtualBox VM or otherwise, you will need access to a mac machine to perform the download. There are scripts and other methods out there to assist you with this, but if you want to do it yourself, you can follow the steps below.</p>
-<p>This is currently for macOS Catalina 10.15.x</p>
-<pre><code class="language-shell">% softwareupdate --fetch-full-installer --full-installer-version 10.15.6
-% hdiutil create -o /tmp/catalina.cdr -size 7516m -layout SPUD -fs HFS+J
-% hdiutil attach /tmp/catalina.cdr.dmg -noverify -nobrowse -mountpoint /Volumes/installer
-% asr restore -source /Applications/Install\ macOS\ Catalina.app/Contents/SharedSupport/BaseSystem.dmg -target /Volumes/installer -noprompt -noverify -erase
-% hdiutil detach /Volumes/macOS\ Base\ System
-% hdiutil convert /tmp/catalina.cdr.dmg -format UDTO -o /tmp/Catalina.iso</code></pre><p>You can now copy the ISO to anywhere you’d like.</p>
-</div>
-
-
            </div>
            
           </main>

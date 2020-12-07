@@ -35,7 +35,22 @@
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="negativo17 repositories and Nvidia drivers" href="negativo.html" />
-    <link rel="prev" title="Misc" href="misc.html" /> 
+    <link rel="prev" title="Misc" href="misc.html" />
+
+  <script type="text/javascript">
+      $(document).ready(function() {
+          //
+          //
+          $(".toggle > *").hide();
+          $(".toggle .admonition-title").show();
+          $(".toggle .admonition-title").click(function() {
+              $(this).parent().children().not(".admonition-title").toggle(400);
+              $(this).parent().children(".admonition-title").toggleClass("open");
+          })
+      });
+  </script>
+ 
+
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -696,14 +711,6 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="mpv">
-<h1>mpv<a class="headerlink" href="#mpv" title="Permalink to this headline">¶</a></h1>
-<p>If VLC does not perform well enough for you, you may prefer cuda-enabled mpv instead. First, install mpv:</p>
-<pre><code class="language-bash">dnf install mpv mpv-libs</code></pre><p>Then for mpv to actually utilize cuda, you need the appropriate libraries:</p>
-<pre><code class="language-bash">dnf install nvidia-driver-cuda nvidia-driver-cuda-libs cuda</code></pre><p>After restarting your computer, you can play your MKV files with <code class="docutils literal notranslate"><span class="pre">mpv</span> <span class="pre">--hwdec=cuda</span></code>.</p>
-</div>
-
-
            </div>
            
           </main>

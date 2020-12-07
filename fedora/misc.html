@@ -35,7 +35,22 @@
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="mpv" href="mpv.html" />
-    <link rel="prev" title="McAfee" href="mcafee.html" /> 
+    <link rel="prev" title="McAfee" href="mcafee.html" />
+
+  <script type="text/javascript">
+      $(document).ready(function() {
+          //
+          //
+          $(".toggle > *").hide();
+          $(".toggle .admonition-title").show();
+          $(".toggle .admonition-title").click(function() {
+              $(this).parent().children().not(".admonition-title").toggle(400);
+              $(this).parent().children(".admonition-title").toggleClass("open");
+          })
+      });
+  </script>
+ 
+
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -696,61 +711,6 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="misc">
-<h1>Misc<a class="headerlink" href="#misc" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="using-ld-library-path-in-fish">
-<h2>Using <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> in Fish<a class="headerlink" href="#using-ld-library-path-in-fish" title="Permalink to this headline">¶</a></h2>
-<p>There are a few issues regarding the lack of <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> for Fish such as <a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/2456">weird LD_LIBRARY_PATH behavior #2456</a> where the developers have stated that they won’t add support for it. Putting <code class="docutils literal notranslate"><span class="pre">env</span> <span class="pre">LD_LIBRARY_PATH</span></code> before a command works, but something like <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-gx</span> <span class="pre">LD_LIBRARY_PATH</span> <span class="pre">...</span> <span class="pre">$LD_LIBRARY_PATH</span></code> in your config file does not work as intended. The workaround is to add this <em>after</em> your normal set invocation:</p>
-<pre><code class="language-shell">set -xg LD_LIBRARY_PATH (printf '%s\n' $LD_LIBRARY_PATH | paste -sd:)</code></pre><p>The solution credit goes to <a class="reference external" href="https://github.com/lucasb-eyer">lucasb-eyer</a>.</p>
-</div>
-<div class="section" id="unable-to-find-liblzma">
-<h2>Unable to find <code class="docutils literal notranslate"><span class="pre">LibLZMA</span></code><a class="headerlink" href="#unable-to-find-liblzma" title="Permalink to this headline">¶</a></h2>
-<p>Try installing <code class="docutils literal notranslate"><span class="pre">xz-libs</span></code> and <code class="docutils literal notranslate"><span class="pre">xz-devel</span></code>. For some reason, the maintainers have changed the name from <a class="reference external" href="https://tukaani.org/xz/">LZMA Utils to XZ Utils</a>.</p>
-</div>
-<div class="section" id="unable-to-find-wxwidgets">
-<h2>Unable to find <code class="docutils literal notranslate"><span class="pre">wxWidgets</span></code><a class="headerlink" href="#unable-to-find-wxwidgets" title="Permalink to this headline">¶</a></h2>
-<p>For some reason, for some projects that depend on GTK2, installing <code class="docutils literal notranslate"><span class="pre">wxGTK</span></code> isn’t sufficient. You also need <code class="docutils literal notranslate"><span class="pre">compat-wxGTK3-gtk2</span></code> (and the <code class="docutils literal notranslate"><span class="pre">-devel</span></code> packages if necessary).</p>
-</div>
-<div class="section" id="update-all-repositories-in-the-current-directory">
-<h2>Update all repositories in the current directory<a class="headerlink" href="#update-all-repositories-in-the-current-directory" title="Permalink to this headline">¶</a></h2>
-<p>Two use-cases for this are updating vim plugins or golang packages. <a class="reference external" href="https://stackoverflow.com/users/578323/zarat">Zarat</a> at StackOverflow suggests this:</p>
-<pre><code class="language-bash">find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull \;</code></pre><p>If you are using the Fish shell, you need to quote the brackets, <cite>‘{}’</cite>. See <a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/95">issue #95</a>.</p>
-</div>
-<div class="section" id="youcompleteme-crashes-due-to-libtinfo-so-version-mismatch">
-<h2>YouCompleteMe crashes due to <code class="docutils literal notranslate"><span class="pre">libtinfo.so</span></code> version mismatch<a class="headerlink" href="#youcompleteme-crashes-due-to-libtinfo-so-version-mismatch" title="Permalink to this headline">¶</a></h2>
-<p>As pointed out by pdavydov108 in <a class="reference external" href="https://github.com/Valloric/YouCompleteMe/issues/778#issuecomment-228704671">YouCompleteMe issue #778</a>, the fix is to install <code class="docutils literal notranslate"><span class="pre">ncurses-compat-libs</span></code>. Fedora comes with <code class="docutils literal notranslate"><span class="pre">libtinfo.so.6</span></code>, however, the version of Clang required by YouCompleteMe has a dependency on <code class="docutils literal notranslate"><span class="pre">libtinfo.so.5</span></code>.</p>
-</div>
-<div class="section" id="keepasshttp-no-longer-works">
-<h2>KeePassHttp no longer works<a class="headerlink" href="#keepasshttp-no-longer-works" title="Permalink to this headline">¶</a></h2>
-<p>If you were using <a class="reference external" href="https://github.com/smorks/keepasshttp-connector">keepasshttp-connector</a> it is now deprecated in favor of <a class="reference external" href="https://github.com/keepassxreboot/keepassxc-browser">keepassxc-browser</a>. Install smorks’ <a class="reference external" href="https://github.com/smorks/keepassnatmsg">keepassnatmsg</a> plugin for compatibility with normal KeePass (instead of KeePassXC).</p>
-</div>
-<div class="section" id="disable-tcp-ip-and-use-sockets-for-mysql">
-<h2>Disable TCP/IP and use sockets for MySQL<a class="headerlink" href="#disable-tcp-ip-and-use-sockets-for-mysql" title="Permalink to this headline">¶</a></h2>
-<p>On Linux, MySQL will create a socket in a location defined by the <code class="docutils literal notranslate"><span class="pre">socket</span></code> variable found in <code class="docutils literal notranslate"><span class="pre">/etc/my.cnf</span></code>. For example, the value may be <code class="docutils literal notranslate"><span class="pre">/usr/lib/mysql/mysql.sock</span></code>. However, by default, it will still listen on a TCP port, which may be undesirable if you don’t plan on exposing your server to the Internet. Simply add <code class="docutils literal notranslate"><span class="pre">skip-networking</span></code> to <code class="docutils literal notranslate"><span class="pre">/etc/my.cnf</span></code>.</p>
-</div>
-<div class="section" id="selinux-is-preventing-abrt-action-sav-from-write-access-on-the-directory-var-lib-rpm">
-<h2>SELinux is preventing <code class="docutils literal notranslate"><span class="pre">abrt-action-sav</span></code> from write access on the directory /var/lib/rpm<a class="headerlink" href="#selinux-is-preventing-abrt-action-sav-from-write-access-on-the-directory-var-lib-rpm" title="Permalink to this headline">¶</a></h2>
-<p>If you are receiving this error or a similar one involving <code class="docutils literal notranslate"><span class="pre">dbenv.lock</span></code>, it means that your <code class="docutils literal notranslate"><span class="pre">/var/lib/rpm</span></code> directory has the wrong SELinux contexts applied to it. Verify this with <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-alZ</span> <span class="pre">/var/lib/rpm/</span></code>. You should see files/directories with the <code class="docutils literal notranslate"><span class="pre">var_lib_t</span></code> rather than <code class="docutils literal notranslate"><span class="pre">rpm_var_lib_t</span></code> label. This may be the result of <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1461313">bug #1461313</a> where running <code class="docutils literal notranslate"><span class="pre">rpm</span> <span class="pre">--rebuilddb</span></code> will set the wrong context on the entire directory. Fix it by running <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">restorecon</span> <span class="pre">-rv</span> <span class="pre">/var/lib/rpm</span></code>.</p>
-</div>
-<div class="section" id="swapping-desktop-environments">
-<h2>Swapping Desktop Environments<a class="headerlink" href="#swapping-desktop-environments" title="Permalink to this headline">¶</a></h2>
-<p>It is a common question, especially in the IRC channel #fedora on how to remove gnome, after say, installing XFCE or maybe KDE. The one answer that not a lot of people provide (or may not know works) is using <code class="docutils literal notranslate"><span class="pre">dnf</span> <span class="pre">swap</span></code>.</p>
-<pre><code class="language-bash"># Example: Swapping from GNOME to KDE
-$ sudo init 3
-$ sudo dnf swap @gnome-desktop @kde-desktop
-
-# Example: Swapping from GNOME to XFCE
-# Note that xfce-desktop does exist, but it is missing a few pieces.
-$ sudo init 3
-$ sudo dnf swap @gnome-desktop @xfce-desktop-environment</code></pre><p>This will safely swap the package groups from one to the next, the gnome desktop environment with the kde environment. It is recommended that it is ran in multi-user.target (or init level 3 for those who remember). When the swap is complete, reboot.</p>
-</div>
-<div class="section" id="upon-logging-into-xfce-desktop-freezes-until-you-switch-to-another-tty">
-<h2>Upon logging into XFCE, desktop freezes until you switch to another TTY<a class="headerlink" href="#upon-logging-into-xfce-desktop-freezes-until-you-switch-to-another-tty" title="Permalink to this headline">¶</a></h2>
-<p>If you have <code class="docutils literal notranslate"><span class="pre">FullCompositionPipeline</span></code> enabled in Nvidia settings, you may run into this problem. This is a long standing bug, see <a class="reference external" href="https://bugzilla.xfce.org/show_bug.cgi?id=14950">#14950</a>. The solution is to either edit or delete <cite>$HOME/.config/xfce4/xfconf/xfce-perchannel-xml/displays.xml</cite>. Use a different mechanism for setting up your displays.</p>
-</div>
-</div>
-
-
            </div>
            
           </main>

@@ -35,7 +35,22 @@
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Emulators" href="emulators.html" />
-    <link rel="prev" title="COPR" href="copr.html" /> 
+    <link rel="prev" title="COPR" href="copr.html" />
+
+  <script type="text/javascript">
+      $(document).ready(function() {
+          //
+          //
+          $(".toggle > *").hide();
+          $(".toggle .admonition-title").show();
+          $(".toggle .admonition-title").click(function() {
+              $(this).parent().children().not(".admonition-title").toggle(400);
+              $(this).parent().children(".admonition-title").toggleClass("open");
+          })
+      });
+  </script>
+ 
+
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -696,29 +711,6 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="docker">
-<h1>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="changing-the-data-directory">
-<h2>Changing the data directory<a class="headerlink" href="#changing-the-data-directory" title="Permalink to this headline">¶</a></h2>
-<p>By default on Fedora, the directory Docker stores data in (images, etc.) is <code class="docutils literal notranslate"><span class="pre">/var/lib/docker</span></code>.
-Rather than changing the systemd service file, you can simply create <code class="docutils literal notranslate"><span class="pre">/etc/docker/daemon.json</span></code>:</p>
-<pre><code class="language-default">{
-    "graph": "/mnt",
-    "storage-driver": "overlay2"
-}</code></pre><div class="card">
-<div class="card-header bg-info">
-<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
-<h5 class="card-title">
-overlay2 should be replaced with whatever is shown in docker info.</h5><code class="docutils literal notranslate"><span class="pre">/mnt</span></code> should point to the root directory. For example, if you specify <code class="docutils literal notranslate"><span class="pre">/mnt/docker</span></code>, the final
-path is <code class="docutils literal notranslate"><span class="pre">/mnt/docker/docker</span></code>.</div></div>
-<p>After that, reload the changes (it may be a good idea to delete or backup the old directory):</p>
-<pre><code class="language-bash">systemctl daemon-reload
-systemctl restart docker</code></pre><p>After that, you can view <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">info</span></code> to verify your changes.</p>
-<p>Credit goes to <a class="reference external" href="https://stackoverflow.com/a/34731550">Piotr Król’s StackOverflow answer</a>.</p>
-</div>
-</div>
-
-
            </div>
            
           </main>

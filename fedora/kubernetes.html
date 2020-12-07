@@ -35,7 +35,22 @@
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="McAfee" href="mcafee.html" />
-    <link rel="prev" title="iPhone" href="iphone.html" /> 
+    <link rel="prev" title="iPhone" href="iphone.html" />
+
+  <script type="text/javascript">
+      $(document).ready(function() {
+          //
+          //
+          $(".toggle > *").hide();
+          $(".toggle .admonition-title").show();
+          $(".toggle .admonition-title").click(function() {
+              $(this).parent().children().not(".admonition-title").toggle(400);
+              $(this).parent().children(".admonition-title").toggleClass("open");
+          })
+      });
+  </script>
+ 
+
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -696,45 +711,6 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="kubernetes">
-<h1>Kubernetes<a class="headerlink" href="#kubernetes" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>Both <code class="docutils literal notranslate"><span class="pre">kubernetes</span></code> and <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> (comes with the <code class="docutils literal notranslate"><span class="pre">kubernetes</span></code> package) are already available in Fedora.
-However, you will still need to obtain <code class="docutils literal notranslate"><span class="pre">minikube</span></code> and <code class="docutils literal notranslate"><span class="pre">docker-machine-driver-kvm2</span></code> from the
-<a class="reference external" href="https://github.com/kubernetes/minikube/">Github repository</a>. The installation instructions recommend that you
-download the binary and copy it to <code class="docutils literal notranslate"><span class="pre">/usr/local/bin</span></code>, but many would prefer not to use a binary blob obtained
-from the Internet and compile from source instead.</p>
-<p>Fortunately, it is quite simple. First, install <code class="docutils literal notranslate"><span class="pre">libvirt-devel</span></code>. Then use the following script:</p>
-<pre><code class="language-bash">#!/bin/bash
-
-set -xe
-
-export GOPATH=$(go env GOPATH)
-export GOBIN=$GOPATH/bin
-
-# go get will not work here, minikube expects to have a certain directory structure
-if [[ ! -d "$GOPATH/src/k8s.io/minikube" ]];
-then
-    git clone https://github.com/kubernetes/minikube.git $GOPATH/src/k8s.io/minikube
-fi
-cd $GOPATH/src/k8s.io/minikube
-git checkout -- .
-git checkout $(git describe --abbrev=0 --tags)
-make clean
-make && make docker-machine-driver-kvm2
-
-cp out/minikube $GOBIN
-cp out/docker-machine-driver-kvm2 $GOBIN</code></pre><p>Then simply add <code class="docutils literal notranslate"><span class="pre">$GOBIN</span></code> to your path.</p>
-<div class="card">
-<div class="card-header bg-info">
-<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
-There are COPR repos available, however, most of them seem to just copy over the binary to <code class="docutils literal notranslate"><span class="pre">/usr/local/bin</span></code>
-and there is one that builds from source, but has questionable quality.</div></div>
-</div>
-</div>
-
-
            </div>
            
           </main>

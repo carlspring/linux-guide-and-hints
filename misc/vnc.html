@@ -35,7 +35,22 @@
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Getting started" href="../gettingstarted.html" />
-    <link rel="prev" title="Is port 465 deprecated?" href="port465.html" /> 
+    <link rel="prev" title="Is port 465 deprecated?" href="port465.html" />
+
+  <script type="text/javascript">
+      $(document).ready(function() {
+          //
+          //
+          $(".toggle > *").hide();
+          $(".toggle .admonition-title").show();
+          $(".toggle .admonition-title").click(function() {
+              $(this).parent().children().not(".admonition-title").toggle(400);
+              $(this).parent().children(".admonition-title").toggleClass("open");
+          })
+      });
+  </script>
+ 
+
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -696,42 +711,6 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="vnc">
-<h1>VNC<a class="headerlink" href="#vnc" title="Permalink to this headline">¶</a></h1>
-<p>This was written because this seems to be a common question on IRC, which could easily be researched every single time. That and despite “research”, there’s a lot of tutorials that get it wrong or do some ridiculous nonsense (such as copying Xresources to your home directory, which is unnecessary).</p>
-<div class="card">
-<div class="card-header bg-info">
-<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
-<h5 class="card-title">
-VNC is abyssmal</h5><p>We frown upon the use of VNC, regardless of CentOS or Fedora. It’s security is considered pathetic and there are much better options.</p>
-<p>Also note that wayland is <strong>not</strong> supported in VNC whatsoever. You are heavily encouraged to use gnome’s built in remote desktop instead which uses vino and wayland should work.</p>
-</div></div>
-<div class="section" id="setup">
-<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
-<pre><code class="language-shell"># Install the packages
-root% yum install tigervnc-server -y
-root% cp /usr/lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@.service
-root% vi /etc/systemd/system/vncserver@.service
-# modify <USER> to username
-root% systemctl enable vncserver@:1.service
-root% firewall-cmd --add-service=vnc-server
-root% firewall-cmd --runtime-to-permanent
-root% su - username
-username% vncpasswd
-. . .
-username% vi ~/.vnc/xstartup
-export XDG_SESSION_TYPE=x11
-export GDK_BACKEND=x11
-# Modify --session to be gnome-classic or otherwise that you need
-# If you are using XFCE, you could put exec xfce4-session instead
-exec gnome-session --session=gnome
-username% chmod +x ~/.vnc/xstartup
-# At this point, you can start the service, logout, and call it a day.
-# You can also reboot, since the service is enabled. Your choice.
-username% sudo systemctl start vncserver@:1.service</code></pre></div>
-</div>
-
-
            </div>
            
           </main>

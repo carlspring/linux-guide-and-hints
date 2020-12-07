@@ -35,7 +35,22 @@
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="tmux" href="tmux.html" />
-    <link rel="prev" title="Powerline" href="powerline.html" /> 
+    <link rel="prev" title="Powerline" href="powerline.html" />
+
+  <script type="text/javascript">
+      $(document).ready(function() {
+          //
+          //
+          $(".toggle > *").hide();
+          $(".toggle .admonition-title").show();
+          $(".toggle .admonition-title").click(function() {
+              $(this).parent().children().not(".admonition-title").toggle(400);
+              $(this).parent().children(".admonition-title").toggleClass("open");
+          })
+      });
+  </script>
+ 
+
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -696,36 +711,6 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="pulseaudio">
-<h1>Pulseaudio<a class="headerlink" href="#pulseaudio" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="flat-volume">
-<h2>Flat Volume<a class="headerlink" href="#flat-volume" title="Permalink to this headline">¶</a></h2>
-<p>Upon a fresh install of Fedora, a feature called <code class="docutils literal notranslate"><span class="pre">flat</span> <span class="pre">volume</span></code> may be
-enabled. It’s described on the <a class="reference external" href="https://fedoraproject.org/wiki/Features/VolumeControl#Volume_Control">Fedora Project’s wiki</a>:</p>
-<pre><code class="language-default">Upcoming PA versions support "flat volumes" (and we enable this by
-default). That will basically collapse the stream volume and device
-volume into one (only supported for volume controls with dB info).
-This follows what Vista does: the device volume is always the maximum
-volume of all streams playing on it.</code></pre><p>In layman’s terms, if you adjust a volume’s audio it will also mess with
-the max volume. In a media player like VLC for example, this will more
-than likely cause your ears to burst. For most users, this is
-undesirable.</p>
-<p>The fix is to open up <code class="docutils literal notranslate"><span class="pre">/etc/pulse/daemon.conf</span></code>, uncomment
-<code class="docutils literal notranslate"><span class="pre">flat-volumes</span></code>, and change it to <code class="docutils literal notranslate"><span class="pre">no</span></code>.</p>
-</div>
-<div class="section" id="sound-crackling">
-<h2>Sound Crackling<a class="headerlink" href="#sound-crackling" title="Permalink to this headline">¶</a></h2>
-<p>You will occasionally run into sound crackling issues, mainly in voip
-applications. To fix this, you can do modify /etc/pulse/default.pa.</p>
-<pre><code class="language-bash"># sed -i.bak ’/load-module module-udev-detect/ s/$/ tsched=0/’ /etc/pulse/default.pa</code></pre><p>You can also do this manually.</p>
-<pre><code class="language-bash">### Automatically load driver modules depending on the hardware available
-.ifexists module-udev-detect.so
-#load-module module-udev-detect
-load-module module-udev-detect tsched=0
-.else</code></pre></div>
-</div>
-
-
            </div>
            
           </main>

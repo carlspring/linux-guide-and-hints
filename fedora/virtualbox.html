@@ -35,7 +35,22 @@
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="VMware" href="vmware.html" />
-    <link rel="prev" title="vim" href="vim.html" /> 
+    <link rel="prev" title="vim" href="vim.html" />
+
+  <script type="text/javascript">
+      $(document).ready(function() {
+          //
+          //
+          $(".toggle > *").hide();
+          $(".toggle .admonition-title").show();
+          $(".toggle .admonition-title").click(function() {
+              $(this).parent().children().not(".admonition-title").toggle(400);
+              $(this).parent().children(".admonition-title").toggleClass("open");
+          })
+      });
+  </script>
+ 
+
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -696,31 +711,6 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="virtualbox">
-<h1>VirtualBox<a class="headerlink" href="#virtualbox" title="Permalink to this headline">¶</a></h1>
-<div class="card">
-<div class="card-header bg-info">
-<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
-<h5 class="card-title">
-KVM</h5>While VirtualBox is available in RPMFusion, it is recommended to use libvirt, which is already built into the kernel and the various virt-* packages can be installed as needed to get a hypervisor rolling. GNOME Boxes provides the functionality out-of-the-box with a Fedora Workstation install.</div></div>
-<div class="section" id="failed-to-start-load-kernel-modules-after-uninstalling">
-<h2>“Failed to start Load Kernel Modules” after uninstalling<a class="headerlink" href="#failed-to-start-load-kernel-modules-after-uninstalling" title="Permalink to this headline">¶</a></h2>
-<p>If <code class="docutils literal notranslate"><span class="pre">journalctl</span></code> shows that you still get <code class="docutils literal notranslate"><span class="pre">could</span> <span class="pre">not</span> <span class="pre">insert</span> <span class="pre">vboxdrv</span></code> errors, run <code class="docutils literal notranslate"><span class="pre">dracut</span> <span class="pre">-v</span> <span class="pre">-f</span></code> then restart your computer.</p>
-</div>
-<div class="section" id="kernel-modules-do-not-build-upon-kernel-update">
-<h2>Kernel modules do not build upon kernel update<a class="headerlink" href="#kernel-modules-do-not-build-upon-kernel-update" title="Permalink to this headline">¶</a></h2>
-<p>Per the <a class="reference external" href="https://rpmfusion.org/Howto/VirtualBox">RPMFusion FAQ</a>, run <code class="docutils literal notranslate"><span class="pre">akmods-shutdown</span></code> then load the modules and restart the service.</p>
-<pre><code class="language-bash">/sbin/modprobe -r -b vboxnetflt
-/sbin/modprobe -r -b vboxnetadp
-/sbin/modprobe -r -b vboxdrv
-/sbin/modprobe -r -b vboxpci
-/sbin/modprobe -r -b vboxdrv
-
-systemctl restart systemd-modules-load</code></pre><p>While RPMFusion doesn’t officially support VirtualBox with SELinux enabled, it is a terrible idea to disable SELinux.</p>
-</div>
-</div>
-
-
            </div>
            
           </main>

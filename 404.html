@@ -33,7 +33,22 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="/_static/css/prism-okaidia.min.css" type="text/css" />
   <link rel="stylesheet" href="/_static/css/style.min.css" type="text/css" />
-    <link rel="search" title="Search" href="/search.html" /> 
+    <link rel="search" title="Search" href="/search.html" />
+
+  <script type="text/javascript">
+      $(document).ready(function() {
+          //
+          //
+          $(".toggle > *").hide();
+          $(".toggle .admonition-title").show();
+          $(".toggle .admonition-title").click(function() {
+              $(this).parent().children().not(".admonition-title").toggle(400);
+              $(this).parent().children(".admonition-title").toggleClass("open");
+          })
+      });
+  </script>
+ 
+
 
   <noscript>
       <link rel="stylesheet" href="/_static/css/nojs.css" type="text/css">
@@ -688,10 +703,6 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Page not found</h1>
-
-If you believe this is an error, please open an issue on Github.
-
            </div>
            
           </main>

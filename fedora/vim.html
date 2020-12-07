@@ -35,7 +35,22 @@
   <link rel="stylesheet" href="../_static/css/style.min.css" type="text/css" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="VirtualBox" href="virtualbox.html" />
-    <link rel="prev" title="tmux" href="tmux.html" /> 
+    <link rel="prev" title="tmux" href="tmux.html" />
+
+  <script type="text/javascript">
+      $(document).ready(function() {
+          //
+          //
+          $(".toggle > *").hide();
+          $(".toggle .admonition-title").show();
+          $(".toggle .admonition-title").click(function() {
+              $(this).parent().children().not(".admonition-title").toggle(400);
+              $(this).parent().children(".admonition-title").toggleClass("open");
+          })
+      });
+  </script>
+ 
+
 
   <noscript>
       <link rel="stylesheet" href="../_static/css/nojs.css" type="text/css">
@@ -696,24 +711,6 @@
           <main role="main" id="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="vim">
-<h1>vim<a class="headerlink" href="#vim" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="plugins">
-<h2>Plugins<a class="headerlink" href="#plugins" title="Permalink to this headline">¶</a></h2>
-<p>There are a couple of Vim plugin managers, but a popular one is
-<a class="reference external" href="https://github.com/tpope/vim-pathogen">Pathogen</a>. Installation is as
-simple as:</p>
-<pre><code class="language-bash">mkdir -p ~/.vim/autoload ~/.vim/bundle && \
-curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim</code></pre><p>And to install a plugin:</p>
-<pre><code class="language-bash">cd ~/.vim/bundle
-git clone https://github.com/someuser/vim-plugin
-# or
-git clone https://github.com/someuser/vim-plugin ~/.vim/bundle/vim-plugin</code></pre><p>Typically, you’d want to run <code class="docutils literal notranslate"><span class="pre">:Helptags</span></code> afterwards to get the new
-documentation.</p>
-</div>
-</div>
-
-
            </div>
            
           </main>
