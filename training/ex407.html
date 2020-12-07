@@ -778,7 +778,22 @@ Affiliation and Exam Information</h5><p>Please note that we are not affiliated w
 <div class="section" id="install-and-configure-an-ansible-control-node">
 <h3><a class="toc-backref" href="#id7">Install and configure an Ansible control node</a><a class="headerlink" href="#install-and-configure-an-ansible-control-node" title="Permalink to this headline">¶</a></h3>
 <p>An Ansible Control Node is where Ansible is installed and used to run commands and playbooks from said node. There can be more than one control node.</p>
-</div>
+<pre><code class="language-shell"># If using CentOS, you need to enable the epel repository
+% yum install epel-release -y
+% yum install ansible -y
+
+# Configure ansible's inventory
+% vi /etc/ansible/hosts
+node1 ansible_host=10.10.10.20
+. . .
+
+# Create an ansible user, generate an SSH key
+% useradd ansible
+% su - ansible
+% ssh-keygen
+
+# Configure ansible.cfg for the ansible user
+% cp /etc/ansible/ansible.cfg .</code></pre></div>
 </div>
 <div class="section" id="practice-exam">
 <h2><a class="toc-backref" href="#id8">Practice Exam</a><a class="headerlink" href="#practice-exam" title="Permalink to this headline">¶</a></h2>
