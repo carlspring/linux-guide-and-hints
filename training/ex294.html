@@ -536,7 +536,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#task-5-users-and-groups">Task 5 - Users and Groups</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#task-6-schedulded-tasks">Task 6 - Schedulded Tasks</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#task-7-create-roles-database">Task 7 - Create Roles - Database</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#task-8-use-archiving-to-backup-mysql">Task 8 - Use Archiving to backup mysql</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#task-8-use-archiving-to-backup-mysql-information">Task 8 - Use Archiving to backup mysql information</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#task-9-create-roles-web">Task 9 - Create Roles - Web</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#task-10-download-roles-from-galaxy">Task 10 - Download Roles from Galaxy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#task-11-security">Task 11 - Security</a></li>
@@ -698,7 +698,7 @@ Affiliation and Exam Information</h5><p>Please note that we are not affiliated w
 <li><a class="reference internal" href="#task-5-users-and-groups" id="id11">Task 5 - Users and Groups</a></li>
 <li><a class="reference internal" href="#task-6-schedulded-tasks" id="id12">Task 6 - Schedulded Tasks</a></li>
 <li><a class="reference internal" href="#task-7-create-roles-database" id="id13">Task 7 - Create Roles - Database</a></li>
-<li><a class="reference internal" href="#task-8-use-archiving-to-backup-mysql" id="id14">Task 8 - Use Archiving to backup mysql</a></li>
+<li><a class="reference internal" href="#task-8-use-archiving-to-backup-mysql-information" id="id14">Task 8 - Use Archiving to backup mysql information</a></li>
 <li><a class="reference internal" href="#task-9-create-roles-web" id="id15">Task 9 - Create Roles - Web</a></li>
 <li><a class="reference internal" href="#task-10-download-roles-from-galaxy" id="id16">Task 10 - Download Roles from Galaxy</a></li>
 <li><a class="reference internal" href="#task-11-security" id="id17">Task 11 - Security</a></li>
@@ -962,8 +962,16 @@ pid-file=/var/run/mysqld/mysqld.pid</code></pre><p>Create the playbook <cite>~/a
 <p>You will use the ansible_default_ipv4.address variable to solve the template.</p>
 </div></div>
 </div>
-<div class="section" id="task-8-use-archiving-to-backup-mysql">
-<h3><a class="toc-backref" href="#id14">Task 8 - Use Archiving to backup mysql</a><a class="headerlink" href="#task-8-use-archiving-to-backup-mysql" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="task-8-use-archiving-to-backup-mysql-information">
+<h3><a class="toc-backref" href="#id14">Task 8 - Use Archiving to backup mysql information</a><a class="headerlink" href="#task-8-use-archiving-to-backup-mysql-information" title="Permalink to this headline">¶</a></h3>
+<div class="card">
+<div class="card-header bg-info">
+<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
+<h5 class="card-title">
+What objectives does this test?</h5><ul class="simple">
+<li>Use Ansible modules for system administration tasks that work with: File content, archiving</li>
+</ul>
+</div></div>
 <p>Create a playbook at <cite>~/automation/plays/archive.yml</cite> that runs on all db hosts:</p>
 <ul class="simple">
 <li>Create <cite>/mnt/mysql/database_list.txt</cite> that has the line: dev,test,qa,prod</li>
@@ -1161,7 +1169,11 @@ ansible all --ask-pass -m authorized_key -a 'user=ansible state=present key="{{l
   copy:
     dest: /etc/motd
     content: |
-      Welcome to an Apache server</code></pre></div>
+      Welcome to an Apache server</code></pre><pre><code class="language-shell">- block:
+  when: ansible_facts.memtotal_mb >= 2048
+
+- block:
+  when: ansible_facts.memtotal_mb < 2048</code></pre></div>
 </div>
 
 
