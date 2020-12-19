@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests; default-src 'self'; style-src 'self' https://github.githubassets.com/ cdn.jsdelivr.net stackpath.bootstrapcdn.com; script-src 'self' https://gist.github.com/remyabel/2cac59a778fa34d0c61e246554fe3e3c.js https://gist.github.com/remyabel/bbebf3043860abe24a19bf0b1d67bd33.js https://gist.github.com/remyabel/e9c33b830da73768fe6ea2363fc27e1a.js; img-src 'self'; media-src 'self'; font-src 'self' fonts.gstatic.com cdn.jsdelivr.net stackpath.bootstrapcdn.com;">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests; default-src 'self'; style-src 'self' https://github.githubassets.com/ cdn.jsdelivr.net stackpath.bootstrapcdn.com; script-src 'self'; img-src 'self'; media-src 'self'; font-src 'self' fonts.gstatic.com cdn.jsdelivr.net stackpath.bootstrapcdn.com;">
   
   
   <title>Backups &mdash; Linux Guide and Hints</title>
@@ -540,6 +540,10 @@
 </ul>
 </li>
 </ul>
+<p class="caption"><span class="caption-text">MacOS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../macos/image.html">Create macOS ISO Images</a></li>
+</ul>
 <p class="caption"><span class="caption-text">Training Resources</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../training/ex362.html">EX362 Exam Prep</a><ul>
@@ -815,9 +819,7 @@ the <code class="docutils literal notranslate"><span class="pre">VCS</span></cod
 <span class="pre">--reference=source_dir/</span> <span class="pre">target_dir/</span></code>, where <code class="docutils literal notranslate"><span class="pre">source_dir</span></code> contains the
 context you want to apply to <code class="docutils literal notranslate"><span class="pre">target_dir</span></code>.</p>
 <p>The following helper script should get you started:</p>
-<script src="https://gist.github.com/remyabel/2cac59a778fa34d0c61e246554fe3e3c.js"></script>
-
-<noscript><pre><code class="language-bash">#!/bin/bash
+<pre><code class="language-bash">#!/bin/bash
 
 set -x
 set -o pipefail
@@ -863,7 +865,7 @@ do
     cd "$URL" || fail
     git annex sync --content --message="$(date +%F)" || fail
     git-restore-metadata
-done</code></pre></noscript></div>
+done</code></pre></div>
 </div>
 
 

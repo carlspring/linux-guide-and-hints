@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests; default-src 'self'; style-src 'self' https://github.githubassets.com/ cdn.jsdelivr.net stackpath.bootstrapcdn.com; script-src 'self' https://gist.github.com/remyabel/2cac59a778fa34d0c61e246554fe3e3c.js https://gist.github.com/remyabel/bbebf3043860abe24a19bf0b1d67bd33.js https://gist.github.com/remyabel/e9c33b830da73768fe6ea2363fc27e1a.js; img-src 'self'; media-src 'self'; font-src 'self' fonts.gstatic.com cdn.jsdelivr.net stackpath.bootstrapcdn.com;">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests; default-src 'self'; style-src 'self' https://github.githubassets.com/ cdn.jsdelivr.net stackpath.bootstrapcdn.com; script-src 'self'; img-src 'self'; media-src 'self'; font-src 'self' fonts.gstatic.com cdn.jsdelivr.net stackpath.bootstrapcdn.com;">
   
   
   <title>Getting started &mdash; Linux Guide and Hints</title>
@@ -540,6 +540,10 @@
 </ul>
 </li>
 </ul>
+<p class="caption"><span class="caption-text">MacOS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="macos/image.html">Create macOS ISO Images</a></li>
+</ul>
 <p class="caption"><span class="caption-text">Training Resources</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="training/ex362.html">EX362 Exam Prep</a><ul>
@@ -678,9 +682,7 @@
 <li>negativo17 users, <code class="docutils literal notranslate"><span class="pre">libmpg123</span></code> is now <code class="docutils literal notranslate"><span class="pre">mpg123</span></code></li>
 </ul>
 <p>The <a class="reference internal" href="fedora/negativo.html"><span class="doc">negativo17 repositories and Nvidia drivers</span></a> article contains more information.</p>
-<script src="https://gist.github.com/remyabel/bbebf3043860abe24a19bf0b1d67bd33.js"></script>
-
-<noscript><pre><code class="language-bash">#!/bin/bash
+<pre><code class="language-bash">#!/bin/bash
 if [[ $UID != 0 ]]; then
    echo "Not root."
    exit
@@ -702,7 +704,7 @@ dnf install nvidia-settings kernel-devel vulkan-loader.i686 nvidia-driver-libs.i
 dnf install akmod-nvidia
 
 dnf clean all
-dnf --refresh upgrade</code></pre></noscript><p>Please don’t use Skype unless you enjoy having the NSA read your messages. Finally, check out the <a class="reference internal" href="fedora/pulseaudio.html"><span class="doc">Pulseaudio</span></a> articles on troubleshooting tips.</p>
+dnf --refresh upgrade</code></pre><p>Please don’t use Skype unless you enjoy having the NSA read your messages. Finally, check out the <a class="reference internal" href="fedora/pulseaudio.html"><span class="doc">Pulseaudio</span></a> articles on troubleshooting tips.</p>
 <div class="section" id="other-things-negativo17-related">
 <h2>Other things negativo17 related<a class="headerlink" href="#other-things-negativo17-related" title="Permalink to this headline">¶</a></h2>
 <p>negativo17 provides Flash as well, but you should probably just avoid Flash altogether,
