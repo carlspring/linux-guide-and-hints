@@ -33,21 +33,6 @@
   <link rel="stylesheet" href="_static/css/prism-okaidia.min.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/style.min.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/toggle.css" type="text/css" />
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
-        <script src="_static/js/prism.min.js"></script>
-        <script src="_static/js/components/prism-bash.min.js"></script>
-        <script src="_static/js/components/prism-docker.min.js"></script>
-        <script src="_static/js/prism-freeipa.min.js"></script>
-        <script src="_static/js/toggle.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
     
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Backups" href="fedora/backups.html" />
@@ -681,7 +666,7 @@
 <li>gstreamer 0.10 is deprecated, install gstreamer1.</li>
 <li>negativo17 users, <code class="docutils literal notranslate"><span class="pre">libmpg123</span></code> is now <code class="docutils literal notranslate"><span class="pre">mpg123</span></code></li>
 </ul>
-<p>The <a class="reference internal" href="fedora/negativo.html"><span class="doc">negativo17 repositories and Nvidia drivers</span></a> article contains more information.</p>
+<p>The <a class="reference external" href="fedora/negativo.html">negativo</a> article contains more information.</p>
 <pre><code class="language-bash">#!/bin/bash
 if [[ $UID != 0 ]]; then
    echo "Not root."
@@ -704,7 +689,7 @@ dnf install nvidia-settings kernel-devel vulkan-loader.i686 nvidia-driver-libs.i
 dnf install akmod-nvidia
 
 dnf clean all
-dnf --refresh upgrade</code></pre><p>Please don’t use Skype unless you enjoy having the NSA read your messages. Finally, check out the <a class="reference internal" href="fedora/pulseaudio.html"><span class="doc">Pulseaudio</span></a> articles on troubleshooting tips.</p>
+dnf --refresh upgrade</code></pre><p>Please don’t use Skype unless you enjoy having the NSA read your messages. Finally, check out the <a class="reference external" href="fedora/pulseaudio.html">Pulseaudio</a> articles on troubleshooting tips.</p>
 <div class="section" id="other-things-negativo17-related">
 <h2>Other things negativo17 related<a class="headerlink" href="#other-things-negativo17-related" title="Permalink to this headline">¶</a></h2>
 <p>negativo17 provides Flash as well, but you should probably just avoid Flash altogether,
@@ -713,7 +698,7 @@ Flash in favor of moving to HTML5 for web players. I haven’t had to activate F
 time.</p>
 <p>negativo17 also provides Steam. However, if you have any games that are
 Window only, you need to download Steam via Wine and install the games that way
-or use Proton. See the <a class="reference internal" href="fedora/winetips.html"><span class="doc">Wine Tips</span></a> article for more information.</p>
+or use Proton. See the <a class="reference external" href="fedora/winetips.html">Wine Tips</a> article for more information.</p>
 <p>Finally, to ensure that Negativo’s repo takes precedence over RPMFusion, edit <code class="docutils literal notranslate"><span class="pre">/etc/yum.repos.d/fedora-multimedia.repo</span></code>
 and add <code class="docutils literal notranslate"><span class="pre">priority=1</span></code> under <code class="docutils literal notranslate"><span class="pre">[fedora-multimedia]</span></code>.</p>
 </div>
@@ -769,7 +754,6 @@ and add <code class="docutils literal notranslate"><span class="pre">priority=1<
       <script type="text/javascript" src="_static/jquery.js" defer></script>
       <script type="text/javascript" src="_static/underscore.js" defer></script>
       <script type="text/javascript" src="_static/doctools.js" defer></script>
-      <script type="text/javascript" src="_static/language_data.js" defer></script>
       <script type="text/javascript" src="_static/js/prism.min.js" defer></script>
       <script type="text/javascript" src="_static/js/components/prism-bash.min.js" defer></script>
       <script type="text/javascript" src="_static/js/components/prism-docker.min.js" defer></script>
