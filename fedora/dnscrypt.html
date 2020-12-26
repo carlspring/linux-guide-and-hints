@@ -666,7 +666,7 @@ instructions I posted <a class="reference external" href="https://github.com/DNS
 <code class="docutils literal notranslate"><span class="pre">dnscrypt-proxy</span></code> doesn’t overwrite the existing service file, the one
 previously shipped with Fedora will cause <code class="docutils literal notranslate"><span class="pre">dnscrypt-proxy</span></code> to not start.</p>
 <p>Try removing <code class="docutils literal notranslate"><span class="pre">/etc/systemd/system/dnscrypt-proxy.service</span></code> and re-run <code class="docutils literal notranslate"><span class="pre">sudo</span>
-<span class="pre">dnscrypt-proxy</span> <span class="pre">-install</span> <span class="pre">service</span></code>.</p>
+<span class="pre">dnscrypt-proxy</span> <span class="pre">-service</span> <span class="pre">install</span></code>.</p>
 <p>Since the RPM no longer uses sockets, you might need to edit the config as well
 to specify listening addresses:</p>
 <pre><code class="language-default">listen_addresses = ['127.0.0.1:53', '[::1]:53']</code></pre></div>
