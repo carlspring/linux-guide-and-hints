@@ -968,7 +968,7 @@ Password Expiration</h5>When you make a user with the –password switch or use 
 
 # If we already set the password we want but we don't want it to expire without making a policy or prompt for a password change (NOT RECOMMENDED)
 % ldapmodify -x -w 'Passw0rd!' -D 'cn=Directory Manager'
-dn: uid=syshostmgt,cn=users,cn=accounts,dc=ipa,dc=chotel,dc=com
+dn: uid=syshostmgt,cn=users,cn=accounts,dc=example,dc=com
 changetype: modify
 delete: krbLastPwdChange
 
