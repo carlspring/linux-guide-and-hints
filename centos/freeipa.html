@@ -442,6 +442,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#ca-related-certificates-stuck">CA Related Certificates Stuck</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#kerberos">Kerberos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#accounts-with-otp-enabled">Accounts with OTP Enabled</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="nat.html">NAT/Router</a><ul>
@@ -739,6 +743,10 @@
 <li><a class="reference internal" href="#certificates" id="id57">Certificates</a><ul>
 <li><a class="reference internal" href="#renewed-ipa-http-certificate-stuck" id="id58">Renewed IPA HTTP Certificate Stuck</a></li>
 <li><a class="reference internal" href="#ca-related-certificates-stuck" id="id59">CA Related Certificates Stuck</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#kerberos" id="id60">Kerberos</a><ul>
+<li><a class="reference internal" href="#accounts-with-otp-enabled" id="id61">Accounts with OTP Enabled</a></li>
 </ul>
 </li>
 </ul>
@@ -2651,7 +2659,17 @@ Request ID '20200615180351':
         pre-save command: /usr/libexec/ipa/certmonger/stop_pkicad
         post-save command: /usr/libexec/ipa/certmonger/renew_ca_cert "auditSigningCert cert-pki-ca"
         track: yes
-        auto-renew: yes</code></pre><p class="rubric">Footnotes</p>
+        auto-renew: yes</code></pre></div>
+</div>
+<div class="section" id="kerberos">
+<h2><a class="toc-backref" href="#id60">Kerberos</a><a class="headerlink" href="#kerberos" title="Permalink to this headline">¶</a></h2>
+<p>This section goes over some stuff about kerberos that we’ve ran into and might find useful someday.</p>
+<div class="section" id="accounts-with-otp-enabled">
+<h3><a class="toc-backref" href="#id61">Accounts with OTP Enabled</a><a class="headerlink" href="#accounts-with-otp-enabled" title="Permalink to this headline">¶</a></h3>
+<p>When logging into a machine with a password (first factor) and an OTP token (second factor), this generally works without a problem. You can easily run <cite>klist</cite> and you’ll see that you have a ticket and everything. In the cases where you’re calling kinit all by itself, this doesn’t work as expected at the time of this writing.</p>
+<pre><code class="language-shell">% kinit account@REALM
+kinit: Pre-authentication failed: Invalid argument while getting initial credentials</code></pre><p>A <a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1510734">bugzilla</a> was opened about this issue in 2017, a <a class="reference external" href="https://pagure.io/freeipa/issue/4411">pagure</a> issue was opened in 2014 about this exact scenario, where IPA is configured for password+OTP and a user has an assigned token. There is currently one workaround, which is using <cite>kinit -n</cite> to perform anonymous processing.</p>
+<p class="rubric">Footnotes</p>
 <table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
