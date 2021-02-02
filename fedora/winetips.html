@@ -339,16 +339,11 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Wine Tips</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#out-of-memory-errors">Out of memory errors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#new-vegas">New Vegas</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#installing-via-wine">Installing via Wine</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#modding">Modding</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">Mod Organizer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#loot">LOOT</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#lutana-nvse">Lutana NVSE</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ini-modifications">.ini modifications</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#gmdx">GMDX</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#directx11-games">DirectX11 games</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#proton">Proton</a></li>
 </ul>
 </li>
@@ -662,108 +657,44 @@
 <h1>Wine Tips<a class="headerlink" href="#wine-tips" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="out-of-memory-errors">
 <h2>Out of memory errors<a class="headerlink" href="#out-of-memory-errors" title="Permalink to this headline">¶</a></h2>
-<p>This seems to affect multiple games. For example, in Resident Evil Remaster you might see “ERR08: memory overrun”. For non-DRM games, you can try using the <a class="reference external" href="http://www.ntcore.com/4gb_patch.php">4gb patch</a> or equivalent “Large Address Awareness” patches. For DRM games (like found on Steam), you’ll need a patch/mod with specific support (i.e, this is the case for Fallout).</p>
-<p>If you are willing to <a class="reference external" href="https://wiki.winehq.org/Building_Wine">compile Wine from source</a>, use this <a class="reference external" href="https://bugs.winehq.org/attachment.cgi?id=53156">patch</a> by Gabriel Corona that will enable LAA across the board.</p>
+<p>This seems to affect multiple games. For example, in Resident Evil Remaster you
+might see “ERR08: memory overrun”. For non-DRM games, you can try using the
+<a class="reference external" href="http://www.ntcore.com/4gb_patch.php">4gb patch</a> or equivalent “Large Address
+Awareness” patches. For DRM games (like found on Steam), you’ll need a
+patch/mod with specific support (i.e, this is the case for Fallout).</p>
+<p>If you are willing to <a class="reference external" href="https://wiki.winehq.org/Building_Wine">compile Wine from source</a>, use this <a class="reference external" href="https://bugs.winehq.org/attachment.cgi?id=53156">patch</a> by Gabriel Corona that will
+enable LAA across the board.</p>
+<p>In Proton, LAA is enabled by default.</p>
 </div>
 <div class="section" id="new-vegas">
 <h2>New Vegas<a class="headerlink" href="#new-vegas" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="installing-via-wine">
-<h3>Installing via Wine<a class="headerlink" href="#installing-via-wine" title="Permalink to this headline">¶</a></h3>
-<div class="card">
-<div class="card-header bg-info">
-<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
-New Vegas works perfectly with Proton/Steam Play (except you may need to
-disable HDR/water reflections due to graphical glitches.) However, I’m
-preserving this section if for whatever reason you choose to use vanilla
-Wine.</div></div>
-<p>If you are using the GOG version, it already comes prepatched with 4GB support.</p>
-<ul class="simple">
-<li>Use a 32-bit prefix</li>
-<li>Change the following settings via winetricks:<ul>
-<li>Set renderer to OpenGL</li>
-<li>Set video card memory to your video card’s memory, obviously</li>
-<li>Disable multisampling</li>
-</ul>
-</li>
-<li>Enable CSMT via winecfg</li>
-<li>You can set the Windows version to 7, but probably won’t matter</li>
-<li>Install via winetricks:<ul>
-<li>mfc42</li>
-<li>d3dx9_36.dll</li>
-<li>Physx</li>
-<li>quartz</li>
-<li>l3codecx (mp3)</li>
-<li>xinput (required for a mod)</li>
-<li>.NET 4.6.2 (required for Mod Organizer to work properly)</li>
-<li>Steam. New Vegas requires steam activation, and mods will assume you have the
-Steam version. You only need Steam to be running in the background, but you can
-launch the game via Mod Organizer.</li>
-<li>d3dcompiler_43 (if you are using ENB)</li>
-</ul>
-</li>
-<li>Set the following overrides via winecfg:<ul>
-<li>d3dx9_36 (native). Already done for you</li>
-<li>quartz (native). Already done for you</li>
-<li>winegstreamer (disabled). To prevent crashing</li>
-<li>nvcuda (native, built-in). To allow Physx to work</li>
-<li>gameoverlayrenderer (disabled). To prevent crashing. Already done if you installed Steam</li>
-</ul>
-</li>
-</ul>
-<p>If you enable the <code class="docutils literal notranslate"><span class="pre">nvcuda</span></code> override, you must install <code class="docutils literal notranslate"><span class="pre">nvidia-driver-cuda-libs.i686</span></code>.</p>
-<p>That’s all you need to run the game. Anything else is your discretion though I
-wouldn’t install or change anything else unless you’re certain it’s related to
-crashing or performance.</p>
-<p>If you are using <a class="reference external" href="http://enbdev.com/">ENB</a>, make sure to patch the following executables for 4GB support:</p>
-<pre><code class="language-bash">nvse_loader.exe
-enbhost.exe</code></pre><p>Alternatively, you can use the <a class="reference external" href="https://www.nexusmods.com/newvegas/mods/62552/?">FNV 4GB Patcher</a>. This should not only apply
-the 4gb patch, but allow you to launch the game through Steam. Note that since
-Steam runs the launcher, any changes you make to <code class="docutils literal notranslate"><span class="pre">Fallout.ini</span></code> can be
-overwritten. A workaround is to rename <code class="docutils literal notranslate"><span class="pre">nvse_loader.exe</span></code> to
-<code class="docutils literal notranslate"><span class="pre">FalloutNVLauncher.exe</span></code>.</p>
-<div class="card">
-<div class="card-header bg-info">
-<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
-Reportedly, making <code class="docutils literal notranslate"><span class="pre">Fallout.ini</span></code> read-only should work, but it doesn’t for me. YMMV.</div></div>
-<p>Then launch <code class="docutils literal notranslate"><span class="pre">nvse_loader.exe</span></code> with the environment variable <code class="docutils literal notranslate"><span class="pre">WINEDLLOVERRIDES=&quot;d3d9.dll=n,b&quot;</span></code>.</p>
-<p>When using ENB and Proton, you must install the DirectX9 DLL’s. Example:</p>
-<pre><code class="language-bash">env WINEPREFIX="/path/to/proton/pfx" winetricks d3dx9 d3dcompiler_43</code></pre><p>Make sure to set <code class="docutils literal notranslate"><span class="pre">d3d9.dll=n,b</span></code> as above.</p>
-</div>
 <div class="section" id="modding">
 <h3>Modding<a class="headerlink" href="#modding" title="Permalink to this headline">¶</a></h3>
-<p>I recommend using <a class="reference external" href="https://www.nexusmods.com/skyrimspecialedition/mods/6194">Mod Organizer</a>
-as opposed to NMM or FOMM. I cannot get NMM to work and FOMM seems to be quite glitchy.
-Either way, MO will support mods targeted towards NMM or FOMM, and if that doesn’t work
-has a intuitive interface for manual installation. It’s still through the interface,
-so you are not polluting your game directory.</p>
-<p>You need <a class="reference external" href="http://nvse.silverlock.org/">NVSE</a>. Extract the contents to the same
-level as your game’s executable.</p>
-<p>Then either use the 4GB loader, of which there are plenty around, or use this <a class="reference external" href="http://www.ntcore.com/4gb_patch.php">4GB patch</a>.
-Patch the game executable. It’ll automatically create a backup. You will know
-this is working if you stop receiving “out of memory” crashes.</p>
-<p>Some necessary mods are:</p>
-<ul class="simple">
-<li><a class="reference external" href="http://www.nexusmods.com/newvegas/mods/53635/?">New Vegas Anti Crash</a>. It will prevent
-many crashes, but not all. Always check <code class="docutils literal notranslate"><span class="pre">nvac.log</span></code> to see the cause of the crash. If it’s
-something like <code class="docutils literal notranslate"><span class="pre">u</span></code> or <code class="docutils literal notranslate"><span class="pre">m</span></code>, there’s basically nothing that can be done about it. In other
-words, if you only see crashes of this nature, NVAC is doing its job.</li>
-<li><a class="reference external" href="http://www.nexusmods.com/newvegas/mods/34832/?">New Vegas Stutter Remover</a>. Do not use the heap replacer.</li>
-<li><a class="reference external" href="https://www.nexusmods.com/newvegas/mods/66537">New Vegas Tick Fix</a>. A stripped down version of NVSR. Do not use the two together.</li>
-</ul>
-</div>
-<div class="section" id="id2">
-<h3>Mod Organizer<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<p>While .NET is not required to run MO itself, it is required for the scripted installers. Mods will not install
-properly if their scripted installers don’t run, even if you don’t “require” them.</p>
-<p>As a workaround, you can use A.J. Venter’s <a class="reference external" href="https://github.com/ajventer/ksp_stuff/blob/master/movfs4l.py">movfs4l script</a>. Modify the variables to
-point to the correct directories, then run it with <code class="docutils literal notranslate"><span class="pre">WINEPREFIX=...</span> <span class="pre">python</span> <span class="pre">movfs4l.py</span></code>. Since Mod Organizer will pick up the symlinks (and display them as
-redundant unmanaged mods), you should run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">movfs4l.py</span> <span class="pre">UNVFS</span></code> prior to opening Mod Organizer, then rerun the script without arguments after closing
-Mod Organizer.</p>
+<p>For a comprehensive modding guide, see <a class="reference external" href="https://vivanewvegas.github.io/">Viva New Vegas</a>.</p>
+<p>Furthermore, see their page on <a class="reference external" href="https://vivanewvegas.github.io/avoid-mods.html">mods to avoid</a>.</p>
+<p>You will need to install vc2019 but currently proton has trouble installing it.
+You need to install it with regular wine by doing:</p>
+<pre><code class="language-bash">env WINEPREFIX="/path/to/steam/steamapps/compatdata/22380/pfx" winetricks vcrun2019</code></pre><p>While I would normally recommend Mod Organizer 2, it has issues on Linux so I
+will instead discuss alternatives.</p>
+<p>While .NET is not required to run MO itself, it is required for the scripted
+installers. Mods will not install properly if their scripted installers don’t
+run, even if you don’t “require” them.</p>
+<p>As a workaround, you can use A.J. Venter’s <a class="reference external" href="https://github.com/ajventer/ksp_stuff/blob/master/movfs4l.py">movfs4l script</a>. Modify the
+variables to point to the correct directories, then run it with
+<code class="docutils literal notranslate"><span class="pre">WINEPREFIX=...</span> <span class="pre">python</span> <span class="pre">movfs4l.py</span></code>. Since Mod Organizer will pick up the
+symlinks (and display them as redundant unmanaged mods), you should run
+<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">movfs4l.py</span> <span class="pre">UNVFS</span></code> prior to opening Mod Organizer, then rerun the
+script without arguments after closing Mod Organizer.</p>
 <p>Another alternative is the <a class="reference external" href="https://github.com/neVERberleRfellerER/FalloutNVLinuxLauncher">FalloutNVLinuxLauncher</a>. This script
 uses <a class="reference external" href="https://en.wikipedia.org/wiki/OverlayFS">OverlayFS</a> to merge mods and
 mount the result. The instructions are a little confusing, so these notes
 should be used in addition to the README.</p>
-<p>Modify the script and set <code class="docutils literal notranslate"><span class="pre">ROOTDIR</span></code> to the parent directory of where you want
+<p>First install Fallout New Vegas somewhere. Then create a <code class="docutils literal notranslate"><span class="pre">mods</span></code> directory
+(place it anywhere you like) and rename the directory to <cite>9999 Fallout New
+Vegas</cite> like so:</p>
+<pre><code class="language-bash">mods/
+├── data
+│   ├── 9999 Fallout New Vegas</code></pre><p>Modify the script and set <code class="docutils literal notranslate"><span class="pre">ROOTDIR</span></code> to the parent directory of where you want
 the mounted directory and <code class="docutils literal notranslate"><span class="pre">MERGERDIR</span></code> to the name of the mounted directory.
 For example, if you’re using Steam:</p>
 <pre><code class="language-bash">ROOTDIR="/path/to/steam/steamapps/common/"
@@ -773,12 +704,12 @@ tree would look like:</p>
 ├── data
 │   ├── 0010 JIP LN NVSE
 │   ├── 9999 Fallout New Vegas
-│   └── 9999 Fallout New Vegas.order</code></pre><p>This requires that you move and rename your game installation dir. The script
-will warn you about mixed-case files, but doesn’t rename them. As a result,
-things can break when mods do not get merged.  Install <code class="docutils literal notranslate"><span class="pre">prename</span></code>, then run
-this from your <code class="docutils literal notranslate"><span class="pre">mods</span></code> folder:</p>
+│   └── 9999 Fallout New Vegas.order</code></pre><p>The script will warn you about mixed-case files, but doesn’t rename them. As a
+result, things can break when mods do not get merged.  Install <code class="docutils literal notranslate"><span class="pre">prename</span></code>,
+then run this from your <code class="docutils literal notranslate"><span class="pre">mods</span></code> folder:</p>
 <pre><code class="language-bash">find . -depth -execdir prename 'y/A-Z/a-z/' '{}' \;</code></pre><p>Then launch the game with:</p>
-<pre><code class="language-bash">bash FONVLaunchInMerged.sh steam steam://rungameid/22380</code></pre><p>The merged game files will be mounted in
+<pre><code class="language-bash">bash FONVLaunchInMerged.sh steam steam://rungameid/22380</code></pre><p>If you run into issues, delete the <code class="docutils literal notranslate"><span class="pre">_overlay_</span></code> and <code class="docutils literal notranslate"><span class="pre">_mods</span></code> folder.</p>
+<p>The merged game files will be mounted in
 <code class="docutils literal notranslate"><span class="pre">/path/to/steam/steamapps/common/Fallout</span> <span class="pre">New</span> <span class="pre">Vegas</span></code>. After you close Steam,
 the merged directory will be unmounted. In order to test that it is actually
 working, install the JIP LN NVSE mod and type <code class="docutils literal notranslate"><span class="pre">GetIsLAA</span></code> in the console. You
@@ -791,53 +722,18 @@ cd /path/to/Local Settings/Application Data/FalloutNV
 ln -s "/path/to/Fallout New Vegas/data/loadorder.txt" plugins.txt</code></pre></div>
 <div class="section" id="loot">
 <h3>LOOT<a class="headerlink" href="#loot" title="Permalink to this headline">¶</a></h3>
-<p>If none of the mod organizers work, then you can use the much simpler <a class="reference external" href="https://loot.github.io/">Load Order Optimization Tool</a>.
-You will need to install and uninstall mods manually, but LOOT will help organize your <code class="docutils literal notranslate"><span class="pre">plugins.txt</span></code> file. Note that this file is located in
-<code class="docutils literal notranslate"><span class="pre">users/your_username/Local</span> <span class="pre">Settings/Application</span> <span class="pre">Data/FalloutNV/</span></code>.</p>
-</div>
-<div class="section" id="lutana-nvse">
-<h3>Lutana NVSE<a class="headerlink" href="#lutana-nvse" title="Permalink to this headline">¶</a></h3>
-<div class="card">
-<div class="card-header bg-info">
-<i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
-Lutana has been merged into JIP.</div></div>
-<p>This is a prerequisite of CASM. Even if you don’t use a controller, one of its script functions depends on
-<code class="docutils literal notranslate"><span class="pre">xinput.dll</span></code>. You need to install that via winetricks to prevent crashing. The error would look like:</p>
-<pre><code class="language-bash">err:seh:raise_exception Unhandled exception code c0000005 flags 0 addr 0x14b01645</code></pre></div>
-<div class="section" id="ini-modifications">
-<h3>.ini modifications<a class="headerlink" href="#ini-modifications" title="Permalink to this headline">¶</a></h3>
-<p>In order to disable mouse acceleration, place this in <code class="docutils literal notranslate"><span class="pre">Fallout.ini</span></code>:</p>
-<pre><code class="language-ini">[Controls]
-fForegroundMouseAccelBase=0
-fForegroundMouseAccelTop=0
-fForegroundMouseBase=0
-fForegroundMouseMult=0</code></pre><p>If you are using the Archive Invalidation mod, also place this in <code class="docutils literal notranslate"><span class="pre">Fallout.ini</span></code>:</p>
-<pre><code class="language-ini">[Archive]
-SInvalidationFile=
-iRetainFilenameOffsetTable=1
-iRetainFilenameStringTable=1
-iRetainDirectoryStringTable=1
-bCheckRuntimeCollisions=0
-bInvalidateOlderFiles=1
-bUseArchives=1
-SArchiveList=Fallout - Voices1.bsa, Fallout - Sound.bsa, Fallout - Misc.bsa, ArchiveInvalidationInvalidated!.bsa, Fallout - Textures.bsa, Fallout - Textures2.bsa, Fallout - Meshes.bsa</code></pre><p>In order to reduce stuttering when using ENB, modify <code class="docutils literal notranslate"><span class="pre">enblocal.ini</span></code> like so:</p>
-<pre><code class="language-ini">ExpandSystemMemoryX64=false
-ReduceSystemMemoryUsage=false
-DisablePreloadToVRAM=false
-EnableUnsafeMemoryHacks=false
-ReservedMemorySizeMb=...
-VideoMemorySizeMb=...
-EnableCompression=false
-AutodetectVideoMemorySize=false</code></pre><p>These options either should not be set to true (except in rare or for debugging cases) or are designed to reduce memory footprint at a significant cost
-to performance. <code class="docutils literal notranslate"><span class="pre">ReservedMemorySizeMb</span></code> should be a small value in multiples of <code class="docutils literal notranslate"><span class="pre">128</span></code> and <code class="docutils literal notranslate"><span class="pre">VideoMemorySizeMb</span></code> should be set to whatever the ENB
-<a class="reference external" href="http://enbdev.com/download_vramsizetest.htm">VRam size tool</a> gives you minus 170~. While this may not necessarily improve FPS, it will get rid of stuttering,
-particularly when turning or opening the pipboy. Finally, if you are having transparency issues (i.e, in Camp Golf) set <code class="docutils literal notranslate"><span class="pre">FixTransparencyBugs=false</span></code>.</p>
+<p>If none of the mod organizers work, then you can use the much simpler <a class="reference external" href="https://loot.github.io/">Load
+Order Optimization Tool</a>.  You will need to install
+and uninstall mods manually, but LOOT will help organize your <code class="docutils literal notranslate"><span class="pre">plugins.txt</span></code>
+file. Note that this file is located in <code class="docutils literal notranslate"><span class="pre">users/your_username/Local</span>
+<span class="pre">Settings/Application</span> <span class="pre">Data/FalloutNV/</span></code>.</p>
 </div>
 </div>
 <div class="section" id="gmdx">
 <h2>GMDX<a class="headerlink" href="#gmdx" title="Permalink to this headline">¶</a></h2>
-<p>If you are using GMDX (Deus Ex mod), you may need to edit <code class="docutils literal notranslate"><span class="pre">/home/user/Documents/Deus</span> <span class="pre">Ex/System/GMDX.ini</span></code> in order for it to work properly.
-Under <code class="docutils literal notranslate"><span class="pre">[Core.System]</span></code> replace all of the <code class="docutils literal notranslate"><span class="pre">Paths</span></code> entries with:</p>
+<p>If you are using GMDX (Deus Ex mod), you may need to edit
+<code class="docutils literal notranslate"><span class="pre">/home/user/Documents/Deus</span> <span class="pre">Ex/System/GMDX.ini</span></code> in order for it to work
+properly.  Under <code class="docutils literal notranslate"><span class="pre">[Core.System]</span></code> replace all of the <code class="docutils literal notranslate"><span class="pre">Paths</span></code> entries with:</p>
 <pre><code class="language-ini">Paths=..\New Vision\Textures\*.utx
 Paths=..\GMDXv9\Maps\*.dx
 Paths=..\GMDXv9\Music\*.umx
@@ -850,38 +746,38 @@ Paths=..\Sounds\*.uax
 Paths=..\Textures\*.utx
 Paths=..\Maps\*.dx
 Paths=..\System\*.u</code></pre></div>
-<div class="section" id="directx11-games">
-<h2>DirectX11 games<a class="headerlink" href="#directx11-games" title="Permalink to this headline">¶</a></h2>
-<p>If you are having rendering issues in D3D11 games (such as black screens/textures), then you may need to use <a class="reference external" href="https://github.com/doitsujin/dxvk">DXVK</a>, a Vulkan-based
-D3D11 implementation. There are three ways of obtaining it. You can either use <a class="reference external" href="https://github.com/Winetricks/winetricks">Winetricks</a>, download the latest <a class="reference external" href="https://github.com/doitsujin/dxvk/releases">binary release</a> or attempt to compile it. The <code class="docutils literal notranslate"><span class="pre">wine-dxvk</span></code> package is also available.</p>
-<p>In order to compile it, you need to install the following dependencies:</p>
-<pre><code class="language-bash">dnf install mingw64-gcc mingw64-gcc-c++ mingw32-winpthreads-static mingw64-winpthreads-static meson glslang</code></pre><p>It’s important that you install the static packages for pthreads or the compilation will fail. Then run (from the README):</p>
-<pre><code class="language-bash"># 64-bit build. For 32-bit builds, replace
-# build-win64.txt with build-win32.txt
-meson --cross-file build-win64.txt --prefix /your/dxvk/directory build.w64
-cd build.w64
-meson configure
-# for an optimized release build:
-meson configure -Dbuildtype=release
-ninja
-ninja install</code></pre><p>But add <code class="docutils literal notranslate"><span class="pre">-Denable_tests=true</span></code> in order to build the demo programs. Finally, you need a copy of <code class="docutils literal notranslate"><span class="pre">d3dcompiler_47.dll</span></code> which you can get from the redist of certain programs,
-such as <a class="reference external" href="https://raw.githubusercontent.com/ImagingSIMS/ImagingSIMS/master/Redist/x64/d3dcompiler_47.dll">this one</a> (or use winetricks).</p>
-<p>When launching the program, use the following overrides:</p>
-<pre><code class="language-bash">WINEDLLOVERRIDES="d3d11.dll=n;d3dcompiler_47.dll=n;dxgi.dll=n"</code></pre></div>
 <div class="section" id="proton">
 <h2>Proton<a class="headerlink" href="#proton" title="Permalink to this headline">¶</a></h2>
-<p>If you use Steam, you can play games using Steam Play, which uses <a class="reference external" href="https://github.com/ValveSoftware/Proton/">Proton</a>. Proton incorporates both Wine and DXVK to allow you to play Windows games without doing any tinkering out of the box.</p>
-<p>Proton can either be obtained by installing a Steam Play enabled game or standalone in the <strong>Tools</strong> section. In the library pane, select the <strong>Games</strong> dropdown and change it to <strong>Tools</strong>. Then scroll down until you find Proton.</p>
+<p>If you use Steam, you can play games using Steam Play, which uses <a class="reference external" href="https://github.com/ValveSoftware/Proton/">Proton</a>. Proton incorporates both Wine and
+DXVK to allow you to play Windows games without doing any tinkering out of the
+box.</p>
+<p>Proton can either be obtained by installing a Steam Play enabled game or
+standalone in the <strong>Tools</strong> section. In the library pane, select the <strong>Games</strong>
+dropdown and change it to <strong>Tools</strong>. Then scroll down until you find Proton.</p>
 <div class="figure align-default">
 <img alt="Installing the standalone version of Proton." src="../_images/proton.png" />
 </div>
-<p>Once that’s done, locate the Proton directory. It will look something like <code class="docutils literal notranslate"><span class="pre">steam/steamapps/common/Proton</span> <span class="pre">3.7</span></code>, where <code class="docutils literal notranslate"><span class="pre">steam</span></code> is located in one of your Steam download libraries. You can directly invoke the Proton binary to use it for non-steam games. For example:</p>
-<pre><code class="language-bash">env STEAM_COMPAT_DATA_PATH=$PATH_TO_STEAM_LIBRARY/steam/steamapps/compatdata/$APP_ID $PATH_TO_STEAM_LIBRARY/steam/steamapps/common/Proton\ 3.7/proton run "some_game.exe"</code></pre><p><code class="docutils literal notranslate"><span class="pre">$APP_ID</span></code> will be the value of whatever game you installed with Steam Play. For a performance boost, you should <strong>not</strong> disable <code class="docutils literal notranslate"><span class="pre">ESYNC</span></code>. This will require that you <a class="reference external" href="https://github.com/lutris/lutris/wiki/How-to:-Esync">change your ulimit</a>. If you cannot get that working, then set the <code class="docutils literal notranslate"><span class="pre">PROTON_NO_ESYNC=1</span></code> environment variable.</p>
-<p>You can have Proton generate a prefix for you. Create a directory, touch the <code class="docutils literal notranslate"><span class="pre">pfx.lock</span></code> file then point <code class="docutils literal notranslate"><span class="pre">STEAM_COMPAT_DATA_PATH</span></code> to it. The prefix will be generated in <code class="docutils literal notranslate"><span class="pre">pfx</span></code>.</p>
+<p>Once that’s done, locate the Proton directory. It will look something like
+<code class="docutils literal notranslate"><span class="pre">steam/steamapps/common/Proton</span> <span class="pre">3.7</span></code>, where <code class="docutils literal notranslate"><span class="pre">steam</span></code> is located in one of
+your Steam download libraries.</p>
+<p>Alternatively, you can install a fork of Proton called <a class="reference external" href="https://github.com/GloriousEggroll/proton-ge-custom">Proton-GE</a>. Download the tarball
+and unzip it to <cite>$HOME/.local/share/Steam/compatibilitytools.d/</cite>. After you
+restart Steam, it should show up when you select a custom Steam Play tool.</p>
+<p>If you need to enable logging, go to any Proton installation directory and move
+<code class="docutils literal notranslate"><span class="pre">user_settings.sample.py</span></code> to <code class="docutils literal notranslate"><span class="pre">user_settings.py</span></code>.</p>
+<p>You can directly invoke the Proton binary to use
+it for non-steam games. For example:</p>
+<pre><code class="language-bash">env STEAM_COMPAT_DATA_PATH=$PATH_TO_STEAM_LIBRARY/steam/steamapps/compatdata/$APP_ID $PATH_TO_STEAM_LIBRARY/steam/steamapps/common/Proton\ 3.7/proton run "some_game.exe"</code></pre><p><code class="docutils literal notranslate"><span class="pre">$APP_ID</span></code> will be the value of whatever game you installed with Steam Play.
+For a performance boost, you should <strong>not</strong> disable <code class="docutils literal notranslate"><span class="pre">ESYNC</span></code>. This will
+require that you <a class="reference external" href="https://github.com/lutris/lutris/wiki/How-to:-Esync">change your ulimit</a>. If you cannot get that
+working, then set the <code class="docutils literal notranslate"><span class="pre">PROTON_NO_ESYNC=1</span></code> environment variable.</p>
+<p>You can have Proton generate a prefix for you. Create a directory, touch the
+<code class="docutils literal notranslate"><span class="pre">pfx.lock</span></code> file then point <code class="docutils literal notranslate"><span class="pre">STEAM_COMPAT_DATA_PATH</span></code> to it. The prefix will
+be generated in <code class="docutils literal notranslate"><span class="pre">pfx</span></code>.</p>
 <div class="card">
 <div class="card-header bg-info">
 <i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
-The latest version of systemd has upped the hard limit to 524288, but the soft limit remains at 1024. However, when you start a game with Proton, the process should automatically up the soft limit as required.    So you do not need to change anything. You can verify the ulimit of any process with <code class="docutils literal notranslate"><span class="pre">prlimit</span> <span class="pre">--pidof=...</span></code>.</div></div>
+The latest version of systemd has upped the hard limit to 524288, but the soft limit remains at 1024. However, when you start a game with Proton, the process should automatically up the soft limit as required. So you do not need to change anything. You can verify the ulimit of any process with <code class="docutils literal notranslate"><span class="pre">prlimit</span> <span class="pre">--pidof=...</span></code>.</div></div>
 <div class="card">
 <div class="card-header bg-info">
 <i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
