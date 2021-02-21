@@ -660,13 +660,13 @@
 <p>By default on Fedora, the directory Docker stores data in (images, etc.) is <code class="docutils literal notranslate"><span class="pre">/var/lib/docker</span></code>.
 Rather than changing the systemd service file, you can simply create <code class="docutils literal notranslate"><span class="pre">/etc/docker/daemon.json</span></code>:</p>
 <pre><code class="language-default">{
-    "graph": "/mnt",
-    "storage-driver": "overlay2"
+    "graph": "/mnt"
 }</code></pre><div class="card">
 <div class="card-header bg-info">
 <i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
 <h5 class="card-title">
-overlay2 should be replaced with whatever is shown in docker info.</h5><code class="docutils literal notranslate"><span class="pre">/mnt</span></code> should point to the root directory. For example, if you specify <code class="docutils literal notranslate"><span class="pre">/mnt/docker</span></code>, the final
+This page previously recommended setting the storage driver. If it’s specified in both the config file
+and as a flag (as it is in recent versions of Fedora), Docker will fail to start.</h5><code class="docutils literal notranslate"><span class="pre">/mnt</span></code> should point to the root directory. For example, if you specify <code class="docutils literal notranslate"><span class="pre">/mnt/docker</span></code>, the final
 path is <code class="docutils literal notranslate"><span class="pre">/mnt/docker/docker</span></code>.</div></div>
 <p>After that, reload the changes (it may be a good idea to delete or backup the old directory):</p>
 <pre><code class="language-bash">systemctl daemon-reload
