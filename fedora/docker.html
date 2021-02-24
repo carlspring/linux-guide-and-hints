@@ -668,7 +668,9 @@ Rather than changing the systemd service file, you can simply create <code class
 This page previously recommended setting the storage driver. If it’s specified in both the config file
 and as a flag (as it is in recent versions of Fedora), Docker will fail to start.</h5><code class="docutils literal notranslate"><span class="pre">/mnt</span></code> should point to the root directory. For example, if you specify <code class="docutils literal notranslate"><span class="pre">/mnt/docker</span></code>, the final
 path is <code class="docutils literal notranslate"><span class="pre">/mnt/docker/docker</span></code>.</div></div>
-<p>After that, reload the changes (it may be a good idea to delete or backup the old directory):</p>
+<p>To ensure that the directory has the proper selinux contexts (not doing so will result in obscure errors),
+you can copy over the directory structure by doing:</p>
+<pre><code class="language-bash">cp -aR /var/lib/docker /path/to/new/directory</code></pre><p>After that, reload the changes (it may be a good idea to delete or backup the old directory):</p>
 <pre><code class="language-bash">systemctl daemon-reload
 systemctl restart docker</code></pre><p>After that, you can view <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">info</span></code> to verify your changes.</p>
 <p>Credit goes to <a class="reference external" href="https://stackoverflow.com/a/34731550">Piotr Król’s StackOverflow answer</a>.</p>
