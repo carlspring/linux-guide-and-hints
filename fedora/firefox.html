@@ -249,7 +249,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Firefox</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#disable-automatic-redirect-to-a-website-if-typing-an-invalid-url">Disable automatic redirect to a website if typing an invalid URL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#glitchy-ui-when-using-custom-gtk-theme">Glitchy UI when using custom GTK theme</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#enabling-secure-dns-and-encrypted-sni">Enabling Secure DNS and Encrypted SNI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#disable-network-http-referer-spoofsource">Disable <code class="docutils literal notranslate"><span class="pre">network.http.referer.spoofSource</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="gcc.html">GCC</a><ul>
@@ -664,17 +664,12 @@
 <p>If you are using a custom GTK theme for your window manager, you need to instruct Firefox to use the default theme. On XFCE, this will be something like:</p>
 <pre><code class="language-bash">env GTK_THEME=Adwaita:light firefox</code></pre><p>If that’s inconvenient, you can add the change to Firefox directly. Go to <code class="docutils literal notranslate"><span class="pre">about:config</span></code> and add a new key called <code class="docutils literal notranslate"><span class="pre">widget.content.gtk-theme-override</span></code>. Set the value to <code class="docutils literal notranslate"><span class="pre">Adwaita:light</span></code> or whatever you prefer.</p>
 </div>
-<div class="section" id="enabling-secure-dns-and-encrypted-sni">
-<h2>Enabling Secure DNS and Encrypted SNI<a class="headerlink" href="#enabling-secure-dns-and-encrypted-sni" title="Permalink to this headline">¶</a></h2>
-<p>For some reason, this is disabled by default. First, ensure you’re using
-Cloudflare’s DNS servers 1.1.1.1 and 1.0.0.1. Then go to Firefox Options &gt;
-General &gt; Network Settings and check the box “Enable DNS over HTTPS” (by
-default this will use Mozilla’s provider). Then, in <code class="docutils literal notranslate"><span class="pre">about::config</span></code> set
-<code class="docutils literal notranslate"><span class="pre">network.trr.bootstrapAddress</span></code> to <code class="docutils literal notranslate"><span class="pre">1.1.1.1</span></code> and
-<code class="docutils literal notranslate"><span class="pre">network.security.esni.enabled</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code>. After restarting your browser,
-run the test at <a class="reference external" href="https://www.cloudflare.com/ssl/encrypted-sni/">https://www.cloudflare.com/ssl/encrypted-sni/</a> to check your
-results.</p>
-<p>Source: <a class="reference external" href="https://www.reddit.com/r/firefox/comments/a5evhr/configure_dns_over_https_in_firefox/">https://www.reddit.com/r/firefox/comments/a5evhr/configure_dns_over_https_in_firefox/</a></p>
+<div class="section" id="disable-network-http-referer-spoofsource">
+<h2>Disable <code class="docutils literal notranslate"><span class="pre">network.http.referer.spoofSource</span></code><a class="headerlink" href="#disable-network-http-referer-spoofsource" title="Permalink to this headline">¶</a></h2>
+<p>Some privacy guides or tools suggest you enable this setting. However, it can
+break websites. This <a class="reference external" href="https://feeding.cloud.geek.nz/posts/tweaking-referrer-for-privacy-in-firefox/">article</a>
+suggests using setting <code class="docutils literal notranslate"><span class="pre">network.http.referer.XOriginPolicy</span></code> and
+<code class="docutils literal notranslate"><span class="pre">network.http.referer.XOriginTrimmingPolicy</span></code> to <code class="docutils literal notranslate"><span class="pre">2</span></code> instead.</p>
 </div>
 </div>
 
