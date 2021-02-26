@@ -344,7 +344,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#gmdx">GMDX</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#proton">Proton</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#proton">Proton</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mf-install">mf_install</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="xscreensaver.html">XScreenSaver</a><ul>
@@ -784,6 +787,14 @@ The latest version of systemd has upped the hard limit to 524288, but the soft l
 <h5 class="card-title">
 compatdata/$APP_ID/pfx is the Wine prefix for each game and you can interact with it just like any other Wine prefix:</h5><pre><code class="language-bash">env WINEPREFIX="/path/to/$APP_ID/pfx" winecfg</code></pre><p>If you use Proton, omit the <code class="docutils literal notranslate"><span class="pre">pfx</span></code> suffix:</p>
 <pre><code class="language-bash">env STEAM_COMPAT_DATA_PATH="/path/to/$APP_ID" proton run # ...</code></pre></div></div>
+<div class="section" id="mf-install">
+<h3>mf_install<a class="headerlink" href="#mf-install" title="Permalink to this headline">¶</a></h3>
+<p>As of Proton-6.1-GE2 I’ve found that some games still need the <a class="reference external" href="https://github.com/z0z0z/mf-install">Media
+Foundation workaround</a> for cutscenes and
+movies (Bulletstorm is one of them). In fact, Proton-GE doesn’t have the verb
+at all anymore. However, the default installation instructions don’t work.</p>
+<p>Simply run:</p>
+<pre><code class="language-bash">PROTON="/path/to/proton/directory" WINEPREFIX="/path/to/prefix" ./mf-install.sh -proton</code></pre></div>
 </div>
 </div>
 
