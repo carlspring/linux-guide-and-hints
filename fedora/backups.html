@@ -798,8 +798,8 @@ use <code class="docutils literal notranslate"><span class="pre">git</span> <spa
 </ul>
 <p>As far as I’m aware, git-annex doesn’t track permissions or xattrs (important
 for SELinux). However, etckeeper has some helper scripts which store and
-restore metadata: <a class="reference external" href="https://git.joeyh.name/index.cgi/etckeeper.git/tree/pre-commit.d/30store-metadata">30store-metadata</a>
-and <a class="reference external" href="https://git.joeyh.name/index.cgi/etckeeper.git/tree/pre-commit.d/30store-metadata">30restore-etckeeper</a>
+restore metadata: <a class="reference external" href="https://git.joeyh.name/index.cgi/etckeeper.git/tree/commit.d/20store-metadata">20store-metadata</a>
+and <a class="reference external" href="https://git.joeyh.name/index.cgi/etckeeper.git/tree/init.d/20restore-etckeeper">20restore-etckeeper</a>
 respectively. Rename the scripts to <code class="docutils literal notranslate"><span class="pre">git-store-metadata</span></code> and
 <code class="docutils literal notranslate"><span class="pre">git-restore-metadata</span></code> and add them to your <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.  You will need to set
 the <code class="docutils literal notranslate"><span class="pre">VCS</span></code> environment variable to <code class="docutils literal notranslate"><span class="pre">git</span></code>.</p>
