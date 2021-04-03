@@ -721,7 +721,9 @@ end
 
 if test -f ~/.keychain/(hostname)-fish
     source ~/.keychain/(hostname)-fish
-end</code></pre><div class="card">
+end</code></pre><p>To avoid future issues, make sure you have a permanent hostname. You can set it
+with:</p>
+<pre><code class="language-fish">hostnamectl set-hostname hostname</code></pre><div class="card">
 <div class="card-header bg-info">
 <i class='fa fa-exclamation-circle'></i> Note</div><div class="card-body">
 At the time of writing the Fish example in the man Keychain page is broken.
