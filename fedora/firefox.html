@@ -249,6 +249,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Firefox</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#disable-automatic-redirect-to-a-website-if-typing-an-invalid-url">Disable automatic redirect to a website if typing an invalid URL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#glitchy-ui-when-using-custom-gtk-theme">Glitchy UI when using custom GTK theme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#forcing-dark-theme">Forcing dark theme</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#disable-network-http-referer-spoofsource">Disable <code class="docutils literal notranslate"><span class="pre">network.http.referer.spoofSource</span></code></a></li>
 </ul>
 </li>
@@ -666,6 +667,43 @@
 <h2>Glitchy UI when using custom GTK theme<a class="headerlink" href="#glitchy-ui-when-using-custom-gtk-theme" title="Permalink to this headline">¶</a></h2>
 <p>If you are using a custom GTK theme for your window manager, you need to instruct Firefox to use the default theme. On XFCE, this will be something like:</p>
 <pre><code class="language-bash">env GTK_THEME=Adwaita:light firefox</code></pre><p>If that’s inconvenient, you can add the change to Firefox directly. Go to <code class="docutils literal notranslate"><span class="pre">about:config</span></code> and add a new key called <code class="docutils literal notranslate"><span class="pre">widget.content.gtk-theme-override</span></code>. Set the value to <code class="docutils literal notranslate"><span class="pre">Adwaita:light</span></code> or whatever you prefer.</p>
+</div>
+<div class="section" id="forcing-dark-theme">
+<h2>Forcing dark theme<a class="headerlink" href="#forcing-dark-theme" title="Permalink to this headline">¶</a></h2>
+<p>By default, Firefox will use your system preference to determine whether or not
+to use a dark theme, but does not expose this option.  In <code class="docutils literal notranslate"><span class="pre">about:config</span></code>,
+create a new entry called <code class="docutils literal notranslate"><span class="pre">ui.systemUsesDarkTheme</span></code> and set it to <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+<p>If you experience a “flashing” white background when loading a new tab, then
+you need a custom <code class="docutils literal notranslate"><span class="pre">userContent.css</span></code> file. First, enable
+<code class="docutils literal notranslate"><span class="pre">toolkit.legacyUserProfileCustomizations.stylesheets</span></code>. Then create a
+<code class="docutils literal notranslate"><span class="pre">chrome</span></code> folder in your user profile and populate <code class="docutils literal notranslate"><span class="pre">userContent.css</span></code> with
+the following contents:</p>
+<pre><code class="language-css">/*
+   dark background in new tabs without a white flash (with tridactyl newtab)
+   @see: https://github.com/tridactyl/tridactyl/issues/2510
+*/
+:root {
+  --tridactyl-bg: #1d1b19 !important;
+  --tridactyl-fg: white !important;
+}
+
+/*
+    set the background color of the new tab page (without tridactyl or with tridactyl without newtab)
+*/
+@-moz-document url-prefix(about:home), url-prefix(about:newtab) {
+  body {
+    background: #1d1b19;
+  }
+}
+
+/*
+    if you set it straight to body element, it will be applied to the random web pages
+    that don't explicitly set the background color of their body element
+    (there's many of those online)
+*/
+/* body { */
+/* background-color: #1d1b19; */
+/* } */</code></pre><p>Credit goes to <a class="reference external" href="https://github.com/maricn">&#64;maricn</a> for the CSS.</p>
 </div>
 <div class="section" id="disable-network-http-referer-spoofsource">
 <h2>Disable <code class="docutils literal notranslate"><span class="pre">network.http.referer.spoofSource</span></code><a class="headerlink" href="#disable-network-http-referer-spoofsource" title="Permalink to this headline">¶</a></h2>
