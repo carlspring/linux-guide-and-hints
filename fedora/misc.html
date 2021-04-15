@@ -297,6 +297,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#selinux-is-preventing-abrt-action-sav-from-write-access-on-the-directory-var-lib-rpm">SELinux is preventing <code class="docutils literal notranslate"><span class="pre">abrt-action-sav</span></code> from write access on the directory /var/lib/rpm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#swapping-desktop-environments">Swapping Desktop Environments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#upon-logging-into-xfce-desktop-freezes-until-you-switch-to-another-tty">Upon logging into XFCE, desktop freezes until you switch to another TTY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#alternative-fonts">Alternative fonts</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mpv.html">mpv</a></li>
@@ -708,6 +709,15 @@ $ sudo dnf swap @gnome-desktop @xfce-desktop-environment</code></pre><p>This wil
 <div class="section" id="upon-logging-into-xfce-desktop-freezes-until-you-switch-to-another-tty">
 <h2>Upon logging into XFCE, desktop freezes until you switch to another TTY<a class="headerlink" href="#upon-logging-into-xfce-desktop-freezes-until-you-switch-to-another-tty" title="Permalink to this headline">¶</a></h2>
 <p>If you have <code class="docutils literal notranslate"><span class="pre">FullCompositionPipeline</span></code> enabled in Nvidia settings, you may run into this problem. This is a long standing bug, see <a class="reference external" href="https://bugzilla.xfce.org/show_bug.cgi?id=14950">#14950</a>. The solution is to either edit or delete <cite>$HOME/.config/xfce4/xfconf/xfce-perchannel-xml/displays.xml</cite>. Use a different mechanism for setting up your displays.</p>
+</div>
+<div class="section" id="alternative-fonts">
+<h2>Alternative fonts<a class="headerlink" href="#alternative-fonts" title="Permalink to this headline">¶</a></h2>
+<p>There is a COPR repo called <a class="reference external" href="https://copr.fedorainfracloud.org/coprs/dawid/better_fonts/">better fonts</a> which adds an
+alternative font stack and adds some settings for font rendering. Whether or
+not it’s “better” is subjective, but it adds alternatives for fonts like Arial.</p>
+<p>Since the project is GNOME based, you will have to make a couple of manual
+changes for XFCE.  Go to <strong>Settings</strong> -&gt; <strong>Appearance</strong> -&gt; <strong>Fonts</strong>, change
+<code class="docutils literal notranslate"><span class="pre">Hinting</span></code> to <code class="docutils literal notranslate"><span class="pre">Slight</span></code> and <code class="docutils literal notranslate"><span class="pre">Sub-pixel</span> <span class="pre">order</span></code> to <code class="docutils literal notranslate"><span class="pre">RGB</span></code>.</p>
 </div>
 </div>
 
